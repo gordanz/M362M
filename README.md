@@ -1,2 +1,3 @@
 # M362M
-# M362M
+
+Mostly Jupyter notebooks with demonstrations for the class
