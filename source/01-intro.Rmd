@@ -1,0 +1,84 @@
+\newcommand{\PP}{{\mathbb{P}}}
+\newcommand{\sS}{{\mathcal{S}}}
+
+# (PART) Probability and Simulation {-}
+
+# Simulation of Random Variables and Monte Carlo
+
+## How to simulate some common probability distributions
+
+```{exercise}
+''Draw'' 50 simulations from the geometric distribution with parameter $p=0.4$.
+```
+**Solution:** 
+```{r}
+rgeom(50,prob=0.4)
+```
+*Comments*
+
+*R:* R makes it very easy to simulate draws from one of the *named* distributions, such as geometric, binomial, uniform, normal, etc. For a list of all available distributions, run `help("distributions")` Each available distribution has an *R name*; the uniform is `unif` the normal is `norm` and the binomial is `binom`, etc. If you want to simulate $n$ draws (aka a *sample* of size $n$) from a distribution, you form a full command by appending the letter `r` to its R name and use $n$ as an argument. That is how we arrived to `rgeom(50)` in the solution above. The additional arguments of `rgeom` have to do with the parameters of that distribution. Which parameters go with which distributions, and how to input them as arguments to `rgeom` or `rnorm` is best looked up in R's extensive documentation. Try `help("rnorm")`, for example. 
+
+*Math:* You might have encountered a geometric distribution before. A random variable with that distribution can take any positive integer value or $0$. As you can see from the output above, the value $0$ appears more often than the value $3$, and the value $23$ does not appear at all. The probability of seeing the value $k\in \{0,1,2,3,\dots\}$ as a result of a single draw is given by $(1-p)^k p$, where $p$ is called the *parameter* of the distribution. That corresponds to the following interpretation of the geometric distribution: *keep tossing a biased coin (with probability $p$ of obtaining H) until you see the first H; the number of tosses yielding T before that is your geometric random variable*. 
+If we put these probabilities in a single table (and choose $p=0.4$, for example) it is going to look like this:
+```{r echo=FALSE}
+k=0:7
+df = data.frame(dgeom(k, prob=0.4))
+names(df)=c("Prob.")
+tf=data.frame(t(df))
+tf$elip = c("...")
+names(tf) = c(0:7,'...')
+knitr::kable(tf, digits=3)
+```
+
+Of course, the possible values our random variable can take do not stop at $7$. In fact, there are infinitely many possible values, but we do not have infinite space. Note that, even though, the value $17$ does not appear in the output of the command `rgeom` above, it probably would if we simulated more than $50$ values. Let's try it with $500$ draws:
+
+```{r}
+X <- rgeom(500, prob = 0.4)
+kable(t(table(X)))
+```
+
+Still no luck, but we do observe values above 5 more often. By trial and error, we arrive at about $1,000,000$ as the required number of simulations:
+
+```{r echo=FALSE, message=FALSE}
+cts = as.vector(table(rgeom(1000000, prob = 0.4)))
+out  <- as_tibble(t(cts), .name_repair = "unique")
+names(out) = as.character(c(-1+1:length(out)))
+out = select(out, head(names(out),4), tail(names(out),5) )
+out[,5]=c("...")
+names(out)[5]="..." 
+kable(out)
+```
+
+
+```{exercise}
+Compute the probability that among $1,000,000$ draws of a geometric random variable with parameter $p=0.4$, we never see a number greater than $22$.
+```
+
+**Solution:** First, we compute the probability that the value seen in a *single* draw does not exceed $22$:
+```{r echo=2}
+options(digits=7)
+pgeom(22,prob=0.4)
+```
+
+Different draws are *independent* of each other, so we need to raise this to the power $1,000,000$. 
+```{r}
+(pgeom(22,prob=0.4))^(1000000)
+```
+*Comments*
+
+*R* There is little new R here, but this problem gives us a chance to discuss precision. As you can see, the probability of a single draw not exceeding $22$ is very close to $1$. In fact, it is equal to 1 to 5 decimal places. By default, R displays 7 significant digits of a number. That is enough for most applications, but sometimes we need more precision. For example, let's try to compute the probability of seeing no T (tails) in 10 tosses of a biased coin, where the probability of H (heads) is 0.9.
+```{r}
+1-0.1^10
+```
+While small, this probability is clearly not equal to $1$, as suggested by the output above. 
+The culprit is the default precision. We can increase the precision (up to $22$ digits) by running `options(digits=14)`
+```{r echo = 1:2}
+options(digits=17)
+1-0.1^10
+options(digits=7)
+```
+Problems like this should not appear in this course, but they will out there "in the wild", so it might be a good idea to be aware of them.
+
+*Math*
+
+This probability is quite small. Since $1/0.000372$ is about $2690$, we would have to run about $2690$ rounds of $1,000,000$ simulations before the largest number falls below $23$.

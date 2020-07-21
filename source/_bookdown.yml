@@ -1,0 +1,10 @@
+language:
+  label:
+    exr: 'Problem '
+  ui:
+    chapter_name: "Chapter "
+    edit: "Edit"
+before_chapter_script: ["before-script.R"]
+delete_merged_file: true
+output_dir: "../docs/"
+repo: https://github.com/gordanz/M362M

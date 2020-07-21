@@ -1,0 +1,14 @@
+bookdown::gitbook:
+  css: style.css
+  config:
+    toc:
+      before: |
+        <li><a href="./">M362M Lecture notes</a></li>
+    fontsettings:
+      theme: white
+      family: serif
+      size: 2
+    sharing:
+      facebook: no
+      twitter: no
+    
