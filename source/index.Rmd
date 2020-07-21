@@ -98,7 +98,7 @@ I computed the sum of 2 and 3 by running the following code
 ```
 ````
 
-That is it. A sample Rmd file with solutions to parts of some of the problems below can be downloaded [here](http://www.github.com/gordanz/M362M/solutions/HW_template.Rmd).
+That is it. A sample Rmd file named HW_template.Rmd with solutions to parts of some of the problems below can be downloaded [here](http://www.github.com/gordanz/M362M/tree/master/solutions).
 
 Theoretical problems (i.e., those that do not involve any computation in R) can be submitted in a separate document (hand written and then scanned into a pdf, for example). If you know some LaTeX, you can use an R notebook  and simply type the formulas in LaTeX notation. This way, if the assignment comes with both computational and theoretical problems, you can submit both in a single file. I am not assuming that you do know LaTeX and I am not going to require you to learn it, but if you do, use it to make your submissions nicer and easier to read (the grader will thank you!). 
 

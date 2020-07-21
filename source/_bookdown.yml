@@ -9,3 +9,4 @@ delete_merged_file: true
 output_dir: "../docs/"
 self_contained: FALSE
 repo: https://github.com/gordanz/M362M
+edit: https://github.com/gordanz/M362M/edit/master/%s

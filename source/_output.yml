@@ -1,4 +1,5 @@
 bookdown::gitbook:
+  highlight: tango
   css: style.css
   config:
     toc:
@@ -8,7 +9,6 @@ bookdown::gitbook:
       theme: white
       family: serif
       size: 2
-    sharing:
-      facebook: no
-      twitter: no
+    sharing: null
+      
     
