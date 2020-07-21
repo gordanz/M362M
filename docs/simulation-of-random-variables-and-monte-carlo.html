@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Simulation of Random Variables and Monte Carlo | Lecture notes for M362M Introduction to Stochastic Processes</title>
+  <meta name="description" content="A set of lecture notes for M362M Introduction to Stochastic Processes" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Simulation of Random Variables and Monte Carlo | Lecture notes for M362M Introduction to Stochastic Processes" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A set of lecture notes for M362M Introduction to Stochastic Processes" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Simulation of Random Variables and Monte Carlo | Lecture notes for M362M Introduction to Stochastic Processes" />
+  
+  <meta name="twitter:description" content="A set of lecture notes for M362M Introduction to Stochastic Processes" />
+  
+
+<meta name="author" content="Gordan Zitkovic" />
+
+
+<meta name="date" content="2020-07-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">M362M Lecture notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#setting-up-an-r-environment-on-your-computer"><i class="fa fa-check"></i><b>1.1</b> Setting up an R environment on your computer</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#learning-the-very-basics-of-r"><i class="fa fa-check"></i><b>1.2</b> Learning the very basics of R</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#r-notebooks-or-how-to-submit-your-hw-assignments-and-exams"><i class="fa fa-check"></i><b>1.3</b> R Notebooks or <em>How to submit your HW assignments and exams</em></a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#problems"><i class="fa fa-check"></i><b>1.4</b> Problems</a></li>
+</ul></li>
+<li class="part"><span><b>I Probability and Simulation</b></span></li>
+<li class="chapter" data-level="2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html"><i class="fa fa-check"></i><b>2</b> Simulation of Random Variables and Monte Carlo</a><ul>
+<li class="chapter" data-level="2.1" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#how-to-simulate-some-common-probability-distributions"><i class="fa fa-check"></i><b>2.1</b> How to simulate some common probability distributions</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lecture notes for M362M <em>Introduction to Stochastic Processes</em></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="simulation-of-random-variables-and-monte-carlo" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Simulation of Random Variables and Monte Carlo</h1>
+<div id="how-to-simulate-some-common-probability-distributions" class="section level2">
+<h2><span class="header-section-number">2.1</span> How to simulate some common probability distributions</h2>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-8" class="exercise"><strong>Problem 2.1  </strong></span>‘’Draw’’ 50 simulations from the geometric distribution with parameter <span class="math inline">\(p=0.4\)</span>.
+</div>
+
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">rgeom</span>(<span class="dv">50</span>,<span class="dt">prob=</span><span class="fl">0.4</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt;  [1] 1 0 3 4 1 2 0 0 2 2 0 1 5 0 1 0 2 1 1 0 2 2 2 1 0 0 1 3 2 2 1 1 1 3 5</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt; [36] 0 1 1 0 0 0 1 2 0 1 1 1 0 1 0</span></a></code></pre></div>
+<p><em>Comments</em></p>
+<p><em>R:</em> R makes it very easy to simulate draws from one of the <em>named</em> distributions, such as geometric, binomial, uniform, normal, etc. For a list of all available distributions, run <code>help(&quot;distributions&quot;)</code> Each available distribution has an <em>R name</em>; the uniform is <code>unif</code> the normal is <code>norm</code> and the binomial is <code>binom</code>, etc. If you want to simulate <span class="math inline">\(n\)</span> draws (aka a <em>sample</em> of size <span class="math inline">\(n\)</span>) from a distribution, you form a full command by appending the letter <code>r</code> to its R name and use <span class="math inline">\(n\)</span> as an argument. That is how we arrived to <code>rgeom(50)</code> in the solution above. The additional arguments of <code>rgeom</code> have to do with the parameters of that distribution. Which parameters go with which distributions, and how to input them as arguments to <code>rgeom</code> or <code>rnorm</code> is best looked up in R’s extensive documentation. Try <code>help(&quot;rnorm&quot;)</code>, for example.</p>
+<p><em>Math:</em> You might have encountered a geometric distribution before. A random variable with that distribution can take any positive integer value or <span class="math inline">\(0\)</span>. As you can see from the output above, the value <span class="math inline">\(0\)</span> appears more often than the value <span class="math inline">\(3\)</span>, and the value <span class="math inline">\(23\)</span> does not appear at all. The probability of seeing the value <span class="math inline">\(k\in \{0,1,2,3,\dots\}\)</span> as a result of a single draw is given by <span class="math inline">\((1-p)^k p\)</span>, where <span class="math inline">\(p\)</span> is called the <em>parameter</em> of the distribution. That corresponds to the following interpretation of the geometric distribution: <em>keep tossing a biased coin (with probability <span class="math inline">\(p\)</span> of obtaining H) until you see the first H; the number of tosses yielding T before that is your geometric random variable</em>.
+If we put these probabilities in a single table (and choose <span class="math inline">\(p=0.4\)</span>, for example) it is going to look like this:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">0</th>
+<th align="right">1</th>
+<th align="right">2</th>
+<th align="right">3</th>
+<th align="right">4</th>
+<th align="right">5</th>
+<th align="right">6</th>
+<th align="right">7</th>
+<th align="left">…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Prob.</td>
+<td align="right">0.4</td>
+<td align="right">0.24</td>
+<td align="right">0.144</td>
+<td align="right">0.086</td>
+<td align="right">0.052</td>
+<td align="right">0.031</td>
+<td align="right">0.019</td>
+<td align="right">0.011</td>
+<td align="left">…</td>
+</tr>
+</tbody>
+</table>
+<p>Of course, the possible values our random variable can take do not stop at <span class="math inline">\(7\)</span>. In fact, there are infinitely many possible values, but we do not have infinite space. Note that, even though, the value <span class="math inline">\(17\)</span> does not appear in the output of the command <code>rgeom</code> above, it probably would if we simulated more than <span class="math inline">\(50\)</span> values. Let’s try it with <span class="math inline">\(500\)</span> draws:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">X &lt;-<span class="st"> </span><span class="kw">rgeom</span>(<span class="dv">500</span>, <span class="dt">prob =</span> <span class="fl">0.4</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">kable</span>(<span class="kw">t</span>(<span class="kw">table</span>(X)))</a></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">0</th>
+<th align="right">1</th>
+<th align="right">2</th>
+<th align="right">3</th>
+<th align="right">4</th>
+<th align="right">5</th>
+<th align="right">6</th>
+<th align="right">7</th>
+<th align="right">8</th>
+<th align="right">9</th>
+<th align="right">10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">208</td>
+<td align="right">132</td>
+<td align="right">62</td>
+<td align="right">43</td>
+<td align="right">23</td>
+<td align="right">16</td>
+<td align="right">8</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+</tbody>
+</table>
+<p>Still no luck, but we do observe values above 5 more often. By trial and error, we arrive at about <span class="math inline">\(1,000,000\)</span> as the required number of simulations:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">0</th>
+<th align="right">1</th>
+<th align="right">2</th>
+<th align="right">3</th>
+<th align="left">…</th>
+<th align="right">23</th>
+<th align="right">24</th>
+<th align="right">25</th>
+<th align="right">26</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">400616</td>
+<td align="right">238946</td>
+<td align="right">144274</td>
+<td align="right">86489</td>
+<td align="left">…</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">3</td>
+</tr>
+</tbody>
+</table>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-13" class="exercise"><strong>Problem 2.2  </strong></span>Compute the probability that among <span class="math inline">\(1,000,000\)</span> draws of a geometric random variable with parameter <span class="math inline">\(p=0.4\)</span>, we never see a number greater than <span class="math inline">\(22\)</span>.
+</div>
+
+<p><strong>Solution:</strong> First, we compute the probability that the value seen in a <em>single</em> draw does not exceed <span class="math inline">\(22\)</span>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">pgeom</span>(<span class="dv">22</span>,<span class="dt">prob=</span><span class="fl">0.4</span>)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="co">#&gt; [1] 0.9999921</span></a></code></pre></div>
+<p>Different draws are <em>independent</em> of each other, so we need to raise this to the power <span class="math inline">\(1,000,000\)</span>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">(<span class="kw">pgeom</span>(<span class="dv">22</span>,<span class="dt">prob=</span><span class="fl">0.4</span>))<span class="op">^</span>(<span class="dv">1000000</span>)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="co">#&gt; [1] 0.0003717335</span></a></code></pre></div>
+<p><em>Comments</em></p>
+<p><em>R</em> There is little new R here, but this problem gives us a chance to discuss precision. As you can see, the probability of a single draw not exceeding <span class="math inline">\(22\)</span> is very close to <span class="math inline">\(1\)</span>. In fact, it is equal to 1 to 5 decimal places. By default, R displays 7 significant digits of a number. That is enough for most applications, but sometimes we need more precision. For example, let’s try to compute the probability of seeing no T (tails) in 10 tosses of a biased coin, where the probability of H (heads) is 0.9.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="dv">1</span><span class="fl">-0.1</span><span class="op">^</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="co">#&gt; [1] 1</span></a></code></pre></div>
+<p>While small, this probability is clearly not equal to <span class="math inline">\(1\)</span>, as suggested by the output above.
+The culprit is the default precision. We can increase the precision (up to <span class="math inline">\(22\)</span> digits) by running <code>options(digits=14)</code></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">digits=</span><span class="dv">17</span>)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="dv">1</span><span class="fl">-0.1</span><span class="op">^</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">#&gt; [1] 0.99999999989999999</span></a></code></pre></div>
+<p>Problems like this should not appear in this course, but they will out there “in the wild”, so it might be a good idea to be aware of them.</p>
+<p><em>Math</em></p>
+<p>This probability is quite small. Since <span class="math inline">\(1/0.000372\)</span> is about <span class="math inline">\(2690\)</span>, we would have to run about <span class="math inline">\(2690\)</span> rounds of <span class="math inline">\(1,000,000\)</span> simulations before the largest number falls below <span class="math inline">\(23\)</span>.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
