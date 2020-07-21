@@ -7,4 +7,5 @@ language:
 before_chapter_script: ["before-script.R"]
 delete_merged_file: true
 output_dir: "../docs/"
+self_contained: FALSE
 repo: https://github.com/gordanz/M362M
