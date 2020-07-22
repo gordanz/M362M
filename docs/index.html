@@ -24,7 +24,7 @@
 <meta name="author" content="Gordan Zitkovic" />
 
 
-<meta name="date" content="2020-07-21" />
+<meta name="date" content="2020-07-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -160,7 +160,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Lecture notes for M362M <em>Introduction to Stochastic Processes</em></h1>
 <p class="author"><em>Gordan Zitkovic</em></p>
-<p class="date"><em>2020-07-21</em></p>
+<p class="date"><em>2020-07-22</em></p>
 </div>
 <div id="intro" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
@@ -183,14 +183,15 @@ What is the probability that Player <span class="math inline">\(1\)</span> wins<
 <li>a set? the entire match?</li>
 <li>Is the game of tennis set up in such a way that is <em>amplifies</em> or <em>reduces</em> the difference in skill between players?</li>
 </ol>
-<p><img src="knight1.png" width="35%" style="float:right; padding:10px" style="display: block; margin: auto;" />
-<strong>Question 4.</strong>
+<p><img src="knight1.png" width="35%" style="float:right; padding:10px" style="display: block; margin: auto;" /></p>
+<p><strong>Question 4.</strong>
 A knight starts in the lower left corner of the chess board and starts moving ``randomly’’. That means that from any position, it chooses one of the possible (legal) moves and takes it (all legal moves have the same probability). It keeps doing the same thing until it comes back to the square it started from.</p>
 <ol style="list-style-type: decimal">
 <li>What is the expected number of moves the knight will make before it returns to “square one”?</li>
 <li>How about the same problem, but using a different chess piece? Which one do you think will come back is the smallest (expected) number of steps?</li>
 <li>(*) How about the same problem, but until <em>all</em> squares have been visited at least once?</li>
 </ol>
+<p><strong>Question 5.</strong> How does Google search work?</p>
 <div id="setting-up-an-r-environment-on-your-computer" class="section level2">
 <h2><span class="header-section-number">1.1</span> Setting up an R environment on your computer</h2>
 <p>Learning basic R is an important part of this course, and the first order of business is to download and install an R distribution on your personal computer. We will be using RStudio as an IDE (integrated development environment). Like R itself, it is free and readily available for all major platforms. To download R to your computer, go to
@@ -263,7 +264,7 @@ Note: some of the answers will look like this <code>3.14e+13</code>. If you do n
 1. Define two variables <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> with values <span class="math inline">\(3\)</span> and <span class="math inline">\(4\)</span> and “put” their product into a variable called <span class="math inline">\(c\)</span>. Output the value of <span class="math inline">\(c\)</span>.</p>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Define two vectors <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> of length <span class="math inline">\(3\)</span>, such that the components of <span class="math inline">\(x\)</span> are <span class="math inline">\(1,2,3\)</span> and the components of <span class="math inline">\(y\)</span> are <span class="math inline">\(8,9,0\)</span>. Ouput their (componentwise) sum.</p></li>
-<li><p>Define a <span class="math inline">\(2\times 2\)</span> matrix <span class="math inline">\(A=\begin{pmatrix} 1 &amp; 2 \\ -1 &amp; 3 \end{pmatrix}\)</span>. Use the command <code>matrix</code> and make sure to understand how it works; you can access its documentation directly from <span class="math inline">\(R\)</span> by writing <code>?matrix</code>.</p></li>
+<li><p>Define a <span class="math inline">\(2\times 2\)</span> matrix <span class="math inline">\(A=\begin{pmatrix} 1 &amp; 2 \\ -1 &amp; 3 \end{pmatrix}\)</span>. Use the command <code>matrix</code> and make sure to understand how it works; you can access its documentation directly from <span class="math inline">\(R\)</span> by writing <code>?matrix</code>. Make sure you understand what the parameters <code>ncol</code>, <code>nrow</code> and <code>byrow</code> do.</p></li>
 <li><p>Compute the matrix square <span class="math inline">\(A^2\)</span> (Careful! <code>A*A</code> will output a <span class="math inline">\(2\times 2\)</span> matrix, but it will not be <span class="math inline">\(A^2\)</span> - it will be the matrix whose entries are the squares of the entries of <span class="math inline">\(A\)</span>. You need to use different notation.)</p></li>
 </ol>
 </div>

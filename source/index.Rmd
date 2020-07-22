@@ -37,12 +37,15 @@ What is the probability that Player $1$ wins
 ```{r echo=FALSE, out.width= "35%", out.extra='style="float:right; padding:10px"'}
 knitr::include_graphics('knight1.png')
 ```
+
 **Question 4.** 
 A knight starts in the lower left corner of the chess board and starts moving ``randomly''. That means that from any position, it chooses one of the possible (legal) moves and takes it (all legal moves have the same probability). It keeps doing the same thing until it comes back to the square it started from. 
 
 1. What is the expected number of moves the knight will make before it returns to "square one"?
 2. How about the same problem, but using a different chess piece? Which one do you think will come back is the smallest (expected) number of steps?
 3. (\*) How about the same problem, but until *all* squares have been visited at least once?
+
+**Question 5.** How does Google search work?
 
 
 ## Setting up an R environment on your computer
@@ -128,7 +131,7 @@ Note: some of the answers will look like this `3.14e+13`. If you do not know wha
 
 2. Define two vectors $x$ and $y$ of length $3$, such that the components of $x$ are $1,2,3$ and the components of $y$ are $8,9,0$. Ouput their (componentwise) sum.
 
-3. Define a $2\times 2$ matrix $A=\begin{pmatrix} 1 & 2 \\ -1 & 3 \end{pmatrix}$. Use the command `matrix` and make sure to understand how it works; you can access its documentation directly from $R$ by writing `?matrix`.
+3. Define a $2\times 2$ matrix $A=\begin{pmatrix} 1 & 2 \\ -1 & 3 \end{pmatrix}$. Use the command `matrix` and make sure to understand how it works; you can access its documentation directly from $R$ by writing `?matrix`. Make sure you understand what the parameters `ncol`, `nrow` and `byrow` do. 
 
 4. Compute the matrix square $A^2$ (Careful! `A*A` will output a $2\times 2$ matrix, but it will not be $A^2$ - it will be the matrix whose entries are the squares of the entries of $A$. You need to use different notation.)
 
