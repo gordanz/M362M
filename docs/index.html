@@ -24,7 +24,7 @@
 <meta name="author" content="Gordan Zitkovic" />
 
 
-<meta name="date" content="2020-07-22" />
+<meta name="date" content="2020-07-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,6 +50,7 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -139,6 +140,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="part"><span><b>I Probability and Simulation</b></span></li>
 <li class="chapter" data-level="2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html"><i class="fa fa-check"></i><b>2</b> Simulation of Random Variables and Monte Carlo</a><ul>
 <li class="chapter" data-level="2.1" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#how-to-simulate-some-common-probability-distributions"><i class="fa fa-check"></i><b>2.1</b> How to simulate some common probability distributions</a></li>
+<li class="chapter" data-level="2.2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#monte-carlo"><i class="fa fa-check"></i><b>2.2</b> Monte Carlo</a></li>
 </ul></li>
 </ul>
 
@@ -160,7 +162,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Lecture notes for M362M <em>Introduction to Stochastic Processes</em></h1>
 <p class="author"><em>Gordan Zitkovic</em></p>
-<p class="date"><em>2020-07-22</em></p>
+<p class="date"><em>2020-07-23</em></p>
 </div>
 <div id="intro" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
@@ -265,19 +267,17 @@ Note: some of the answers will look like this <code>3.14e+13</code>. If you do n
 <ol start="2" style="list-style-type: decimal">
 <li><p>Define two vectors <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> of length <span class="math inline">\(3\)</span>, such that the components of <span class="math inline">\(x\)</span> are <span class="math inline">\(1,2,3\)</span> and the components of <span class="math inline">\(y\)</span> are <span class="math inline">\(8,9,0\)</span>. Ouput their (componentwise) sum.</p></li>
 <li><p>Define a <span class="math inline">\(2\times 2\)</span> matrix <span class="math inline">\(A=\begin{pmatrix} 1 &amp; 2 \\ -1 &amp; 3 \end{pmatrix}\)</span>. Use the command <code>matrix</code> and make sure to understand how it works; you can access its documentation directly from <span class="math inline">\(R\)</span> by writing <code>?matrix</code>. Make sure you understand what the parameters <code>ncol</code>, <code>nrow</code> and <code>byrow</code> do.</p></li>
-<li><p>Compute the matrix square <span class="math inline">\(A^2\)</span> (Careful! <code>A*A</code> will output a <span class="math inline">\(2\times 2\)</span> matrix, but it will not be <span class="math inline">\(A^2\)</span> - it will be the matrix whose entries are the squares of the entries of <span class="math inline">\(A\)</span>. You need to use different notation.)</p></li>
+<li>Compute the matrix square <span class="math inline">\(A^2\)</span> (Careful! <code>A*A</code> will output a <span class="math inline">\(2\times 2\)</span> matrix, but it will not be <span class="math inline">\(A^2\)</span> - it will be the matrix whose entries are the squares of the entries of <span class="math inline">\(A\)</span>. You need to use different notation.)
+</div></li>
 </ol>
-</div>
-
 
 <div class="exercise">
 <p><span id="exr:unnamed-chunk-5" class="exercise"><strong>Problem 1.3  </strong></span> </p>
 <ol style="list-style-type: decimal">
 <li><p>Write a function that takes an argument <span class="math inline">\(x\)</span> and returns <span class="math inline">\(5\)</span> if <span class="math inline">\(x\geq 5\)</span> and <span class="math inline">\(x\)</span> itself otherwise.</p></li>
-<li><p>Write a function that returns <code>TRUE</code> (a boolean value) if its argument is between <span class="math inline">\(2\)</span> and <span class="math inline">\(3\)</span> and <code>FALSE</code> otherwise.</p></li>
+<li>Write a function that returns <code>TRUE</code> (a boolean value) if its argument is between <span class="math inline">\(2\)</span> and <span class="math inline">\(3\)</span> and <code>FALSE</code> otherwise.
+</div></li>
 </ol>
-</div>
-
 
 <div class="exercise">
 <p><span id="exr:unnamed-chunk-6" class="exercise"><strong>Problem 1.4  </strong></span> </p>
@@ -285,11 +285,12 @@ Note: some of the answers will look like this <code>3.14e+13</code>. If you do n
 <li><p>Construct a vector <span class="math inline">\(x\)</span> which contains all numbers from <span class="math inline">\(1\)</span> to <span class="math inline">\(100\)</span>.</p></li>
 <li><p>Construct a vector <span class="math inline">\(y\)</span> which contains <em>squares</em> of all numbers between <span class="math inline">\(20\)</span> and <span class="math inline">\(30\)</span>.</p></li>
 <li>Construct a vector <span class="math inline">\(z\)</span> the same size as <span class="math inline">\(y\)</span>
-with boolean entries (i.e., <code>TRUE</code> or <code>FALSE</code>) that indicates whether the entry at the same position in <span class="math inline">\(y\)</span> is above <span class="math inline">\(600\)</span> or not. (This is much easier to do than it sounds.)</li>
+with boolean entries (i.e., <code>TRUE</code> or <code>FALSE</code>) that indicates whether the entry at the same position in <span class="math inline">\(y\)</span> is above <span class="math inline">\(600\)</span> or not. (This is much easier to do than it sounds.)
+</div></li>
 </ol>
-</div>
 
 
+<p>\newcommand{}{{}</p>
 </div>
 </div>
 

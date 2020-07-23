@@ -1,5 +1,8 @@
 \newcommand{\PP}{{\mathbb{P}}}
 \newcommand{\sS}{{\mathcal{S}}}
+\newcommand{\EE}{{\mathbb{E}}}
+\newcommand{\ld}{\lambda}
+
 
 # (PART) Probability and Simulation {-}
 
@@ -111,7 +114,6 @@ Btw, this probability we obtained is quite small. Since $1/0.000372$ is about $2
 
 ```{exercise} 
 Compute the $0.05$, $0.1$, $0.4$, $0.6$ and $0.95$ quantiles of the normal distribution with mean $1$ and standard deviation $2$.
-
 ```
 **Solution:**
 ```{r}
@@ -175,24 +177,24 @@ Note how it is mostly $2$s.
 
 
 ```{exercise}
-Draw a sample of $n=100$ from the normal distribution with parameters $\mu=1$, $\sigma = 2$. Plot a historgram of the obtained values. Repeat $n=10$ and $n=100000$. 
+Draw a sample of $n=10$ from the normal distribution with parameters $\mu=1$, $\sigma = 2$. Plot a historgram of the obtained values. Repeat for $n=100$ and $n=100000$. 
 ```
 **Solution:**
-```{r}
-x = rnorm(100, mean = 1, sd = 2)
-hist(x)
-```
 ```{r}
 x = rnorm(10, mean = 1, sd = 2)
 hist(x)
 ```
 ```{r}
-x = rnorm(1000000, mean = 1, sd = 2)
+x = rnorm(100, mean = 1, sd = 2)
+hist(x)
+```
+```{r}
+x = rnorm(100000, mean = 1, sd = 2)
 hist(x)
 ```
 **Comments:**
 
-*R.* It cannot be simpler. You use the command `hist`, feed it a vector of values, and it produces a histogram. It will even labels the axes. If you want to learn how to tweak various features of your histogram, type `?hist`.
+*R.* It cannot be simpler! You use the command `hist`, feed it a vector of values, and it produces a histogram. It will even labels the axes. If you want to learn how to tweak various features of your histogram, type `?hist`.
 
 Esthetically, the built-in histograms leave something to be desired. We can do better, using the package `ggplot2`. You don't have to use it in this class, but if you want to, you install it first by running `install.packages("ggplot2")` (you have to do this only once). Then, every time you want to use it, you run `library(ggplot2)` to notify R that you are aobut to use a function from that package. It would take a whole semester to learn everything there is to know about `ggplot2`; I will only show what a histogram looks like in it:
 ```{r}
@@ -205,16 +207,120 @@ qplot(x, bins=40)
 x = rnorm(100000, mean = 1, sd = 2)
 hist(x,freq = FALSE)
 ```
+
 With such a normalization, the histogram of $x$ can be directly compared to the probability density of a normal distribution. Here is a picture. Its R code is a little bit too advanced for now, so I am skipping it:
+
 ```{r echo=FALSE}
+library(ggplot2)
+
 sims = rnorm(10000, mean = 1, sd = 2)
 x = seq(-6,8,by=0.02)
 y = dnorm(x, mean = 1, sd = 2)
-df1 = tibble(x,y)
-df2 = tibble(sims)
+df1 = data.frame(x,y)
+df2 = data.frame(sims)
 
+bin_width = 0.3
 ggplot()+
-  geom_histogram(data = df2, aes(x = sims, y = 1/0.3*(..count..)/sum(..count..)), binwidth=0.3, color = "black")+
-   geom_line(data=df1, aes(x=x, y=y), color="red", size = 1)
+  geom_histogram(data = df2, aes(x = sims, y = 1/bin_width*(..count..)/sum(..count..)), binwidth=bin_width, color = "black")+
+   geom_line(data=df1, aes(x=x, y=y), color="red", size = 1)+
+   ggtitle("")+xlab("x")+ylab("density")
 ```
 
+## Monte Carlo
+
+```{exercise}
+Use Monte Carlo to estimate the expected value of the exponential random variable with parameter $\ld = 4$ using $n=10$, $n=1,000$ and $1,000,000$ simulations. Compare to the exact value.
+```
+**Solution:**
+```{r echo = c(2,4)}
+set.seed(12341)
+x <- rexp(10, rate=4)
+err = 0.25 - mean(x)
+mean(x)
+```
+For an exponential random variable with parameter $\ld$, the expected value is 
+$1/\ld$; in this case $0.25$. The error made was `r format(err,digits=5)` for $n=10$ simulations.
+We increase the numbner of simulations to $n=1000$ and get a better result
+```{r echo = c(2,4)}
+set.seed(12342)
+x <- rexp(1000, rate=4)
+err = 0.25 - mean(x)
+mean(x)
+```
+with (smaller) error `r format(err, digits=5)`. Finally, let's try $n=1,000,000$:
+```{r echo = c(2,4)}
+set.seed(12342)
+x <- rexp(1000000, rate=4)
+err = 0.25 - mean(x)
+mean(x)
+```
+The error is even smaller `r format(err, digits=5)`. 
+
+This can be obtained quite easily by integration (by parts):
+$$ \EE[X] = \int_{-\infty}^{\infty} x f(x)\, dx = \int_0^{\infty} x \ld e^{-\ld x}\, dx = \tfrac{1}{\ld}$$
+
+**Comments:**
+
+*R.* The only new thing here is the command `mean` which computes the mean of  vector. 
+
+*Math.* There is a lot going on here conceptually. This is the first time we used the Monte Carlo method. It is an incredibly method, as you will keep being reminded throughout this class. The idea behind it is simple, and it is based on the *Law of large numbers*:
+
+**Theorem** Let $X_1,X_2, \dots$ be an independent sequence of random variables with the same distribution, for which the expected value can be computed. Then 
+$$ \tfrac{1}{n} \Big( X_1+X_2+\dots+X_n\Big) \to \EE[X_1] \text{ as } n\to\infty$$
+The idea behind Monte Carlo is to turn this theorem "upside down". The goal is to compute $\EE[X_1]$, and uses a supply of random numbers, each of which comes from the same distribution to accomplish that. The random number generator inside `rexp` gives us a supply of numbers (stored in the vector `x`) and all we have to do is compute their average. This gives us the left-hand side of the formula above, and, if $n$ is large enough, we hope that the this average does not differ too much from its theoretical limit. As $n$ gets larger, we expect better and better results. That is why your error above gets smaller as $n$ increases. 
+
+It looks like Monte Carlo can only be used to compute the expected value of a random variable, which does not seem like such a bit deal. It is! You will see in the sequel that almost anything can be written as the expected value of *some* random variable. 
+
+```{exercise}
+Use Monte Carlo to estimate $\EE[X^2]$, where $X$ is a standard normal random variable. Do the same thing when $X$ is geometrically distributed with prameter $p=0.5$. 
+```
+
+**Solution.**
+When $X$ is standard normal $Y=X^2$ has a $\chi^2$ distribution with one degree of freedom:
+```{r}
+y = rchisq(100000,df=1)
+mean(x)
+```
+In the second case, we do not know the distribution of $X^2$, but can still do the following:
+```{r}
+x <- rgeom(100000, prob=0.5)
+y <- x^2
+mean(y)
+```
+
+**Comments:**
+
+*Math+R.* We are asked to compute $\EE[ X^2]$, which can be interpreted in two ways. First, we can think of $Y=X^2$ as a random variable in its own and try to take draws from the distribution of $Y$. In the case of the normal distribution, the distribution of $Y$ is known - it happens to be a $\chi^2$-distribution with a single degree of freedom (don't worry if you never heard of it). We can simulate it in R by using its R name `chisq` and 
+get a number close to the exact value of $1$. 
+
+The case of a geometric distribution is more difficult, because we do not know what the distribution of $Y=X^2$ is and there is no corresponding R name to put the prefix `r` in front of. What makes the simulation possible is the fact that $Y$ is a *transformation* of 
+a random variable we know how to simulate. In that case, we simply simulate the required number of draws `x` from the geometric distribution (using `rgeom`) and then apply the transformation $x \mapsto x^2$ to the result. The transformed vector `y` is then nothing but the sequence of draws from the distribution of $X^2$. Btw, we could have done the same thing in the case of the normal random variable, too - there was no need to recoqnize its square as a $\chi^2$ random variable:
+```{r}
+x <- rnorm(100000)
+y <- x^2
+mean(y)
+```
+
+The idea described above is one of main advantages of the Monte Carlo technique: if you know how to simulated a random variable, you also know how to simulated any (deterministic) function of it. That fact will come into its own a bit later when we start working with several random variables, but it can be very helpful even in the case of a single random variable, as you will see in the next problem. 
+
+
+```{exercise}
+Let $X$ be a standard normal random variable. Use Monte Carlo to estimate the probability $\PP[ X > 1 ]$. Compare to the exact value. 
+```
+**Solution:**
+The estimated probability:
+```{r}
+x <- rnorm(100000)
+y <- x > 1
+mean(y)
+```
+The exact probability:
+```{r echo=2}
+err = mean(y) - (1-pnorm(1))
+1 - pnorm(1)
+```
+The error is `r format(err,digits=5)`.
+
+**Comments:**
+
+*Math.* We constructed an 

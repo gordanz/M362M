@@ -12,3 +12,13 @@ pre {
 pre code {
   white-space: inherit;
 }
+
+div.exercise {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  background-color: #FDF5E6;
+  padding:5px;
+}
+
+div.sourceCode
+  { background-color: #ffffff; }
