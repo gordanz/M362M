@@ -1,12 +1,34 @@
 # Random Walks
 
-```{r echo=FALSE, warning=FALSE}
-fig <- plot_ly(midwest, x = ~percollege, color = ~state, type = "box")
-fig
+```{r}
+T <-  20
+nsim <- 100
+
+single <- function(T) {
+  dx = sample(c(-1,1), replace = TRUE, T)
+  return(c(0,cumsum(dx)))
+}
+
+S = data.frame(t(replicate(nsim, single(T))))
+
+variable_name <- function(i){
+  paste("X",toString(i),sep="")
+}
+
+colnames(S) = lapply(0:T, variable_name)
 ```
 
+
 ```{r}
-library(plotly)
+
+T <- 30
+single <- function(T) {
+  dx = sample(c(-1,1), replace = TRUE, T)
+  return(c(0,cumsum(dx)))
+}
+  
+df = data.frame(t = 0:T, X = as.vector(t(single(T))))
+
 
 accumulate_by <- function(dat, var) {
   var <- lazyeval::f_eval(var, dat)
@@ -17,43 +39,46 @@ accumulate_by <- function(dat, var) {
   dplyr::bind_rows(dats)
 }
 
-df <- txhousing 
-fig <- df %>%
-  filter(year > 2005, city %in% c("Abilene", "Bay Area"))
-fig <- fig %>% accumulate_by(~date)
+df = df %>% accumulate_by(~t)
 
-
-fig <- fig %>%
-  plot_ly(
-    x = ~date, 
-    y = ~median,
-    split = ~city,
-    frame = ~frame, 
-    type = 'scatter',
-    mode = 'lines', 
-    line = list(simplyfy = F)
-  )
+fig <- df %>% plot_ly(
+  x = ~t, 
+  y = ~X, 
+  frame = ~frame,
+  type = 'scatter', 
+  mode = 'lines', 
+  fillcolor='rgba(114, 186, 59, 0.5)',
+  line = list(color = 'rgb(114, 186, 59)')
+)
 fig <- fig %>% layout(
-  xaxis = list(
-    title = "Date",
-    zeroline = F
-  ),
+  title = "A trajectory of a random walk",
   yaxis = list(
-    title = "Median",
-    zeroline = F
+    title = "X", 
+    range = c(-10,10), 
+    zeroline = F,
+    tickprefix = ""
+  ),
+  xaxis = list(
+    title = "t", 
+    range = c(0,T), 
+    zeroline = T, 
+    showgrid = T
   )
 ) 
 fig <- fig %>% animation_opts(
-  frame = 100, 
+  frame = 10, 
   transition = 0, 
   redraw = FALSE
 )
+
 fig <- fig %>% animation_slider(
   hide = T
 )
-fig <- fig %>% animation_button(
-  x = 1, xanchor = "right", y = 0, yanchor = "bottom"
-)
+# fig <- fig %>% animation_slider(
+#   currentvalue = list(
+#     prefix = "t "
+#   )
+# )
 
 fig
 ```
