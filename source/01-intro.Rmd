@@ -328,14 +328,11 @@ The error is `r format(err,digits=5)`.
 ## Trying some interactive graphics
 
 ```{r}
-library(babynames)
+# Source: http://www.htmlwidgets.org/showcase_plotly.html
 library(plotly)
-nms <- filter(babynames, name %in% c("Sam", "Alex"))
-p <- ggplot(nms) + 
-  geom_line(aes(year, prop, color = sex, linetype = name))
-  
-ggplotly(p, dynamicTicks = TRUE) %>%
-  rangeslider() %>%
-  layout(hovermode = "x")
+p <- ggplot(data = diamonds, aes(x = cut, fill = clarity)) +
+            geom_bar(position = "dodge")
+ggplotly(p)
+```
 ```
 
