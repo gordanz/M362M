@@ -293,7 +293,7 @@ mean(y)
 *Math+R.* We are asked to compute $\EE[ X^2]$, which can be interpreted in two ways. First, we can think of $Y=X^2$ as a random variable in its own and try to take draws from the distribution of $Y$. In the case of the normal distribution, the distribution of $Y$ is known - it happens to be a $\chi^2$-distribution with a single degree of freedom (don't worry if you never heard of it). We can simulate it in R by using its R name `chisq` and 
 get a number close to the exact value of $1$. 
 
-The case of a geometric distribution is more difficult, because we do not know what the distribution of $Y=X^2$ is and there is no corresponding R name to put the prefix `r` in front of. What makes the simulation possible is the fact that $Y$ is a *transformation* of 
+The case of a geometric distribution is seemingly more difficult, because we do not know what the distribution of $Y=X^2$ is and there is no corresponding R name to put the prefix `r` in front of. What makes the simulation possible is the fact that $Y$ is a *transformation* of 
 a random variable we know how to simulate. In that case, we simply simulate the required number of draws `x` from the geometric distribution (using `rgeom`) and then apply the transformation $x \mapsto x^2$ to the result. The transformed vector `y` is then nothing but the sequence of draws from the distribution of $X^2$. Btw, we could have done the same thing in the case of the normal random variable, too - there was no need to recoqnize its square as a $\chi^2$ random variable:
 ```{r}
 x <- rnorm(100000)
@@ -301,7 +301,7 @@ y <- x^2
 mean(y)
 ```
 
-The idea described above is one of main advantages of the Monte Carlo technique: if you know how to simulated a random variable, you also know how to simulated any (deterministic) function of it. That fact will come into its own a bit later when we start working with several random variables, but it can be very helpful even in the case of a single random variable, as you will see in the next problem. 
+The idea described above is one of main advantages of the Monte Carlo technique: if you know how to simulated a random variable, you also know how to simulated any (deterministic) function of it. That fact will come into its own a bit later when we start working with several random variables and stochastic processes, but it can be very helpful even in the case of a single random variable, as you will see in the next problem. 
 
 
 ```{exercise}
@@ -324,3 +324,18 @@ The error is `r format(err,digits=5)`.
 **Comments:**
 
 *Math.* We constructed an 
+
+## Trying some interactive graphics
+
+```{r}
+library(babynames)
+library(plotly)
+nms <- filter(babynames, name %in% c("Sam", "Alex"))
+p <- ggplot(nms) + 
+  geom_line(aes(year, prop, color = sex, linetype = name))
+  
+ggplotly(p, dynamicTicks = TRUE) %>%
+  rangeslider() %>%
+  layout(hovermode = "x")
+```
+
