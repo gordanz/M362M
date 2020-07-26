@@ -39,12 +39,13 @@ Of course, the possible values our random variable can take do not stop at $7$. 
 
 ```{r}
 X <- rgeom(500, prob = 0.4)
-kable(t(table(X)))
+knitr::kable(t(table(X)))
 ```
 
 Still no luck, but we do observe values above 5 more often. By trial and error, we arrive at about $1,000,000$ as the required number of simulations:
 
 ```{r echo=FALSE, message=FALSE}
+library(tidyverse)
 cts = as.vector(table(rgeom(1000000, prob = 0.4)))
 out  <- as_tibble(t(cts), .name_repair = "unique")
 names(out) = as.character(c(-1+1:length(out)))
@@ -149,7 +150,7 @@ options(knitr.table.format = "html")
 library(tidyverse)
 x = 1:10
 y = rep("0.1", 10)
-kable(t(y), col.names = 1:10, escape = FALSE)
+knitr::kable(t(y), col.names = 1:10, escape = FALSE)
 
 ```
  *R.* The command used to draw a sample from a (finite) collection is, of, course `sample`. The first argument is a vector, and it contains the "bag" from which you are drawing. If we are interested in repeated, random samples, we also need to specity `replace = FALSE` otherwise, you could draw any signle number am most once:
@@ -166,7 +167,7 @@ sample( c("Alice", "Bob", "Charlie"), 8, replace = TRUE)
 ```
 So far, each object in the bag had the same probability of being drawn. You can use the `sample` command to produce a *weighted* sample, too. For example, if we wanted to simulate $10$ draws from the following distribution
 ```{r echo=FALSE}
-kable(t(c(0.2,0.7, 0.1)), col.names = c(1,2,3)) %>% 
+knitr::kable(t(c(0.2,0.7, 0.1)), col.names = c(1,2,3)) %>% 
    kable_styling(full_width = F)
 ```
 we would use the additional argument `prob`:
@@ -328,3 +329,36 @@ The error is `r format(err,digits=5)`.
 ```{exercise}
 Use Monte Carlo to Estimate the value of $\pi$.
 ```
+**Solution.**
+```{r}
+nsim <- 1000000
+x <-  runif(nsim, -1, 1)
+y <-  runif(nsim, -1, 1)
+z <- x^2+y^2<1
+(pi_est <- 4* mean(z))
+(err = pi-pi_est)
+```
+
+```{r echo=FALSE, out.width= "50%", out.extra='style="float:right; padding:10px"'}
+knitr::include_graphics('pics/mc_pi.gif')
+```
+Now we write something is the picture will be on the right, I hope. 
+```{r}
+library(tidyverse)
+library(kableExtra)
+nsim <- 1000000
+S <- tibble(
+   x =  runif(nsim, -1, 1),
+   y =  runif(nsim, -1, 1)
+   ) %>% 
+mutate( z = as.numeric( (x^2+y^2) < 1) )
+kable(head(S, 10), digits=4) %>%  kable_styling(full_width = F)
+```
+<button class="btn btn-primary" data-toggle="collapse" data-target="#BlockName"> Show/Hide </button>  
+<div id="BlockName" class="collapse">  
+
+```{r}
+plot(mtcars$disp, mtcars$mpg)
+```
+
+</div>

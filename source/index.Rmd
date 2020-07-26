@@ -34,9 +34,9 @@ What is the probability that Player $1$ wins
 2. a set? the entire match?
 4. Is the game of tennis set up in such a way that is *amplifies* or *reduces* the difference in skill between players?
 
-```{r echo=FALSE, out.width= "35%", out.extra='style="float:right; padding:10px"'}
-knitr::include_graphics('knight1.png')
-```
+<!-- ```{r echo=FALSE, out.width= "35%", out.extra='style="float:right; padding:10px"'} -->
+<!-- knitr::include_graphics('knight1.png') -->
+<!-- ``` -->
 
 **Question 4.** 
 A knight starts in the lower left corner of the chess board and starts moving ``randomly''. That means that from any position, it chooses one of the possible (legal) moves and takes it (all legal moves have the same probability). It keeps doing the same thing until it comes back to the square it started from. 
@@ -156,3 +156,6 @@ Note: some of the answers will look like this `3.14e+13`. If you do not know wha
 3. Construct a vector $z$ the same size as $y$ 
   with boolean entries (i.e., `TRUE` or `FALSE`) that indicates whether the entry at the same position in $y$ is above $600$ or not. (This is much easier to do than it sounds.)
 ```
+
+
+
