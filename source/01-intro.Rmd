@@ -325,3 +325,6 @@ The error is `r format(err,digits=5)`.
 
 *Math.* We constructed an 
 
+```{exercise}
+Use Monte Carlo to Estimate the value of $\pi$.
+```
