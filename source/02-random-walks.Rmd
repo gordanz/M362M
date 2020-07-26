@@ -128,4 +128,9 @@ p + transition_time(year) +
   labs(title = "Year: {frame_time}")
 
 ```
+```{r}
+library(ggplot2)
+library(gganimate)
+p <- ggplot()
+```
 
