@@ -24,7 +24,7 @@
 <meta name="author" content="Gordan Zitkovic" />
 
 
-<meta name="date" content="2020-07-26" />
+<meta name="date" content="2020-07-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -921,7 +921,8 @@ The other arguments, <code>xlab</code>, <code>ylab</code> and <code>main</code> 
 <p>and get a pretty accurate estimate of <span class="math inline">\(0.594\)</span>. If you run the same code a few more times, you will get different estimates, but all of them will be close to <span class="math inline">\(0.6\)</span>. Theoretically, however, your simulation could have yielded <span class="math inline">\(1000\)</span> Hs, which would lead you to report <span class="math inline">\(p=1\)</span> as the Monte-Carlo estimate. The point is that even though such disasters are theoretically possible, they are exceedingly unlikely. The probability of getting all <span class="math inline">\(H\)</span> in <span class="math inline">\(1000\)</span> tosses of this coin is a number with more than <span class="math inline">\(500\)</span> zeros after the decimal point.</p>
 <p>The take-home message is that even though there are no guarantees, Monte Carlo performs well vast majority of the time. The crucial ingredient, however, is the number of simulations. The plot you were asked to make illustrates exactly that. The function <code>cumavg</code> gives you a whole sequence of Monte-Carlo estimates of the same thing (the number <span class="math inline">\(\pi\)</span>) with different numbers of simulations <code>nsim</code>. For small values of <code>nsim</code> the error is typically very large (and very random). As the number of simulations grows, the situations stabilizes and the error decreases. Without going into the theory behind it, let me only mention is that in the majority of practical applications we have the following relationship:
 <span class="math display">\[ error \sim \frac{1}{\sqrt{n}}.\]</span>
-In words, if you want to double the precision, you need to quadruple the number of simulations. If you want an extra digit in your estimate, you need to multiply the number of simulations by <span class="math inline">\(100\)</span>. Instead of going further into the theory, here is an image where I superimposed <span class="math inline">\(50\)</span> plots like the one you were asked to produce:</p>
+In words, if you want to double the precision, you need to quadruple the number of simulations. If you want an extra digit in your estimate, you need to multiply the number of simulations by <span class="math inline">\(100\)</span>. Instead of going further into the theory, here is an image where I superimposed <span class="math inline">\(40\)</span> plots like the one you were asked to produce (the red lines are <span class="math inline">\(\pm \frac{4}{\sqrt{n}}\)</span>):
+<img src="_main_files/figure-html/unnamed-chunk-57-1.png" width="672" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>

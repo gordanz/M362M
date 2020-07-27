@@ -495,4 +495,40 @@ and get a pretty accurate estimate of $0.594$. If you run the same code a few mo
 
 The take-home message is that even though there are no guarantees, Monte Carlo performs well vast majority of the time. The crucial ingredient, however, is the number of simulations. The plot you were asked to make illustrates exactly that. The function `cumavg` gives you a whole sequence of Monte-Carlo estimates of the same thing (the number $\pi$) with different numbers of simulations `nsim`. For small values of `nsim` the error is typically very large (and very random). As the number of simulations grows, the situations stabilizes and the error decreases. Without going into the theory behind it, let me only mention is that in the majority of practical applications we have the following relationship:
 $$ error \sim \frac{1}{\sqrt{n}}.$$
-In words, if you want to double the precision, you need to quadruple the number of simulations. If you want an extra digit in your estimate, you need to multiply the number of simulations by $100$. Instead of going further into the theory, here is an image where I superimposed $50$ plots like the one you were asked to produce:
+In words, if you want to double the precision, you need to quadruple the number of simulations. If you want an extra digit in your estimate, you need to multiply the number of simulations by $100$. Instead of going further into the theory, here is an image where I superimposed $40$ plots like the one you were asked to produce (the red lines are $\pm \frac{4}{\sqrt{n}}$):
+```{r echo=F, warning = F}
+library(tidyverse)
+library(latex2exp)
+nsim <- 250
+ns <- 1:nsim
+single <- function() {
+   x <-  runif(nsim, -1, 1)
+   y <-  runif(nsim, -1, 1)
+   z <- (x ^ 2 + y ^ 2) < 1
+   return(4*cumsum(z)/ns)
+}
+nbatch = 40
+S = data.frame(t(replicate(nbatch,single() ))) %>% 
+   mutate(omega = factor(1:nbatch)) %>% 
+   pivot_longer(starts_with("X"), 
+                names_prefix = "X",
+                values_to = "estimate") %>% 
+   mutate(time = as.numeric(name)) %>% 
+   group_by(omega)
+E = data.frame( time = 1:nsim, error = 4/sqrt(1:nsim))
+
+ggplot(S, aes(x=time, y=estimate-pi, group = omega)) +
+   geom_line(size=0.3, color="#999999")+
+   geom_path(aes(time, error), data = E, inherit.aes = F, color="red") +
+   geom_path(aes(time, -error), data = E, inherit.aes = F, color="red") +
+   theme_bw()+
+   xlab("number of simulations")+
+   ylab("error")+
+   ggtitle(TeX("Errors in  Monte Carlo estimation of $\\pi$"))
+   
+      
+
+
+
+```
+
