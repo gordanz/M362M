@@ -2,6 +2,7 @@
 \newcommand{\sS}{{\mathcal{S}}}
 \newcommand{\EE}{{\mathbb{E}}}
 \newcommand{\ld}{\lambda}
+\newcommand{\eand}{\text{ and }}
 
 
 # (PART) Probability and Simulation {-}
@@ -496,6 +497,7 @@ and get a pretty accurate estimate of $0.594$. If you run the same code a few mo
 The take-home message is that even though there are no guarantees, Monte Carlo performs well vast majority of the time. The crucial ingredient, however, is the number of simulations. The plot you were asked to make illustrates exactly that. The function `cumavg` gives you a whole sequence of Monte-Carlo estimates of the same thing (the number $\pi$) with different numbers of simulations `nsim`. For small values of `nsim` the error is typically very large (and very random). As the number of simulations grows, the situations stabilizes and the error decreases. Without going into the theory behind it, let me only mention is that in the majority of practical applications we have the following relationship:
 $$ error \sim \frac{1}{\sqrt{n}}.$$
 In words, if you want to double the precision, you need to quadruple the number of simulations. If you want an extra digit in your estimate, you need to multiply the number of simulations by $100$. Instead of going further into the theory, here is an image where I superimposed $40$ plots like the one you were asked to produce (the red lines are $\pm \frac{4}{\sqrt{n}}$):
+
 ```{r echo=F, warning = F}
 library(tidyverse)
 library(latex2exp)
@@ -525,10 +527,41 @@ ggplot(S, aes(x=time, y=estimate-pi, group = omega)) +
    xlab("number of simulations")+
    ylab("error")+
    ggtitle(TeX("Errors in  Monte Carlo estimation of $\\pi$"))
-   
-      
-
-
-
 ```
 
+## Conditional probability and independence.
+
+```{exercise}
+Let $X$ and $Y$ be two independent geometric random variables with parameters $p=0.5$, and let $Z=X+Y$. Compute $\PP[ X = 3| Z = 5]$ using simulation. Compare to the exact value. 
+```
+**Solution:**
+```{r}
+nsim <- 100000
+X <- rgeom(nsim, prob = 0.5)
+Y <- rgeom(nsim, prob = 0.5)
+Z <- X+Y
+X_cond = X[ Z == 5 ]
+mean(X_cond  == 3) 
+```
+We have
+$$ \PP[ X = 3 | Z= 5 ] = \frac{\PP[ X=3 \eand Z=5]}{\PP[Z=5]} = \frac{\PP[X=3 \eand Y = 2]}{\PP[Z=5]} $$
+Since $X$ and $Y$ are independent, we have $\PP[ X=3 \eand Y=2 ] = \PP[X=3] \PP[ Y=2] = 2^{-4} 2^{-3} = 2^{-7}$. To compute $\PP[ Z = 5]$ we need to split the event $\{ Z = 5 \}$ into events we know how to deal with. Since $Z$ is built from $X$ and $Y$, we write
+$$ \begin{align} \PP[ Z = 5 ] = &\PP[X=0 \eand Y=5]+ \PP[ X=1 \eand Y=4] + \PP[ X=2 \eand Y=3] + \\
+&  \PP[ X=3 \eand Y=2] + \PP[ X=4 \eand Y=1] + \PP[ X = 5 \eand Y=0]. \end{align}$$
+Each of the individual probabilities in the sum above is $2^{-7}$, so $\PP[ X = 3 | Z = 5] = \frac{1}{6}$. 
+This gives us an error of `r mean(X_cond == 3) - 1/6`.
+
+**Comments:**
+
+*Math.*  Let us, first, recall what the conditional probability is. The definition we learn in the probability class is the following $$ \PP[A | B] = \frac{\PP[A \eand B]}{\PP[B]}$$, as long as $\PP[B]>0$. The interpretation is that $\PP[A|B]$ is still the probability of $A$, but now in the world where $B$ is guaranteed to happen. Conditioning usually happens when we receive new information. If someone tells us that $B$ happened, we can disregard everyhting in the complement of $B$ and adjust our probability to account for that fact. First we remove from $A$ anything that belongs to the complement of $B$, and recompute the probability $\PP[A \cap B]$. We also have to divide by $\PP[B]$ because we want the total probability to be equal to $1$. 
+
+Our code starts as usual, but simulating $X$ and $Y$ from the required distribution, and constructing a new vector $Z$ as their sum.  The variable `X_cond` is new; we build it from $X$ by removing all the elements whose corresponding $Z$ is *not* equal to $5$. This is an example of what is sometimes called the **rejection method** in simulation. We simply "reject" all simulations which do not satify the condition we are conditioning on. We can think of `X_cond` as bunch of simulations of $X$, but in the world where $Z=5$ is guaranteed to happen. Once we have `X_cond`, we proceed as usual by computing the relative frequency of the value $3$ among all possible values $X$ can take. Note that the same `X_cond` can also be used to compute the conditional probability $\PP[ X=1| Z=5]$. In fact, `X_cond` contains the information about the entire **conditional distribution of $X$ given $Z=5$**; if we draw a histogram of `X_cond`, we will get a good idea of what this distribution looks like:
+```{r echo=F}
+library(ggplot2)
+
+ggplot(data.frame(X_cond), aes(x=X_cond)) + 
+   geom_histogram(aes(y=..density..),bins = 6, color = "black", fill="white")+
+   ylab("relative frequency")+ 
+   scale_x_continuous(breaks=c(0:5))
+```
+The histogram above suggests that  the distribution of $X$, given $Z=5$, is uniform on $\{0,1,2,3,4,5\}$. It is - a calculation almost identical to the one we performed above gives that $\PP[ X= i| Z=5] = \frac{1}{6}$ for each $i=0,1,2,3,4,5$. 
