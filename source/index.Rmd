@@ -8,7 +8,7 @@ output:
     includes:
       in header: "preamble.tex"
 documentclass: book
-github-repo: rstudio/bookdown-demo
+github-repo: gordanz/M362M
 description: "A set of lecture notes for *M362M Introduction to Stochastic Processes*"
 ---
 
