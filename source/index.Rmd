@@ -1,7 +1,5 @@
 --- 
-title: |
-  **Introduction to   
-  Stochastic Processes**
+title: Lecture notes for \"Introduction to Stochastic Processes\"
 author: "Gordan Zitkovic"
 date: "last updated -  `r Sys.Date()`"
 documentclass: book
