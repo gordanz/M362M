@@ -4,7 +4,6 @@
 \newcommand{\ld}{\lambda}
 \newcommand{\eand}{\text{ and }}
 
-
 # (PART) Probability and Simulation {-}
 
 # Simulation of Random Variables and Monte Carlo

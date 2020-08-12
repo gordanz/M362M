@@ -1,4 +1,4 @@
-p.caption {
+.caption {
   color: #777;
   margin-top: 10px;
 }
@@ -13,12 +13,16 @@ pre code {
   white-space: inherit;
 }
 
-div.exercise {
+.exercise {
   margin-top: 20px;
   margin-bottom: 10px;
   background-color: #FDF5E6;
   padding:5px;
 }
 
-div.sourceCode
+.sourceCode
   { background-color: #ffffff; }
+  
+.title {
+  margin-right: 350px;
+}

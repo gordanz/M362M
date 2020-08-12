@@ -1,6 +1,5 @@
 bookdown::gitbook:
   highlight: default
-  split_by: section
   css: style.css
   config:
     search: yes

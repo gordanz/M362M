@@ -1,0 +1,113 @@
+# An intro to R and RStudio {#intro}
+
+## Setting up an R environment on your computer
+
+Learning basic R is an important part of this course, and the first order of business is to download and install an R distribution on your personal computer. We will be using RStudio as an IDE (integrated development environment). Like R itself, it is free and readily available for all major platforms. To download R to your computer, go to
+[https://cloud.r-project.org](https://cloud.r-project.org). Then, go to [https://rstudio.com/products/rstudio/download/](https://rstudio.com/products/rstudio/download/) to get RStudio. There are several versions to choose from - the one your are looking for is "RStudio desktop - Free".
+
+## Learning the very basics of R
+
+Once R and RStudio are on your computer, it is time to get acquainted with the basics of R. This class is not about the finer points of R itself, and I will try to make your R experience as smooth as possible. After all, R is a tool that will help us explore and understand stochastic processes. Having said (written) that, it is important to realize that R is a powerful programming language specifically created for statistical and probabilistic applications. Some knowledge of R is a valuable skill to have in today's job market, and you should take this opportunity to learn it. The best way, of course, is by using it, but before you start, you need to know the very basics. Don't worry, R is very user friendly and easy to get started in. In addition, it has been around for a long time (its predecessor S appeared in 1976) and is extremely well documented (just google *introduction to R* or something like that). 
+I like all books written by R guru [Hadley Wickham](http://hadley.nz). In particular, 
+[R for Data Science](http://r4ds.had.co.nz/) features a nice and elementary introduction to R (albeit from the point of view of a data scientist). If you want to learn more, check the webpage of the  [bookdown](https://bookdown.org) package. It is a tool for writing books which easily integrates R computation, and its webpage features a list of books on R and other topics (including many of Wickham's books) - they are all free. Btw, this very set of lecture notes was written in Rmarkdown using the bookdown package!
+
+## R Notebooks or *How to submit your HW assignments and exams*
+
+This is also a good time to explain how to submit your work. All submissions of computational work have to be **produced using an R Notebook**. There is nothing to worry - it is probably the most painless way, both for the student and for the grader. Let me explain. An R notebook is nothing other than an enhanced text file, but with the ability to intersperse so-called *chunks* or R code with regular text. It can also be transformed into a good looking pdf file by a press of a button. When you open an R notebook in Rstudio, you will be able to write your problem solutions, perform R computations and even plot graphs in one fell swoop. To create an R notebook, go to File -> New File -> R Notebook in RStudio, and a shiny new Rmd file will appear in the editor pane. It will even have text already filled in with hints about text formatting. You should not worry about text markup, or how to produce hyperlinks, or anything like that, though. In fact, the only important thing to know is that the following notation 
+````markdown
+`r ''````{r}
+
+```
+````
+````
+marks a **code chunk**. Btw, 
+the apostrophe-like symbols above are backticks - they live on the key below the escape key. You should not worry about counting how many there are or how to type them in - pressing *Cmd+Option+I* (on a Mac) or *Ctrl+Alt+I* (on Windows or Linux) will insert the whole thing for you. To see all available keyboard shortcuts available on your platform, press *Option+Shift+K* (on a Mac) or *Alt+Shift+K* (on Windows or Linux) in RStudio. To get more information about a typical workflow (how to run code chunks in place, for example) make sure to check the the following short book chapter 
+(R notebooks)[https://bookdown.org/yihui/rmarkdown/notebook.html] - feel free to skip sections 3.2.2 and 3.2.3.
+
+Anything between ```` ```{r}```` and the closing ```` ``` ````  is treated as R code and that you can evaluate on the spot. The result of the evaluation will automatically become a part of the notebook. Code chunks can also be used to produce graphs, and by simply evaluating it, R will embed the graph into  your document. For those of you familiar with the Python ecosystem, Rmd documents are R's version of Jupyter notebooks. 
+
+After your R notebook is ready to be submitted, simply upload the file itself. Do not convert is into a pdf, html or any other format. The extension of an R-notebook file is *.Rmd*, and only *.Rmd* files will be accepted by the system. 
+
+Your submissions should be structured as follows:
+
+1. the top should look like this (with obvious substitutions). It is important to include your EID, as well as the course number and the semester. 
+
+```yaml
+---
+title: "HW 7; M362M, Fall 2020"
+author: "Jane B. Student, eid:jbs123 "
+date: "2020-10-14"
+---
+```
+
+2. Each problem needs to start with the problem number preceeded by `##`, and each part of a problem (e.g., if there are subquestions a,b,c or 1., 2., 3) needs to start with `###`
+
+````markdown
+## Problem 7.23
+
+### Part b. 
+
+I computed the sum of 2 and 3 by running the following code
+`r ''````{r}
+2+3
+```
+````
+
+That is it. A sample Rmd file named HW_template.Rmd with solutions to parts of some of the problems below can be downloaded [here](http://www.github.com/gordanz/M362M/tree/master/solutions).
+
+Theoretical problems (i.e., those that do not involve any computation in R) can be submitted in a separate document (hand written and then scanned into a pdf, for example). If you know some LaTeX, you can use an R notebook  and simply type the formulas in LaTeX notation. This way, if the assignment comes with both computational and theoretical problems, you can submit both in a single file. I am not assuming that you do know LaTeX and I am not going to require you to learn it, but if you do, use it to make your submissions nicer and easier to read (the grader will thank you!). 
+
+## Problems
+
+Here are several simple problems. Their goal is to give you an idea of exactly how much R is required to get started in this course. Virtually any "introduction to R" should contain enough information to get you through all of these.
+
+```{exercise}
+Compute the following (your answer should be a decimal number):
+  
+  a) $1/238746238746$ 
+  b) $2^{45}$
+  c) $3^{28}$ 
+  d) $\sqrt{15}$
+  e) $\cos(\pi/8)$
+  f) $e^2$
+  g) $\log(2)$ (the base is $e$)
+  h) $\log_{10}(2)$ (the base is $10$)
+  i) $\sqrt[3]{ \frac{1342.16-2.18}{(3 \pi +4.12)^2}}$
+  
+Note: some of the answers will look like this `3.14e+13`. If you do not know what that means, google *E notation*.
+```
+
+```{exercise}
+\ \newline 
+1. Define two variables $a$ and $b$ with values $3$ and $4$ and "put" their product into a variable called $c$. Output the value of $c$.
+
+2. Define two vectors $x$ and $y$ of length $3$, such that the components of $x$ are $1,2,3$ and the components of $y$ are $8,9,0$. Ouput their (componentwise) sum.
+
+3. Define a $2\times 2$ matrix $A=\begin{pmatrix} 1 & 2 \\ -1 & 3 \end{pmatrix}$. Use the command `matrix` and make sure to understand how it works; you can access its documentation directly from $R$ by writing `?matrix`. Make sure you understand what the parameters `ncol`, `nrow` and `byrow` do. 
+
+4. Compute the matrix square $A^2$ (Careful! `A*A` will output a $2\times 2$ matrix, but it will not be $A^2$ - it will be the matrix whose entries are the squares of the entries of $A$. You need to use different notation.)
+```
+
+
+```{exercise} 
+\ \newline 
+
+1. Write a function that takes an argument $x$ and returns $5$ if $x\geq 5$ and $x$ itself otherwise.
+
+2. Write a function that returns `TRUE` (a boolean value) if its argument is between $2$ and $3$ and `FALSE` otherwise. 
+```
+
+
+```{exercise}
+\ \newline 
+
+1. Construct a vector $x$ which contains all numbers from $1$ to $100$.
+
+2. Construct a vector $y$ which contains *squares* of all numbers between $20$ and $30$.
+
+3. Construct a vector $z$ the same size as $y$ 
+  with boolean entries (i.e., `TRUE` or `FALSE`) that indicates whether the entry at the same position in $y$ is above $600$ or not. (This is much easier to do than it sounds.)
+```
+
+
+
