@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.3 Conditional probability and independence. | Lecture notes for M362M Introduction to Stochastic Processes</title>
+  <meta name="description" content="A set of lecture notes for M362M Introduction to Stochastic Processes" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.3 Conditional probability and independence. | Lecture notes for M362M Introduction to Stochastic Processes" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A set of lecture notes for M362M Introduction to Stochastic Processes" />
+  <meta name="github-repo" content="gordanz/M362M" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.3 Conditional probability and independence. | Lecture notes for M362M Introduction to Stochastic Processes" />
+  
+  <meta name="twitter:description" content="A set of lecture notes for M362M Introduction to Stochastic Processes" />
+  
+
+<meta name="author" content="Gordan Zitkovic" />
+
+
+<meta name="date" content="2020-08-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="monte-carlo.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">M362M Lecture notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="setting-up-an-r-environment-on-your-computer.html"><a href="setting-up-an-r-environment-on-your-computer.html"><i class="fa fa-check"></i><b>1.1</b> Setting up an R environment on your computer</a></li>
+<li class="chapter" data-level="1.2" data-path="learning-the-very-basics-of-r.html"><a href="learning-the-very-basics-of-r.html"><i class="fa fa-check"></i><b>1.2</b> Learning the very basics of R</a></li>
+<li class="chapter" data-level="1.3" data-path="r-notebooks-or-how-to-submit-your-hw-assignments-and-exams.html"><a href="r-notebooks-or-how-to-submit-your-hw-assignments-and-exams.html"><i class="fa fa-check"></i><b>1.3</b> R Notebooks or <em>How to submit your HW assignments and exams</em></a></li>
+<li class="chapter" data-level="1.4" data-path="problems.html"><a href="problems.html"><i class="fa fa-check"></i><b>1.4</b> Problems</a></li>
+</ul></li>
+<li class="part"><span><b>I Probability and Simulation</b></span></li>
+<li class="chapter" data-level="2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html"><i class="fa fa-check"></i><b>2</b> Simulation of Random Variables and Monte Carlo</a><ul>
+<li class="chapter" data-level="2.1" data-path="how-to-simulate-some-common-probability-distributions.html"><a href="how-to-simulate-some-common-probability-distributions.html"><i class="fa fa-check"></i><b>2.1</b> How to simulate some common probability distributions</a></li>
+<li class="chapter" data-level="2.2" data-path="monte-carlo.html"><a href="monte-carlo.html"><i class="fa fa-check"></i><b>2.2</b> Monte Carlo</a></li>
+<li class="chapter" data-level="2.3" data-path="conditional-probability-and-independence-.html"><a href="conditional-probability-and-independence-.html"><i class="fa fa-check"></i><b>2.3</b> Conditional probability and independence.</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lecture notes for M362M <em>Introduction to Stochastic Processes</em></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="conditional-probability-and-independence." class="section level2">
+<h2><span class="header-section-number">2.3</span> Conditional probability and independence.</h2>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-63" class="exercise"><strong>Problem 2.11  </strong></span>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be two independent geometric random variables with parameters <span class="math inline">\(p=0.5\)</span>, and let <span class="math inline">\(Z=X+Y\)</span>. Compute <span class="math inline">\({\mathbb{P}}[ X = 3| Z = 5]\)</span> using simulation. Compare to the exact value.
+</div>
+
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">nsim &lt;-<span class="st"> </span><span class="dv">100000</span></a>
+<a class="sourceLine" id="cb42-2" data-line-number="2">X &lt;-<span class="st"> </span><span class="kw">rgeom</span>(nsim, <span class="dt">prob =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb42-3" data-line-number="3">Y &lt;-<span class="st"> </span><span class="kw">rgeom</span>(nsim, <span class="dt">prob =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb42-4" data-line-number="4">Z &lt;-<span class="st"> </span>X<span class="op">+</span>Y</a>
+<a class="sourceLine" id="cb42-5" data-line-number="5">X_cond =<span class="st"> </span>X[ Z <span class="op">==</span><span class="st"> </span><span class="dv">5</span> ]</a>
+<a class="sourceLine" id="cb42-6" data-line-number="6"><span class="kw">mean</span>(X_cond  <span class="op">==</span><span class="st"> </span><span class="dv">3</span>) </a>
+<a class="sourceLine" id="cb42-7" data-line-number="7"><span class="co">#R&gt; [1] 0.1690112</span></a></code></pre></div>
+<p>We have
+<span class="math display">\[ {\mathbb{P}}[ X = 3 | Z= 5 ] = \frac{{\mathbb{P}}[ X=3 \text{ and }Z=5]}{{\mathbb{P}}[Z=5]} = \frac{{\mathbb{P}}[X=3 \text{ and }Y = 2]}{{\mathbb{P}}[Z=5]} \]</span>
+Since <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, we have <span class="math inline">\({\mathbb{P}}[ X=3 \text{ and }Y=2 ] = {\mathbb{P}}[X=3] {\mathbb{P}}[ Y=2] = 2^{-4} 2^{-3} = 2^{-7}\)</span>. To compute <span class="math inline">\({\mathbb{P}}[ Z = 5]\)</span> we need to split the event <span class="math inline">\(\{ Z = 5 \}\)</span> into events we know how to deal with. Since <span class="math inline">\(Z\)</span> is built from <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, we write
+<span class="math display">\[ \begin{align} {\mathbb{P}}[ Z = 5 ] = &amp;{\mathbb{P}}[X=0 \text{ and }Y=5]+ {\mathbb{P}}[ X=1 \text{ and }Y=4] + {\mathbb{P}}[ X=2 \text{ and }Y=3] + \\
+&amp;  {\mathbb{P}}[ X=3 \text{ and }Y=2] + {\mathbb{P}}[ X=4 \text{ and }Y=1] + {\mathbb{P}}[ X = 5 \text{ and }Y=0]. \end{align}\]</span>
+Each of the individual probabilities in the sum above is <span class="math inline">\(2^{-7}\)</span>, so <span class="math inline">\({\mathbb{P}}[ X = 3 | Z = 5] = \frac{1}{6}\)</span>.
+This gives us an error of 0.0023445.</p>
+<p><strong>Comments:</strong></p>
+<p><em>Math.</em> Let us, first, recall what the conditional probability is. The definition we learn in the probability class is the following <span class="math display">\[ {\mathbb{P}}[A | B] = \frac{{\mathbb{P}}[A \text{ and }B]}{{\mathbb{P}}[B]}\]</span>, as long as <span class="math inline">\({\mathbb{P}}[B]&gt;0\)</span>. The interpretation is that <span class="math inline">\({\mathbb{P}}[A|B]\)</span> is still the probability of <span class="math inline">\(A\)</span>, but now in the world where <span class="math inline">\(B\)</span> is guaranteed to happen. Conditioning usually happens when we receive new information. If someone tells us that <span class="math inline">\(B\)</span> happened, we can disregard everyhting in the complement of <span class="math inline">\(B\)</span> and adjust our probability to account for that fact. First we remove from <span class="math inline">\(A\)</span> anything that belongs to the complement of <span class="math inline">\(B\)</span>, and recompute the probability <span class="math inline">\({\mathbb{P}}[A \cap B]\)</span>. We also have to divide by <span class="math inline">\({\mathbb{P}}[B]\)</span> because we want the total probability to be equal to <span class="math inline">\(1\)</span>.</p>
+<p>Our code starts as usual, but simulating <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> from the required distribution, and constructing a new vector <span class="math inline">\(Z\)</span> as their sum. The variable <code>X_cond</code> is new; we build it from <span class="math inline">\(X\)</span> by removing all the elements whose corresponding <span class="math inline">\(Z\)</span> is <em>not</em> equal to <span class="math inline">\(5\)</span>. This is an example of what is sometimes called the <strong>rejection method</strong> in simulation. We simply “reject” all simulations which do not satify the condition we are conditioning on. We can think of <code>X_cond</code> as bunch of simulations of <span class="math inline">\(X\)</span>, but in the world where <span class="math inline">\(Z=5\)</span> is guaranteed to happen. Once we have <code>X_cond</code>, we proceed as usual by computing the relative frequency of the value <span class="math inline">\(3\)</span> among all possible values <span class="math inline">\(X\)</span> can take. Note that the same <code>X_cond</code> can also be used to compute the conditional probability <span class="math inline">\({\mathbb{P}}[ X=1| Z=5]\)</span>. In fact, <code>X_cond</code> contains the information about the entire <strong>conditional distribution of <span class="math inline">\(X\)</span> given <span class="math inline">\(Z=5\)</span></strong>; if we draw a histogram of <code>X_cond</code>, we will get a good idea of what this distribution looks like:
+<img src="_main_files/figure-html/unnamed-chunk-65-1.png" width="672" style="display: block; margin: auto;" />
+The histogram above suggests that the distribution of <span class="math inline">\(X\)</span>, given <span class="math inline">\(Z=5\)</span>, is uniform on <span class="math inline">\(\{0,1,2,3,4,5\}\)</span>. It is - a calculation almost identical to the one we performed above gives that <span class="math inline">\({\mathbb{P}}[ X= i| Z=5] = \frac{1}{6}\)</span> for each <span class="math inline">\(i=0,1,2,3,4,5\)</span>.</p>
+
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="monte-carlo.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/gordanz/M362M/edit/master/01-intro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

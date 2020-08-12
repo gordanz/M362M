@@ -1,7 +1,9 @@
 bookdown::gitbook:
-  highlight: tango
+  highlight: default
+  split_by: section
   css: style.css
   config:
+    search: yes
     toc:
       before: |
         <li><a href="./">M362M Lecture notes</a></li>

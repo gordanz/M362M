@@ -1,4 +1,5 @@
 ## To be loaded before each chapter
+rm(list = ls(all = TRUE))
 library(knitr)
 library(tidyverse)
 

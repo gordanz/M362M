@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lecture notes for M362M Introduction to Stochastic Processes</title>
+  <meta name="description" content="A set of lecture notes for M362M Introduction to Stochastic Processes" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lecture notes for M362M Introduction to Stochastic Processes" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A set of lecture notes for M362M Introduction to Stochastic Processes" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lecture notes for M362M Introduction to Stochastic Processes" />
+  
+  <meta name="twitter:description" content="A set of lecture notes for M362M Introduction to Stochastic Processes" />
+  
+
+<meta name="author" content="Gordan Zitkovic" />
+
+
+<meta name="date" content="2020-07-26" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="simulation-of-random-variables-and-monte-carlo.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">M362M Lecture notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#setting-up-an-r-environment-on-your-computer"><i class="fa fa-check"></i><b>1.1</b> Setting up an R environment on your computer</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#learning-the-very-basics-of-r"><i class="fa fa-check"></i><b>1.2</b> Learning the very basics of R</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#r-notebooks-or-how-to-submit-your-hw-assignments-and-exams"><i class="fa fa-check"></i><b>1.3</b> R Notebooks or <em>How to submit your HW assignments and exams</em></a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#problems"><i class="fa fa-check"></i><b>1.4</b> Problems</a></li>
+</ul></li>
+<li class="part"><span><b>I Probability and Simulation</b></span></li>
+<li class="chapter" data-level="2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html"><i class="fa fa-check"></i><b>2</b> Simulation of Random Variables and Monte Carlo</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#how-to-simulate-some-common-probability-distributions"><i class="fa fa-check"></i><b>2.1</b> How to simulate some common probability distributions</a></li>
+<li class="chapter" data-level="2.2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#monte-carlo"><i class="fa fa-check"></i><b>2.2</b> Monte Carlo</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lecture notes for M362M <em>Introduction to Stochastic Processes</em></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Lecture notes for M362M <em>Introduction to Stochastic Processes</em></h1>
+<p class="author"><em>Gordan Zitkovic</em></p>
+<p class="date"><em>2020-07-26</em></p>
+</div>
+<div id="intro" class="section level1" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
+<p>Instead of telling you what stochastic processes are, here is a list of several questions you will be able to give answers to upon completion of this course.</p>
+<p><strong>Question 1</strong> In a simplistic model, the price of a share of a stock goes either up or down by <span class="math inline">\(\$1\)</span> each day, with probability <span class="math inline">\(1/2\)</span>. You own a single share whose value today is <span class="math inline">\(\$100\)</span>, so that its tomorrow’s price will be <span class="math inline">\(\$101\)</span> or <span class="math inline">\(\$99\)</span> with probability <span class="math inline">\(1/2\)</span>, etc. Your strategy is to hold onto your share until one of the following two things happen: you go bankrupt (the stock price hits <span class="math inline">\(0\)</span>), or you make a <span class="math inline">\(\$50\)</span> dollar profit (the stock price hits <span class="math inline">\(\$150\)</span>.)</p>
+<ol style="list-style-type: decimal">
+<li>How likely is it that you will make a profit before you go bankrupt?</li>
+<li>How long will it take?</li>
+<li>Is it possible that it takes forever, i.e., that the stock price hovers beween <span class="math inline">\(\$1\)</span> and <span class="math inline">\(\$149\)</span> forever?</li>
+</ol>
+<p><strong>Question 2.</strong> A person carying a certain disease infects a random number of people in a week, and then stops being infectious. Each of the infected people transmits the disease in the same way, etc. Suppose that the number of people each (infectious individual) infects is either <span class="math inline">\(0\)</span>, <span class="math inline">\(1\)</span> or <span class="math inline">\(2\)</span> or <span class="math inline">\(3\)</span>, each with probability <span class="math inline">\(1/4\)</span>; different infectious individuals may infect different number of people and behave independently of each other.</p>
+<ol style="list-style-type: decimal">
+<li>What is the probability that the disease will every be eradicated?</li>
+<li>What is the probability that every single individual in the population of <span class="math inline">\(300,000,000\)</span> will eventually be infected?</li>
+</ol>
+<p><strong>Question 3.</strong> In a game of tennis, Player <span class="math inline">\(1\)</span> wins against Player <span class="math inline">\(2\)</span> in each rally (the smallest chunk of the match that leads to point, i.e., to a score change from <span class="math inline">\(15-30\)</span> to <span class="math inline">\(30-30\)</span>, for example) with probability <span class="math inline">\(p\)</span>.
+What is the probability that Player <span class="math inline">\(1\)</span> wins</p>
+<ol style="list-style-type: decimal">
+<li>a game (the chunk of the match that leads to a score change such as <span class="math inline">\(5-3\)</span> to <span class="math inline">\(6-3\)</span> within a set)?</li>
+<li>a set? the entire match?</li>
+<li>Is the game of tennis set up in such a way that is <em>amplifies</em> or <em>reduces</em> the difference in skill between players?</li>
+</ol>
+<!-- ```{r echo=FALSE, out.width= "35%", out.extra='style="float:right; padding:10px"'} -->
+<!-- knitr::include_graphics('knight1.png') -->
+<!-- ``` -->
+<p><strong>Question 4.</strong>
+A knight starts in the lower left corner of the chess board and starts moving ``randomly’’. That means that from any position, it chooses one of the possible (legal) moves and takes it (all legal moves have the same probability). It keeps doing the same thing until it comes back to the square it started from.</p>
+<ol style="list-style-type: decimal">
+<li>What is the expected number of moves the knight will make before it returns to “square one”?</li>
+<li>How about the same problem, but using a different chess piece? Which one do you think will come back is the smallest (expected) number of steps?</li>
+<li>(*) How about the same problem, but until <em>all</em> squares have been visited at least once?</li>
+</ol>
+<p><strong>Question 5.</strong> How does Google search work?</p>
+<div id="setting-up-an-r-environment-on-your-computer" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Setting up an R environment on your computer</h2>
+<p>Learning basic R is an important part of this course, and the first order of business is to download and install an R distribution on your personal computer. We will be using RStudio as an IDE (integrated development environment). Like R itself, it is free and readily available for all major platforms. To download R to your computer, go to
+<a href="https://cloud.r-project.org">https://cloud.r-project.org</a>. Then, go to <a href="https://rstudio.com/products/rstudio/download/">https://rstudio.com/products/rstudio/download/</a> to get RStudio. There are several versions to choose from - the one your are looking for is “RStudio desktop - Free”.</p>
+</div>
+<div id="learning-the-very-basics-of-r" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Learning the very basics of R</h2>
+<p>Once R and RStudio are on your computer, it is time to get acquainted with the basics of R. This class is not about the finer points of R itself, and I will try to make your R experience as smooth as possible. After all, R is a tool that will help us explore and understand stochastic processes. Having said (written) that, it is important to realize that R is a powerful programming language specifically created for statistical and probabilistic applications. Some knowledge of R is a valuable skill to have in today’s job market, and you should take this opportunity to learn it. The best way, of course, is by using it, but before you start, you need to know the very basics. Don’t worry, R is very user friendly and easy to get started in. In addition, it has been around for a long time (its predecessor S appeared in 1976) and is extremely well documented (just google <em>introduction to R</em> or something like that).
+I like all books written by R guru <a href="http://hadley.nz">Hadley Wickham</a>. In particular,
+<a href="http://r4ds.had.co.nz/">R for Data Science</a> features a nice and elementary introduction to R (albeit from the point of view of a data scientist). If you want to learn more, check the webpage of the <a href="https://bookdown.org">bookdown</a> package. It is a tool for writing books which easily integrates R computation, and its webpage features a list of books on R and other topics (including many of Wickham’s books) - they are all free. Btw, this very set of lecture notes was written in Rmarkdown using the bookdown package!</p>
+</div>
+<div id="r-notebooks-or-how-to-submit-your-hw-assignments-and-exams" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> R Notebooks or <em>How to submit your HW assignments and exams</em></h2>
+<p>This is also a good time to explain how to submit your work. All submissions of computational work have to be <strong>produced using an R Notebook</strong>. There is nothing to worry - it is probably the most painless way, both for the student and for the grader. Let me explain. An R notebook is nothing other than an enhanced text file, but with the ability to intersperse so-called <em>chunks</em> or R code with regular text. It can also be transformed into a good looking pdf file by a press of a button. When you open an R notebook in Rstudio, you will be able to write your problem solutions, perform R computations and even plot graphs in one fell swoop. To create an R notebook, go to File -&gt; New File -&gt; R Notebook in RStudio, and a shiny new Rmd file will appear in the editor pane. It will even have text already filled in with hints about text formatting. You should not worry about text markup, or how to produce hyperlinks, or anything like that, though. In fact, the only important thing to know is that the following notation</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true"></a><span class="in">```{r}</span></span>
+<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="index.html#cb1-3" aria-hidden="true"></a><span class="in">```</span></span></code></pre></div>
+<pre><code>marks a **code chunk**. Btw, 
+the apostrophe-like symbols above are backticks - they live on the key below the escape key. You should not worry about counting how many there are or how to type them in - pressing *Cmd+Option+I* (on a Mac) or *Ctrl+Alt+I* (on Windows or Linux) will insert the whole thing for you. To see all available keyboard shortcuts available on your platform, press *Option+Shift+K* (on a Mac) or *Alt+Shift+K* (on Windows or Linux) in RStudio. To get more information about a typical workflow (how to run code chunks in place, for example) make sure to check the the following short book chapter 
+(R notebooks)[https://bookdown.org/yihui/rmarkdown/notebook.html] - feel free to skip sections 3.2.2 and 3.2.3.
+
+Anything between ```` ```{r}```` and the closing ```` ``` ````  is treated as R code and that you can evaluate on the spot. The result of the evaluation will automatically become a part of the notebook. Code chunks can also be used to produce graphs, and by simply evaluating it, R will embed the graph into  your document. For those of you familiar with the Python ecosystem, Rmd documents are R&#39;s version of Jupyter notebooks. 
+
+After your R notebook is ready to be submitted, simply upload the file itself. Do not convert is into a pdf, html or any other format. The extension of an R-notebook file is *.Rmd*, and only *.Rmd* files will be accepted by the system. 
+
+Your submissions should be structured as follows:
+
+1. the top should look like this (with obvious substitutions). It is important to include your EID, as well as the course number and the semester. 
+
+```yaml
+---
+title: &quot;HW 7; M362M, Fall 2020&quot;
+author: &quot;Jane B. Student, eid:jbs123 &quot;
+date: &quot;2020-10-14&quot;
+---
+```
+
+2. Each problem needs to start with the problem number preceeded by `##`, and each part of a problem (e.g., if there are subquestions a,b,c or 1., 2., 3) needs to start with `###`
+
+````markdown
+## Problem 7.23
+
+### Part b. 
+
+I computed the sum of 2 and 3 by running the following code
+```{r}
+2+3
+```</code></pre>
+<p>That is it. A sample Rmd file named HW_template.Rmd with solutions to parts of some of the problems below can be downloaded <a href="http://www.github.com/gordanz/M362M/tree/master/solutions">here</a>.</p>
+<p>Theoretical problems (i.e., those that do not involve any computation in R) can be submitted in a separate document (hand written and then scanned into a pdf, for example). If you know some LaTeX, you can use an R notebook and simply type the formulas in LaTeX notation. This way, if the assignment comes with both computational and theoretical problems, you can submit both in a single file. I am not assuming that you do know LaTeX and I am not going to require you to learn it, but if you do, use it to make your submissions nicer and easier to read (the grader will thank you!).</p>
+</div>
+<div id="problems" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Problems</h2>
+<p>Here are several simple problems. Their goal is to give you an idea of exactly how much R is required to get started in this course. Virtually any “introduction to R” should contain enough information to get you through all of these.</p>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-2" class="exercise"><strong>Problem 1.1  </strong></span>Compute the following (your answer should be a decimal number):</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(1/238746238746\)</span></li>
+<li><span class="math inline">\(2^{45}\)</span></li>
+<li><span class="math inline">\(3^{28}\)</span></li>
+<li><span class="math inline">\(\sqrt{15}\)</span></li>
+<li><span class="math inline">\(\cos(\pi/8)\)</span></li>
+<li><span class="math inline">\(e^2\)</span></li>
+<li><span class="math inline">\(\log(2)\)</span> (the base is <span class="math inline">\(e\)</span>)</li>
+<li><span class="math inline">\(\log_{10}(2)\)</span> (the base is <span class="math inline">\(10\)</span>)</li>
+<li><span class="math inline">\(\sqrt[3]{ \frac{1342.16-2.18}{(3 \pi +4.12)^2}}\)</span></li>
+</ol>
+Note: some of the answers will look like this <code>3.14e+13</code>. If you do not know what that means, google <em>E notation</em>.
+</div>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-3" class="exercise"><strong>Problem 1.2  </strong></span> . Define two variables <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> with values <span class="math inline">\(3\)</span> and <span class="math inline">\(4\)</span> and “put” their product into a variable called <span class="math inline">\(c\)</span>. Output the value of <span class="math inline">\(c\)</span>.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Define two vectors <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> of length <span class="math inline">\(3\)</span>, such that the components of <span class="math inline">\(x\)</span> are <span class="math inline">\(1,2,3\)</span> and the components of <span class="math inline">\(y\)</span> are <span class="math inline">\(8,9,0\)</span>. Ouput their (componentwise) sum.</p></li>
+<li><p>Define a <span class="math inline">\(2\times 2\)</span> matrix <span class="math inline">\(A=\begin{pmatrix} 1 &amp; 2 \\ -1 &amp; 3 \end{pmatrix}\)</span>. Use the command <code>matrix</code> and make sure to understand how it works; you can access its documentation directly from <span class="math inline">\(R\)</span> by writing <code>?matrix</code>. Make sure you understand what the parameters <code>ncol</code>, <code>nrow</code> and <code>byrow</code> do.</p></li>
+<li><p>Compute the matrix square <span class="math inline">\(A^2\)</span> (Careful! <code>A*A</code> will output a <span class="math inline">\(2\times 2\)</span> matrix, but it will not be <span class="math inline">\(A^2\)</span> - it will be the matrix whose entries are the squares of the entries of <span class="math inline">\(A\)</span>. You need to use different notation.)</p>
+</div></li>
+</ol>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-4" class="exercise"><strong>Problem 1.3  </strong></span> </p>
+<ol style="list-style-type: decimal">
+<li><p>Write a function that takes an argument <span class="math inline">\(x\)</span> and returns <span class="math inline">\(5\)</span> if <span class="math inline">\(x\geq 5\)</span> and <span class="math inline">\(x\)</span> itself otherwise.</p></li>
+<li><p>Write a function that returns <code>TRUE</code> (a boolean value) if its argument is between <span class="math inline">\(2\)</span> and <span class="math inline">\(3\)</span> and <code>FALSE</code> otherwise.</p>
+</div></li>
+</ol>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-5" class="exercise"><strong>Problem 1.4  </strong></span> </p>
+<ol style="list-style-type: decimal">
+<li><p>Construct a vector <span class="math inline">\(x\)</span> which contains all numbers from <span class="math inline">\(1\)</span> to <span class="math inline">\(100\)</span>.</p></li>
+<li><p>Construct a vector <span class="math inline">\(y\)</span> which contains <em>squares</em> of all numbers between <span class="math inline">\(20\)</span> and <span class="math inline">\(30\)</span>.</p></li>
+<li><p>Construct a vector <span class="math inline">\(z\)</span> the same size as <span class="math inline">\(y\)</span>
+with boolean entries (i.e., <code>TRUE</code> or <code>FALSE</code>) that indicates whether the entry at the same position in <span class="math inline">\(y\)</span> is above <span class="math inline">\(600\)</span> or not. (This is much easier to do than it sounds.)</p>
+</div></li>
+</ol>
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="simulation-of-random-variables-and-monte-carlo.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/gordanz/M362M/edit/master/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
