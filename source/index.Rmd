@@ -21,9 +21,9 @@ This is an always-evolving set of lecture notes for **Introduction to Stochastic
 2. How long will it take? 
 3. Is it possible that it takes forever, i.e., that the stock price hovers beween $\$1$ and $\$149$ forever? 
 
-**Question 2.** A person carying a certain disease infects a random number of people in a week, and then stops being infectious. Each of the infected people transmits the disease in the same way, etc. Suppose that the number of people each (infectious individual) infects is either $0$, $1$ or $2$ or $3$, each with probability $1/4$; different infectious individuals may infect different number of people and behave independently of each other.
+**Question 2.** A person carying a certain disease infects a random number of people in a week, and then stops being infectious. Each of the infected people transmits the disease in the same way, etc. Suppose that the number of people each (infectious) individual infects is either $0$, $1$ or $2$ or $3$, each with probability $1/4$  and that different infectious individuals may infect different number of people and behave independently of each other.
 
-1. What is the probability that the disease will every be eradicated?
+1. What is the probability that the disease will ever be eradicated?
 2. What is the probability that every single individual in the  population of $300,000,000$ will eventually be infected?
 
 **Question 3.** In a game of tennis, Player $1$ wins against Player $2$ in each rally (the smallest chunk of the match that leads to point, i.e., to a score change from $15-30$ to $30-30$, for example) with probability $p$. 
