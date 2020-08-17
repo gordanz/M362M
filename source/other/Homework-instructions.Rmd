@@ -1,0 +1,76 @@
+---
+title: "How to submit your HW assignments and exams"
+output: 
+  html_document
+---
+
+```{css, echo=FALSE}
+code {
+  font-family: Consolas, "Lucida Console", Courier, monospace, monospace;
+}
+```
+
+```{r echo=FALSE, warning=FALSE, include=FALSE}
+library(knitr)
+library(tidyverse)
+
+knitr::opts_chunk$set(
+  comment = "#R>",
+  collapse = TRUE,
+  cache = TRUE,
+  fig.align="center",
+  fig.pos="t",
+  strip.white = TRUE
+)
+```
+
+```{r}
+1+1
+```
+
+# R Notebooks
+
+All submissions of computational work have to be **produced using an R Notebook**. There is nothing to worry - it is probably the most painless way, both for the student and for the grader. Let me explain. An R notebook is nothing other than a specially formated text file which contains *chunks* or R code mixed with regular text. It can also be transformed into a good looking html or a pdf file by a press of a button. When you open an R notebook in Rstudio, you will be able to write your problem solutions, perform R computations and even plot graphs in one fell swoop. To create an R notebook, go to File -> New File -> R Notebook in RStudio, and a new Rmd (Rmarkdown) file will appear in the editor pane. It will even have some text already filled in with hints about text formatting. You should not worry about text markup, or how to produce hyperlinks, or anything like that, though. In fact, the only important thing to know is that the following notation 
+
+
+
+````markdown
+```r`r ''`
+
+```
+````
+
+
+marks a **code chunk**. Btw, the apostrophe-like symbols above are backticks - they live on the key below the escape key. You should not worry about counting how many there are or how to type them in - pressing *Cmd+Option+I* (on a Mac) or *Ctrl+Alt+I* (on Windows or Linux) will insert the whole thing for you. To see all available keyboard shortcuts available on your platform, press *Option+Shift+K* (on a Mac) or *Alt+Shift+K* (on Windows or Linux) in RStudio. To get more information about a typical workflow (how to run code chunks in place, for example) make sure to check the the following short book chapter [R notebooks](https://bookdown.org/yihui/rmarkdown/notebook.html) - feel free to skip sections 3.2.2 and 3.2.3.
+
+Anything between ```` ```{r}```` and the closing ```` ``` ````  is treated as R code and that you can evaluate on the spot. The result of the evaluation will automatically become a part of the notebook. Code chunks can also be used to produce graphs, and by simply evaluating it, R will embed the graph into  your document. For those of you familiar with the Python ecosystem, Rmd documents are R's version of Jupyter notebooks. 
+
+After your R notebook is ready to be submitted, simply upload the file itself. Do not convert it into a pdf, html or any other format. The extension of an R-notebook file is *.Rmd*, and only *.Rmd* files will be accepted by the system.  Your submissions should be always be structured as follows:
+
+1\. the top should look like this (with obvious substitutions such as
+ `HW` -> `Exam` if you are submitting an in-term exam, etc.). It is important to include your EID, as well as the course number and the semester. Don't forget `---` at the beginning and the end, and don't forget `:` after `title`, `author` or `date`.
+
+```yaml
+---
+title: "HW 7, M362M, Fall 2020"
+author: "Jane B. Student, eid jbs123 "
+date: "2020-10-14"
+---
+```
+
+2\. Each problem needs to start with the problem number preceeded by `##`, and each part of a problem (e.g., if there are subquestions a,b,c or 1., 2., 3) needs to start with `###`
+
+````markdown
+## Problem 7.23
+
+### Part b.
+
+I computed the sum of 2 and 3 by running the following code
+`r ''````{r}
+2+3
+```
+````
+
+That is it. A sample Rmd file named HW_template.Rmd with solutions to parts of some of the problems below can be downloaded [here](https://raw.githubusercontent.com/gordanz/M362M/master/solutions/HW_template.Rmd).
+
+Theoretical problems (i.e., those that do not involve any computation in R) can be submitted in a separate document (hand written and then scanned into a pdf, for example). If you know some LaTeX, you can use an R notebook  and simply type the formulas in LaTeX notation. This way, if the assignment comes with both computational and theoretical problems, you can submit both in a single file. I am not assuming that you do know LaTeX and I am not going to require you to learn it, but if you do, use it to make your submissions nicer and easier to read (the grader will thank you!). 

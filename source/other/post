@@ -1,0 +1,2 @@
+cp -f *.html ../../docs/
+cp -f HW_template.Rmd ../../docs/
