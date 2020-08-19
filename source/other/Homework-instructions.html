@@ -371,24 +371,30 @@ code {
   font-family: Consolas, "Lucida Console", Courier, monospace, monospace;
 }
 </style>
-<pre class="r"><code>1+1
-#R&gt; [1] 2</code></pre>
-<div id="r-notebooks" class="section level1">
-<h1>R Notebooks</h1>
-<p>All submissions of computational work have to be <strong>produced using an R Notebook</strong>. There is nothing to worry - it is probably the most painless way, both for the student and for the grader. Let me explain. An R notebook is nothing other than a specially formated text file which contains <em>chunks</em> or R code mixed with regular text. It can also be transformed into a good looking html or a pdf file by a press of a button. When you open an R notebook in Rstudio, you will be able to write your problem solutions, perform R computations and even plot graphs in one fell swoop. To create an R notebook, go to File -&gt; New File -&gt; R Notebook in RStudio, and a new Rmd (Rmarkdown) file will appear in the editor pane. It will even have some text already filled in with hints about text formatting. You should not worry about text markup, or how to produce hyperlinks, or anything like that, though. In fact, the only important thing to know is that the following notation</p>
+<div id="r-notebooks" class="section level2">
+<h2>R Notebooks</h2>
+<p>All submissions of computational work have to be <strong>produced using an R Notebook</strong>, i.e., an <strong>Rmd file</strong>. There is nothing to worry - it is probably the most painless way, both for the student and for the grader. Let me explain. An R notebook is nothing other than a specially formated text file which contains <em>chunks</em> or R code mixed with regular text. It can also be transformed into a good looking pdf (or html) file by a press of a button. When you open an R notebook in Rstudio, you will be able to write your problem solutions, perform R computations and even plot graphs in one fell swoop. What is more important, the results of the computations and the graphs you produce will automatically become a part of the output document. To create an R notebook, go to File -&gt; New File -&gt; R Notebook in RStudio, and a new Rmd (Rmarkdown) file will appear in the editor pane. It will even have some text already filled in with hints about text formatting. You should not worry about text markup, or how to produce hyperlinks, or anything like that, though. In fact, the only important thing to know is that the following notation</p>
 <pre class="markdown"><code>```r
 
 ```</code></pre>
 <p>marks a <strong>code chunk</strong>. Btw, the apostrophe-like symbols above are backticks - they live on the key below the escape key. You should not worry about counting how many there are or how to type them in - pressing <em>Cmd+Option+I</em> (on a Mac) or <em>Ctrl+Alt+I</em> (on Windows or Linux) will insert the whole thing for you. To see all available keyboard shortcuts available on your platform, press <em>Option+Shift+K</em> (on a Mac) or <em>Alt+Shift+K</em> (on Windows or Linux) in RStudio. To get more information about a typical workflow (how to run code chunks in place, for example) make sure to check the the following short book chapter <a href="https://bookdown.org/yihui/rmarkdown/notebook.html">R notebooks</a> - feel free to skip sections 3.2.2 and 3.2.3.</p>
-<p>Anything between <code>```{r}</code> and the closing <code>```</code> is treated as R code and that you can evaluate on the spot. The result of the evaluation will automatically become a part of the notebook. Code chunks can also be used to produce graphs, and by simply evaluating it, R will embed the graph into your document. For those of you familiar with the Python ecosystem, Rmd documents are R’s version of Jupyter notebooks.</p>
-<p>After your R notebook is ready to be submitted, simply upload the file itself. Do not convert it into a pdf, html or any other format. The extension of an R-notebook file is <em>.Rmd</em>, and only <em>.Rmd</em> files will be accepted by the system. Your submissions should be always be structured as follows:</p>
-<p>1. the top should look like this (with obvious substitutions such as <code>HW</code> -&gt; <code>Exam</code> if you are submitting an in-term exam, etc.). It is important to include your EID, as well as the course number and the semester. Don’t forget <code>---</code> at the beginning and the end, and don’t forget <code>:</code> after <code>title</code>, <code>author</code> or <code>date</code>.</p>
+<p>Anything between <code>```r</code> and the closing <code>```</code> is treated as R code to be evaluated on the spot. The result of the evaluation will automatically become a part of the notebook. Code chunks can also be used to produce graphs, and by simply evaluating it, R will embed the graph into your document. For those of you familiar with the Python ecosystem, Rmd documents are R’s version of Jupyter notebooks.</p>
+</div>
+<div id="how-to-format-and-submit-your-code" class="section level2">
+<h2>How to format and submit your code</h2>
+<p>The format of your Rmd file is going to very similar to the format of the default Rmd file that appears when you create it in RStudio. A few things (like your name, etc.) need to be different. I have created a <a href="https://gordanz.github.io/M362M/HW_template.Rmd">sample homework Rmd file</a> that you can use as a template. There are two important rules:</p>
+<ol style="list-style-type: decimal">
+<li>the top should look like this (with obvious substitutions such as <code>HW</code> -&gt; <code>Exam</code> if you are submitting an in-term exam, etc.). It is important to include your EID, as well as the course number and the semester. Don’t forget <code>---</code> at the beginning and the end, and don’t forget <code>:</code> after <code>title</code>, <code>author</code> or <code>date</code>.</li>
+</ol>
 <pre class="yaml"><code>---
 title: &quot;HW 7, M362M, Fall 2020&quot;
 author: &quot;Jane B. Student, eid jbs123 &quot;
 date: &quot;2020-10-14&quot;
+output: pdf_document
 ---</code></pre>
-<p>2. Each problem needs to start with the problem number preceeded by <code>##</code>, and each part of a problem (e.g., if there are subquestions a,b,c or 1., 2., 3) needs to start with <code>###</code></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Each problem needs to start with the problem number preceeded by <code>##</code>, and each part of a problem (e.g., if there are subquestions a,b,c or 1., 2., 3) needs to start with <code>###</code></li>
+</ol>
 <pre class="markdown"><code>## Problem 7.23
 
 ### Part b.
@@ -397,8 +403,18 @@ I computed the sum of 2 and 3 by running the following code
 ```{r}
 2+3
 ```</code></pre>
-<p>That is it. A sample Rmd file named HW_template.Rmd with solutions to parts of some of the problems below can be downloaded <a href="https://raw.githubusercontent.com/gordanz/M362M/master/solutions/HW_template.Rmd">here</a>.</p>
-<p>Theoretical problems (i.e., those that do not involve any computation in R) can be submitted in a separate document (hand written and then scanned into a pdf, for example). If you know some LaTeX, you can use an R notebook and simply type the formulas in LaTeX notation. This way, if the assignment comes with both computational and theoretical problems, you can submit both in a single file. I am not assuming that you do know LaTeX and I am not going to require you to learn it, but if you do, use it to make your submissions nicer and easier to read (the grader will thank you!).</p>
+<p>Even though you will write your assignment using Rmd files, it is <strong>not Rmd files that are going to be submitted</strong>. After your work is ready to be submitted, you need to create a pdf file from the R notebook. To be able to that, may have to to install an additionl R package. Unless you already have LaTeX installed on your computer and unless you ran them before, run the following two commands in your R console:</p>
+<pre class="markdown"><code>install.packages('tinytex')
+tinytex::install_tinytex()</code></pre>
+<p>It may take a few minutes before the installation is over, but you only have to do this once. After that, the only thing you need to do is press <em>Cmd+Shift+K</em> (on a Mac) or <em>Ctrl+Shift+K</em> (on Windows or Linux), or the <em>Knit</em> buttom in Rstudio, and your R notebook will transform into a beaufitul PDF file. By default, it will be in the same folder as the original Rmd file used to create it.</p>
+</div>
+<div id="how-to-submit-your-theoretical-problems" class="section level2">
+<h2>How to submit your “theoretical” problems</h2>
+<p>Theoretical problems (i.e., those that do not involve any computation in R) can be submitted in a separate document (hand written and then scanned into a pdf, for example). If you know some LaTeX, you can use an R notebook and simply type the formulas in LaTeX notation (google around, you can easily find a quick intro to writing mathematical formulas in Rmarkdown). This way, if the assignment comes with both computational and theoretical problems, you can submit both in a single file. I am <strong>not assuming that you do know LaTeX</strong> and I am <strong>not going to require you to learn it</strong>, but if you do, use it to make your submissions nicer and easier to read (the grader will thank you!). There is more! If you submit all of your homework assignments typed up (as opposed to hand written on a piece a paper and scanned) you will get an extra 5% in your total score!</p>
+</div>
+<div id="submission-to-canvas" class="section level2">
+<h2>Submission to Canvas</h2>
+<p>Unless you are going for the extra 5%, you will have two files to submit for a typical homework assignment. Canvas allows you to submit several files by first submitting one, then then clicking on “+Add Another File” to upload another one.</p>
 </div>
 
 
