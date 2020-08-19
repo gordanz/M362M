@@ -1,10 +1,24 @@
 ---
-title: "A Template for HW solutions; M362M, Fall 2020"
-author: 'Gordan Zitkovic, eid:gz99999 '
+title: 'A Template for HW solutions; M362M, Fall 2020'
+author: 'Jane B. Student, eid:jbs123'
 date: '2020-09-01'
 output: pdf_document
 ---
 
+<!-- The code chunk below contains some settings that will  -->
+<!-- make your R code look better in the output pdf file.  -->
+<!-- If you are curious about what each option below does, -->
+<!-- go to https://yihui.org/knitr/options/ -->
+<!-- If not, feel free to disregard everything ...  -->
+```{r echo=FALSE, warning=FALSE, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig.align="center",
+  fig.pos="t",
+  strip.white = TRUE
+)
+```
+<!-- ... up to here. -->
 
 ## Problem 1.1
 
@@ -51,7 +65,7 @@ What would happen if we left out `nrow = 2` or `byrow = TRUE`?
 
 ### Part 2. 
 ```{r}
-my_function <- function(x) {
+my_function <- function(x) { 
   if (2 < x & x < 3) {
     return(TRUE)
   } else {

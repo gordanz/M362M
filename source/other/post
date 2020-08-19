@@ -1,2 +1,2 @@
-cp -f *.{html,png,jpg} ../../docs/
+cp -f *.{html,png,pdf} ../../docs/
 cp -f HW_template.Rmd ../../docs/
