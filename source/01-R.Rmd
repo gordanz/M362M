@@ -2,14 +2,34 @@
 
 ## Setting up an R environment on your computer
 
+### Installing R
+
 Learning basic R is an important part of this course, and the first order of business is to download and install an R distribution on your personal computer. We will be using RStudio as an IDE (integrated development environment). Like R itself, it is free and readily available for all major platforms. To download R to your computer, go to
-[https://cloud.r-project.org](https://cloud.r-project.org). Then, go to [https://rstudio.com/products/rstudio/download/](https://rstudio.com/products/rstudio/download/) to get RStudio. There are several versions to choose from - the one your are looking for is "RStudio desktop - Free".
+[https://cloud.r-project.org](https://cloud.r-project.org) and 
+download the version of R for your operating system (Windows, Mac or Linux). If you are on a Mac, you want the "Latest release" which, at the time of writing, is 4.0.2. On Windows, follow the link "install R for the first time".  We are not going to do any cutting edge stuff in this class, so an older release should be fine, too, if you happen to have it already installed on your system. Once you download the installation file (.pkg on a Mac or .exe on Windows), run it and follow instructions. Once it is successfully installed, don't run the installed app. We will use RStudio for that.
+
+### Installing RStudio
+
+To install RStudio, go to [https://rstudio.com/products/rstudio/download/](https://rstudio.com/products/rstudio/download/) to get RStudio. There are several versions to choose from - the one your are looking for is "RStudio desktop - Free". 
+
+
+### Installing basic packages
+
+Finally, we need to install several R packages we will be using (mostly implicitly) during the class. First, run the following command in your console
+```markdown
+install.packages( "tidyverse", "tinytex")
+```
+This should take about a minute. The next part is a bit longer, and can take up to 15 minutes. You only have to do it once, though:
+```markdown
+tinytex::install_tinytex()
+```
 
 ## Learning the very basics of R
 
 Once R and RStudio are on your computer, it is time to get acquainted with the basics of R. This class is not about the finer points of R itself, and I will try to make your R experience as smooth as possible. After all, R is a tool that will help us explore and understand stochastic processes. Having said (written) that, it is important to realize that R is a powerful programming language specifically created for statistical and probabilistic applications. Some knowledge of R is a valuable skill to have in today's job market, and you should take this opportunity to learn it. The best way, of course, is by using it, but before you start, you need to know the very basics. Don't worry, R is very user friendly and easy to get started in. In addition, it has been around for a long time (its predecessor S appeared in 1976) and is extremely well documented (just google *introduction to R* or something like that). 
 I like all books written by R guru [Hadley Wickham](http://hadley.nz). In particular, 
 [R for Data Science](http://r4ds.had.co.nz/) features a nice and elementary introduction to R (albeit from the point of view of a data scientist). If you want to learn more, check the webpage of the  [bookdown](https://bookdown.org) package. It is a tool for writing books which easily integrates R computation, and its webpage features a list of books on R and other topics (including many of Wickham's books) - they are all free. Btw, this very set of lecture notes was written in Rmarkdown using the bookdown package!
+
 
 
 ## Problems

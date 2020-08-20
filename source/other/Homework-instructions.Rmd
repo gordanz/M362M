@@ -65,8 +65,6 @@ output: pdf_document
 ## Problem 7.23
 
 ### Part b.
-
-I computed the sum of 2 and 3 by running the following code
 `r ''````{r}
 2+3
 ```
