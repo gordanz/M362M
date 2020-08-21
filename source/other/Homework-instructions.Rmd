@@ -1,13 +1,13 @@
 ---
 title: "How to submit your HW assignments and exams"
-output: html_document
+output: bookdown::html_document2
 ---
 
-```{css, echo=FALSE}
-code {
-  font-family: Consolas, "Lucida Console", Courier, monospace, monospace;
-}
-```
+<!-- ```{css, echo=FALSE} -->
+<!-- code { -->
+<!--   font-family: Consolas, "Lucida Console", Courier, monospace, monospace; -->
+<!-- } -->
+<!-- ``` -->
 
 ```{r echo=FALSE, warning=FALSE, include=FALSE}
 library(knitr)
@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 
 *Please read this entire document before starting your first homework.*
 
-## R Notebooks
+## R Notebooks {-}
 
 All submissions of computational work have to be **produced using an R Notebook**, i.e., via an **Rmd file**. There is nothing to worry - it is probably the most painless way, both for the student and for the grader. Let me explain. An R notebook is nothing other than a specially formated text file which contains *chunks* or R code mixed with regular text. The point is that it can be transformed into a good looking pdf (or html) file by a press of a button. When you open an R notebook in RStudio, you will be able to write your problem solutions, perform R computations and even plot graphs in one fell swoop. What is more important, the results of the computations and the graphs you produce will automatically become a part of the output document. To create an R notebook, go to File -> New File -> R Notebook in RStudio, and a new Rmd (Rmarkdown) file will appear in the editor pane (**do not create a new file right now, though; a template will be provided later. Just continue reading.**) It will even have the important instructions already filled in. You should not worry about text markup, or how to produce hyperlinks, or anything like that, though. In fact, the only important thing to know is that the following notation 
 
@@ -42,7 +42,7 @@ marks a **code chunk**. Btw, the apostrophe-like symbols above are backticks - t
 
 Anything between ```` ```r```` and the closing ```` ``` ````  is treated as R code to be evaluated on the spot. The result of the evaluation will automatically become a part of the notebook. The same is true for graphs - you don't have to produce separate files; they will be automaticallyintegrated into the output document. For those of you familiar with the Python ecosystem, Rmd documents are R's version of Jupyter notebooks. 
 
-## How to format and submit your code
+## How to format and submit your code {-}
 
 The format of your Rmd file is going to very similar to the format of the default Rmd file that appears when you create it in RStudio. A few things (like your name, etc.) need to be different. I have created a [sample homework Rmd file](https://gordanz.github.io/M362M/HW_template.Rmd) that you can **use as a template.** There are two important rules: 
 
@@ -70,20 +70,23 @@ output: pdf_document
 ```
 ````
 
-Even though you will write your assignment using Rmd files, it is **not Rmd files that are going to be submitted**. After your work is ready to be submitted, you need to **create a pdf file** from the R notebook. To be able to that, may have to to install an additionAl R package. Unless you already have LaTeX installed on your computer and unless you already ran them, run the following two commands in your R console:
+Even though you will write your assignment using Rmd files, it is **not Rmd files that are going to be submitted**. After your work is ready to be submitted, you need to **create a pdf file** from the R notebook. To be able to that,you need to have some version of LaTeX installed on your computer. If you followed the instructions in the notes and installed all recommended packages, you should be fine. If not, run the following in your R console:
 
-````markdown
+```markdown
 install.packages('tinytex')
+```
+After that, run
+
+```markdown
 tinytex::install_tinytex()
-````
+```
 
-It may take a few minutes before the installation is over, but you only have to do this once. After that, the only thing you need to do is press *Cmd+Shift+K* (on a Mac) or *Ctrl+Shift+K* (on Windows or Linux), or the *Knit* buttom in Rstudio, 
-and your R notebook will transform into a beaufitul PDF file. By default, this pdf file will end up  in the same folder as the original Rmd file used to create it. Here is what the [pdf version](https://gordanz.github.io/M362M/HW_template.pdf) of our sample homework template file from above looks like. 
+It may take a few minutes before the installation is over, but you only have to do this once. After that, the only thing you need to do is press *Cmd+Shift+K* (on a Mac) or *Ctrl+Shift+K* (on Windows or Linux). By default, this pdf file will end up  in the same folder as the original Rmd file used to create it. Here is what the [pdf version](https://gordanz.github.io/M362M/HW_template.pdf) of our sample homework template file from above looks like. 
 
-## How to submit your "theoretical" problems
+## How to submit "theoretical" problems {-}
 
 Theoretical problems (i.e., those that do not involve any computation in R) can be submitted in a separate document. Writing them by hand and then submitting a scan, for example, is perfectly fine. When a problem contains both R-based and theoretical parts, just submit them separately. If you know some LaTeX, you can use an R notebook  and simply type the formulas in LaTeX notation (google around, you can easily find a quick intro to writing mathematical formulas in Rmarkdown). This way, if the assignment comes with both computational and theoretical problems, you can submit both in a single file. I am **not assuming that you know LaTeX** and I am **not going to require you to learn it**, but if you do, use it to make your submissions nicer and easier to read. There is more! **If you submit all of your homework assignments typed up (as opposed to hand written on a piece a paper and scanned) you will get an extra 5% in your total score! **
 
-## Upload to Canvas
+## Upload to Canvas {-}
 
-Unless you are going for the extra 5%, you will have two files to submit for a typical homework assignment. Canvas allows you to submit several files by first submitting one, then then clicking on "+Add Another File" to upload another one. 
+Unless you are going for the extra 5%, you will have two files to submit for a typical homework assignment. Canvas allows you to submit several files by first submitting one, then then clicking on "+Add Another File" to upload another one. Alternatively, you can merge your two pdf files into one and submit the merged file. 
