@@ -10,3 +10,4 @@ output_dir: "../docs/"
 self_contained: FALSE
 repo: https://github.com/gordanz/M362M
 edit: https://github.com/gordanz/M362M/edit/master/%s
+rmd_files: ["index.Rmd","01-R.Rmd"]

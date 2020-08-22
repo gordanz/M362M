@@ -4,7 +4,6 @@ library(knitr)
 library(tidyverse)
 
 knitr::opts_chunk$set(
-  comment = "#R>",
   collapse = TRUE,
   cache = TRUE,
   fig.align="center",

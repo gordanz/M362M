@@ -6,7 +6,7 @@
 
 Learning basic R is an important part of this course, and the first order of business is to download and install an R distribution on your personal computer. We will be using RStudio as an IDE (integrated development environment). Like R itself, it is free and readily available for all major platforms. To download R to your computer, go to
 [https://cloud.r-project.org](https://cloud.r-project.org) and 
-download the version of R for your operating system (Windows, Mac or Linux). If you are on a Mac, you want the "Latest release" which, at the time of writing, is 4.0.2. On Windows, follow the link "install R for the first time".  We are not going to do any cutting edge stuff in this class, so an older release should be fine, too, if you happen to have it already installed on your system. Once you download the installation file (.pkg on a Mac or .exe on Windows), run it and follow instructions. Once it is successfully installed, don't run the installed app. We will use RStudio for that.
+download the version of R for your operating system (Windows, Mac or Linux). If you are on a Mac, you want the "Latest release" which, at the time of writing, is 4.0.2. On Windows, follow the link "install R for the first time".  We are not going to do any cutting edge stuff in this class, so an older release should be fine, too, if you happen to have it already installed on your system. Once you download the installation file (.pkg on a Mac or .exe on Windows), run it and follow instructions. Once it is successfully installed, **don't run the installed app**. We will use RStudio for that.
 
 ### Installing RStudio
 
@@ -45,25 +45,129 @@ tinytex::install_tinytex()
 ```
 Note that the if you go to the top right corner of each of the code blocks (gray boxes) containing instructions above, an icon will appear. If you click on it, it will copy the content of the box into you clipboard, and you can simply paste it into RStudio. You can do that with any code block in these notes.
 
-## Learning the very basics of R
+## Learning the  basics of R
 
-Once R and RStudio are on your computer, it is time to get acquainted with the basics of R. This class is not about the finer points of R itself, and I will try to make your R experience as smooth as possible. After all, R is a tool that will help us explore and understand stochastic processes. Having said (written) that, it is important to realize that R is a powerful programming language specifically created for statistical and probabilistic applications. Some knowledge of R is a valuable skill to have in today's job market, and you should take this opportunity to learn it. The best way, of course, is by using it, but before you start, you need to know the very basics. Don't worry, R is very user friendly and easy to get started in. In addition, it has been around for a long time (its predecessor S appeared in 1976) and is extremely well documented -  google *introduction to R* or a similar phrase, and you will get lots of useful hits. 
+Once R and RStudio are on your computer, it is time to get acquainted with the basics of R. This class is not about the finer points of R itself, and I will try to make your R experience as smooth as possible. After all, R is a tool that will help us explore and understand stochastic processes. Having said  that, it is important to realize that R is a powerful programming language specifically created for statistical and probabilistic applications. Some knowledge of R is a valuable skill to have in today's job market, and you should take this opportunity to learn it. The best way, of course, is by using it, but before you start, you need to know the very basics. Don't worry, R is very user friendly and easy to get started in. In addition, it has been around for a long time (its predecessor S appeared in 1976) and is extremely well documented -  google *introduction to R* or a similar phrase, and you will get lots of useful hits. 
 
 My plan is to give you a bare minimum in the next few paragraphs, and then to explain additional R concepts as we need them. This way, you will not be overwhelmed right from the start, and you will get a bit of a mathematical context as you learn more. Conversely, learning R commands will help with the math, too.
 
-### Ask for help
+### Asking for help
+?pipi
+The most important thing about **learning R** (and many other things, for that matter) is knowing whom (and how) to ask for help. Luckily, R is a well established language, and you can get a lot of information by simply googling your problem. For example, if you google `logarithm in R` the top hit (at the time of writing) gives a nice overview and some examples. 
 
-```{r echo=FALSE,out.width= "50%",out.extra='style="float:right; padding:10px"'} 
-knitr::include_graphics("pics/google_log.png")
-```
-The most important thing about **learning R** (and many other things, for that matter) is knowing whom (and how) to ask for help. Luckily, R is a well established language, and you can get a lot of information by simply googling your problem. For example, if you google `logarithm in R` the top hit (at the time of writing) gives a nice overview and some examples (see screenshot on the right). I do not endorse or whatever-is-the-opposite-of-endorse this website (ENDMEMO). I  don't know anything about it, but it was the first hit, so I included it in these notes. The point is that googling should be the first thing you do.
-
-
-Another way to get information about a command or a concept in R is to use the command `help`. For example, if you input `help("log")` in your console, the right hand of your screen will display information on the function `log` and some of its cousins. Almost every help entry has examples at the bottom, and that is where I always go first. 
+Another way to get information about a command or a concept in R is to use the command `help`. For example, if you input `help("log")` or `?log` in your console, the right hand of your screen will display information on the function `log` and some of its cousins. Almost every help entry has examples at the bottom, and that is where I always go first. 
 
 ### Vectors
 
+Objects we will be manipulating in this class are almost exclusively vectors and matrices. The simplest vectors are those that have a single component, in other words, numbers. In R, you can assign a number to a variable using two different notations. Both
+```{r}
+a <- 1
+```
+and
+```{r}
+a = 1
+```
+will assign the value $1$ to the variable `a`. If you want to create a longer vector, you can use the **concatenation operator** `c` as follows:
+```{r}
+x = c(1,2,3,4)
+```
+Once you evaluate the above in your console, the value of `x` is stored and you can access it by using the command `print`
+```{r}
+print(x)
+```
 
+or simply evaluating `x` itself:
+```{r}
+x
+```
+Unlike all code blocks above them, the last two contain both input and output. It is standard not to mark the output by any symbol (like the usual `>`), and to mark the output by `##` which otherwise marks comments. This way, you can copy any code block from these notes and paste it into the console (or your script) without having to modify it in any way. Try it!
+
+We built the vector `x` above by concatenating four numbers (vectors of length 1). You can concatenate  vectors of different sizes, too:
+```{r}
+a = c(1,2,3)
+b = c(4,5,6)
+(x = c(a,b,7))
+```
+You may be wondering why I put `x = c(a,b,7)` in parentheses. Without them, `x` would still become (1,2,3,4,5,6,7), but its value would not be printed out. A statement in parentheses is not only evaluated, but its result is also printed out. This way, `(x=2+3)` is equivalent to `x=2+3` followed by `x` or `print(x)`. 
+
+
+Vectors can contain things other than numbers. Strings, for example:
+```{r}
+(x = c("Larry", "Curly", "Moe"))
+```
+If you need a vector consisting of consecutive numbers, use the colon `:` notation:
+```{r}
+1:10
+```
+For sequences of equally spaced numbers, use the command `seq` (check its help for details)
+```{r}
+seq(from=5, to=20, by=3)
+```
+An important feature or R is that many of its functions are **vectorized**. That means that if you give it vectors as arguments, the returned value will be a vector of results of that operation performed element by element. For example 
+```{r}
+x = c(10,20,30)
+y = c(2,4,5)
+x+y
+x*y
+x^2
+cos(x)
+```
+The vectors do not need to be of the same size. R uses the **recycling rule** - it recycles the values of the shorter one, starting from the beginning, until its size matches the longer one:
+```{r}
+x = c(10, 20, 30, 40, 50, 60)
+y = c(1,3)
+x+y
+```
+The case where the shorter vector is of length 1 is particularly useful:
+```{r}
+x = c(10,20,30,40)
+x+1
+x*(-2)
+```
+Extracting parts of the vector is accomplished by using the **indexing** operator `[]`. Here are some examples (what do negative numbers do?)
+```{r}
+x = c(10,20,30,40,50)
+x[1]
+x[c(1,2)]
+x[-c(1,2)]
+x[-c(3,4)]
+x[1:4]
+x[c(1,1,2,2,5,4)]
+```
+It is important to note that the thing you put inside `[]` needs to be a vector itself. The above examples all dealt with numerical indices, but you can use Boolean indices, too. A variable is said to be **Boolean** or **logical** if it takes one of the two values `TRUE` or `FALSE`. A vector whose components are all Boolean, are, of course, Boolean vectors. You can think of Boolean slicing as the operation where you go through your original vector, and choose which components you want to keep (`TRUE`) and which you want the throw away (`FALSE`). For example
+```{r}
+x = c(10,20,30,40,50)
+y = c(TRUE, FALSE, FALSE, TRUE, TRUE)
+x[y]
+```
+This is especially useful when used together with the **comparison operators**. The expressions like `x<y` or `x==y` are  operators in R, just like `x+y` or `x/y`. The difference is that `<` and `==` return Boolean values. For example
+```{r}
+1 == 2
+3 > 4
+3 >= 2
+```
+These operators are vectorized, so you can do things like this
+```{r}
+x = c( 1,2,3,4,5)
+y = c( 1,3,3,2,5)
+x==y
+```
+or, using recycling,
+```{r}
+x = c(1,2,3,4,5)
+x > 3
+```
+Let's combine that with slicing. Suppose that we want to keep only the values greater than 4 in the vector `x`. The vector `y=x>4` is going to be of the same length as `x` and contain Boolean values.
+When we slice `x` using it, only the values of `x` on positions where `x>4` will survive, and these are exactly the values we needed:
+```{r}
+x = c(3,2,5,3,1,5,6,4)
+y = x>4
+x[y]
+```
+or, simply,
+```{r}
+x[x>4]
+```
 
 
 ## Problems
