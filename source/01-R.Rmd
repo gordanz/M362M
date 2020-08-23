@@ -52,7 +52,6 @@ Once R and RStudio are on your computer, it is time to get acquainted with the b
 My plan is to give you a bare minimum in the next few paragraphs, and then to explain additional R concepts as we need them. This way, you will not be overwhelmed right from the start, and you will get a bit of a mathematical context as you learn more. Conversely, learning R commands will help with the math, too.
 
 ### Asking for help
-?pipi
 The most important thing about **learning R** (and many other things, for that matter) is knowing whom (and how) to ask for help. Luckily, R is a well established language, and you can get a lot of information by simply googling your problem. For example, if you google `logarithm in R` the top hit (at the time of writing) gives a nice overview and some examples. 
 
 Another way to get information about a command or a concept in R is to use the command `help`. For example, if you input `help("log")` or `?log` in your console, the right hand of your screen will display information on the function `log` and some of its cousins. Almost every help entry has examples at the bottom, and that is where I always go first. 
@@ -93,7 +92,7 @@ You may be wondering why I put `x = c(a,b,7)` in parentheses. Without them, `x` 
 
 Vectors can contain things other than numbers. Strings, for example:
 ```{r}
-(x = c("Larry", "Curly", "Moe"))
+(x = c("Picard", "Data", "Geordi"))
 ```
 If you need a vector consisting of consecutive numbers, use the colon `:` notation:
 ```{r}
@@ -134,7 +133,9 @@ x[-c(3,4)]
 x[1:4]
 x[c(1,1,2,2,5,4)]
 ```
-It is important to note that the thing you put inside `[]` needs to be a vector itself. The above examples all dealt with numerical indices, but you can use Boolean indices, too. A variable is said to be **Boolean** or **logical** if it takes one of the two values `TRUE` or `FALSE`. A vector whose components are all Boolean, are, of course, Boolean vectors. You can think of Boolean slicing as the operation where you go through your original vector, and choose which components you want to keep (`TRUE`) and which you want the throw away (`FALSE`). For example
+People familiar with Python should be aware of the following two differences: 1. indexing starts at 1 and not 0, and 2. negative indexing removes components; it does not start counting from the end!
+
+It is important to note that the thing you put inside `[]` needs to be a vector itself. The above examples all dealt with numerical indices, but you can use Boolean indices, too. A variable is said to be **Boolean** or **logical** if it can takes only one of the two values `TRUE` or `FALSE`. A vector whose components are all Boolean, are called, of course, Boolean vectors. You can think of Boolean slicing as the operation where you go through your original vector, and choose which components you want to keep (`TRUE`) and which you want the throw away (`FALSE`). For example
 ```{r}
 x = c(10,20,30,40,50)
 y = c(TRUE, FALSE, FALSE, TRUE, TRUE)
@@ -157,7 +158,7 @@ or, using recycling,
 x = c(1,2,3,4,5)
 x > 3
 ```
-Let's combine that with slicing. Suppose that we want to keep only the values greater than 4 in the vector `x`. The vector `y=x>4` is going to be of the same length as `x` and contain Boolean values.
+Let's combine that with indexing. Suppose that we want to keep only the values greater than 4 in the vector `x`. The vector `y=x>4` is going to be of the same length as `x` and contain Boolean values.
 When we slice `x` using it, only the values of `x` on positions where `x>4` will survive, and these are exactly the values we needed:
 ```{r}
 x = c(3,2,5,3,1,5,6,4)
@@ -168,6 +169,80 @@ or, simply,
 ```{r}
 x[x>4]
 ```
+Indexing can be used to set the values of a vector just as easily
+```{r}
+x = c( 10, 20, 30, 40, 50)
+x[2:4] = c( 0, 1 ,2)
+x
+```
+Recycling rules apply in the same way as above
+```{r}
+x = c(10,20,30,40,50)
+x[ c(1,2,5) ] = 7
+x
+```
+
+### Matrices
+
+A matrix in R can be created using the command `matrix`. The unusual part is that the input is a vector and R populates the components of the matrix by filling it in column by column or row by row. As always, an example will make this clear
+```{r}
+x = c(1,2,3,4,5,6)
+(A = matrix(x, nrow = 2, ncol = 3, byrow = TRUE))
+```
+
+The first argument of the function `matrix` is the vector which contains all the values. If you want a matrix with m rows and n columns, this vector should be of size $m n$. The arguments `ncol` and `nrow` are self-explanatory, and `byrow` is a Boolean argument which signals whether to fill by columns or by rows. Here is what happens when we set `byrow = FALSE`
+```{r}
+x = c(1,2,3,4,5,6)
+(A = matrix(x, nrow = 2, ncol = 3, byrow = FALSE))
+```
+Accessing components of a matrix is as intuitive as it gets
+```{r}
+(A = matrix( c(1, -1, 7, 2), nrow = 2, ncol = 2))
+
+A[1,2]
+```
+Note that I did not use the argument `byrow` at all. In such cases, R always uses the default value (documented in the function's help). For `matrix` the default value of `byrow` is `FALSE', i.e., it fills the matrix column by column. This is not what we usually want because we tend to think of matrices as composed of rows. Moral: do not forget `byrow = TRUE` if that is what you, indeed, want. 
+
+Usual matrix operations can be performed in R in the obvious way
+```{r}
+ (A = matrix( c(1, -1, 7, 2), nrow = 2, ncol = 2))
+ (B = matrix( c(2, 2, -3, -4), nrow = 2, ncol = 2))
+A+B
+```
+You should be careful with matrix multiplication. The naive operator `*` yields a matrix, but probably not the one you want (what does `*` do?)
+```{r}
+ (A = matrix( c(1, 2, 0, 1), nrow = 2, ncol = 2))
+ (B = matrix( c(3, 5, 1, 0), nrow = 2, ncol = 2))
+A*B
+```
+If you want the matrix product, you have to use `%*%`
+```{r}
+A%*%B
+```
+
+### Functions
+
+The following syntax is used to define functions in R:
+```{r}
+my_function = function(x,y,z) {
+  return(x+y+z)
+}
+```
+The function `my_function` returns the sum of its arguments. Having defined it, as above, we can use it
+ like this
+```{r}
+my_function(1,3,9)
+```
+Neither the output nor the arguments of a function in R are restricted to numbers. Our next example function, named `winners` takes two vectors as arguments and returns a new vector whose components are those components of the first input vector (`x`) that are larger than the corresponding components of the second input vector (`y`)
+```{r}
+winners = function(x,y) {
+  z = x>y
+  return(x[z])
+}
+winners( c(1,4,5,6,2), c(2,3,3,9,2))
+```
+Note how we used several things we learned above in this function. First, we defined the Boolean vector which indicates where `x` is larger than `y`. Then, we used Boolean indexing to return only certain components of `x`. 
+
 
 
 ## Problems

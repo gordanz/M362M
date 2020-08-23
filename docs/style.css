@@ -4,7 +4,7 @@
   margin-top: 10px;
 }
 p code {
-  white-space: inherit;
+  white-space: normal;
 }
 pre {
   word-break: normal;

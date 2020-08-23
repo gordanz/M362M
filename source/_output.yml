@@ -1,5 +1,5 @@
 bookdown::gitbook:
-  highlight: default
+  highlight: tango
   css: style.css
   config:
     search: yes
