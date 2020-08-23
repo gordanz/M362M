@@ -128,20 +128,20 @@ Extracting parts of the vector is accomplished by using the **indexing** operato
 x = c(10,20,30,40,50)
 x[1]
 x[c(1,2)]
-x[-c(1,2)]
+x[-1]
 x[-c(3,4)]
 x[1:4]
 x[c(1,1,2,2,5,4)]
 ```
 People familiar with Python should be aware of the following two differences: 1. indexing starts at 1 and not 0, and 2. negative indexing removes components; it does not start counting from the end!
 
-It is important to note that the thing you put inside `[]` needs to be a vector itself. The above examples all dealt with numerical indices, but you can use Boolean indices, too. A variable is said to be **Boolean** or **logical** if it can takes only one of the two values `TRUE` or `FALSE`. A vector whose components are all Boolean, are called, of course, Boolean vectors. You can think of Boolean slicing as the operation where you go through your original vector, and choose which components you want to keep (`TRUE`) and which you want the throw away (`FALSE`). For example
+It is important to note that the thing you put inside `[]` needs to be a vector itself. The above examples all dealt with numerical indices, but you can use logical indices, too. A variable is said to be **logical** or **Boolean** if it can takes only one of the two values `TRUE` or `FALSE`. A vector whose components are all logical, are called, of course, logical vectors. You can think of logical indexing as the operation where you go through your original vector, and choose which components you want to keep (`TRUE`) and which you want the throw away (`FALSE`). For example
 ```{r}
 x = c(10,20,30,40,50)
 y = c(TRUE, FALSE, FALSE, TRUE, TRUE)
 x[y]
 ```
-This is especially useful when used together with the **comparison operators**. The expressions like `x<y` or `x==y` are  operators in R, just like `x+y` or `x/y`. The difference is that `<` and `==` return Boolean values. For example
+This is especially useful when used together with the **comparison operators**. The expressions like `x<y` or `x==y` are  operators in R, just like `x+y` or `x/y`. The difference is that `<` and `==` return logical values. For example
 ```{r}
 1 == 2
 3 > 4
@@ -158,8 +158,8 @@ or, using recycling,
 x = c(1,2,3,4,5)
 x > 3
 ```
-Let's combine that with indexing. Suppose that we want to keep only the values greater than 4 in the vector `x`. The vector `y=x>4` is going to be of the same length as `x` and contain Boolean values.
-When we slice `x` using it, only the values of `x` on positions where `x>4` will survive, and these are exactly the values we needed:
+Let's combine that with indexing. Suppose that we want to keep only the values greater than 4 in the vector `x`. The vector `y=x>4` is going to be of the same length as `x` and contain logical values.
+When we index `x` using it, only the values of `x` on positions where `x>4` will survive, and these are exactly the values we needed:
 ```{r}
 x = c(3,2,5,3,1,5,6,4)
 y = x>4
@@ -190,7 +190,7 @@ x = c(1,2,3,4,5,6)
 (A = matrix(x, nrow = 2, ncol = 3, byrow = TRUE))
 ```
 
-The first argument of the function `matrix` is the vector which contains all the values. If you want a matrix with m rows and n columns, this vector should be of size $m n$. The arguments `ncol` and `nrow` are self-explanatory, and `byrow` is a Boolean argument which signals whether to fill by columns or by rows. Here is what happens when we set `byrow = FALSE`
+The first argument of the function `matrix` is the vector which contains all the values. If you want a matrix with m rows and n columns, this vector should be of size $m n$. The arguments `ncol` and `nrow` are self-explanatory, and `byrow` is a logical argument which signals whether to fill by columns or by rows. Here is what happens when we set `byrow = FALSE`
 ```{r}
 x = c(1,2,3,4,5,6)
 (A = matrix(x, nrow = 2, ncol = 3, byrow = FALSE))
@@ -201,7 +201,7 @@ Accessing components of a matrix is as intuitive as it gets
 
 A[1,2]
 ```
-Note that I did not use the argument `byrow` at all. In such cases, R always uses the default value (documented in the function's help). For `matrix` the default value of `byrow` is `FALSE', i.e., it fills the matrix column by column. This is not what we usually want because we tend to think of matrices as composed of rows. Moral: do not forget `byrow = TRUE` if that is what you, indeed, want. 
+Note that I did not use the argument `byrow` at all. In such cases, R always uses the default value (documented in the function's help). For `matrix` the default value of `byrow` is `FALSE`, i.e., it fills the matrix column by column. This is not what we usually want because we tend to think of matrices as composed of rows. Moral: do not forget `byrow = TRUE` if that is what you, indeed, want. 
 
 Usual matrix operations can be performed in R in the obvious way
 ```{r}
@@ -233,7 +233,7 @@ The function `my_function` returns the sum of its arguments. Having defined it, 
 ```{r}
 my_function(1,3,9)
 ```
-Neither the output nor the arguments of a function in R are restricted to numbers. Our next example function, named `winners` takes two vectors as arguments and returns a new vector whose components are those components of the first input vector (`x`) that are larger than the corresponding components of the second input vector (`y`)
+Neither the output nor the arguments of a function in R are restricted to numbers. Our next example function, named `winners`, takes two vectors as arguments and returns a  vector. Its  components are those components of the first input vector (`x`) that are larger than the corresponding components of the second input vector (`y`)
 ```{r}
 winners = function(x,y) {
   z = x>y
@@ -241,9 +241,51 @@ winners = function(x,y) {
 }
 winners( c(1,4,5,6,2), c(2,3,3,9,2))
 ```
-Note how we used several things we learned above in this function. First, we defined the Boolean vector which indicates where `x` is larger than `y`. Then, we used Boolean indexing to return only certain components of `x`. 
+Note how we used several things we learned above in this function. First, we defined the logical vector which indicates where `x` is larger than `y`. Then, we used logical indexing to return only certain components of `x`. 
+
+### If-else statements
+
+Our final element of R is its `if-else` statement. The syntax of the `if` statement is
+```{r eval=FALSE}
+if (condition) {
+  statement
+}
+```
+where `condition` is anything that has a logical value, and statement is any R statement. First R evaluates `condition`. If it is true, it runs `statement`. If it is false, nothing happens. If you want someting to happen if (and only if) your condition is false, you need an `if-else` statement:
+```{r eval=FALSE}
+if (condition) {
+  statement1
+} else {
+  statement2
+}
+```
+This way, `statement1` is evaluated when `condition` is true and `statement1` when it is false. Since conditions inside the `if` statement return logical values, we can combine them using *ands*, *ors* or *nots*. The R notation for these operations is &, | and !  respectively, and to remind you what they do, here is a simple table
+
+```{r echo=FALSE}
+df = data.frame( 
+  x = c(TRUE, TRUE, FALSE, FALSE),
+  y = c(TRUE, FALSE, TRUE, FALSE),
+  `and` = c(TRUE, FALSE, FALSE, FALSE),
+  `or`  = c(TRUE,TRUE,TRUE,FALSE),
+  `not x` = c(FALSE,FALSE,TRUE,TRUE)
+)
+kable(df, col.names = c("x","y", "x & y (and)", "x | y (or)", "!x (not)") )
+```
 
 
+Let's put what we learned about functions and if-else statements together to write a function `distance_or_zero` whose arguments are coordinates `x` and `y` of a point in the plane, and whose output is  the distance from (x,y) to the origin if this distance happens to be between 1 and 2, and  and 0 otherwise. We will use similar functions later when we discuss Monte Carlo methods:
+```{r}
+distance_or_zero = function(x,y){
+  distance = sqrt(x^2+y^2)
+  if (distance <= 2 & distance >=1) {
+    return(distance)
+  } else {
+    return(0)
+  }
+}
+distance_or_zero(1.2,1.6)
+distance_or_zero(2,3)
+```
 
 ## Problems
 
@@ -282,7 +324,7 @@ Note: some of the answers will look like this `3.14e+13`. If you do not know wha
 
 1. Write a function that takes an argument $x$ and returns $5$ if $x\geq 5$ and $x$ itself otherwise.
 
-2. Write a function that returns `TRUE` (a boolean value) if its argument is between $2$ and $3$ and `FALSE` otherwise. 
+2. Write a function that returns `TRUE` (a logical value) if its argument is between $2$ and $3$ and `FALSE` otherwise. 
 ```
 
 
@@ -294,7 +336,7 @@ Note: some of the answers will look like this `3.14e+13`. If you do not know wha
 2. Construct a vector $y$ which contains *squares* of all numbers between $20$ and $30$.
 
 3. Construct a vector $z$ the same size as $y$ 
-  with boolean entries (i.e., `TRUE` or `FALSE`) that indicates whether the entry at the same position in $y$ is above $600$ or not. (This is much easier to do than it sounds.)
+  with logical entries (i.e., `TRUE` or `FALSE`) that indicates whether the entry at the same position in $y$ is above $600$ or not. (This is much easier to do than it sounds.)
 ```
 
 
