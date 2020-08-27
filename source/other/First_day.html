@@ -59,6 +59,7 @@
 
     <style type="text/css">code{white-space: pre;}</style>
 
+    <link rel="stylesheet" href="presentation.css"/>
 
 <!-- Printing and PDF exports -->
 <script id="paper-css" type="application/dynamic-css">
@@ -442,105 +443,148 @@ style.innerHTML = style_script;
 document.getElementsByTagName('head')[0].appendChild(style);
 </script>
 
-    <link href="First_day_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-    <link href="First_day_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 </head>
 <body>
   <div class="reveal">
     <div class="slides">
 
 
-<section class="slide level1">
-
-<style>
- .reveal section img {
-  height: 450px;
-  border-style: none;
-  border: 0px; 
-  box-shadow: 0px 0px; 
-}
-</style>
-</section>
 <section id="welcome-to-m362m-introduction-to-stochastic-processes" class="slide level1">
 <h1>Welcome to M362M <br> <em>Introduction to Stochastic Processes</em></h1>
-<p><img src="jittered_walk_trans.png"></p>
+<p><img src="../pics/jittered_walk_transp.png" width="50%" style="display: block; margin: auto;" /></p>
 </section>
-<section id="info" class="slide level1">
-<h1>Info</h1>
-<ul>
-<li>Mute yourself unless you are speaking.</li>
-<li>Keep your camera on, unless you have a good reason not to (bandwidth problems, exceptional living situation, etc.)</li>
-<li>Use your real name</li>
-<li>Be on time</li>
-<li>Keep chat messages relevant to the lesson</li>
-</ul>
-<style>
-body {
-text-align: justify}
-</style>
-</section>
-<section id="m362m-introduction-to-stochastic-processes---fall-2020-syllabus" class="slide level1">
-<h1>M362M: Introduction to Stochastic Processes - Fall 2020 Syllabus</h1>
-<h3 id="course-specific-information">COURSE-SPECIFIC INFORMATION</h3>
-<p>Welcome to M362M. Here is some information and some ground rules. Read carefully and let me know if there is anything unclear. This syllabus is subject to change; students who miss class are responsible for learning about any changes to the syllabus.</p>
+<section id="what-are-stochastic-processes" class="slide level1">
+<h1>What are Stochastic Processes?</h1>
 </section>
 <section class="slide level1">
 
-<h3 id="basic-info">Basic info</h3>
+<p><strong>Question 1</strong> In a simplistic model, the price of a share of a stock goes either up or down by <code>$</code>1 each day, with equal probabilities (1/2).</p>
+<p>You own a single share whose value today is <code>$</code>100, so that its tomorrow’s price will be either</p>
+<ul>
+<li><code>$</code>101 with probability <span class="math inline">\(\frac{1}{2}\)</span>, or</li>
+<li><code>$</code>99 with probability <span class="math inline">\(\frac{1}{2}\)</span>.</li>
+</ul>
+<p>Your strategy is to hold onto your share until one of the following two things happen: you go bankrupt (the stock price hits 0), or you make a <code>$</code>50 dollar profit (the stock price hits <code>$</code>150.)</p>
+</section>
+<section class="slide level1">
+
+<ol type="1">
+<li><p>How likely is it that your strategy will result in a profit?</p></li>
+<li><p>How long will it take?</p></li>
+<li><p>Is it possible that it takes forever, i.e., that the stock price hovers beween <code>$</code>1 and <code>$</code>149 forever?</p></li>
+</ol>
+</section>
+<section class="slide level1">
+
+<p><strong>Question 2.</strong> A person carrying a certain disease infects either <span class="math inline">\(0\)</span>, <span class="math inline">\(1\)</span>, <span class="math inline">\(2\)</span> or <span class="math inline">\(4\)</span> people in given week, with probability <span class="math inline">\(1/4\)</span>, and then stops being infectious. Different infectious individuals may infect different numberss of people and behave independently of each other.</p>
+<ol type="1">
+<li>What is the probability that the disease will ever be eradicated?</li>
+<li>What is the probability that every single individual in the population of <span class="math inline">\(328,000,000\)</span> will eventually be infected?</li>
+</ol>
+</section>
+<section class="slide level1">
+
+<p><strong>Question 3.</strong> In a game of tennis, Player <span class="math inline">\(1\)</span> wins against Player <span class="math inline">\(2\)</span> in each rally with probability <span class="math inline">\(p\)</span>.</p>
+<p>What is the probability that Player <span class="math inline">\(1\)</span> wins</p>
+<ol type="1">
+<li>A game</li>
+<li>A set? The entire match?</li>
+<li>Is the game of tennis set up in such a way that is <em>amplifies</em> or <em>reduces</em> the difference in skill between players?</li>
+</ol>
+</section>
+<section class="slide level1">
+
+<p><strong>Question 4.</strong> A knight starts in the lower left corner of the chess board and starts moving ``randomly’’.</p>
+<p><img src="../pics/knight1.png" width="55%" style="display: block; margin: auto;" /></p>
+</section>
+<section class="slide level1">
+
+<ol type="1">
+<li><p>What is the expected number of moves the knight will make before it returns to “square one”?</p></li>
+<li><p>How about the same problem, but using a different chess piece? Which one do you think will come back is the smallest (expected) number of steps?</p></li>
+<li><p>(*) How about the same problem, but until <em>all</em> squares have been visited at least once?</p></li>
+</ol>
+</section>
+<section class="slide level1">
+
+<p><strong>Question 5.</strong> How does Google search work?</p>
+</section>
+<section id="syllabus-highlights" class="slide level1">
+<h1>Syllabus highlights</h1>
+</section>
+<section class="slide level1">
+
+<h2 id="basic-info">Basic info</h2>
 <p><strong>Course number.</strong> M362M (53875)</p>
 <p><strong>Course meets.</strong> online, TTh 12:30am - 2:00pm</p>
 <p><strong>Flags.</strong> QR (quantitative reasoning)</p>
 <p><strong>Instructor.</strong> Gordan Žitković</p>
 <p><strong>Email.</strong> Use Canvas to email</p>
-<p><strong>Office Hours.</strong> Please contact me for an appointment.</p>
+<p><strong>Individual Office Hours.</strong> Contact me for an appointment.</p>
 </section>
 <section class="slide level1">
 
-<h3 id="course-info">Course info</h3>
-<p><strong>Course Description.</strong> M362M is an undergraduate course on stochastic processes and applications. We focus on several classes of elementary stochastic processes which are often used in various applications such as random walks, discrete Markov chains and, time permitting, the Poisson process and Brownian motion. The course will promote the generative approach to probability and the use of computer simulations.</p>
-<p><strong>Learning Objectives.</strong></p>
+<h2 id="prerequisites">Prerequisites</h2>
 <ul>
-<li><p>Students will get acquainted with mathematical tools and techniques, as well as the probabilistic intuition necessary for understanding and successful use of stochastic models in a variety of applications within mathematics and in science, engineering, economics, etc. They will also learn how to build new models, in yet-unencountered situations and novel frameworks.</p></li>
-<li><p>Students will become familiar with the basics of the programming language R and the RStudio IDE. They will learn how to use R to simulate random variables and stochastic processes. Those skills will allow them to answer a much wider spectrum of questions about the behavior of stochastic processes, compared to a purely analytic approach.</p></li>
+<li><p>This course is all about probability. Please go on Canvas to assess your probability knowledge!</p></li>
+<li><p>Other than that, we will work with matrices, so some linear algebra is necessary, too.</p></li>
+<li><p>Basics of R will be covered from scratch, but it would really help if you had some (not necessarily formal) programming experience. Nothing fancy, but you should understand the concept of a loop, if-then statement or a function.</p></li>
 </ul>
-<p><strong>Prerequisites.</strong> The formal prerequisite is the grade B or better in M362K. Students are assumed to be at home with the basics of probability as presented in, e.g., Ross’s <a href="https://www.pearson.com/us/higher-education/program/Ross-First-Course-in-Probability-A-9th-Edition/PGM110742.html">First Course in Probability</a>, Pitman’s <a href="https://www.springer.com/us/book/9780387979748">Probability</a> or Asimow and Maxwell’s <a href="https://books.google.com/books/about/Probability_and_Statistics_with_Applicat.html?id=ZL3QQZsp6DAC">Probability and Statistics with Applications</a>; there will be a brief review. Also, a good working knowledge of calculus and basic linear algebra is assumed; no review will be given.</p>
-<p>Students are not assumed to have any prior programming experience and the basics of R will be covered from scratch.</p>
-<p><strong>Class format and online attendance.</strong> With the class being completely online, and given its strong computational flavor, the class will be delivered in a somewhat “flipped” format. The students will get assigned reading before most classes, and a short quiz on the assigned content will be administered (see below for details). The class time will be used to answer student questions, clarify content and work in groups on additional exercises. The students are encouraged to use the tag <em>topic_suggestions</em> on Piazza to suggest topics and problems from their assigned reading they would like to see explained during the next class meeting.</p>
-<p><strong>Textbook.</strong> There is no required textbook. Lecture notes written by the instructor will be posted online (the link will be provided on Canvas). The students in need of an additional source of problems (or explanation) are referred to the following books:</p>
-<ol type="1">
-<li><p><a href="https://link.springer.com/book/10.1007/978-1-4614-3615-7">Essentials of Stochastic Processes</a> by Rick Durrett (a free version is available at <a href="http://www.math.duke.edu/~rtd/EOSP/EOSP2E.pdf" class="uri">http://www.math.duke.edu/~rtd/EOSP/EOSP2E.pdf</a>),</p></li>
-<li><p><a href="https://link.springer.com/book/10.1007/978-1-4612-0387-2">Adventures in Stochastic Processes</a> by Sidney I. Resnick,</p></li>
-<li><p><a href="https://www.sciencedirect.com/book/9780128143469/introduction-to-probability-models">Introduction to Probability Models</a> by Sheldon Ross.</p></li>
-</ol>
-<p><strong>Online resources.</strong></p>
-<ol type="1">
-<li><p><strong>Zoom</strong> will be used for all classes and for office hours. Videos of all zoom sessions (except for private meetings) will be accessible to all students via Canvas. They will include transcripts of the lectures and chat logs.</p></li>
-<li><p>The course-management system <strong>Canvas</strong> will be used in this course to keep track of grades, serve as a repository of links to other resources and to relay various announcements. The students are responsible for the contents of these announcements. The easiest way not to miss any is to turn on (i.e. not turn off) <em>Announcements</em> in their account’s <em>Notification</em> menu.</p></li>
-<li><p>This term we will be using <strong>Piazza</strong> for class discussion. The system is highly catered to getting you help fast and efficiently from classmates and myself. Rather than emailing questions to the instructor, I encourage you to post your questions on Piazza. Find our class signup link at: <a href="https://piazza.com/utexas/fall2020/53875" class="uri">https://piazza.com/utexas/fall2020/53875</a></p></li>
-<li><p>A set of <strong>online lecture notes</strong> written by the instructor will be provided to students; you can access them at <a href="https://gordanz.github.io/M362M" class="uri">https://gordanz.github.io/M362M</a> These notes will include numbered problems, some of which will be featured in hw assignments. All course materials will be available on <strong>Github</strong> in the public repository <a href="https://github.com/gordanz/M362M" class="uri">https://github.com/gordanz/M362M</a>. If you don’t know what Github is, or if you simply do not want to use it, don’t worry; everything will be linked to in Canvas.</p></li>
-</ol>
-<p><strong>Sharing of Course Materials is Prohibited.</strong> No materials used in this class, including, but not limited to, lecture hand-outs, videos, assessments (quizzes, exams, papers, projects, homework assignments), in-class materials, review sheets, and additional problem sets, may be shared online or with anyone outside of the class unless you have my explicit, written permission. Unauthorized sharing of materials promotes cheating. It is a violation of the University’s Student Honor Code and an act of academic dishonesty. I am well aware of the sites used for sharing materials, and any materials found online that are associated with you, or any suspected unauthorized sharing of materials, will be reported to Student Conduct and Academic Integrity in the Office of the Dean of Students. These reports can result in sanctions, including failure in the course.</p>
 </section>
 <section class="slide level1">
 
-<h3 id="assessment-and-grading">Assessment and grading</h3>
-<p><strong>Short quizzes.</strong> A short Canvas quiz will be assigned in parallel with each reading assignment. Their primary purpose is to make sure you read and understood the assigned material. Two lowest quiz scores will be dropped.</p>
-<p><strong>Homework assignments.</strong> A weekly or bi-weekly homework will be assigned (with the assignments posted on Canvas). The submission will be <strong>electronic</strong>, through Canvas. Detailed instructions on the proper format of your submissions will be posted in due time (we need to cover a little bit of R before that). Submit well before the deadline - the system has been known to get “overwhelmed” close to it. If everything else fails, send your file(s) directly to the instructor (before the deadline!) with a detailed explanation of the difficulties you experienced. Late hw will not be accepted.</p>
-<p>You are allowed (and, in fact, encouraged) to work on your homework in groups of up to 4 people, and to submit a single document per group. Do not forget to include the names of all group members. Two lowest hw scores will be dropped.</p>
-<p><strong>Exams.</strong> In addition to short quizzes, there will be three longer exams. All exams will be “take-home” and “open-notes” and will consist of a mix of theoretical and programming questions. Exams will be posted on Canvas and you will get a 24-hour period for each of them. Be prepared to set aside an uninterrupted two hours to complete and upload the exam. The exams will be submitted via Canvas. The schedule is as follows:</p>
+<h2 id="online-resources.">Online resources.</h2>
 <ol type="1">
+<li><p><strong>Zoom</strong>. Transcripts of the lectures and chat logs will be available.</p></li>
+<li><p><strong>Canvas</strong> will be used to keep track of grades, host links and relay announcements. Make sure that <em>Announcements</em> in your account’s <em>Notification</em> menu are turned on.</p></li>
+<li><p><strong>Piazza</strong> will be used for class discussions. All questions about the material should be posted on Piazza first. I will check in regularly to answer questions. So will the grader if there is time.</p></li>
+<li><p><strong>Online lecture notes</strong> written by the instructor will be provided. The link will appear on Canvas soon. All the materials (except for solutions to hw problems) are on Github, too.</p></li>
+</ol>
+</section>
+<section class="slide level1">
+
+<h2 id="class-format">Class format</h2>
+<ul>
+<li><p>Lecture notes will be posted online, and reading assignments (with short “motivational” quizzed) assigned.</p></li>
+<li><p>No attendance is required.</p></li>
+<li><p>There will be no classical lecturing. Class time be used to answer questions, clarify concepts, etc. Think office hours, but only for questions about the material.</p></li>
+<li><p>Use the Piazza tag <code>topic_suggestions</code> to suggest topics or problems for the following lecture.</p></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="assessment">Assessment</h2>
+<ol type="1">
+<li><p><strong>Quizzes</strong>. A short Canvas quiz will be assigned in parallel with each reading assignment. <em>Two</em> lowest quiz scores will be dropped.</p></li>
+<li><p><strong>Homework assignments.</strong> A weekly or bi-weekly homework will be assigned (with the assignments posted on Canvas). The submission will be <strong>electronic</strong>, through Canvas. You will get detailed instructions on the proper format of your submissions soon.</p></li>
+</ol>
+<p>You can work on your homework in groups of up to 4 people, and to submit a single document per group. Do not forget to include the names of all group members. <em>Two</em> lowest hw scores will be dropped.</p>
+</section>
+<section class="slide level1">
+
+<ol start="3" type="1">
+<li><strong>Exams.</strong> There will be three longer, take-home exams. They will be designed to take not more than two hours, but you will get a 24-hour period for each of them. Here is the schedule:
+<ul>
 <li><strong>In-term 1</strong> : Oct 1</li>
 <li><strong>In-term 2</strong> : Nov 12</li>
-<li><strong>In-term 3</strong> : Dec 12</li>
+<li><strong>In-term 3</strong> : Dec 12 (date of the final exam)</li>
+</ul></li>
 </ol>
-<p>If you miss an exam <em>for a documented reason</em> (illness, approved and previously announced religious holiday, or some other extraordinary circumstance), make-up arrangements will be made on a case-by-case basis.</p>
-<p><strong>Extra credit.</strong> Each of the following will earn you some extra credit. Note that the most you can get is 15%.</p>
+</section>
+<section class="slide level1">
+
+<h2 id="extra-credit">Extra credit</h2>
 <ul>
-<li><p><strong>2%</strong> : if you give a correct answer to a student question on Piazza. The instructor will choose the best among all the answers, and assign its author 2%. The instructor reserved the right not to assign any extra credit is the question is not meaningful or too easy, or is none of the answers is correct and/or complete. Each student can accumulate at most 6% extra credit this way.</p></li>
-<li><p><strong>1%</strong>: for each topic suggestion made on Piazza. As above, at most one person may get credit for a given suggestion, and the instructor will be the final arbiter of what deserves a point and what does not. Each student can accumulate at most 4% extra credit this way.</p></li>
-<li><p><strong>5%</strong>: if you submit all your homework in R markdown (you will learn more about it in class). This includes both theoretical and programming questions.</p></li>
+<li><p><strong>2%</strong>: if you give a correct answer to a student question on Piazza. Each student can accumulate at most 6% extra credit this way.</p>
+<p><class style="font-size: x-large;"> <em>The instructor will choose the best among all the answers, and assign its author 2%. The instructor reserved the right not to assign any extra credit is the question is not meaningful or too easy, or is none of the answers is correct and/or complete.</em> </class></p></li>
+<li><p><strong>1%</strong>: for each topic suggestion made on Piazza.</p>
+<p><class style="font-size: x-large;"><em>At most one person may get credit for a given suggestion, and the instructor will be the final arbiter of what deserves a point and what does not. Each student can accumulate at most 4% extra credit this way. </em></class></p></li>
+<li><p><strong>5%</strong>: if you submit all your homework in R markdown. This includes both theoretical and programming questions.</p></li>
 </ul>
-<p><strong>Final grade.</strong> The final grade is composed as follows:</p>
+</section>
+<section class="slide level1">
+
+<h2 id="the-final-grade">The final grade</h2>
 <table>
 <thead>
 <tr class="header">
@@ -559,25 +603,14 @@ text-align: justify}
 </tr>
 <tr class="odd">
 <td>Exams</td>
-<td>60% (20% each)</td>
+<td>60% (20% each)</td>
 </tr>
 </tbody>
 </table>
+<p><br></p>
 <p>There is <em>no curve</em> in this class and the letter grades are assigned according to the following table:</p>
+<p><br></p>
 <table>
-<colgroup>
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>A</th>
@@ -587,10 +620,6 @@ text-align: justify}
 <th>B-</th>
 <th>C+</th>
 <th>C</th>
-<th>C-</th>
-<th>D+</th>
-<th>D</th>
-<th>D-</th>
 </tr>
 </thead>
 <tbody>
@@ -601,236 +630,42 @@ text-align: justify}
 <td>83 - 86</td>
 <td>80 - 83</td>
 <td>75 - 80</td>
-<td>70 - 75</td>
-<td>65 - 70</td>
-<td>60 - 65</td>
-<td>55 - 60</td>
-<td>50 - 55</td>
+<td>70-75</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section class="slide level1">
-
-<h3 id="general-university--or-state-mandated-information">GENERAL, UNIVERSITY- or STATE-MANDATED INFORMATION</h3>
-<p><strong>Class Recordings.</strong> Class recordings are reserved only for students in this class for educational purposes and are protected under FERPA. The recordings should not be shared outside the class in any form. Violation of this restriction by a student could lead to Student Misconduct proceedings.</p>
-<p><strong>Drop dates.</strong> The procedure/consequences are different, depending on whether you drop before or after the 12th day of classes (09/11), and then, before or after the <em>main drop (Q-drop) date</em> (10/29). (See <a href="https://ugs.utexas.edu/vick/academic/adddrop" class="uri">https://ugs.utexas.edu/vick/academic/adddrop</a> for details)</p>
-<p><strong>Academic (dis)Honesty.</strong> Students who violate University rules on academic dishonesty are subject to disciplinary penalties, including the possibility of failure in the course and/or dismissal from the University. Since such dishonesty harms the individual, all students, and the integrity of the University, policies on academic dishonesty will be strictly enforced. For further information, please visit the Student Conduct and Academic Integrity website at: <a href="http://deanofstudents.utexas.edu/conduct" class="uri">http://deanofstudents.utexas.edu/conduct</a></p>
-<p><strong>Students with Disabilities.</strong> The University of Texas at Austin provides upon request appropriate academic accommodations for qualified students with disabilities. If you have a documented disability and you need special treatment as a result of your disability, please let me know as soon as possible, but definitely within the first 3 weeks of class. For more information, contact the Office of the Dean of Students at 471-6259, 471-4641 (TTY), 1-866-329- 3986 (video phone) or go to <a href="http://ddce.utexas.edu/disability/" class="uri">http://ddce.utexas.edu/disability/</a></p>
-<p><strong>Religious holy days.</strong> Religious holy days sometimes conflict with class and examination schedules. Sections 51.911 and 51.925 of the Texas Education Code relate to absences by students and instructors for observance of religious holy days.</p>
-<p>Section 51.911 states that a student who misses an examination, work assignment, or other project due to the observance of a religious holy day must be given an opportunity to complete the work missed within a reasonable time after the absence, provided that he or she has properly notified each instructor.</p>
-<p>It is the policy of The University of Texas at Austin that the student must notify each instructor at least fourteen days prior to the classes scheduled on dates he or she will be absent to observe a religious holy day. For religious holidays that fall within the first two weeks of the semester, the notice should be given on the first day of the semester. The student may not be penalized for these excused absences but the instructor may appropriately respond if the student fails to complete satisfactorily the missed assignment or examination within a reasonable time after the excused absence.</p>
-<p><strong>Counseling and mental health.</strong> Counseling and other mental-health services are available from <strong>Counseling and Mental Health Center</strong>, Student Services Bldg (SSB), 5th Floor. (hours: M–F 8am–5pm. phone: 512 471 3515, web: <a href="http://www.cmhc.utexas.edu" class="uri">http://www.cmhc.utexas.edu</a>)</p>
-<p><strong>Sanger Learning Center.</strong> All students are welcome to take advantage of Sanger Center’s classes and workshops, private learning specialist appointments, peer academic coaching, and tutoring for more than 70 courses in 15 different subject areas. For more information, please visit  <a href="http://www.utexas.edu/ugs/slc" class="uri">http://www.utexas.edu/ugs/slc</a> or call 512-471-3614 (JES A332).</p>
-<p><strong>Important Safety Information.</strong> If you have concerns about the safety or behavior of fellow students, TAs or Professors, call BCAL (the Behavior Concerns Advice Line): 512-232-5050. Your call can be anonymous.</p>
-<p>Further information about (campus) safety and security can be obtained from the Office of Campus Safety and Security, 512-471-5767, <a href="http://www.utexas.edu/safety/" class="uri">http://www.utexas.edu/safety/</a></p>
-<!-- Occupants of buildings on The University of Texas at Austin campus are -->
-<!-- required to evacuate buildings when a fire alarm is activated. Alarm -->
-<!-- activation or announcement requires exiting and assembling outside. -->
-<!-- -   Familiarize yourself with all exit doors of each classroom and -->
-<!--     building you may occupy. Remember that the nearest exit door may not -->
-<!--     be the one you used when entering the building. -->
-<!-- -   Students requiring assistance in evacuation shall inform their -->
-<!--     instructor in writing during the first week of class. -->
-<!-- -   In the event of an evacuation, follow the instruction of faculty or -->
-<!--     class instructors. Do not re-enter a building unless given -->
-<!--     instructions by the following: Austin Fire Department, The -->
-<!--     University of Texas at Austin Police Department, or Fire Prevention -->
-<!--     Services office. -->
-<!-- -   Link to information regarding emergency evacuation routes and -->
-<!--     emergency procedures can be found at: -->
-<!--     <http://www.utexas.edu/emergency> -->
-</section>
-<section class="slide level1">
-
-<h3 id="the-schedule-of-classes">The SCHEDULE of CLASSES</h3>
 <table>
 <thead>
 <tr class="header">
-<th>Number</th>
-<th>Date</th>
-<th>Weekday</th>
-<th>Topic</th>
+<th>C-</th>
+<th>D+</th>
+<th>D</th>
+<th>D-</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>1</td>
-<td>Aug 27</td>
-<td>Thu</td>
-<td>Introduction</td>
-</tr>
-<tr class="even">
-<td>2</td>
-<td>Sep 01</td>
-<td>Tue</td>
-<td>RStudio and R - setup</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>Sep 03</td>
-<td>Thu</td>
-<td>Basic R, R notebooks</td>
-</tr>
-<tr class="even">
-<td>4</td>
-<td>Sep 08</td>
-<td>Tue</td>
-<td>Simulation of random variables</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>Sep 10</td>
-<td>Thu</td>
-<td>Monte Carlo</td>
-</tr>
-<tr class="even">
-<td>6</td>
-<td>Sep 15</td>
-<td>Tue</td>
-<td>Simulation and conditioning</td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td>Sep 17</td>
-<td>Thu</td>
-<td>Random walks</td>
-</tr>
-<tr class="even">
-<td>8</td>
-<td>Sep 22</td>
-<td>Tue</td>
-<td>"</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td>Sep 24</td>
-<td>Thu</td>
-<td>"</td>
-</tr>
-<tr class="even">
-<td>10</td>
-<td>Sep 29</td>
-<td>Tue</td>
-<td>"</td>
-</tr>
-<tr class="odd">
-<td>11</td>
-<td>Oct 01</td>
-<td>Thu</td>
-<td><strong>In-term 1</strong></td>
-</tr>
-<tr class="even">
-<td>12</td>
-<td>Oct 06</td>
-<td>Tue</td>
-<td>Branching Processes</td>
-</tr>
-<tr class="odd">
-<td>13</td>
-<td>Oct 08</td>
-<td>Thu</td>
-<td>"</td>
-</tr>
-<tr class="even">
-<td>14</td>
-<td>Oct 13</td>
-<td>Tue</td>
-<td>"</td>
-</tr>
-<tr class="odd">
-<td>15</td>
-<td>Oct 15</td>
-<td>Thu</td>
-<td>"</td>
-</tr>
-<tr class="even">
-<td>16</td>
-<td>Oct 20</td>
-<td>Tue</td>
-<td>Markov Chains</td>
-</tr>
-<tr class="odd">
-<td>17</td>
-<td>Oct 22</td>
-<td>Thu</td>
-<td>"</td>
-</tr>
-<tr class="even">
-<td>18</td>
-<td>Oct 27</td>
-<td>Tue</td>
-<td>"</td>
-</tr>
-<tr class="odd">
-<td>19</td>
-<td>Oct 29</td>
-<td>Thu</td>
-<td>"</td>
-</tr>
-<tr class="even">
-<td>20</td>
-<td>Nov 03</td>
-<td>Tue</td>
-<td>"</td>
-</tr>
-<tr class="odd">
-<td>21</td>
-<td>Nov 05</td>
-<td>Thu</td>
-<td>"</td>
-</tr>
-<tr class="even">
-<td>22</td>
-<td>Nov 10</td>
-<td>Tue</td>
-<td>"</td>
-</tr>
-<tr class="odd">
-<td>23</td>
-<td>Nov 12</td>
-<td>Thu</td>
-<td><strong>In-term 2</strong></td>
-</tr>
-<tr class="even">
-<td>24</td>
-<td>Nov 17</td>
-<td>Tue</td>
-<td>Poisson Process</td>
-</tr>
-<tr class="odd">
-<td>25</td>
-<td>Nov 19</td>
-<td>Thu</td>
-<td>"</td>
-</tr>
-<tr class="even">
-<td>26</td>
-<td>Nov 24</td>
-<td>Tue</td>
-<td>"</td>
-</tr>
-<tr class="odd">
-<td>-</td>
-<td>Nov 26</td>
-<td>Thu</td>
-<td><strong>no class</strong></td>
-</tr>
-<tr class="even">
-<td>27</td>
-<td>Dec 01</td>
-<td>Tue</td>
-<td>Brownian motion</td>
-</tr>
-<tr class="odd">
-<td>28</td>
-<td>Dec 03</td>
-<td>Thu</td>
-<td>"</td>
+<td>65 - 70</td>
+<td>60 - 65</td>
+<td>55 - 60</td>
+<td>50 - 55</td>
+<td>0 - 50</td>
 </tr>
 </tbody>
 </table>
-<p><strong>In-term 3</strong> will take place on Dec 12, the university-scheduled final-exam day.</p>
+</section>
+<section class="slide level1">
+
+<h2 id="zoom-etiquette">Zoom etiquette</h2>
+<ul>
+<li>Mute yourself unless you are speaking.</li>
+<li>Keep your camera on unless you have a good reason not to (bandwidth problems, privacy concerns, etc.)</li>
+<li>Use your real name unless you are shy :)</li>
+<li>Be on time</li>
+<li>Keep chat messages relevant to the lesson</li>
+</ul>
+<p>If you have any suggestions about additional rules we should adopt, feel free to post them on Piazza.</p>
 </section>
     </div>
   </div>
@@ -852,32 +687,18 @@ text-align: justify}
         // Push each slide change to the browser history
         history: true,
         // Vertical centering of slides
-        center: false,
+        center: true,
         // Opens links in an iframe preview overlay
         previewLinks: true,
         // Transition style
-        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        transition: 'none', // none/fade/slide/convex/concave/zoom
         // Transition style for full page slide backgrounds
         backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
 
 
 
-        chalkboard: {
-          theme: 'whiteboard',
-          color: 'rgba(255, 0, 0, 0.3)',
-        },
-
-        keyboard: {
-          67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
-          66: function() { RevealChalkboard.toggleChalkboard() }, // toggle chalkboard when 'b' is pressed
-          46: function() { RevealChalkboard.clear() },    // clear chalkboard when 'DEL' is pressed
-           8: function() { RevealChalkboard.reset() },    // reset chalkboard data on current slide when 'BACKSPACE' is pressed
-          68: function() { RevealChalkboard.download() }, // downlad recorded chalkboard drawing when 'd' is pressed
-        },
-
         // Optional reveal.js plugins
         dependencies: [
-          { src: 'First_day_files/reveal.js-3.3.0.1/plugin/chalkboard/chalkboard.js', async: true },
         ]
       });
     </script>
