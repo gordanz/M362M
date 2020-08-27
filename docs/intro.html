@@ -443,14 +443,14 @@ like this</p>
 </tbody>
 </table>
 <p>Let’s put what we learned about functions and if-else statements together to write a function <code>distance_or_zero</code> whose arguments are coordinates <code>x</code> and <code>y</code> of a point in the plane, and whose output is the distance from (x,y) to the origin if this distance happens to be between 1 and 2, and and 0 otherwise. We will use similar functions later when we discuss Monte Carlo methods:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="intro.html#cb36-1"></a>distance_or_zero =<span class="st"> </span><span class="cf">function</span>(x, y) {</span>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="intro.html#cb36-1"></a>distance_or_zero =<span class="st"> </span><span class="kw">Vectorize</span>(<span class="cf">function</span>(x, y) {</span>
 <span id="cb36-2"><a href="intro.html#cb36-2"></a>    distance =<span class="st"> </span><span class="kw">sqrt</span>(x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>y<span class="op">^</span><span class="dv">2</span>)</span>
 <span id="cb36-3"><a href="intro.html#cb36-3"></a>    <span class="cf">if</span> (distance <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>distance <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1</span>) {</span>
 <span id="cb36-4"><a href="intro.html#cb36-4"></a>        <span class="kw">return</span>(distance)</span>
 <span id="cb36-5"><a href="intro.html#cb36-5"></a>    } <span class="cf">else</span> {</span>
 <span id="cb36-6"><a href="intro.html#cb36-6"></a>        <span class="kw">return</span>(<span class="dv">0</span>)</span>
 <span id="cb36-7"><a href="intro.html#cb36-7"></a>    }</span>
-<span id="cb36-8"><a href="intro.html#cb36-8"></a>}</span>
+<span id="cb36-8"><a href="intro.html#cb36-8"></a>})</span>
 <span id="cb36-9"><a href="intro.html#cb36-9"></a><span class="kw">distance_or_zero</span>(<span class="fl">1.2</span>, <span class="fl">1.6</span>)</span>
 <span id="cb36-10"><a href="intro.html#cb36-10"></a><span class="co">## [1] 2</span></span>
 <span id="cb36-11"><a href="intro.html#cb36-11"></a><span class="kw">distance_or_zero</span>(<span class="dv">2</span>, <span class="dv">3</span>)</span>
@@ -462,7 +462,7 @@ like this</p>
 <p>Here are several simple problems. Their goal is to give you an idea of exactly how much R is required to get started in this course. Virtually any “introduction to R” should contain enough information to get you through all of these.</p>
 
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-40" class="exercise"><strong>Problem 1.1  </strong></span>Compute the following (your answer should be a decimal number):</p>
+<p><span id="exr:unnamed-chunk-38" class="exercise"><strong>Problem 1.1  </strong></span>Compute the following (your answer should be a decimal number):</p>
 <ol style="list-style-type: lower-alpha">
 <li><span class="math inline">\(1/238746238746\)</span></li>
 <li><span class="math inline">\(2^{45}\)</span></li>
@@ -479,7 +479,7 @@ Note: some of the answers will look like this <code>3.14e+13</code>. If you do n
 
 
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-41" class="exercise"><strong>Problem 1.2  </strong></span> 
+<p><span id="exr:unnamed-chunk-39" class="exercise"><strong>Problem 1.2  </strong></span> 
 1. Define two variables <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> with values <span class="math inline">\(3\)</span> and <span class="math inline">\(4\)</span> and “put” their product into a variable called <span class="math inline">\(c\)</span>. Output the value of <span class="math inline">\(c\)</span>.</p>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Define two vectors <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> of length <span class="math inline">\(3\)</span>, such that the components of <span class="math inline">\(x\)</span> are <span class="math inline">\(1,2,3\)</span> and the components of <span class="math inline">\(y\)</span> are <span class="math inline">\(8,9,0\)</span>. Ouput their (componentwise) sum.</p></li>
@@ -489,7 +489,7 @@ Note: some of the answers will look like this <code>3.14e+13</code>. If you do n
 </ol>
 
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-42" class="exercise"><strong>Problem 1.3  </strong></span> </p>
+<p><span id="exr:unnamed-chunk-40" class="exercise"><strong>Problem 1.3  </strong></span> </p>
 <ol style="list-style-type: decimal">
 <li><p>Write a function that takes an argument <span class="math inline">\(x\)</span> and returns <span class="math inline">\(5\)</span> if <span class="math inline">\(x\geq 5\)</span> and <span class="math inline">\(x\)</span> itself otherwise.</p></li>
 <li><p>Write a function that returns <code>TRUE</code> (a logical value) if its argument is between <span class="math inline">\(2\)</span> and <span class="math inline">\(3\)</span> and <code>FALSE</code> otherwise.</p>
@@ -497,7 +497,7 @@ Note: some of the answers will look like this <code>3.14e+13</code>. If you do n
 </ol>
 
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-43" class="exercise"><strong>Problem 1.4  </strong></span> </p>
+<p><span id="exr:unnamed-chunk-41" class="exercise"><strong>Problem 1.4  </strong></span> </p>
 <ol style="list-style-type: decimal">
 <li><p>Construct a vector <span class="math inline">\(x\)</span> which contains all numbers from <span class="math inline">\(1\)</span> to <span class="math inline">\(100\)</span>.</p></li>
 <li><p>Construct a vector <span class="math inline">\(y\)</span> which contains <em>squares</em> of all numbers between <span class="math inline">\(20\)</span> and <span class="math inline">\(30\)</span>.</p></li>

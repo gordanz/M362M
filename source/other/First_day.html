@@ -443,6 +443,7 @@ style.innerHTML = style_script;
 document.getElementsByTagName('head')[0].appendChild(style);
 </script>
 
+    <script src="First_day_files/header-attrs-2.3/header-attrs.js"></script>
 </head>
 <body>
   <div class="reveal">
@@ -458,25 +459,25 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </section>
 <section class="slide level1">
 
-<p><strong>Question 1</strong> In a simplistic model, the price of a share of a stock goes either up or down by <code>$</code>1 each day, with equal probabilities (1/2).</p>
+<p><strong>Question 1.</strong> The price of a share of a stock goes either up or down by <code>$</code>1 each day, with equal probabilities, namely 1/2.</p>
 <p>You own a single share whose value today is <code>$</code>100, so that its tomorrow’s price will be either</p>
 <ul>
 <li><code>$</code>101 with probability <span class="math inline">\(\frac{1}{2}\)</span>, or</li>
 <li><code>$</code>99 with probability <span class="math inline">\(\frac{1}{2}\)</span>.</li>
 </ul>
-<p>Your strategy is to hold onto your share until one of the following two things happen: you go bankrupt (the stock price hits 0), or you make a <code>$</code>50 dollar profit (the stock price hits <code>$</code>150.)</p>
+<p>Your strategy is to hold onto your share until one of the following two things happen: you go bankrupt (the stock price hits <code>$</code>0), or you make a <code>$</code>50 dollar profit (the stock price hits <code>$</code>150.)</p>
 </section>
 <section class="slide level1">
 
 <ol type="1">
 <li><p>How likely is it that your strategy will result in a profit?</p></li>
 <li><p>How long will it take?</p></li>
-<li><p>Is it possible that it takes forever, i.e., that the stock price hovers beween <code>$</code>1 and <code>$</code>149 forever?</p></li>
+<li><p>Is it possible that it takes forever, i.e., that the stock price hovers between <code>$</code>1 and <code>$</code>149 forever?</p></li>
 </ol>
 </section>
 <section class="slide level1">
 
-<p><strong>Question 2.</strong> A person carrying a certain disease infects either <span class="math inline">\(0\)</span>, <span class="math inline">\(1\)</span>, <span class="math inline">\(2\)</span> or <span class="math inline">\(4\)</span> people in given week, with probability <span class="math inline">\(1/4\)</span>, and then stops being infectious. Different infectious individuals may infect different numberss of people and behave independently of each other.</p>
+<p><strong>Question 2.</strong> A person carrying a certain disease infects either <span class="math inline">\(0\)</span>, <span class="math inline">\(1\)</span>, <span class="math inline">\(2\)</span> or <span class="math inline">\(4\)</span> people in given week and then stops being infectious. These four possibilities are equally likely, but different infectious individuals may infect different numbers of people and behave independently of each other.</p>
 <ol type="1">
 <li>What is the probability that the disease will ever be eradicated?</li>
 <li>What is the probability that every single individual in the population of <span class="math inline">\(328,000,000\)</span> will eventually be infected?</li>
@@ -494,14 +495,14 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </section>
 <section class="slide level1">
 
-<p><strong>Question 4.</strong> A knight starts in the lower left corner of the chess board and starts moving ``randomly’’.</p>
+<p><strong>Question 4.</strong> A knight starts in the lower left corner of the chess board and starts moving “randomly”.</p>
 <p><img src="../pics/knight1.png" width="55%" style="display: block; margin: auto;" /></p>
 </section>
 <section class="slide level1">
 
 <ol type="1">
 <li><p>What is the expected number of moves the knight will make before it returns to “square one”?</p></li>
-<li><p>How about the same problem, but using a different chess piece? Which one do you think will come back is the smallest (expected) number of steps?</p></li>
+<li><p>How about the same problem, but using a different chess piece? Which one do you think will come back in the smallest (expected) number of steps?</p></li>
 <li><p>(*) How about the same problem, but until <em>all</em> squares have been visited at least once?</p></li>
 </ol>
 </section>
@@ -528,7 +529,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <ul>
 <li><p>This course is all about probability. Please go on Canvas to assess your probability knowledge!</p></li>
 <li><p>Other than that, we will work with matrices, so some linear algebra is necessary, too.</p></li>
-<li><p>Basics of R will be covered from scratch, but it would really help if you had some (not necessarily formal) programming experience. Nothing fancy, but you should understand the concept of a loop, if-then statement or a function.</p></li>
+<li><p>Basics of R will be covered from scratch, but it would really help if you had some (not necessarily formal) programming experience. Nothing fancy, but you should understand the concept of a loop, an if-then statement or a function.</p></li>
 </ul>
 </section>
 <section class="slide level1">
@@ -538,7 +539,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li><p><strong>Zoom</strong>. Transcripts of the lectures and chat logs will be available.</p></li>
 <li><p><strong>Canvas</strong> will be used to keep track of grades, host links and relay announcements. Make sure that <em>Announcements</em> in your account’s <em>Notification</em> menu are turned on.</p></li>
 <li><p><strong>Piazza</strong> will be used for class discussions. All questions about the material should be posted on Piazza first. I will check in regularly to answer questions. So will the grader if there is time.</p></li>
-<li><p><strong>Online lecture notes</strong> written by the instructor will be provided. The link will appear on Canvas soon. All the materials (except for solutions to hw problems) are on Github, too.</p></li>
+<li><p><strong>Online lecture notes</strong> written by the instructor will be provided. The link will appear on Canvas soon. Source files for all materials (except for solutions to hw problems) will be available on Github.</p></li>
 </ol>
 </section>
 <section class="slide level1">
@@ -547,7 +548,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <ul>
 <li><p>Lecture notes will be posted online, and reading assignments (with short “motivational” quizzed) assigned.</p></li>
 <li><p>No attendance is required.</p></li>
-<li><p>There will be no classical lecturing. Class time be used to answer questions, clarify concepts, etc. Think office hours, but only for questions about the material.</p></li>
+<li><p>There will be no classical lecturing. Class time will be used to answer questions, clarify concepts, etc. Think office hours, but only for questions about the material. If you need to discuss a private matter, contact me and we’ll meet privately.</p></li>
 <li><p>Use the Piazza tag <code>topic_suggestions</code> to suggest topics or problems for the following lecture.</p></li>
 </ul>
 </section>

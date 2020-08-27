@@ -31,14 +31,14 @@ knitr::include_graphics('../pics/jittered_walk_transp.png')
 ---
 
 
-**Question 1** In a simplistic model, the price of a  share of a stock goes either up or down by `$`1 each day, with equal probabilities (1/2).  
+**Question 1.** The price of a  share of a stock goes either up or down by `$`1 each day, with equal probabilities, namely 1/2.  
 
 You own a single share whose value today is `$`100, so that its tomorrow's price will be either
 
 -  `$`101 with probability $\frac{1}{2}$, or
 -  `$`99 with probability $\frac{1}{2}$.
 
-Your strategy is to hold onto your share until one of the following two things happen: you go bankrupt (the stock price hits 0), or you make a `$`50 dollar profit (the stock price hits `$`150.) 
+Your strategy is to hold onto your share until one of the following two things happen: you go bankrupt (the stock price hits `$`0), or you make a `$`50 dollar profit (the stock price hits `$`150.) 
 
 ---
 
@@ -46,11 +46,11 @@ Your strategy is to hold onto your share until one of the following two things h
 
 2. How long will it take? 
 
-3. Is it possible that it takes forever, i.e., that the stock price hovers beween `$`1 and `$`149 forever? 
+3. Is it possible that it takes forever, i.e., that the stock price hovers between `$`1 and `$`149 forever? 
 
 ---
 
-**Question 2.** A person carrying a certain disease infects either $0$, $1$, $2$ or $4$ people in given week, with probability $1/4$, and then stops being infectious. Different infectious individuals may infect different numberss of people and behave independently of each other.
+**Question 2.** A person carrying a certain disease infects either $0$, $1$, $2$ or $4$ people in given week and then stops being infectious. These four possibilities are equally likely, but different infectious individuals may infect different numbers of people and behave independently of each other.
 
 1. What is the probability that the disease will ever be eradicated?
 2. What is the probability that every single individual in the  population of $328,000,000$ will eventually be infected?
@@ -69,7 +69,7 @@ What is the probability that Player $1$ wins
 
 
 **Question 4.** 
-A knight starts in the lower left corner of the chess board and starts moving ``randomly''.
+A knight starts in the lower left corner of the chess board and starts moving "randomly".
 
 ```{r echo=FALSE, fig.align = "center", out.width= "55%" }
 knitr::include_graphics('../pics/knight1.png')
@@ -79,7 +79,7 @@ knitr::include_graphics('../pics/knight1.png')
 
 1. What is the expected number of moves the knight will make before it returns to "square one"?
 
-2. How about the same problem, but using a different chess piece? Which one do you think will come back is the smallest (expected) number of steps?
+2. How about the same problem, but using a different chess piece? Which one do you think will come back in the smallest (expected) number of steps?
 
 3. (\*) How about the same problem, but until *all* squares have been visited at least once?
 
@@ -116,7 +116,7 @@ knitr::include_graphics('../pics/knight1.png')
 
 - Other than that, we will work with matrices, so some linear algebra is necessary, too. 
 
-- Basics of R will be covered from scratch, but it would really help if you had some (not necessarily formal) programming experience. Nothing fancy, but you should understand the concept of a loop, if-then statement or a function. 
+- Basics of R will be covered from scratch, but it would really help if you had some (not necessarily formal) programming experience. Nothing fancy, but you should understand the concept of a loop, an if-then statement or a function. 
 
 ---
 
@@ -128,7 +128,7 @@ knitr::include_graphics('../pics/knight1.png')
 
 3. **Piazza** will be used for class discussions. All questions about the material should be posted on Piazza first. I will check in regularly to answer questions. So will the grader if there is time. 
 
-4. **Online lecture notes** written by the instructor will be provided. The link will appear on Canvas soon. All the materials (except for solutions to hw problems) are on Github, too. 
+4. **Online lecture notes** written by the instructor will be provided. The link will appear on Canvas soon. Source files for all materials (except for solutions to hw problems) will be available on Github. 
 
 ---
 
@@ -138,7 +138,7 @@ knitr::include_graphics('../pics/knight1.png')
 
 - No attendance is required.
 
-- There will be no classical lecturing. Class time be used to answer questions, clarify concepts, etc. Think office hours, but only for questions about the material. 
+- There will be no classical lecturing. Class time will be used to answer questions, clarify concepts, etc. Think office hours, but only for questions about the material. If you need to discuss a private matter, contact me and we'll meet privately. 
 
 - Use the Piazza tag `topic_suggestions` to suggest topics or problems for the following lecture. 
 
