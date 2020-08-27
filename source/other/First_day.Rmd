@@ -1,13 +1,37 @@
 ---
-title: "M362M - First day"
-output: ioslides_presentation
+title: 
+output: 
+  revealjs::revealjs_presentation:
+    highlight: tango
+    theme: league
+    transition: convex
+    self_contained: false
+    output_dir: .
+    slide_level: 1
+    reveal_plugins: ["chalkboard"]
+    reveal_options:
+      controls: false
+      slideNumber: true
+      previewLinks: true
+      progress: false
+      chalkboard:
+        theme: whiteboard
+        color: ['rgba(255, 0, 0, 0.3)'] # red
 ---
 
-## Welcome to M362M 
+<style>
+ .reveal section img {
+  height: 450px;
+  border-style: none;
+  border: 0px; 
+  box-shadow: 0px 0px; 
+}
+</style>
 
-``` {r echo=FALSE, out.width= "60%", fig.align='center', }
-knitr::include_graphics('Drunk_walk.png')
-```
+
+# Welcome to M362M <br> *Introduction to Stochastic Processes*
+
+  <img src="jittered_walk_trans.png">
 
 ## Info
 
