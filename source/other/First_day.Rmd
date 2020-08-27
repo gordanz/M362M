@@ -3,8 +3,7 @@ title:
 output: 
   revealjs::revealjs_presentation:
     highlight: tango
-    theme: league
-    transition: convex
+    transition: slide
     self_contained: false
     output_dir: .
     slide_level: 1
@@ -33,7 +32,7 @@ output:
 
   <img src="jittered_walk_trans.png">
 
-## Info
+# Info
 
 - Mute yourself unless you are speaking.
 - Keep your camera on, unless you have a good reason not to (bandwidth problems, exceptional living situation, etc.)
