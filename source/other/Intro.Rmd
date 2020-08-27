@@ -1,0 +1,71 @@
+---
+title: "R for Spatial Analysis"
+author: "Jackson Voelkel"
+date: "November 18th, 2016"
+output:
+  revealjs::revealjs_presentation:
+    transition: slide
+    self_contained: false
+---
+
+
+
+# Introduction
+```{r echo=F,warning=F,message=F}
+library(knitr)
+```
+
+## Me
+
+- Background
+- Computer Experience
+
+## What is R?
+
+- Language
+- Application
+- "Do it all" Workbench
+
+## What can I do in R?
+
+- Advanced (or not so advanced) statistics
+- Powerful plotting
+- Read almost any file type
+- Write almost any file type
+- Almost anything you'd ever want to!
+
+## Reasons to use R:
+
+- Programatic
+- Reproducible
+- Cross Platform: PC, Mac, and Linux!
+- Low(ish) level
+- Open Source and community driven
+- Free
+- Free
+
+## Drawbacks to using R:
+
+- Steep learning curve
+- Can be incredibly complex for simple tasks
+- Not a GUI, and not overtly intuitive
+
+R won't replace spatial analysis platforms like ArcGIS, however it's "language" format will allow for incredibly powerful, complex, and custom geoprocessing tasks to be performed.
+
+## What does R look like?
+
+```{r}
+head(mtcars)
+```
+
+## Reading in Geospatial Data
+
+Adaptation of the Geospatial Data Abstraction Library (GDAL) is a perfect example of R's incorporation of a wide swath of existing open source libraries. 
+
+## 
+
+
+##
+
+Just like with a table, this new "SpatialPolygonsDataFrame" is subsetable:
+
