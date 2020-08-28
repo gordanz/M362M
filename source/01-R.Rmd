@@ -6,17 +6,17 @@
 
 Learning basic R is an important part of this course, and the first order of business is to download and install an R distribution on your personal computer. We will be using RStudio as an IDE (integrated development environment). Like R itself, it is free and readily available for all major platforms. To download R to your computer, go to
 [https://cloud.r-project.org](https://cloud.r-project.org) and 
-download the version of R for your operating system (Windows, Mac or Linux). If you are on a Mac, you want the "Latest release" which, at the time of writing, is 4.0.2. On Windows, follow the link "install R for the first time".  We are not going to do any cutting edge stuff in this class, so an older release should be fine, too, if you happen to have it already installed on your system. Once you download the installation file (.pkg on a Mac or .exe on Windows), run it and follow instructions. Once it is successfully installed, **don't run the installed app**. We will use RStudio for that.
+download the version of R for your operating system (Windows, Mac or Linux). If you are on a Mac, you want the "Latest release" which, at the time of writing, is 4.0.2. On Windows, follow the link "install R for the first time".  We are not going to do any cutting edge stuff in this class, so an older release should be fine, too, if you happen to have it already installed on your system. Once you download the installation file (.pkg on a Mac or .exe on Windows), run it and follow instructions. If you are running Linux, you don't need me to tell you what to do. Once it is successfully installed, **don't run the installed app**. We will use RStudio for that.
 
 ### Installing RStudio
 
-To install RStudio, go to [https://rstudio.com/products/rstudio/download/](https://rstudio.com/products/rstudio/download/) to get RStudio. There are several versions to choose from - the one your are looking for is "RStudio desktop - Free". After you download and install it, you are ready to run it. When it opens, you will see something like this
+To install RStudio, go to [https://rstudio.com/products/rstudio/download/](https://rstudio.com/products/rstudio/download/). There are several versions to choose from - the one you are looking for is "RStudio desktop - Free". After you download and install it, you are ready to run it. When it opens, you will see something like this
 
 ```{r echo=FALSE, out.width= "100%", fig.align='center',out.extra='style="padding:10px"'}
 knitr::include_graphics('pics/RStudio_IDE.png')
 ```
 
-The part on the left is called the *console* and that is one of the places where you enter commands. Before you do, it is important to adjust a few settings. Open the options window by pressing 
+The part on the left is called the *console* and that is (one of the places) where you enter commands. Before you do, it is important to adjust a few settings. Open the options window by pressing 
 *Cmd+,* (on a Mac) or navigate to Tools->Global Options (on Windows or Linux). In there, uncheck "Restore .RData into workspace on startup" and set "Save workspace to .RData on exit" to "Never", as shown below:
 ```{r echo=FALSE,out.width= "75%",out.extra='style="margin-left: 12.5%;margin-right:12.5%; padding:10px"'} 
 knitr::include_graphics("pics/Restore_RData.png")
@@ -43,13 +43,22 @@ followed by
 ```markdown
 tinytex::install_tinytex()
 ```
-Note that the if you go to the top right corner of each of the code blocks (gray boxes) containing instructions above, an icon will appear. If you click on it, it will copy the content of the box into you clipboard, and you can simply paste it into RStudio. You can do that with any code block in these notes.
+Note that if you go to the top right corner of each of the code blocks (gray boxes) containing instructions above, an icon will appear. If you click on it, it will copy the content of the box into your clipboard, and you can simply paste it into RStudio. You can do that with any code block in these notes.
 
 ## Learning the  basics of R
 
 Once R and RStudio are on your computer, it is time to get acquainted with the basics of R. This class is not about the finer points of R itself, and I will try to make your R experience as smooth as possible. After all, R is a tool that will help us explore and understand stochastic processes. Having said  that, it is important to realize that R is a powerful programming language specifically created for statistical and probabilistic applications. Some knowledge of R is a valuable skill to have in today's job market, and you should take this opportunity to learn it. The best way, of course, is by using it, but before you start, you need to know the very basics. Don't worry, R is very user friendly and easy to get started in. In addition, it has been around for a long time (its predecessor S appeared in 1976) and is extremely well documented -  google *introduction to R* or a similar phrase, and you will get lots of useful hits. 
 
 My plan is to give you a bare minimum in the next few paragraphs, and then to explain additional R concepts as we need them. This way, you will not be overwhelmed right from the start, and you will get a bit of a mathematical context as you learn more. Conversely, learning R commands will help with the math, too.
+
+### Scripts vs. the console 
+There at least  three different ways of inputting commands into R - through console, scripts and notebooks. You will learn about notebooks a bit later, so let's focus on the console and scripts. The console, as I already mentioned, is a window in RStudio where you can enter your R commands one by one. As a command is entered (and enter pressed) R will run it and display the result below. A typical console session looks like this
+```{r echo=FALSE, out.width= "100%", fig.align='center',out.extra='style="padding:10px"'}
+knitr::include_graphics('pics/console_session.png')
+```
+If you define a variable in a command, it will be available in all the subsequent commands. This way of interacting with R is perfect for quick-and-dirty computations and, what is somewhat euphemisitcally called "prototyping". In other words, this way you are using R as a calculator. There is another reason why you might be using the console. It is perfect for package installation and for help-related commands. If you type `help('log')`, the output will appear in the `Help` pane on the right. You can also see all the  available variables in the `Environment` pane on the (top) right. 
+
+As your needs increase, you will need more complex (and longer) code to meet them. This is where scripts come in. They are text files (but have the extension `.R`) that hold R code. Scripts can run as a whole, and saved for later. To create a new script, go to File->New File->R Script. That will split your console window in two. The 
 
 ### Asking for help
 The most important thing about **learning R** (and many other things, for that matter) is knowing whom (and how) to ask for help. Luckily, R is a well established language, and you can get a lot of information by simply googling your problem. For example, if you google `logarithm in R` the top hit (at the time of writing) gives a nice overview and some examples. 
