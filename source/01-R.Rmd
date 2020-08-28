@@ -34,7 +34,7 @@ Finally, we need to install several R packages we will be using (mostly implicit
 install.packages( "tidyverse")
 ```
 This will install a number of useful packages and should only take about a minute or two. The next part is a bit longer, and can take up to 15 minutes if you have a slow computer/internet connection.
-You only have to do it once, though. Skip this step if you have LaTeX already installed on your system^[it may interfere with your existing installation].  Start with 
+You only have to do it once, though. Skip both steps involving `tinytex` below if you have LaTeX already installed on your system^[it may interfere with your existing installation].  Start with 
 ```markdown
 install.packages("tinytex")
 ```
