@@ -1,0 +1,90 @@
+---
+title: "Setting up R and RStudio"
+author: "Milica Cudina"
+date: "`r Sys.Date()`"
+output: 
+  revealjs::revealjs_presentation:
+    highlight: tango
+    theme: beige
+    transition: convex
+    self_contained: false
+    # output_dir: .
+    slide_level: 1
+    reveal_options:
+      controls: false
+      slideNumber: true
+      previewLinks: true
+      progress: false
+---
+# About R
+
+- R is a programming language for statistics (computing and visualisation)
+- For a brief history of R, go to <https://en.wikipedia.org/wiki/R_(programming_language)>
+
+# Download and install R
+
+- Go to <https://cloud.r-project.org/>
+- Download the version of R for your operating system:
+  Windows, Mac, or Linux
+- The installation file will then get downloaded:
+  .pkg on a Mac, or .exe on Windows, people with Linux know what 
+  they're doing
+- Follow the instructions for installation
+- **There is no need to run R** (you'll know why in a jiffy)
+
+# About RStudio
+
+- RStudio is an 
+  **IDE (Integrated Development Environment) for R**
+- For more about RStudio, go to:
+<https://en.wikipedia.org/wiki/RStudio>
+
+# Download and install RStudio
+
+- Go to: <https://rstudio.com/products/rstudio/download/>
+- Scroll down, there will be multiple versions offered
+- You want **“RStudio desktop - Free”**
+- Click to download 
+- Install following instructions
+- **Now we are ready to run RStudio**
+
+# If you run RStudio, you should see this
+
+```{r echo=FALSE, out.width= "80%", out.extra='style="float:center; padding:10px"'}
+knitr::include_graphics('../pics/RStudio_IDE.png')
+```
+
+# Two adjustments
+
+- **Open** the options window: *Cmd+* on a Mac or go to *Tools* 
+  and then all the way down to *Global Options*
+- **Uncheck** “Restore .RData into workspace on startup” 
+- **Set** “Save workspace to .RData on exit” to “Never”
+
+
+# Additional adjustments?
+
+- If you want to export .pdf files for your assignment submissions, you will need to **install some R packages**
+- To do this, you need to run up to three lines in your console (the part on the left you see when you first open RStudio)
+- **Do not do this now; do it when you have a few minutes to wait for the installation to finish**
+
+# Additional adjustments (cont'd)?
+
+- The first line is:\
+    install.packages( "tidyverse")\
+- Then, remember if you have LaTeX already installed on your computer
+- If you do, you're done
+- If you don't, then run:\
+    install.packages("tinytex")\
+- Then, you run:\
+    tinytex::install_tinytex()\
+    
+# HELP!
+
+- Google is your best friend!
+- Within the console you can type:\
+  help("command")\
+  or\
+  ?command
+
+# Now we play ...
