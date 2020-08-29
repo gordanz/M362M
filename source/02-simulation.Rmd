@@ -8,7 +8,7 @@
 
 # Simulation of Random Variables and Monte Carlo
 
-In the spirit of "learn by doing", these lecture notes are composed mostly of problems. Those with solutions usually introduce new concepts and feature a *Comments* section right after the solution. These comments are subdivided into *R* and *Math* comments focusing on the computational or coneceptual features, respectively. Note that you are not expected to be able to do the solved problems before reading their solutions and comments, so don't worry if you cannot. It is a good practice to try, though. Problems unsolved in these notes, however, do not feature any new ideas and are there to help you practice the skills presented before. 
+In the spirit of "learn by doing", these lecture notes contain many "Problems". Those with solutions usually introduce new concepts and feature a *Comments* section right after the solution. These comments are subdivided into *R* and *Math* comments focusing on the computational or conceptual features, respectively. Note that you are not expected to be able to do the solved problems before reading their solutions and comments, so don't worry if you cannot. It is a good practice to try, though. Problems which are left unsolved, however, do not feature any new ideas and are there to help you practice the skills presented before. 
 
 ## How to simulate some common probability distributions
 

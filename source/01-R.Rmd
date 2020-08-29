@@ -73,6 +73,8 @@ knitr::include_graphics("pics/notebooks.png")
 ```
 R notebooks are R's implementation of  *literate programming*. The idea is that documentation should be written at the same time as the program itself. As far as this course if concerned, R notebooks are just the right medium for homework and exam submission. You can run code and provide the interpretation of its output in a single document. See [here](other/Homework-instructions.html) for more information.
 
+Each chapter in these lecture notes is an R notebook!
+
 
 
 
@@ -323,7 +325,7 @@ Compute the following (your answer should be a decimal number):
   b) $2^{45}$
   c) $3^{28}$ 
   d) $\sqrt{15}$
-  e) $\cos(\pi/8)$
+  e) $\cos(\pi/8)$w
   f) $e^2$
   g) $\log(2)$ (the base is $e$)
   h) $\log_{10}(2)$ (the base is $10$)
@@ -366,5 +368,5 @@ Note: some of the answers will look like this `3.14e+13`. If you do not know wha
 
 2. Write a function that returns `TRUE` (a logical value) if its argument is between $2$ and $3$ and `FALSE` otherwise. 
 
-3. (Ex.cr.) Write a function that takes two equal-sized vectors as arguments and returns the angle between them in degrees. For definiteness, the angle between two vectors is defined to be $0$ when either one of them is $(0,0,\dots,0)$. 
+3. (Extra credit) Write a function that takes two equal-sized vectors as arguments and returns the angle between them in degrees. For definiteness, the angle between two vectors is defined to be $0$ when either one of them is $(0,0,\dots,0)$. 
 ```
