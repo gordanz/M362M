@@ -182,8 +182,7 @@ download the version of R for your operating system (Windows, Mac or Linux). If 
 <h3><span class="header-section-number">1.1.2</span> Installing RStudio</h3>
 <p>To install RStudio, go to <a href="https://rstudio.com/products/rstudio/download/">https://rstudio.com/products/rstudio/download/</a>. There are several versions to choose from - the one you are looking for is “RStudio desktop - Free”. After you download and install it, you are ready to run it. When it opens, you will see something like this</p>
 <p><img src="pics/RStudio_IDE.png" width="100%" style="padding:10px" style="display: block; margin: auto;" /></p>
-<p>The part on the left is called the <em>console</em> and that is (one of the places) where you enter commands. Before you do, it is important to adjust a few settings. Open the options window by pressing
-<em>Cmd+,</em> (on a Mac) or navigate to Tools-&gt;Global Options (on Windows or Linux). In there, uncheck “Restore .RData into workspace on startup” and set “Save workspace to .RData on exit” to “Never”, as shown below:
+<p>The part on the left is called the <em>console</em> and that is (one of the places) where you enter commands. Before you do, it is important to adjust a few settings. Open the options window by navigating to to Tools-&gt;Global Options. In there, uncheck “Restore .RData into workspace on startup” and set “Save workspace to .RData on exit” to “Never”, as shown below:
 <img src="pics/Restore_RData.png" width="75%" style="margin-left: 12.5%;margin-right:12.5%; padding:10px" style="display: block; margin: auto;" /></p>
 <p>This way, R will not pollute your environment with values you defined two weeks ago and completely forgot about. These settings are really an atavism and serve no purpose (for users like us) other than to introduce hard-to-track bugs.</p>
 <p>There are many other settings you can play with in RStudio, but the two I mentioned above are the only ones that I really recommend setting as soon as you install it.</p>
@@ -230,7 +229,7 @@ R notebooks are R’s implementation of <em>literate programming</em>. The idea 
 <p>and</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="intro.html#cb5-1" aria-hidden="true"></a>a =<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 <p>will assign the value <span class="math inline">\(1\)</span> to the variable <code>a</code>. If you want to create a longer vector, you can use the <strong>concatenation operator</strong> <code>c</code> as follows:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="intro.html#cb6-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="intro.html#cb6-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span></code></pre></div>
 <p>Once you evaluate the above in your console, the value of <code>x</code> is stored and you can access it by using the command <code>print</code></p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="intro.html#cb7-1" aria-hidden="true"></a><span class="kw">print</span>(x)</span>
 <span id="cb7-2"><a href="intro.html#cb7-2" aria-hidden="true"></a><span class="co">## [1] 1 2 3 4</span></span></code></pre></div>
@@ -239,11 +238,11 @@ R notebooks are R’s implementation of <em>literate programming</em>. The idea 
 <span id="cb8-2"><a href="intro.html#cb8-2" aria-hidden="true"></a><span class="co">## [1] 1 2 3 4</span></span></code></pre></div>
 <p>Unlike all code blocks above them, the last two contain both input and output. It is standard not to mark the output by any symbol (like the usual <code>&gt;</code>), and to mark the output by <code>##</code> which otherwise marks comments. This way, you can copy any code block from these notes and paste it into the console (or your script) without having to modify it in any way. Try it!</p>
 <p>We built the vector <code>x</code> above by concatenating four numbers (vectors of length 1). You can concatenate vectors of different sizes, too:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="intro.html#cb9-1" aria-hidden="true"></a>a =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
-<span id="cb9-2"><a href="intro.html#cb9-2" aria-hidden="true"></a>b =<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)</span>
-<span id="cb9-3"><a href="intro.html#cb9-3" aria-hidden="true"></a>(<span class="dt">x =</span> <span class="kw">c</span>(a,b,<span class="dv">7</span>))</span>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="intro.html#cb9-1" aria-hidden="true"></a>a =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb9-2"><a href="intro.html#cb9-2" aria-hidden="true"></a>b =<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
+<span id="cb9-3"><a href="intro.html#cb9-3" aria-hidden="true"></a>(<span class="dt">x =</span> <span class="kw">c</span>(a, b, <span class="dv">7</span>))</span>
 <span id="cb9-4"><a href="intro.html#cb9-4" aria-hidden="true"></a><span class="co">## [1] 1 2 3 4 5 6 7</span></span></code></pre></div>
-<p>You may be wondering why I put <code>x = c(a,b,7)</code> in parentheses. Without them, <code>x</code> would still become (1,2,3,4,5,6,7), but its value would not be printed out. A statement in parentheses is not only evaluated, but its result is also printed out. This way, <code>(x=2+3)</code> is equivalent to <code>x=2+3</code> followed by <code>x</code> or <code>print(x)</code>.</p>
+<p>You may be wondering why I put <code>x = c(a,b,7)</code> in parentheses. Without them, <code>x</code> would still become (1,2,3,4,5,6,7), but its value would not be printed out. A statement in parentheses is not only evaluated, but its result is also printed out. This way, <code>(x = 2+3)</code> is equivalent to <code>x = 2+3</code> followed by <code>x</code> or <code>print(x)</code>.</p>
 <p>Vectors can contain things other than numbers. Strings, for example:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="intro.html#cb10-1" aria-hidden="true"></a>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&quot;Picard&quot;</span>, <span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Geordi&quot;</span>))</span>
 <span id="cb10-2"><a href="intro.html#cb10-2" aria-hidden="true"></a><span class="co">## [1] &quot;Picard&quot; &quot;Data&quot;   &quot;Geordi&quot;</span></span></code></pre></div>
@@ -251,14 +250,14 @@ R notebooks are R’s implementation of <em>literate programming</em>. The idea 
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="intro.html#cb11-1" aria-hidden="true"></a><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
 <span id="cb11-2"><a href="intro.html#cb11-2" aria-hidden="true"></a><span class="co">##  [1]  1  2  3  4  5  6  7  8  9 10</span></span></code></pre></div>
 <p>For sequences of equally spaced numbers, use the command <code>seq</code> (check its help for details)</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="intro.html#cb12-1" aria-hidden="true"></a><span class="kw">seq</span>(<span class="dt">from=</span><span class="dv">5</span>, <span class="dt">to=</span><span class="dv">20</span>, <span class="dt">by=</span><span class="dv">3</span>)</span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="intro.html#cb12-1" aria-hidden="true"></a><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">5</span>, <span class="dt">to =</span> <span class="dv">20</span>, <span class="dt">by =</span> <span class="dv">3</span>)</span>
 <span id="cb12-2"><a href="intro.html#cb12-2" aria-hidden="true"></a><span class="co">## [1]  5  8 11 14 17 20</span></span></code></pre></div>
-<p>An important feature or R is that many of its functions are <strong>vectorized</strong>. That means that if you give it vectors as arguments, the returned value will be a vector of results of that operation performed element by element. For example</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="intro.html#cb13-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>)</span>
-<span id="cb13-2"><a href="intro.html#cb13-2" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
-<span id="cb13-3"><a href="intro.html#cb13-3" aria-hidden="true"></a>x<span class="op">+</span>y</span>
+<p>An important feature or R is that many of its functions are <strong>vectorized</strong>. That means that if you give such a function a vector as an argument, the returned value will be a vector of results of that operation performed element by element. For example</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="intro.html#cb13-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>)</span>
+<span id="cb13-2"><a href="intro.html#cb13-2" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb13-3"><a href="intro.html#cb13-3" aria-hidden="true"></a>x <span class="op">+</span><span class="st"> </span>y</span>
 <span id="cb13-4"><a href="intro.html#cb13-4" aria-hidden="true"></a><span class="co">## [1] 12 24 35</span></span>
-<span id="cb13-5"><a href="intro.html#cb13-5" aria-hidden="true"></a>x<span class="op">*</span>y</span>
+<span id="cb13-5"><a href="intro.html#cb13-5" aria-hidden="true"></a>x <span class="op">*</span><span class="st"> </span>y</span>
 <span id="cb13-6"><a href="intro.html#cb13-6" aria-hidden="true"></a><span class="co">## [1]  20  80 150</span></span>
 <span id="cb13-7"><a href="intro.html#cb13-7" aria-hidden="true"></a>x<span class="op">^</span><span class="dv">2</span></span>
 <span id="cb13-8"><a href="intro.html#cb13-8" aria-hidden="true"></a><span class="co">## [1] 100 400 900</span></span>
@@ -266,36 +265,36 @@ R notebooks are R’s implementation of <em>literate programming</em>. The idea 
 <span id="cb13-10"><a href="intro.html#cb13-10" aria-hidden="true"></a><span class="co">## [1] -0.8390715  0.4080821  0.1542514</span></span></code></pre></div>
 <p>The vectors do not need to be of the same size. R uses the <strong>recycling rule</strong> - it recycles the values of the shorter one, starting from the beginning, until its size matches the longer one:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="intro.html#cb14-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>)</span>
-<span id="cb14-2"><a href="intro.html#cb14-2" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)</span>
-<span id="cb14-3"><a href="intro.html#cb14-3" aria-hidden="true"></a>x<span class="op">+</span>y</span>
+<span id="cb14-2"><a href="intro.html#cb14-2" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb14-3"><a href="intro.html#cb14-3" aria-hidden="true"></a>x <span class="op">+</span><span class="st"> </span>y</span>
 <span id="cb14-4"><a href="intro.html#cb14-4" aria-hidden="true"></a><span class="co">## [1] 11 23 31 43 51 63</span></span></code></pre></div>
 <p>The case where the shorter vector is of length 1 is particularly useful:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="intro.html#cb15-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>)</span>
-<span id="cb15-2"><a href="intro.html#cb15-2" aria-hidden="true"></a>x<span class="op">+</span><span class="dv">1</span></span>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="intro.html#cb15-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>)</span>
+<span id="cb15-2"><a href="intro.html#cb15-2" aria-hidden="true"></a>x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
 <span id="cb15-3"><a href="intro.html#cb15-3" aria-hidden="true"></a><span class="co">## [1] 11 21 31 41</span></span>
-<span id="cb15-4"><a href="intro.html#cb15-4" aria-hidden="true"></a>x<span class="op">*</span>(<span class="op">-</span><span class="dv">2</span>)</span>
+<span id="cb15-4"><a href="intro.html#cb15-4" aria-hidden="true"></a>x <span class="op">*</span><span class="st"> </span>(<span class="op">-</span><span class="dv">2</span>)</span>
 <span id="cb15-5"><a href="intro.html#cb15-5" aria-hidden="true"></a><span class="co">## [1] -20 -40 -60 -80</span></span></code></pre></div>
 <p>Extracting parts of the vector is accomplished by using the <strong>indexing</strong> operator <code>[]</code>. Here are some examples (what do negative numbers do?)</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="intro.html#cb16-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>)</span>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="intro.html#cb16-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
 <span id="cb16-2"><a href="intro.html#cb16-2" aria-hidden="true"></a>x[<span class="dv">1</span>]</span>
 <span id="cb16-3"><a href="intro.html#cb16-3" aria-hidden="true"></a><span class="co">## [1] 10</span></span>
-<span id="cb16-4"><a href="intro.html#cb16-4" aria-hidden="true"></a>x[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)]</span>
+<span id="cb16-4"><a href="intro.html#cb16-4" aria-hidden="true"></a>x[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)]</span>
 <span id="cb16-5"><a href="intro.html#cb16-5" aria-hidden="true"></a><span class="co">## [1] 10 20</span></span>
 <span id="cb16-6"><a href="intro.html#cb16-6" aria-hidden="true"></a>x[<span class="op">-</span><span class="dv">1</span>]</span>
 <span id="cb16-7"><a href="intro.html#cb16-7" aria-hidden="true"></a><span class="co">## [1] 20 30 40 50</span></span>
-<span id="cb16-8"><a href="intro.html#cb16-8" aria-hidden="true"></a>x[<span class="op">-</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)]</span>
+<span id="cb16-8"><a href="intro.html#cb16-8" aria-hidden="true"></a>x[<span class="op">-</span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>)]</span>
 <span id="cb16-9"><a href="intro.html#cb16-9" aria-hidden="true"></a><span class="co">## [1] 10 20 50</span></span>
 <span id="cb16-10"><a href="intro.html#cb16-10" aria-hidden="true"></a>x[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]</span>
 <span id="cb16-11"><a href="intro.html#cb16-11" aria-hidden="true"></a><span class="co">## [1] 10 20 30 40</span></span>
-<span id="cb16-12"><a href="intro.html#cb16-12" aria-hidden="true"></a>x[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">4</span>)]</span>
+<span id="cb16-12"><a href="intro.html#cb16-12" aria-hidden="true"></a>x[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">4</span>)]</span>
 <span id="cb16-13"><a href="intro.html#cb16-13" aria-hidden="true"></a><span class="co">## [1] 10 10 20 20 50 40</span></span></code></pre></div>
 <p>People familiar with Python should be aware of the following two differences: 1. indexing starts at 1 and not 0, and 2. negative indexing removes components; it does not start counting from the end!</p>
-<p>It is important to note that the thing you put inside <code>[]</code> needs to be a vector itself. The above examples all dealt with numerical indices, but you can use logical indices, too. A variable is said to be <strong>logical</strong> or <strong>Boolean</strong> if it can takes only one of the two values <code>TRUE</code> or <code>FALSE</code>. A vector whose components are all logical, are called, of course, logical vectors. You can think of logical indexing as the operation where you go through your original vector, and choose which components you want to keep (<code>TRUE</code>) and which you want the throw away (<code>FALSE</code>). For example</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="intro.html#cb17-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>)</span>
+<p>It is important to note that the thing you put inside <code>[]</code> needs to be a vector itself. The above examples all dealt with numerical indices, but you can use logical indices, too. A variable is said to be <strong>logical</strong> or <strong>Boolean</strong> if it can take only one of the two values <code>TRUE</code> or <code>FALSE</code>. A vector whose components are all logical, are called, of course, logical vectors. You can think of logical indexing as the operation where you go through your original vector, and choose which components you want to keep (<code>TRUE</code>) and which you want the throw away (<code>FALSE</code>). For example</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="intro.html#cb17-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
 <span id="cb17-2"><a href="intro.html#cb17-2" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>)</span>
 <span id="cb17-3"><a href="intro.html#cb17-3" aria-hidden="true"></a>x[y]</span>
 <span id="cb17-4"><a href="intro.html#cb17-4" aria-hidden="true"></a><span class="co">## [1] 10 40 50</span></span></code></pre></div>
-<p>This is especially useful when used together with the <strong>comparison operators</strong>. The expressions like <code>x&lt;y</code> or <code>x==y</code> are operators in R, just like <code>x+y</code> or <code>x/y</code>. The difference is that <code>&lt;</code> and <code>==</code> return logical values. For example</p>
+<p>This is especially useful when used together with the <strong>comparison operators</strong>. The expressions like <code>x &lt; y</code> or <code>x == y</code> are operators<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> in R, just like <code>x + y</code> or <code>x / y</code>. The difference is that <code>&lt;</code> and <code>==</code> return logical values. For example</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="intro.html#cb18-1" aria-hidden="true"></a><span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">2</span></span>
 <span id="cb18-2"><a href="intro.html#cb18-2" aria-hidden="true"></a><span class="co">## [1] FALSE</span></span>
 <span id="cb18-3"><a href="intro.html#cb18-3" aria-hidden="true"></a><span class="dv">3</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span></span>
@@ -303,85 +302,85 @@ R notebooks are R’s implementation of <em>literate programming</em>. The idea 
 <span id="cb18-5"><a href="intro.html#cb18-5" aria-hidden="true"></a><span class="dv">3</span> <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2</span></span>
 <span id="cb18-6"><a href="intro.html#cb18-6" aria-hidden="true"></a><span class="co">## [1] TRUE</span></span></code></pre></div>
 <p>These operators are vectorized, so you can do things like this</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="intro.html#cb19-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>( <span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
-<span id="cb19-2"><a href="intro.html#cb19-2" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">c</span>( <span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">5</span>)</span>
-<span id="cb19-3"><a href="intro.html#cb19-3" aria-hidden="true"></a>x<span class="op">==</span>y</span>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="intro.html#cb19-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb19-2"><a href="intro.html#cb19-2" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">5</span>)</span>
+<span id="cb19-3"><a href="intro.html#cb19-3" aria-hidden="true"></a>x <span class="op">==</span><span class="st"> </span>y</span>
 <span id="cb19-4"><a href="intro.html#cb19-4" aria-hidden="true"></a><span class="co">## [1]  TRUE FALSE  TRUE FALSE  TRUE</span></span></code></pre></div>
 <p>or, using recycling,</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="intro.html#cb20-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="intro.html#cb20-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
 <span id="cb20-2"><a href="intro.html#cb20-2" aria-hidden="true"></a>x <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span></span>
 <span id="cb20-3"><a href="intro.html#cb20-3" aria-hidden="true"></a><span class="co">## [1] FALSE FALSE FALSE  TRUE  TRUE</span></span></code></pre></div>
-<p>Let’s combine that with indexing. Suppose that we want to keep only the values greater than 4 in the vector <code>x</code>. The vector <code>y=x&gt;4</code> is going to be of the same length as <code>x</code> and contain logical values.
-When we index <code>x</code> using it, only the values of <code>x</code> on positions where <code>x&gt;4</code> will survive, and these are exactly the values we needed:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="intro.html#cb21-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">4</span>)</span>
-<span id="cb21-2"><a href="intro.html#cb21-2" aria-hidden="true"></a>y =<span class="st"> </span>x<span class="op">&gt;</span><span class="dv">4</span></span>
+<p>Let’s combine that with indexing. Suppose that we want to keep only the values greater than 4 in the vector <code>x</code>. The vector <code>y = ( x &gt; 4 )</code> is going to be of the same length as <code>x</code> and contain logical values.
+When we index <code>x</code> using it, only the values of <code>x</code> on positions where <code>x &gt; 4</code> will survive, and these are exactly the values we needed:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="intro.html#cb21-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">4</span>)</span>
+<span id="cb21-2"><a href="intro.html#cb21-2" aria-hidden="true"></a>y =<span class="st"> </span>(x <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>)</span>
 <span id="cb21-3"><a href="intro.html#cb21-3" aria-hidden="true"></a>x[y]</span>
 <span id="cb21-4"><a href="intro.html#cb21-4" aria-hidden="true"></a><span class="co">## [1] 5 5 6</span></span></code></pre></div>
 <p>or, simply,</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="intro.html#cb22-1" aria-hidden="true"></a>x[x<span class="op">&gt;</span><span class="dv">4</span>]</span>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="intro.html#cb22-1" aria-hidden="true"></a>x[x <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>]</span>
 <span id="cb22-2"><a href="intro.html#cb22-2" aria-hidden="true"></a><span class="co">## [1] 5 5 6</span></span></code></pre></div>
 <p>Indexing can be used to set the values of a vector just as easily</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="intro.html#cb23-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>( <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
-<span id="cb23-2"><a href="intro.html#cb23-2" aria-hidden="true"></a>x[<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>] =<span class="st"> </span><span class="kw">c</span>( <span class="dv">0</span>, <span class="dv">1</span> ,<span class="dv">2</span>)</span>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="intro.html#cb23-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
+<span id="cb23-2"><a href="intro.html#cb23-2" aria-hidden="true"></a>x[<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>] =<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>)</span>
 <span id="cb23-3"><a href="intro.html#cb23-3" aria-hidden="true"></a>x</span>
 <span id="cb23-4"><a href="intro.html#cb23-4" aria-hidden="true"></a><span class="co">## [1] 10  0  1  2 50</span></span></code></pre></div>
 <p>Recycling rules apply in the same way as above</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="intro.html#cb24-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>)</span>
-<span id="cb24-2"><a href="intro.html#cb24-2" aria-hidden="true"></a>x[ <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>) ] =<span class="st"> </span><span class="dv">7</span></span>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="intro.html#cb24-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
+<span id="cb24-2"><a href="intro.html#cb24-2" aria-hidden="true"></a>x[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>)] =<span class="st"> </span><span class="dv">7</span></span>
 <span id="cb24-3"><a href="intro.html#cb24-3" aria-hidden="true"></a>x</span>
 <span id="cb24-4"><a href="intro.html#cb24-4" aria-hidden="true"></a><span class="co">## [1]  7  7 30 40  7</span></span></code></pre></div>
 </div>
 <div id="matrices" class="section level3" number="1.2.4">
 <h3><span class="header-section-number">1.2.4</span> Matrices</h3>
 <p>A matrix in R can be created using the command <code>matrix</code>. The unusual part is that the input is a vector and R populates the components of the matrix by filling it in column by column or row by row. As always, an example will make this clear</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="intro.html#cb25-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)</span>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="intro.html#cb25-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
 <span id="cb25-2"><a href="intro.html#cb25-2" aria-hidden="true"></a>(<span class="dt">A =</span> <span class="kw">matrix</span>(x, <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>))</span>
 <span id="cb25-3"><a href="intro.html#cb25-3" aria-hidden="true"></a><span class="co">##      [,1] [,2] [,3]</span></span>
 <span id="cb25-4"><a href="intro.html#cb25-4" aria-hidden="true"></a><span class="co">## [1,]    1    2    3</span></span>
 <span id="cb25-5"><a href="intro.html#cb25-5" aria-hidden="true"></a><span class="co">## [2,]    4    5    6</span></span></code></pre></div>
 <p>The first argument of the function <code>matrix</code> is the vector which contains all the values. If you want a matrix with m rows and n columns, this vector should be of size <span class="math inline">\(m n\)</span>. The arguments <code>ncol</code> and <code>nrow</code> are self-explanatory, and <code>byrow</code> is a logical argument which signals whether to fill by columns or by rows. Here is what happens when we set <code>byrow = FALSE</code></p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="intro.html#cb26-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)</span>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="intro.html#cb26-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
 <span id="cb26-2"><a href="intro.html#cb26-2" aria-hidden="true"></a>(<span class="dt">A =</span> <span class="kw">matrix</span>(x, <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">FALSE</span>))</span>
 <span id="cb26-3"><a href="intro.html#cb26-3" aria-hidden="true"></a><span class="co">##      [,1] [,2] [,3]</span></span>
 <span id="cb26-4"><a href="intro.html#cb26-4" aria-hidden="true"></a><span class="co">## [1,]    1    3    5</span></span>
 <span id="cb26-5"><a href="intro.html#cb26-5" aria-hidden="true"></a><span class="co">## [2,]    2    4    6</span></span></code></pre></div>
 <p>Accessing components of a matrix is as intuitive as it gets</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="intro.html#cb27-1" aria-hidden="true"></a>(<span class="dt">A =</span> <span class="kw">matrix</span>( <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">7</span>, <span class="dv">2</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>))</span>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="intro.html#cb27-1" aria-hidden="true"></a>(<span class="dt">A =</span> <span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">7</span>, <span class="dv">2</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>))</span>
 <span id="cb27-2"><a href="intro.html#cb27-2" aria-hidden="true"></a><span class="co">##      [,1] [,2]</span></span>
 <span id="cb27-3"><a href="intro.html#cb27-3" aria-hidden="true"></a><span class="co">## [1,]    1    7</span></span>
 <span id="cb27-4"><a href="intro.html#cb27-4" aria-hidden="true"></a><span class="co">## [2,]   -1    2</span></span>
 <span id="cb27-5"><a href="intro.html#cb27-5" aria-hidden="true"></a></span>
-<span id="cb27-6"><a href="intro.html#cb27-6" aria-hidden="true"></a>A[<span class="dv">1</span>,<span class="dv">2</span>]</span>
+<span id="cb27-6"><a href="intro.html#cb27-6" aria-hidden="true"></a>A[<span class="dv">1</span>, <span class="dv">2</span>]</span>
 <span id="cb27-7"><a href="intro.html#cb27-7" aria-hidden="true"></a><span class="co">## [1] 7</span></span></code></pre></div>
 <p>Note that I did not use the argument <code>byrow</code> at all. In such cases, R always uses the default value (documented in the function’s help). For <code>matrix</code> the default value of <code>byrow</code> is <code>FALSE</code>, i.e., it fills the matrix column by column. This is not what we usually want because we tend to think of matrices as composed of rows. Moral: do not forget <code>byrow = TRUE</code> if that is what you, indeed, want.</p>
 <p>Usual matrix operations can be performed in R in the obvious way</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="intro.html#cb28-1" aria-hidden="true"></a> (<span class="dt">A =</span> <span class="kw">matrix</span>( <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">7</span>, <span class="dv">2</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>))</span>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="intro.html#cb28-1" aria-hidden="true"></a>(<span class="dt">A =</span> <span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">-1</span>, <span class="dv">7</span>, <span class="dv">2</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>))</span>
 <span id="cb28-2"><a href="intro.html#cb28-2" aria-hidden="true"></a><span class="co">##      [,1] [,2]</span></span>
 <span id="cb28-3"><a href="intro.html#cb28-3" aria-hidden="true"></a><span class="co">## [1,]    1    7</span></span>
 <span id="cb28-4"><a href="intro.html#cb28-4" aria-hidden="true"></a><span class="co">## [2,]   -1    2</span></span>
-<span id="cb28-5"><a href="intro.html#cb28-5" aria-hidden="true"></a> (<span class="dt">B =</span> <span class="kw">matrix</span>( <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">-3</span>, <span class="dv">-4</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>))</span>
+<span id="cb28-5"><a href="intro.html#cb28-5" aria-hidden="true"></a>(<span class="dt">B =</span> <span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">-3</span>, <span class="dv">-4</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>))</span>
 <span id="cb28-6"><a href="intro.html#cb28-6" aria-hidden="true"></a><span class="co">##      [,1] [,2]</span></span>
 <span id="cb28-7"><a href="intro.html#cb28-7" aria-hidden="true"></a><span class="co">## [1,]    2   -3</span></span>
 <span id="cb28-8"><a href="intro.html#cb28-8" aria-hidden="true"></a><span class="co">## [2,]    2   -4</span></span>
-<span id="cb28-9"><a href="intro.html#cb28-9" aria-hidden="true"></a>A<span class="op">+</span>B</span>
+<span id="cb28-9"><a href="intro.html#cb28-9" aria-hidden="true"></a>A <span class="op">+</span><span class="st"> </span>B</span>
 <span id="cb28-10"><a href="intro.html#cb28-10" aria-hidden="true"></a><span class="co">##      [,1] [,2]</span></span>
 <span id="cb28-11"><a href="intro.html#cb28-11" aria-hidden="true"></a><span class="co">## [1,]    3    4</span></span>
 <span id="cb28-12"><a href="intro.html#cb28-12" aria-hidden="true"></a><span class="co">## [2,]    1   -2</span></span></code></pre></div>
 <p>You should be careful with matrix multiplication. The naive operator <code>*</code> yields a matrix, but probably not the one you want (what does <code>*</code> do?)</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="intro.html#cb29-1" aria-hidden="true"></a> (<span class="dt">A =</span> <span class="kw">matrix</span>( <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>))</span>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="intro.html#cb29-1" aria-hidden="true"></a>(<span class="dt">A =</span> <span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>))</span>
 <span id="cb29-2"><a href="intro.html#cb29-2" aria-hidden="true"></a><span class="co">##      [,1] [,2]</span></span>
 <span id="cb29-3"><a href="intro.html#cb29-3" aria-hidden="true"></a><span class="co">## [1,]    1    0</span></span>
 <span id="cb29-4"><a href="intro.html#cb29-4" aria-hidden="true"></a><span class="co">## [2,]    2    1</span></span>
-<span id="cb29-5"><a href="intro.html#cb29-5" aria-hidden="true"></a> (<span class="dt">B =</span> <span class="kw">matrix</span>( <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>))</span>
+<span id="cb29-5"><a href="intro.html#cb29-5" aria-hidden="true"></a>(<span class="dt">B =</span> <span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>))</span>
 <span id="cb29-6"><a href="intro.html#cb29-6" aria-hidden="true"></a><span class="co">##      [,1] [,2]</span></span>
 <span id="cb29-7"><a href="intro.html#cb29-7" aria-hidden="true"></a><span class="co">## [1,]    3    1</span></span>
 <span id="cb29-8"><a href="intro.html#cb29-8" aria-hidden="true"></a><span class="co">## [2,]    5    0</span></span>
-<span id="cb29-9"><a href="intro.html#cb29-9" aria-hidden="true"></a>A<span class="op">*</span>B</span>
+<span id="cb29-9"><a href="intro.html#cb29-9" aria-hidden="true"></a>A <span class="op">*</span><span class="st"> </span>B</span>
 <span id="cb29-10"><a href="intro.html#cb29-10" aria-hidden="true"></a><span class="co">##      [,1] [,2]</span></span>
 <span id="cb29-11"><a href="intro.html#cb29-11" aria-hidden="true"></a><span class="co">## [1,]    3    0</span></span>
 <span id="cb29-12"><a href="intro.html#cb29-12" aria-hidden="true"></a><span class="co">## [2,]   10    0</span></span></code></pre></div>
 <p>If you want the matrix product, you have to use <code>%*%</code></p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="intro.html#cb30-1" aria-hidden="true"></a>A<span class="op">%*%</span>B</span>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="intro.html#cb30-1" aria-hidden="true"></a>A <span class="op">%*%</span><span class="st"> </span>B</span>
 <span id="cb30-2"><a href="intro.html#cb30-2" aria-hidden="true"></a><span class="co">##      [,1] [,2]</span></span>
 <span id="cb30-3"><a href="intro.html#cb30-3" aria-hidden="true"></a><span class="co">## [1,]    3    1</span></span>
 <span id="cb30-4"><a href="intro.html#cb30-4" aria-hidden="true"></a><span class="co">## [2,]   11    2</span></span></code></pre></div>
@@ -389,19 +388,18 @@ When we index <code>x</code> using it, only the values of <code>x</code> on posi
 <div id="functions" class="section level3" number="1.2.5">
 <h3><span class="header-section-number">1.2.5</span> Functions</h3>
 <p>The following syntax is used to define functions in R:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="intro.html#cb31-1" aria-hidden="true"></a>my_function =<span class="st"> </span><span class="cf">function</span>(x,y,z) {</span>
-<span id="cb31-2"><a href="intro.html#cb31-2" aria-hidden="true"></a>  <span class="kw">return</span>(x<span class="op">+</span>y<span class="op">+</span>z)</span>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="intro.html#cb31-1" aria-hidden="true"></a>my_function =<span class="st"> </span><span class="cf">function</span>(x, y, z) {</span>
+<span id="cb31-2"><a href="intro.html#cb31-2" aria-hidden="true"></a>    <span class="kw">return</span>(x <span class="op">+</span><span class="st"> </span>y <span class="op">+</span><span class="st"> </span>z)</span>
 <span id="cb31-3"><a href="intro.html#cb31-3" aria-hidden="true"></a>}</span></code></pre></div>
-<p>The function <code>my_function</code> returns the sum of its arguments. Having defined it, as above, we can use it
-like this</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="intro.html#cb32-1" aria-hidden="true"></a><span class="kw">my_function</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">9</span>)</span>
+<p>The function <code>my_function</code> returns the sum of its arguments. Having defined it, as above, we can use it like this</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="intro.html#cb32-1" aria-hidden="true"></a><span class="kw">my_function</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">9</span>)</span>
 <span id="cb32-2"><a href="intro.html#cb32-2" aria-hidden="true"></a><span class="co">## [1] 13</span></span></code></pre></div>
 <p>Neither the output nor the arguments of a function in R are restricted to numbers. Our next example function, named <code>winners</code>, takes two vectors as arguments and returns a vector. Its components are those components of the first input vector (<code>x</code>) that are larger than the corresponding components of the second input vector (<code>y</code>)</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="intro.html#cb33-1" aria-hidden="true"></a>winners =<span class="st"> </span><span class="cf">function</span>(x,y) {</span>
-<span id="cb33-2"><a href="intro.html#cb33-2" aria-hidden="true"></a>  z =<span class="st"> </span>x<span class="op">&gt;</span>y</span>
-<span id="cb33-3"><a href="intro.html#cb33-3" aria-hidden="true"></a>  <span class="kw">return</span>(x[z])</span>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="intro.html#cb33-1" aria-hidden="true"></a>winners =<span class="st"> </span><span class="cf">function</span>(x, y) {</span>
+<span id="cb33-2"><a href="intro.html#cb33-2" aria-hidden="true"></a>    z =<span class="st"> </span>x <span class="op">&gt;</span><span class="st"> </span>y</span>
+<span id="cb33-3"><a href="intro.html#cb33-3" aria-hidden="true"></a>    <span class="kw">return</span>(x[z])</span>
 <span id="cb33-4"><a href="intro.html#cb33-4" aria-hidden="true"></a>}</span>
-<span id="cb33-5"><a href="intro.html#cb33-5" aria-hidden="true"></a><span class="kw">winners</span>( <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">9</span>,<span class="dv">2</span>))</span>
+<span id="cb33-5"><a href="intro.html#cb33-5" aria-hidden="true"></a><span class="kw">winners</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">2</span>), <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">2</span>))</span>
 <span id="cb33-6"><a href="intro.html#cb33-6" aria-hidden="true"></a><span class="co">## [1] 4 5</span></span></code></pre></div>
 <p>Note how we used several things we learned above in this function. First, we defined the logical vector which indicates where <code>x</code> is larger than <code>y</code>. Then, we used logical indexing to return only certain components of <code>x</code>.</p>
 </div>
@@ -409,13 +407,13 @@ like this</p>
 <h3><span class="header-section-number">1.2.6</span> If-else statements</h3>
 <p>Our final element of R is its <code>if-else</code> statement. The syntax of the <code>if</code> statement is</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="intro.html#cb34-1" aria-hidden="true"></a><span class="cf">if</span> (condition) {</span>
-<span id="cb34-2"><a href="intro.html#cb34-2" aria-hidden="true"></a>  statement</span>
+<span id="cb34-2"><a href="intro.html#cb34-2" aria-hidden="true"></a>    statement</span>
 <span id="cb34-3"><a href="intro.html#cb34-3" aria-hidden="true"></a>}</span></code></pre></div>
 <p>where <code>condition</code> is anything that has a logical value, and statement is any R statement. First R evaluates <code>condition</code>. If it is true, it runs <code>statement</code>. If it is false, nothing happens. If you want something to happen if (and only if) your condition is false, you need an <code>if-else</code> statement:</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="intro.html#cb35-1" aria-hidden="true"></a><span class="cf">if</span> (condition) {</span>
-<span id="cb35-2"><a href="intro.html#cb35-2" aria-hidden="true"></a>  statement1</span>
+<span id="cb35-2"><a href="intro.html#cb35-2" aria-hidden="true"></a>    statement1</span>
 <span id="cb35-3"><a href="intro.html#cb35-3" aria-hidden="true"></a>} <span class="cf">else</span> {</span>
-<span id="cb35-4"><a href="intro.html#cb35-4" aria-hidden="true"></a>  statement2</span>
+<span id="cb35-4"><a href="intro.html#cb35-4" aria-hidden="true"></a>    statement2</span>
 <span id="cb35-5"><a href="intro.html#cb35-5" aria-hidden="true"></a>}</span></code></pre></div>
 <p>This way, <code>statement1</code> is evaluated when <code>condition</code> is true and <code>statement1</code> when it is false. Since conditions inside the <code>if</code> statement return logical values, we can combine them using <em>ands</em>, <em>ors</em> or <em>nots</em>. The R notation for these operations is &amp;, | and ! respectively, and to remind you what they do, here is a simple table</p>
 <table>
@@ -459,27 +457,27 @@ like this</p>
 </tr>
 </tbody>
 </table>
-<p>Let’s put what we learned about functions and if-else statements together to write a function <code>distance_or_zero</code> whose arguments are coordinates <code>x</code> and <code>y</code> of a point in the plane, and whose output is the distance from (x,y) to the origin if this distance happens to be between 1 and 2, and and 0 otherwise. We will use similar functions later when we discuss Monte Carlo methods:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="intro.html#cb36-1" aria-hidden="true"></a>distance_or_zero =<span class="st"> </span><span class="kw">Vectorize</span>( <span class="cf">function</span>(x,y){</span>
-<span id="cb36-2"><a href="intro.html#cb36-2" aria-hidden="true"></a>  distance =<span class="st"> </span><span class="kw">sqrt</span>(x<span class="op">^</span><span class="dv">2</span><span class="op">+</span>y<span class="op">^</span><span class="dv">2</span>)</span>
-<span id="cb36-3"><a href="intro.html#cb36-3" aria-hidden="true"></a>  <span class="cf">if</span> (distance <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>distance <span class="op">&gt;=</span><span class="dv">1</span>) {</span>
-<span id="cb36-4"><a href="intro.html#cb36-4" aria-hidden="true"></a>    <span class="kw">return</span>(distance)</span>
-<span id="cb36-5"><a href="intro.html#cb36-5" aria-hidden="true"></a>  } <span class="cf">else</span> {</span>
-<span id="cb36-6"><a href="intro.html#cb36-6" aria-hidden="true"></a>    <span class="kw">return</span>(<span class="dv">0</span>)</span>
-<span id="cb36-7"><a href="intro.html#cb36-7" aria-hidden="true"></a>  }</span>
+<p>Let’s put what we learned about functions and if-else statements together to write a function <code>distance_or_zero</code> whose arguments are coordinates <code>x</code> and <code>y</code> of a point in the plane, and whose output is the distance from the point (x,y) to the origin if this distance happens to be between 1 and 2, and and 0 otherwise. We will use similar functions later when we discuss Monte Carlo methods:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="intro.html#cb36-1" aria-hidden="true"></a>distance_or_zero =<span class="st"> </span><span class="kw">Vectorize</span>(<span class="cf">function</span>(x, y) {</span>
+<span id="cb36-2"><a href="intro.html#cb36-2" aria-hidden="true"></a>    distance =<span class="st"> </span><span class="kw">sqrt</span>(x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>y<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb36-3"><a href="intro.html#cb36-3" aria-hidden="true"></a>    <span class="cf">if</span> (distance <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>distance <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1</span>) {</span>
+<span id="cb36-4"><a href="intro.html#cb36-4" aria-hidden="true"></a>        <span class="kw">return</span>(distance)</span>
+<span id="cb36-5"><a href="intro.html#cb36-5" aria-hidden="true"></a>    } <span class="cf">else</span> {</span>
+<span id="cb36-6"><a href="intro.html#cb36-6" aria-hidden="true"></a>        <span class="kw">return</span>(<span class="dv">0</span>)</span>
+<span id="cb36-7"><a href="intro.html#cb36-7" aria-hidden="true"></a>    }</span>
 <span id="cb36-8"><a href="intro.html#cb36-8" aria-hidden="true"></a>})</span>
-<span id="cb36-9"><a href="intro.html#cb36-9" aria-hidden="true"></a><span class="kw">distance_or_zero</span>(<span class="fl">1.2</span>,<span class="fl">1.6</span>)</span>
+<span id="cb36-9"><a href="intro.html#cb36-9" aria-hidden="true"></a><span class="kw">distance_or_zero</span>(<span class="fl">1.2</span>, <span class="fl">1.6</span>)</span>
 <span id="cb36-10"><a href="intro.html#cb36-10" aria-hidden="true"></a><span class="co">## [1] 2</span></span>
-<span id="cb36-11"><a href="intro.html#cb36-11" aria-hidden="true"></a><span class="kw">distance_or_zero</span>(<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb36-11"><a href="intro.html#cb36-11" aria-hidden="true"></a><span class="kw">distance_or_zero</span>(<span class="dv">2</span>, <span class="dv">3</span>)</span>
 <span id="cb36-12"><a href="intro.html#cb36-12" aria-hidden="true"></a><span class="co">## [1] 0</span></span></code></pre></div>
 </div>
 </div>
 <div id="problems" class="section level2" number="1.3">
 <h2><span class="header-section-number">1.3</span> Problems</h2>
-<p>Here are several simple problems. Their goal is to give you an idea of exactly how much R is required to get started in this course. Virtually any “introduction to R” should contain enough information to get you through all of these.</p>
+<p>Here are several simple problems. Their goal is to give you an idea of exactly how much R is required to get started in this course.</p>
 
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-43" class="exercise"><strong>Problem 1.1  </strong></span>Compute the following (your answer should be a decimal number):</p>
+<p><span id="exr:unnamed-chunk-41" class="exercise"><strong>Problem 1.1  </strong></span>Compute the following (your answer should be a decimal number):</p>
 <ol style="list-style-type: lower-alpha">
 <li><span class="math inline">\(1/238746238746\)</span></li>
 <li><span class="math inline">\(2^{45}\)</span></li>
@@ -495,34 +493,37 @@ Note: some of the answers will look like this <code>3.14e+13</code>. If you do n
 </div>
 
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-44" class="exercise"><strong>Problem 1.2  </strong></span> . Define two variables <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> with values <span class="math inline">\(3\)</span> and <span class="math inline">\(4\)</span> and “put” their product into a variable called <span class="math inline">\(c\)</span>. Output the value of <span class="math inline">\(c\)</span>.</p>
-<ol start="2" style="list-style-type: decimal">
-<li><p>Define two vectors <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> of length <span class="math inline">\(3\)</span>, such that the components of <span class="math inline">\(x\)</span> are <span class="math inline">\(1,2,3\)</span> and the components of <span class="math inline">\(y\)</span> are <span class="math inline">\(8,9,0\)</span>. Ouput their (componentwise) sum.</p></li>
-<li><p>Define a <span class="math inline">\(2\times 2\)</span> matrix <span class="math inline">\(A=\begin{pmatrix} 1 &amp; 2 \\ -1 &amp; 3 \end{pmatrix}\)</span>. Use the command <code>matrix</code> and make sure to understand how it works; you can access its documentation directly from <span class="math inline">\(R\)</span> by writing <code>?matrix</code>. Make sure you understand what the parameters <code>ncol</code>, <code>nrow</code> and <code>byrow</code> do.</p></li>
-<li><p>Compute the matrix square <span class="math inline">\(A^2\)</span> (Careful! <code>A*A</code> will output a <span class="math inline">\(2\times 2\)</span> matrix, but it will not be <span class="math inline">\(A^2\)</span> - it will be the matrix whose entries are the squares of the entries of <span class="math inline">\(A\)</span>. You need to use different notation.)</p>
-</div></li>
-</ol>
-
-<div class="exercise">
-<p><span id="exr:unnamed-chunk-45" class="exercise"><strong>Problem 1.3  </strong></span> </p>
+<p><span id="exr:unnamed-chunk-42" class="exercise"><strong>Problem 1.2  </strong></span> </p>
 <ol style="list-style-type: decimal">
-<li><p>Write a function that takes an argument <span class="math inline">\(x\)</span> and returns <span class="math inline">\(5\)</span> if <span class="math inline">\(x\geq 5\)</span> and <span class="math inline">\(x\)</span> itself otherwise.</p></li>
-<li><p>Write a function that returns <code>TRUE</code> (a logical value) if its argument is between <span class="math inline">\(2\)</span> and <span class="math inline">\(3\)</span> and <code>FALSE</code> otherwise.</p>
+<li><p>Define two variables <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> with values <span class="math inline">\(3\)</span> and <span class="math inline">\(4\)</span> and “put” their product into a variable called <span class="math inline">\(c\)</span>. Output the value of <span class="math inline">\(c\)</span>.</p></li>
+<li><p>Define two vectors <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> of length <span class="math inline">\(3\)</span>, such that the components of <span class="math inline">\(x\)</span> are <span class="math inline">\(1,2,3\)</span> and the components of <span class="math inline">\(y\)</span> are <span class="math inline">\(8,9,0\)</span>. Ouput their (componentwise) sum.</p></li>
+<li><p>Define a <span class="math inline">\(2\times 2\)</span> matrix <span class="math inline">\(A=\begin{pmatrix} 1 &amp; 2 \\ -1 &amp; 3 \end{pmatrix}\)</span>.</p></li>
+<li><p>Compute the matrix square <span class="math inline">\(A^2\)</span>.</p>
 </div></li>
 </ol>
 
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-46" class="exercise"><strong>Problem 1.4  </strong></span> </p>
+<p><span id="exr:unnamed-chunk-43" class="exercise"><strong>Problem 1.3  </strong></span> </p>
 <ol style="list-style-type: decimal">
 <li><p>Construct a vector <span class="math inline">\(x\)</span> which contains all numbers from <span class="math inline">\(1\)</span> to <span class="math inline">\(100\)</span>.</p></li>
-<li><p>Construct a vector <span class="math inline">\(y\)</span> which contains <em>squares</em> of all numbers between <span class="math inline">\(20\)</span> and <span class="math inline">\(30\)</span>.</p></li>
-<li><p>Construct a vector <span class="math inline">\(z\)</span> the same size as <span class="math inline">\(y\)</span>
-with logical entries (i.e., <code>TRUE</code> or <code>FALSE</code>) that indicates whether the entry at the same position in <span class="math inline">\(y\)</span> is above <span class="math inline">\(600\)</span> or not. (This is much easier to do than it sounds.)</p>
+<li><p>Construct a vector <span class="math inline">\(y\)</span> which contains <em>squares</em> of all numbers between <span class="math inline">\(20\)</span> and <span class="math inline">\(2000\)</span>.</p></li>
+<li><p>Construct a vector <span class="math inline">\(z\)</span> which contains only those components of <span class="math inline">\(y\)</span> whose values are between <span class="math inline">\(400,000\)</span> and <span class="math inline">\(500,000\)</span>.</p></li>
+<li><p>Compute the average (arithmetic mean) of all the components of <span class="math inline">\(z\)</span>. There is an R function that does that for you - find it!</p>
+</div></li>
+</ol>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-44" class="exercise"><strong>Problem 1.4  </strong></span> </p>
+<ol style="list-style-type: decimal">
+<li><p>Write a function that takes a numerical argument <span class="math inline">\(x\)</span> and returns <span class="math inline">\(5\)</span> if <span class="math inline">\(x\geq 5\)</span> and <span class="math inline">\(x\)</span> itself otherwise.</p></li>
+<li><p>Write a function that returns <code>TRUE</code> (a logical value) if its argument is between <span class="math inline">\(2\)</span> and <span class="math inline">\(3\)</span> and <code>FALSE</code> otherwise.</p></li>
+<li><p>(Ex.cr.) Write a function that takes two equal-sized vectors as arguments and returns the angle between them in degrees. For definiteness, the angle between two vectors is defined to be <span class="math inline">\(0\)</span> when either one of them is <span class="math inline">\((0,0,\dots,0)\)</span>.</p>
 </div></li>
 </ol>
 
 </div>
 </div>
+
 
 
 
@@ -533,6 +534,7 @@ with logical entries (i.e., <code>TRUE</code> or <code>FALSE</code>) that indica
 <hr />
 <ol start="1">
 <li id="fn1"><p>it may interfere with your existing installation<a href="intro.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>be careful, though. The expression <code>x = y</code> is not the same as <code>x == y</code>. It does not return a logical value - it assigns the value of <code>y</code> to <code>x</code><a href="intro.html#fnref2" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

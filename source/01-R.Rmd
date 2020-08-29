@@ -16,8 +16,7 @@ To install RStudio, go to [https://rstudio.com/products/rstudio/download/](https
 knitr::include_graphics('pics/RStudio_IDE.png')
 ```
 
-The part on the left is called the *console* and that is (one of the places) where you enter commands. Before you do, it is important to adjust a few settings. Open the options window by pressing 
-*Cmd+,* (on a Mac) or navigate to Tools->Global Options (on Windows or Linux). In there, uncheck "Restore .RData into workspace on startup" and set "Save workspace to .RData on exit" to "Never", as shown below:
+The part on the left is called the *console* and that is (one of the places) where you enter commands. Before you do, it is important to adjust a few settings. Open the options window by navigating to to Tools->Global Options. In there, uncheck "Restore .RData into workspace on startup" and set "Save workspace to .RData on exit" to "Never", as shown below:
 ```{r echo=FALSE,out.width= "75%",out.extra='style="margin-left: 12.5%;margin-right:12.5%; padding:10px"'} 
 knitr::include_graphics("pics/Restore_RData.png")
 ```
@@ -113,7 +112,7 @@ a = c(1,2,3)
 b = c(4,5,6)
 (x = c(a,b,7))
 ```
-You may be wondering why I put `x = c(a,b,7)` in parentheses. Without them, `x` would still become (1,2,3,4,5,6,7), but its value would not be printed out. A statement in parentheses is not only evaluated, but its result is also printed out. This way, `(x=2+3)` is equivalent to `x=2+3` followed by `x` or `print(x)`. 
+You may be wondering why I put `x = c(a,b,7)` in parentheses. Without them, `x` would still become (1,2,3,4,5,6,7), but its value would not be printed out. A statement in parentheses is not only evaluated, but its result is also printed out. This way, `(x = 2+3)` is equivalent to `x = 2+3` followed by `x` or `print(x)`. 
 
 
 Vectors can contain things other than numbers. Strings, for example:
@@ -128,7 +127,7 @@ For sequences of equally spaced numbers, use the command `seq` (check its help f
 ```{r}
 seq(from=5, to=20, by=3)
 ```
-An important feature or R is that many of its functions are **vectorized**. That means that if you give it vectors as arguments, the returned value will be a vector of results of that operation performed element by element. For example 
+An important feature or R is that many of its functions are **vectorized**. That means that if you give such a function a  vector as an argument, the returned value will be a vector of results of that operation performed element by element. For example 
 ```{r}
 x = c(10,20,30)
 y = c(2,4,5)
@@ -140,7 +139,7 @@ cos(x)
 The vectors do not need to be of the same size. R uses the **recycling rule** - it recycles the values of the shorter one, starting from the beginning, until its size matches the longer one:
 ```{r}
 x = c(10, 20, 30, 40, 50, 60)
-y = c(1,3)
+y= c(1,3)
 x+y
 ```
 The case where the shorter vector is of length 1 is particularly useful:
@@ -161,13 +160,13 @@ x[c(1,1,2,2,5,4)]
 ```
 People familiar with Python should be aware of the following two differences: 1. indexing starts at 1 and not 0, and 2. negative indexing removes components; it does not start counting from the end!
 
-It is important to note that the thing you put inside `[]` needs to be a vector itself. The above examples all dealt with numerical indices, but you can use logical indices, too. A variable is said to be **logical** or **Boolean** if it can takes only one of the two values `TRUE` or `FALSE`. A vector whose components are all logical, are called, of course, logical vectors. You can think of logical indexing as the operation where you go through your original vector, and choose which components you want to keep (`TRUE`) and which you want the throw away (`FALSE`). For example
+It is important to note that the thing you put inside `[]` needs to be a vector itself. The above examples all dealt with numerical indices, but you can use logical indices, too. A variable is said to be **logical** or **Boolean** if it can take only one of the two values `TRUE` or `FALSE`. A vector whose components are all logical, are called, of course, logical vectors. You can think of logical indexing as the operation where you go through your original vector, and choose which components you want to keep (`TRUE`) and which you want the throw away (`FALSE`). For example
 ```{r}
 x = c(10,20,30,40,50)
 y = c(TRUE, FALSE, FALSE, TRUE, TRUE)
 x[y]
 ```
-This is especially useful when used together with the **comparison operators**. The expressions like `x<y` or `x==y` are  operators in R, just like `x+y` or `x/y`. The difference is that `<` and `==` return logical values. For example
+This is especially useful when used together with the **comparison operators**. The expressions like `x < y` or `x == y` are  operators^[be careful, though.  The expression `x = y` is not the same as `x == y`. It does not return a logical value - it assigns the value of `y` to `x`] in R, just like `x + y` or `x / y`. The difference is that `<` and `==` return logical values. For example
 ```{r}
 1 == 2
 3 > 4
@@ -184,11 +183,11 @@ or, using recycling,
 x = c(1,2,3,4,5)
 x > 3
 ```
-Let's combine that with indexing. Suppose that we want to keep only the values greater than 4 in the vector `x`. The vector `y=x>4` is going to be of the same length as `x` and contain logical values.
-When we index `x` using it, only the values of `x` on positions where `x>4` will survive, and these are exactly the values we needed:
+Let's combine that with indexing. Suppose that we want to keep only the values greater than 4 in the vector `x`. The vector `y = ( x > 4 )` is going to be of the same length as `x` and contain logical values.
+When we index `x` using it, only the values of `x` on positions where `x > 4` will survive, and these are exactly the values we needed:
 ```{r}
 x = c(3,2,5,3,1,5,6,4)
-y = x>4
+y = (x>4)
 x[y]
 ```
 or, simply,
@@ -254,12 +253,11 @@ my_function = function(x,y,z) {
   return(x+y+z)
 }
 ```
-The function `my_function` returns the sum of its arguments. Having defined it, as above, we can use it
- like this
+The function `my_function` returns the sum of its arguments. Having defined it, as above, we can use it like this
 ```{r}
 my_function(1,3,9)
 ```
-Neither the output nor the arguments of a function in R are restricted to numbers. Our next example function, named `winners`, takes two vectors as arguments and returns a  vector. Its  components are those components of the first input vector (`x`) that are larger than the corresponding components of the second input vector (`y`)
+Neither the output nor the arguments of a function in R are restricted to numbers. Our next example function, named `winners`, takes two vectors as arguments and returns a  vector. Its components are those components of the first input vector (`x`) that are larger than the corresponding components of the second input vector (`y`)
 ```{r}
 winners = function(x,y) {
   z = x>y
@@ -299,7 +297,7 @@ kable(df, col.names = c("x","y", "x & y (and)", "x | y (or)", "!x (not)") )
 ```
 
 
-Let's put what we learned about functions and if-else statements together to write a function `distance_or_zero` whose arguments are coordinates `x` and `y` of a point in the plane, and whose output is  the distance from (x,y) to the origin if this distance happens to be between 1 and 2, and  and 0 otherwise. We will use similar functions later when we discuss Monte Carlo methods:
+Let's put what we learned about functions and if-else statements together to write a function `distance_or_zero` whose arguments are coordinates `x` and `y` of a point in the plane, and whose output is  the distance from the point (x,y) to the origin if this distance happens to be between 1 and 2, and  and 0 otherwise. We will use similar functions later when we discuss Monte Carlo methods:
 ```{r}
 distance_or_zero = Vectorize( function(x,y){
   distance = sqrt(x^2+y^2)
@@ -316,7 +314,7 @@ distance_or_zero(2,3)
 
 ## Problems
 
-Here are several simple problems. Their goal is to give you an idea of exactly how much R is required to get started in this course. Virtually any "introduction to R" should contain enough information to get you through all of these.
+Here are several simple problems. Their goal is to give you an idea of exactly how much R is required to get started in this course. 
 
 ```{exercise}
 Compute the following (your answer should be a decimal number):
@@ -336,23 +334,16 @@ Note: some of the answers will look like this `3.14e+13`. If you do not know wha
 
 ```{exercise}
 \ \newline 
+
 1. Define two variables $a$ and $b$ with values $3$ and $4$ and "put" their product into a variable called $c$. Output the value of $c$.
 
 2. Define two vectors $x$ and $y$ of length $3$, such that the components of $x$ are $1,2,3$ and the components of $y$ are $8,9,0$. Ouput their (componentwise) sum.
 
-3. Define a $2\times 2$ matrix $A=\begin{pmatrix} 1 & 2 \\ -1 & 3 \end{pmatrix}$. Use the command `matrix` and make sure to understand how it works; you can access its documentation directly from $R$ by writing `?matrix`. Make sure you understand what the parameters `ncol`, `nrow` and `byrow` do. 
+3. Define a $2\times 2$ matrix $A=\begin{pmatrix} 1 & 2 \\ -1 & 3 \end{pmatrix}$.
 
-4. Compute the matrix square $A^2$ (Careful! `A*A` will output a $2\times 2$ matrix, but it will not be $A^2$ - it will be the matrix whose entries are the squares of the entries of $A$. You need to use different notation.)
+4. Compute the matrix square $A^2$. 
 ```
 
-
-```{exercise} 
-\ \newline 
-
-1. Write a function that takes an argument $x$ and returns $5$ if $x\geq 5$ and $x$ itself otherwise.
-
-2. Write a function that returns `TRUE` (a logical value) if its argument is between $2$ and $3$ and `FALSE` otherwise. 
-```
 
 
 ```{exercise}
@@ -360,11 +351,20 @@ Note: some of the answers will look like this `3.14e+13`. If you do not know wha
 
 1. Construct a vector $x$ which contains all numbers from $1$ to $100$.
 
-2. Construct a vector $y$ which contains *squares* of all numbers between $20$ and $30$.
+2. Construct a vector $y$ which contains *squares* of all numbers between $20$ and $2000$.
 
-3. Construct a vector $z$ the same size as $y$ 
-  with logical entries (i.e., `TRUE` or `FALSE`) that indicates whether the entry at the same position in $y$ is above $600$ or not. (This is much easier to do than it sounds.)
+3. Construct a vector $z$ which contains only those components of $y$ whose values are between $400,000$ and $500,000$.
+
+4. Compute the average (arithmetic mean) of all the components of $z$. There is an R function that does that for you - find it!
+```  
+
+
+```{exercise} 
+\ \newline 
+
+1. Write a function that takes a numerical argument $x$ and returns $5$ if $x\geq 5$ and $x$ itself otherwise.
+
+2. Write a function that returns `TRUE` (a logical value) if its argument is between $2$ and $3$ and `FALSE` otherwise. 
+
+3. (Ex.cr.) Write a function that takes two equal-sized vectors as arguments and returns the angle between them in degrees. For definiteness, the angle between two vectors is defined to be $0$ when either one of them is $(0,0,\dots,0)$. 
 ```
-
-
-
