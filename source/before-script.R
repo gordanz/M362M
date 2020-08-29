@@ -8,8 +8,7 @@ knitr::opts_chunk$set(
   cache = FALSE,
   fig.align="center",
   fig.pos="t",
-  strip.white = TRUE,
-  tidy = TRUE
+  strip.white = TRUE
   )
 set.seed(2016)
 # options(digits = 4)

@@ -24,6 +24,10 @@ pre code {
 .sourceCode
   { background-color: #ffffff; }
   
+@media screen {
+  div.sourceCode { overflow: visible; }
+}
+
 .title {
   margin-right: 350px;
 }

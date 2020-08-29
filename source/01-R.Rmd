@@ -51,14 +51,31 @@ Once R and RStudio are on your computer, it is time to get acquainted with the b
 
 My plan is to give you a bare minimum in the next few paragraphs, and then to explain additional R concepts as we need them. This way, you will not be overwhelmed right from the start, and you will get a bit of a mathematical context as you learn more. Conversely, learning R commands will help with the math, too.
 
-### Scripts vs. the console 
-There at least  three different ways of inputting commands into R - through console, scripts and notebooks. You will learn about notebooks a bit later, so let's focus on the console and scripts. The console, as I already mentioned, is a window in RStudio where you can enter your R commands one by one. As a command is entered (and enter pressed) R will run it and display the result below. A typical console session looks like this
+### The console, Scripts and R Notebooks
+
+There at least  three different ways of inputting commands into R - through console, scripts and R-notebooks.  
+
+**The console**, as I already mentioned, is a window in RStudio where you can enter your R commands one by one. As a command is entered (and enter pressed) R will run it and display the result below. A typical console session looks like this
 ```{r echo=FALSE, out.width= "100%", fig.align='center',out.extra='style="padding:10px"'}
 knitr::include_graphics('pics/console_session.png')
 ```
-If you define a variable in a command, it will be available in all the subsequent commands. This way of interacting with R is perfect for quick-and-dirty computations and, what is somewhat euphemisitcally called "prototyping". In other words, this way you are using R as a calculator. There is another reason why you might be using the console. It is perfect for package installation and for help-related commands. If you type `help('log')`, the output will appear in the `Help` pane on the right. You can also see all the  available variables in the `Environment` pane on the (top) right. 
+If you define a variable in a command, it will be available in all the subsequent commands. This way of interacting with R is perfect for quick-and-dirty computations and, what is somewhat euphemistically called "prototyping". In other words, this way you are using R as a calculator. There is another reason why you might be using the console. It is perfect for package installation and for help-related commands. If you type `help('log')`, the output will appear in the `Help` pane on the right. You can also see all the  available variables in the `Environment` pane on the (top) right. 
 
-As your needs increase, you will need more complex (and longer) code to meet them. This is where scripts come in. They are text files (but have the extension `.R`) that hold R code. Scripts can run as a whole, and saved for later. To create a new script, go to File->New File->R Script. That will split your console window in two. The 
+As your needs increase, you will need more complex (and longer) code to meet them. This is where **scripts** come in. They are text files (but have the extension `.R`) that hold R code. Scripts can run as a whole, and saved for later. To create a new script, go to File->New File->R Script. That will split your RStudio window in two:
+```{r echo=FALSE, out.width= "100%", fig.align='center',out.extra='style="padding:10px"'}
+knitr::include_graphics("pics/script_console.png")
+```
+The top part will become a script editor, and your console will shrink to occupy the bottom part. You can write you code in there, edit and update it, and then run the whole script by clicking on Source, or pressing the associated shortcut key. 
+
+Inspired by Python Jupyter notebooks, **R notebooks** are a creature somewhere between scripts and the console, but also have some features of their own. 
+An R notebook is nothing other than a specially formatted text file which contains *chunks* of R code mixed with regular text. You can think of these chunks as mini scripts. What differentiates them from scripts is that chunks can be executed (evaluated) and the output becomes a part of the notebook:
+```{r echo=FALSE, out.width= "100%", fig.align='center',out.extra='style="padding:10px"'}
+knitr::include_graphics("pics/notebooks.png")
+```
+R notebooks are R's implementation of  *literate programming*. The idea is that documentation should be written at the same time as the program itself. As far as this course if concerned, R notebooks are just the right medium for homework and exam submission. You can run code and provide the interpretation of its output in a single document. See [here](other/Homework-instructions.html) for more information.
+
+
+
 
 ### Asking for help
 The most important thing about **learning R** (and many other things, for that matter) is knowing whom (and how) to ask for help. Luckily, R is a well established language, and you can get a lot of information by simply googling your problem. For example, if you google `logarithm in R` the top hit (at the time of writing) gives a nice overview and some examples. 
@@ -260,7 +277,7 @@ if (condition) {
   statement
 }
 ```
-where `condition` is anything that has a logical value, and statement is any R statement. First R evaluates `condition`. If it is true, it runs `statement`. If it is false, nothing happens. If you want someting to happen if (and only if) your condition is false, you need an `if-else` statement:
+where `condition` is anything that has a logical value, and statement is any R statement. First R evaluates `condition`. If it is true, it runs `statement`. If it is false, nothing happens. If you want something to happen if (and only if) your condition is false, you need an `if-else` statement:
 ```{r eval=FALSE}
 if (condition) {
   statement1
