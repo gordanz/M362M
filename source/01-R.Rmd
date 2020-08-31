@@ -370,3 +370,4 @@ Note: some of the answers will look like this `3.14e+13`. If you do not know wha
 
 3. (Extra credit) Write a function that takes two equal-sized vectors as arguments and returns the angle between them in degrees. For definiteness, the angle between two vectors is defined to be $0$ when either one of them is $(0,0,\dots,0)$. 
 ```
+⬇︎ In case you were wondering, the text below belongs to footnotes from somewhere high above.⬇︎

@@ -1,0 +1,7 @@
+\newcommand{\PP}{{\mathbb{P}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand{\sS}{{\mathcal{S}}}
+\newcommand{\EE}{{\mathbb{E}}}
+\newcommand{\ld}{\lambda}
+\newcommand{\eand}{\text{ and }}
+# Distributions 
