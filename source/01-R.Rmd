@@ -60,7 +60,7 @@ knitr::include_graphics('pics/console_session.png')
 ```
 If you define a variable in a command, it will be available in all the subsequent commands. This way of interacting with R is perfect for quick-and-dirty computations and, what is somewhat euphemistically called "prototyping". In other words, this way you are using R as a calculator. There is another reason why you might be using the console. It is perfect for package installation and for help-related commands. If you type `help('log')`, the output will appear in the `Help` pane on the right. You can also see all the  available variables in the `Environment` pane on the (top) right. 
 
-As your needs increase, you will need more complex (and longer) code to meet them. This is where **scripts** come in. They are text files (but have the extension `.R`) that hold R code. Scripts can run as a whole, and saved for later. To create a new script, go to File->New File->R Script. That will split your RStudio window in two:
+As your needs increase, you will need more complex (and longer) code to meet them. This is where **scripts** come in. They are text files (but have the extension `.R`) that hold R code. Scripts can run as a whole, and be saved for later. To create a new script, go to File->New File->R Script. That will split your RStudio window in two:
 ```{r echo=FALSE, out.width= "100%", fig.align='center',out.extra='style="padding:10px"'}
 knitr::include_graphics("pics/script_console.png")
 ```
