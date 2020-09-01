@@ -301,14 +301,14 @@ kable(df, col.names = c("x","y", "x & y (and)", "x | y (or)", "!x (not)") )
 
 Let's put what we learned about functions and if-else statements together to write a function `distance_or_zero` whose arguments are coordinates `x` and `y` of a point in the plane, and whose output is  the distance from the point (x,y) to the origin if this distance happens to be between 1 and 2, and  and 0 otherwise. We will use similar functions later when we discuss Monte Carlo methods:
 ```{r}
-distance_or_zero = Vectorize( function(x,y){
+distance_or_zero =  function(x,y){
   distance = sqrt(x^2+y^2)
   if (distance <= 2 & distance >=1) {
     return(distance)
   } else {
     return(0)
   }
-})
+}
 distance_or_zero(1.2,1.6)
 distance_or_zero(2,3)
 ```
