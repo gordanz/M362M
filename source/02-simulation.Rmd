@@ -31,8 +31,19 @@ You could spend your whole life trying to understand what it really means to "si
 
 
 
-You might have encountered a geometric distribution before. A random variable with that distribution can take any positive integer value or $0$, i.e., its support is $\N_0=\{0,1,2,3,\dots\}$. As you can see from the output above, the value $0$ appears more often than the value $3$, and the value $23$ does not appear at all in this particular simulation run. The probability of seeing the value $k\in \{0,1,2,3,\dots\}$ as a result of a single draw is given by $(1-p)^k p$, where $p$ is called the *parameter* of the distribution. That corresponds to the following interpretation of the geometric distribution: *keep tossing a biased coin (with probability $p$ of obtaining H) until you see the first H; the number Ts before that is that value your geometric random variable*. 
-If we put these probabilities in a single table (and choose $p=0.4$, for example) it is going to look like this:
+You might have encountered a geometric distribution before. A random variable with that
+distribution can take any positive integer value or $0$, i.e., its support is 
+${\mathbb N}_0=\{0,1,2,3,\dots\}$. 
+As you can see from the output above, the value $0$ appears more often than the value $3$,
+and the value $23$ does not appear at all in this particular simulation run. The 
+probability of seeing the value $k\in \{0,1,2,3,\dots\}$ as a result of a single 
+draw is given by $(1-p)^k p$, where $p$ is called the *parameter* of the distribution. 
+
+That corresponds to the following interpretation of the geometric distribution: *keep 
+tossing a biased coin (with probability $p$ of obtaining H) until you see the first H; the 
+number Ts before that is that value your geometric random variable*. 
+If we put these probabilities in a single table (and choose $p=0.4$, for example) it is 
+going to look like this:
 ```{r echo=FALSE}
 k=0:7
 df = data.frame(dgeom(k, prob=0.4))
