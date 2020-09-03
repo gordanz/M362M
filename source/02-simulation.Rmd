@@ -173,7 +173,7 @@ y = rep("0.1", 10)
 knitr::kable(t(y), col.names = 1:10, escape = FALSE)
 
 ```
- *R.* The command used to draw a sample from a (finite) collection is, of, course `sample`. The first argument is a vector, and it contains the "bag" from which you are drawing. If we are interested in repeated, random samples, we also need to specify `replace = FALSE` otherwise, you could draw any single number at most once:
+ *R.* The command used to draw a sample from a (finite) collection is, of, course `sample`. The first argument is a vector, and it plays the role of the "bag" from which you are drawing. If we are interested in repeated, random samples, we also need to specify `replace = FALSE` otherwise, you could draw any single number at most once:
 ```{r}
 sample(1:10, 8, replace = FALSE)
 ```
@@ -200,7 +200,7 @@ Note how it is mostly $2$s, as expected.
 
 
 ```{exercise}
-Draw a sample of size $n=10$ from the normal distribution with parameters $\mu=1$, $\sigma = 2$. Plot a historgram of the obtained values. Repeat for $n=100$ and $n=100000$. 
+Draw a sample of size $n=10$ from $N(1,2)$, i.e., from the normal distribution with parameters $\mu=1$, $\sigma = 2$. Plot a historgram of the obtained values. Repeat for $n=100$ and $n=100000$. 
 ```
 **Solution:**
 ```{r}
@@ -235,7 +235,7 @@ hist(x,freq = FALSE)
 Note how the $y$-axes label changed from "Frequency" to "Density". 
 With such a normalization, the histogram of $x$ can be directly compared to the probability density of a normal distribution. Here is a histogram of $100,000$ simulations from our normal distribution with its density function (pdf) superimposed:
 
-```{r echo=FALSE}
+```{r echo=2:6}
 set.seed(1098)
 sims = rnorm(10000, mean = 1, sd = 2)
 x = seq(-6,8,by=0.02)
@@ -243,7 +243,7 @@ y = dnorm(x, mean = 1, sd = 2)
 hist(sims, freq=FALSE, main = "")
 points(x,y, type="l", lwd=3, col="red" )
 ```
-This is also a good time to review some basic facts about the normal distribution (family). As you know, it a family continuous distributions parametrized by two parameters, namely $\mu \in (-\infty,\infty)$ and $\sigma>0$. Given $\mu$ and $\sigma$, the pdf takes the following familiar form (which you should not try to memorize):
+This is also a good time to review some basic facts about the normal distribution (family). As you know, it a family continuous distributions parameterized by two parameters, namely $\mu \in (-\infty,\infty)$ and $\sigma>0$. Given $\mu$ and $\sigma$, the pdf takes the following familiar form (which you should not try to memorize):
 $$ f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\tfrac{(x-\mu)^2}{2 \sigma^2}}.$$
 The special case $\mu=0,\sigma=1$ corresponds to a **standard normal**, and that is the distribution you find in normal tables. The normal CDF is given by
 $$ F(x) = \int_{-\infty}^{x} \frac{1}{\sigma \sqrt{2\pi}} e^{-\tfrac{(x-\mu)^2}{2 \sigma^2}}\, dx$$
@@ -257,7 +257,7 @@ but it does not have a closed-form expression. That does not mean it does not ex
    
 1. Simulate $n=10000$ draws from the Weibull distribution with shape parameter $2$ and scale parameter $3$. Draw a histogram of your simulations.
 
-2. Suppose that the vector `x` contains $n=1000$ simulations from the standard normal $\mu=0, \sigma=1)$. Without simulating any new random numbers, transform it into the vector `y` such that `y` is a vector of $n=1000$ simulations from the normal with $\mu=3$ and $\sigma=2$. Draw histograms of both `x` and `y`. 
+2. Suppose that the vector `x` contains $n=10000$ simulations from the standard normal $\mu=0, \sigma=1)$. Without simulating any new random numbers, transform it into the vector `y` such that `y` is a vector of $n=10000$ simulations from the normal with $\mu=1$ and $\sigma=0.5$. Draw histograms of both `x` and `y` on the same plot. (*Note:* the extra parameter `add` is used to superimpose plots. You may want to use different colors, too. Use the e parameter `col` for that. )
 
 3. Starting with  `x=seq(-3,3,by=0.1)`, define the appropriate vector `y` and use `x` and `y` to plot the graph of the cdf of the standard normal. The command you want to use is `plot` with the following extra arguments
    - `type="l"` (to get a smooth line instead of a bunch of points). 
@@ -293,10 +293,20 @@ and plot their histogram.
    
    More concretely,  take $X$ to be exponentially distributed with parameter $1$ and $g(x) = \sin(x)$ and produce a picture that approximates the pdf $f_Y$ of $Y$. (Note: even if you remember how to do this analytically, you will run into a difficulty. The function $\sin(x)$ is not one-to-one and the method usually taught in probability classes will not apply. If you learned how to do it even in the case $g(x)= \sin(x)$, kudos to your instructor!)
 
-3. Let $X$ be a random variable with the Cauchy distribution, and $Y = \operatorname{arctan}(X)$. R allows you to simulate from the Cauchy distribution, even if you do not really know what it is.  How would you use that to  make an educated guess as to what the distribution of $Y$ is? To make your life easier, consider $\tfrac{2}{\pi} Y$ first. 
+3. Let $X$ be a random variable with the Cauchy distribution, and $Y = \operatorname{arctan}(X)$. R allows you to simulate from the Cauchy distribution, even if you do not  know what it is.  How would you use that to  make an educated guess as to what the distribution of $Y$ is? To make your life easier, consider $\tfrac{2}{\pi} Y$ first. 
 
 ```
+ 
+```{exercise} 
+(Extra credit) 
 
-
+1. Let $f_1$ and $f_2$ be two pdfs. We take a constant $\alpha \in (0,1)$ and define the function $f$ by
+$$ f(x) = \alpha f_1(x) + (1-\alpha) f_2(x).$$
+The function $f$ is the pdf of a third distribution, which is called the **mixture of $f_1$ and $f_2$ with weights $\alpha$ and $1-\alpha$**. Assuming  that you know how to simulate from the distributions with pdfs $f_1$ and $f_2$,  how would you draw $10,000$ simulations from the mixture $f$? Show your method on the example of a mixture of $N(0,1)$ and $N(4,1)$  with $\alpha=2/3$. Plot the histogram of the obtained sample (play with the parameter `breaks` until you get a nice picture.)
+   
+   (*Hint:* start with two vectors, the first containing $10,000$ simulations from $f_1$ and the second from $f_2$. Then "toss" $10,000$ biased coins with $\mathbb{P}[ H ] = \alpha$ ...  )
+2. The **double exponential** or **Laplace** distribution is a continuous probability distribution whose pdf is given by $$ \tfrac{1}{2} \exp(-|x|), x\in {\mathbb R}.$$
+This distribution is not built into R. How would you produce  simulations from the double exponential using R?
+```
 
 ⬇︎ In case you were wondering, the text below belongs to footnotes from somewhere high above.⬇︎
