@@ -255,7 +255,10 @@ but it does not have a closed-form expression. That does not mean it does not ex
 ```{exercise} 
 <br>
    
-1. Simulate $n=10000$ draws from the Weibull distribution with shape parameter $2$ and scale parameter $3$. Draw a histogram of your simulations.
+1. Find the Weibull distribution in R's help system.<!-- ' -->
+Simulate $n=10000$ draws from the Weibull distribution with shape parameter $2$ and scale parameter $3$. Draw a histogram of your simulations. 
+
+
 
 2. Suppose that the vector `x` contains $n=10000$ simulations from the standard normal $\mu=0, \sigma=1)$. Without simulating any new random numbers, transform it into the vector `y` such that `y` is a vector of $n=10000$ simulations from the normal with $\mu=1$ and $\sigma=0.5$. Draw histograms of both `x` and `y` on the same plot. (*Note:* the extra parameter `add` is used to superimpose plots. You may want to use different colors, too. Use the e parameter `col` for that. )
 
@@ -291,7 +294,7 @@ and plot their histogram.
 
 2. You may have learned in probability how to compute the pdf $f_Y(y)$ of a transformation $Y=g(X)$ of a random variable with pdf $f_X(x)$. Suppose that you forgot how to do that, but have access to $10,000$ simulations from the distribution of $X$. How would you get an approximate idea about the shape of the function $f_Y$? 
    
-   More concretely,  take $X$ to be exponentially distributed with parameter $1$ and $g(x) = \sin(x)$ and produce a picture that approximates the pdf $f_Y$ of $Y$. (Note: even if you remember how to do this analytically, you will run into a difficulty. The function $\sin(x)$ is not one-to-one and the method usually taught in probability classes will not apply. If you learned how to do it even in the case $g(x)= \sin(x)$, kudos to your instructor!)
+   More concretely,  take $X$ to be exponentially distributed with parameter $1$ and $g(x) = \sin(x)$ and produce a picture that approximates the pdf $f_Y$ of $Y$. (Note: even if you remember how to do this analytically, you will run into a difficulty. The function $\sin(x)$ is not one-to-one and the method usually taught in probability classes will not apply. If you learned how to do it in the many-to-one case of  $g(x)= \sin(x)$, kudos to your instructor!)
 
 3. Let $X$ be a random variable with the Cauchy distribution, and $Y = \operatorname{arctan}(X)$. R allows you to simulate from the Cauchy distribution, even if you do not  know what it is.  How would you use that to  make an educated guess as to what the distribution of $Y$ is? To make your life easier, consider $\tfrac{2}{\pi} Y$ first. 
 
