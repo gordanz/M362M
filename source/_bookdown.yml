@@ -13,5 +13,5 @@ rmd_files: [
    "01-R.Rmd", 
   "02-simulation.Rmd",
   # "pipeline.Rmd",
-  # "formulas.Rmd"
+  "distributions.Rmd"
     ]

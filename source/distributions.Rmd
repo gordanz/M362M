@@ -1,7 +1,130 @@
 \newcommand{\PP}{{\mathbb{P}}}
+\newcommand{\RR}{{\mathbb{R}}}
+\newcommand{\Var}{\operatorname{Var}}
 \newcommand{\N}{{\mathbb{N}}}
 \newcommand{\sS}{{\mathcal{S}}}
 \newcommand{\EE}{{\mathbb{E}}}
 \newcommand{\ld}{\lambda}
 \newcommand{\eand}{\text{ and }}
-# Distributions 
+
+# (APPENDIX) Appendix {-}
+
+# Probability Distributions {#dist}
+
+Here are the basic facts about the probability distributions we will need in these lecture notes. For a much longer list of important distributions, check  this [wikipedia page](https://en.wikipedia.org/wiki/List_of_probability_distributions). 
+
+
+## Discrete distributions:
+
+Note: $(q=1-p)$
+```{r echo=FALSE, warning = FALSE}
+library(tidyverse)
+library(kableExtra)
+discrete = matrix(c(
+      c("",
+      "Parameters",
+      "Notation",
+      "Support",
+      "pmf",
+      "$\\EE[X]$",
+      "$\\Var[X]$"
+   ),
+   c( "Bernoulli",
+      "$p\\in (0,1)$", 
+      "$B(p)$", 
+      "$\\{0,1\\}$", 
+      "$(q,p,0,0,\\dots)$", 
+      "$p$", 
+      "$pq$" 
+      # "$ps+q$"
+      ),
+  c("Binomial",
+      "$n\\in\\N , p\\in (0,1)$",
+      "$b(n,p)$",
+      "$\\{0,1,\\dots, n\\}$",
+      "$\\binom{n}{k} p^k q^{n-k}$",
+      "$np$",
+      "$npq$"
+      # "$(ps +q)^n$"
+      ),
+   c("Geometric",
+      "$p\\in (0,1)$",
+      "$g(p)$",
+      "$\\{0,1,\\dots\\}$",
+      "$p q^k$",
+      "$q/p$",
+      "$q/p^2$"
+      # "$\\tfrac{p}{1-qs}$"
+   ),
+  c("Poisson",
+      "$\\lambda\\in(0,\\infty)$",
+      "$P(\\lambda)$",
+      "$\\{0,1,\\dots\\}$",
+      "$e^{-\\lambda} \\tfrac{\\lambda^k}{k!}$",
+      "$\\lambda$",
+      "$\\lambda$"
+      # "$e^{\\lambda(s-1)}$"
+   )),
+  byrow = TRUE,
+  ncol = 7
+) 
+
+a = as_tibble(discrete)
+
+kable(a, col.names = NULL) %>% 
+   column_spec(1, bold = TRUE) %>% 
+   row_spec(1, italic = TRUE)
+
+```
+
+## Continuous distributions:
+Note: the pdf is given by the formula in the table only on its support. It is equal to $0$ outside of it. 
+```{r echo=FALSE, warning = FALSE}
+library(tidyverse)
+library(kableExtra)
+continuous = matrix(c(
+      c("",
+      "Parameters",
+      "Notation",
+      "Support",
+      "pdf",
+      "$\\EE[X]$",
+      "$\\Var[X]$"
+   ),
+   c( "Uniform",
+      "$a\\lt b$",
+      "$U(a,b)$", 
+      "$(a,b)$", 
+      "$\\frac{1}{b-a}$",
+      "$\\frac{a+b}{2}$", 
+      "$\\frac{(b-a)^2}{12}$" 
+      ),
+   c( "Normal",
+      "$\\mu\\in{\\mathbb R},\\sigma \\gt 0$", 
+      "$N(\\mu,\\sigma)$", 
+      "${\\mathbb R}$", 
+      "$\\frac{1}{\\sigma \\sqrt{2\\pi}} e^{-\\tfrac{(x-\\mu)^2}{2 \\sigma^2}}$", 
+      "$\\mu$", 
+      "$\\sigma^2$" 
+      ),
+   c( "Exponential",
+      "$\\lambda\\gt 0$",
+      "$\\operatorname{Exp}(\\lambda)$", 
+      "$(0,\\infty)$", 
+      "$\\lambda e^{-\\lambda x}$",
+      "$\\tfrac{1}{\\lambda}$", 
+      "$\\frac{1}{\\lambda^2}$"
+      )
+   ),
+  byrow = TRUE,
+  ncol = 7
+)
+
+
+a = as_tibble(continuous)
+
+kable(a, col.names = NULL) %>% 
+   column_spec(1, bold = TRUE) %>% 
+   row_spec(1, italic = TRUE)
+
+```

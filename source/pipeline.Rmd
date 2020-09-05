@@ -5,6 +5,56 @@
 \newcommand{\ld}{\lambda}
 \newcommand{\eand}{\text{ and }}
 # Pipeline 
+ 
+## Multivariate Distributions
+
+```{exercise}
+Let `x` contain $10,000$ draws from $N(0,1)$, `y` another $10,000$ draws from $N(0,1)$ and let `z=x+y`. 
+
+1. Draw a scatterplot of `x` and `y`.
+2. If you apply the function `sample` to `y` (without any additional arguments) it will randomly permute the components of `y`. Draw a scatterplot of `x` and `sample(y)`; does it qualitatively differ from the scatterplot of `x` and `y` your drew in 1. above? Try a few times to get a feel for the variability. 
+```
+**Solution:**
+```{r}
+x = rnorm(10000)
+y = rnorm(10000)
+z = x+y
+```
+```{r}
+library(hexbin)
+plot(hexbin(x,y))
+```
+```{r}
+library(plot3D)
+##  Create cuts:
+x_c <- cut(x, 20)
+y_c <- cut(y, 20)
+
+##  Calculate joint counts at cut levels:
+z <- table(x_c, y_c)
+
+##  Plot as a 3D histogram:
+hist3D(z=z, border="black", zlab="Count")
+
+```
+```{r, setup}
+library(rgl)
+library(plot3D)
+knitr::knit_hooks$set(webgl = hook_webgl)
+```
+
+```{r, test-rgl, webgl=TRUE}
+x_c <- cut(x, 20)
+y_c <- cut(y, 20)
+
+##  Calculate joint counts at cut levels:
+z <- table(x_c, y_c)
+
+##  Plot as a 3D histogram:
+hist3D(z=z, border="black", zlab="Count")
+
+```
+ 
 ## Monte Carlo
 
 ```{exercise}
@@ -18,7 +68,8 @@ err = 0.25 - mean(x)
 mean(x)
 ```
 For an exponential random variable with parameter $\ld$, the expected value is 
-$1/\ld$; in this case $0.25$. The error made was `r format(err,digits=5)` for $n=10$ simulations.
+$1/\ld$ (such information can be found in [Appendix A](./dist.html)) which, 
+in this case, is  $0.25$. The error made was `r format(err,digits=5)` for $n=10$ simulations.
 We increase the number of simulations to $n=1000$ and get a better result
 ```{r echo = c(2,4)}
 set.seed(12342)

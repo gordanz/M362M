@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lecture notes for "Introduction to Stochastic Processes" | Lecture notes for &quot;Introduction to Stochastic Processes&quot;</title>
+  <title>(APPENDIX) | Lecture notes for &quot;Introduction to Stochastic Processes&quot;</title>
   <meta name="description" content="A set of lecture notes for M362M: Introduction to Stochastic Processes" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lecture notes for "Introduction to Stochastic Processes" | Lecture notes for &quot;Introduction to Stochastic Processes&quot;" />
+  <meta property="og:title" content="(APPENDIX) | Lecture notes for &quot;Introduction to Stochastic Processes&quot;" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="gordanz/M362M" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lecture notes for "Introduction to Stochastic Processes" | Lecture notes for &quot;Introduction to Stochastic Processes&quot;" />
+  <meta name="twitter:title" content="(APPENDIX) | Lecture notes for &quot;Introduction to Stochastic Processes&quot;" />
   
   <meta name="twitter:description" content="A set of lecture notes for M362M: Introduction to Stochastic Processes" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="intro.html"/>
+<link rel="prev" href="simulation-of-random-variables-and-monte-carlo.html"/>
+<link rel="next" href="probability-distributions.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -156,13 +156,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html"><i class="fa fa-check"></i><b>2</b> Simulation of Random Variables and Monte Carlo</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#simulation-of-some-common-probability-distributions"><i class="fa fa-check"></i><b>2.1</b> Simulation of some common probability distributions</a></li>
-<li class="chapter" data-level="2.2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#additional-problems"><i class="fa fa-check"></i><b>2.2</b> Additional Problems</a></li>
+<li class="chapter" data-level="2.2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#monte-carlo"><i class="fa fa-check"></i><b>2.2</b> Monte Carlo</a></li>
+<li class="chapter" data-level="2.3" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#additional-problems"><i class="fa fa-check"></i><b>2.3</b> Additional Problems</a></li>
 </ul></li>
-<li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>A</b> Probability Distributions</a>
+<li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i>(APPENDIX)</a></li>
+<li class="chapter" data-level="3" data-path="probability-distributions.html"><a href="probability-distributions.html"><i class="fa fa-check"></i><b>3</b> Probability Distributions</a>
 <ul>
-<li class="chapter" data-level="A.1" data-path="dist.html"><a href="dist.html#discrete-distributions"><i class="fa fa-check"></i><b>A.1</b> Discrete distributions:</a></li>
-<li class="chapter" data-level="A.2" data-path="dist.html"><a href="dist.html#continuous-distributions"><i class="fa fa-check"></i><b>A.2</b> Continuous distributions:</a></li>
+<li class="chapter" data-level="3.1" data-path="probability-distributions.html"><a href="probability-distributions.html#discrete-distributions-q1-p"><i class="fa fa-check"></i><b>3.1</b> Discrete distributions: <span class="math inline">\((q=1-p)\)</span></a></li>
 </ul></li>
 </ul>
 
@@ -181,51 +181,16 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Lecture notes for "Introduction to Stochastic Processes"</h1>
-<p class="author"><em>Gordan Zitkovic</em></p>
-<p class="date"><em>last updated - 2020-09-05</em></p>
-</div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<p><img src="pics/title.png" width = 400 style="position:absolute;top:0px;left:50%;" /></p>
-<p>This is an always-evolving set of lecture notes for <strong>Introduction to Stochastic Processes (M362M)</strong>. It should start with me explaining what stochastic processes are. Instead, here is a list of several questions you will be able to give answers to when you complete this course.</p>
-<p><strong>Question 1</strong> In a simplistic model, the price of a share of a stock goes either up or down by <span class="math inline">\(\$1\)</span> each day, with probability <span class="math inline">\(1/2\)</span>. You own a single share whose value today is <span class="math inline">\(\$100\)</span>, so that its tomorrow’s price will be <span class="math inline">\(\$101\)</span> or <span class="math inline">\(\$99\)</span> with probability <span class="math inline">\(1/2\)</span>, etc. Your strategy is to hold onto your share until one of the following two things happen: you go bankrupt (the stock price hits <span class="math inline">\(0\)</span>), or you make a <span class="math inline">\(\$50\)</span> dollar profit (the stock price hits <span class="math inline">\(\$150\)</span>.)</p>
-<ol style="list-style-type: decimal">
-<li>How likely is it that you will make a profit before you go bankrupt?</li>
-<li>How long will it take?</li>
-<li>Is it possible that it takes forever, i.e., that the stock price hovers between <span class="math inline">\(\$1\)</span> and <span class="math inline">\(\$149\)</span> forever?</li>
-</ol>
-<p><strong>Question 2.</strong> A person carrying a certain disease infects a random number of people in a week, and then stops being infectious. Each of the infected people transmits the disease in the same way, etc. Suppose that the number of people each (infectious) individual infects is either <span class="math inline">\(0\)</span>, <span class="math inline">\(1\)</span> or <span class="math inline">\(2\)</span> or <span class="math inline">\(3\)</span>, each with probability <span class="math inline">\(1/4\)</span> and that different infectious individuals may infect different number of people and behave independently of each other.</p>
-<ol style="list-style-type: decimal">
-<li>What is the probability that the disease will ever be eradicated?</li>
-<li>What is the probability that every single individual in the population of <span class="math inline">\(328,000,000\)</span> will eventually be infected?</li>
-</ol>
-<p><strong>Question 3.</strong> In a game of tennis, Player <span class="math inline">\(1\)</span> wins against Player <span class="math inline">\(2\)</span> in each rally (the smallest chunk of the match that leads to point, i.e., to a score change from <span class="math inline">\(15-30\)</span> to <span class="math inline">\(30-30\)</span>, for example) with probability <span class="math inline">\(p\)</span>.
-What is the probability that Player <span class="math inline">\(1\)</span> wins</p>
-<ol style="list-style-type: decimal">
-<li>a game (the chunk of the match that leads to a score change such as <span class="math inline">\(5-3\)</span> to <span class="math inline">\(6-3\)</span> within a set)?</li>
-<li>a set? the entire match?</li>
-<li>Is the game of tennis set up in such a way that is <em>amplifies</em> or <em>reduces</em> the difference in skill between players?</li>
-</ol>
-<p><img src="pics/knight1.png" width="35%" style="float:right; padding:10px" style="display: block; margin: auto;" /></p>
-<p><strong>Question 4.</strong>
-A knight starts in the lower left corner of the chess board and starts moving ``randomly’’. That means that from any position, it chooses one of the possible (legal) moves and takes it, with all legal moves having the same probability. It keeps doing the same thing until it comes back to the square it started from.</p>
-<ol style="list-style-type: decimal">
-<li>What is the expected number of moves the knight will make before it returns to “square one”?</li>
-<li>How about the same problem, but using a different chess piece? Which one do you think will come back is the smallest (expected) number of steps?</li>
-<li>(*) How about the same problem, but until <em>all</em> squares have been visited at least once?</li>
-</ol>
-<p><strong>Question 5.</strong> How does Google search work?</p>
-
+<div id="appendix" class="section level1 unnumbered">
+<h1>(APPENDIX)</h1>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="simulation-of-random-variables-and-monte-carlo.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="probability-distributions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

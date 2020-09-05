@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>A Probability Distributions | Lecture notes for &quot;Introduction to Stochastic Processes&quot;</title>
+  <meta name="description" content="A set of lecture notes for M362M: Introduction to Stochastic Processes" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="A Probability Distributions | Lecture notes for &quot;Introduction to Stochastic Processes&quot;" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A set of lecture notes for M362M: Introduction to Stochastic Processes" />
+  <meta name="github-repo" content="gordanz/M362M" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="A Probability Distributions | Lecture notes for &quot;Introduction to Stochastic Processes&quot;" />
+  
+  <meta name="twitter:description" content="A set of lecture notes for M362M: Introduction to Stochastic Processes" />
+  
+
+<meta name="author" content="Gordan Zitkovic" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="simulation-of-random-variables-and-monte-carlo.html"/>
+
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">M362M Lecture notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> An intro to R and RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#setting-up-an-r-environment-on-your-computer"><i class="fa fa-check"></i><b>1.1</b> Setting up an R environment on your computer</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#installing-r"><i class="fa fa-check"></i><b>1.1.1</b> Installing R</a></li>
+<li class="chapter" data-level="1.1.2" data-path="intro.html"><a href="intro.html#installing-rstudio"><i class="fa fa-check"></i><b>1.1.2</b> Installing RStudio</a></li>
+<li class="chapter" data-level="1.1.3" data-path="intro.html"><a href="intro.html#installing-basic-packages"><i class="fa fa-check"></i><b>1.1.3</b> Installing basic packages</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#learning-the-basics-of-r"><i class="fa fa-check"></i><b>1.2</b> Learning the basics of R</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#the-console-scripts-and-r-notebooks"><i class="fa fa-check"></i><b>1.2.1</b> The console, Scripts and R Notebooks</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#asking-for-help"><i class="fa fa-check"></i><b>1.2.2</b> Asking for help</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#vectors"><i class="fa fa-check"></i><b>1.2.3</b> Vectors</a></li>
+<li class="chapter" data-level="1.2.4" data-path="intro.html"><a href="intro.html#matrices"><i class="fa fa-check"></i><b>1.2.4</b> Matrices</a></li>
+<li class="chapter" data-level="1.2.5" data-path="intro.html"><a href="intro.html#functions"><i class="fa fa-check"></i><b>1.2.5</b> Functions</a></li>
+<li class="chapter" data-level="1.2.6" data-path="intro.html"><a href="intro.html#if-else-statements"><i class="fa fa-check"></i><b>1.2.6</b> If-else statements</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#problems"><i class="fa fa-check"></i><b>1.3</b> Problems</a></li>
+</ul></li>
+<li class="part"><span><b>I Probability and Simulation</b></span></li>
+<li class="chapter" data-level="2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html"><i class="fa fa-check"></i><b>2</b> Simulation of Random Variables and Monte Carlo</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#simulation-of-some-common-probability-distributions"><i class="fa fa-check"></i><b>2.1</b> Simulation of some common probability distributions</a></li>
+<li class="chapter" data-level="2.2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#monte-carlo"><i class="fa fa-check"></i><b>2.2</b> Monte Carlo</a></li>
+<li class="chapter" data-level="2.3" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#additional-problems"><i class="fa fa-check"></i><b>2.3</b> Additional Problems</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="probability-distributions.html"><a href="probability-distributions.html"><i class="fa fa-check"></i><b>A</b> Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="probability-distributions.html"><a href="probability-distributions.html#discrete-distributions"><i class="fa fa-check"></i><b>A.1</b> Discrete distributions:</a></li>
+<li class="chapter" data-level="A.2" data-path="probability-distributions.html"><a href="probability-distributions.html#continuous-distributions"><i class="fa fa-check"></i><b>A.2</b> Continuous distributions:</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lecture notes for "Introduction to Stochastic Processes"</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="probability-distributions" class="section level1" number="3">
+<h1><span class="header-section-number">A</span> Probability Distributions</h1>
+<p>Here are the basic facts about the probability distributions we will need in these lecture notes. For a much longer list of important distributions, check this <a href="https://en.wikipedia.org/wiki/List_of_probability_distributions">wikipedia page</a>.</p>
+<div id="discrete-distributions" class="section level2" number="3.1">
+<h2><span class="header-section-number">A.1</span> Discrete distributions:</h2>
+Note: <span class="math inline">\((q=1-p)\)</span>
+<table>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;font-style: italic;">
+</td>
+<td style="text-align:left;font-style: italic;">
+Parameters
+</td>
+<td style="text-align:left;font-style: italic;">
+Notation
+</td>
+<td style="text-align:left;font-style: italic;">
+Support
+</td>
+<td style="text-align:left;font-style: italic;">
+pmf
+</td>
+<td style="text-align:left;font-style: italic;">
+<span class="math inline">\({\mathbb{E}}[X]\)</span>
+</td>
+<td style="text-align:left;font-style: italic;">
+<span class="math inline">\(\operatorname{Var}[X]\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Bernoulli
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(p\in (0,1)\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(B(p)\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\{0,1\}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\((q,p,0,0,\dots)\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(p\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(pq\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Binomial
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(n\in{\mathbb{N}}, p\in (0,1)\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(b(n,p)\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\{0,1,\dots, n\}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\binom{n}{k} p^k q^{n-k}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(np\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(npq\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Geometric
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(p\in (0,1)\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(g(p)\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\{0,1,\dots\}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(p q^k\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(q/p\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(q/p^2\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Poisson
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\lambda\in(0,\infty)\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(P(\lambda)\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\{0,1,\dots\}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(e^{-\lambda} \tfrac{\lambda^k}{k!}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\lambda\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\lambda\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="continuous-distributions" class="section level2" number="3.2">
+<h2><span class="header-section-number">A.2</span> Continuous distributions:</h2>
+Note: the pdf is given by the formula in the table only on its support. It is equal to <span class="math inline">\(0\)</span> outside of it.
+<table>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;font-style: italic;">
+</td>
+<td style="text-align:left;font-style: italic;">
+Parameters
+</td>
+<td style="text-align:left;font-style: italic;">
+Notation
+</td>
+<td style="text-align:left;font-style: italic;">
+Support
+</td>
+<td style="text-align:left;font-style: italic;">
+pdf
+</td>
+<td style="text-align:left;font-style: italic;">
+<span class="math inline">\({\mathbb{E}}[X]\)</span>
+</td>
+<td style="text-align:left;font-style: italic;">
+<span class="math inline">\(\operatorname{Var}[X]\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Uniform
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(a\lt b\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(U(a,b)\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\((a,b)\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\frac{1}{b-a}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\frac{a+b}{2}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\frac{(b-a)^2}{12}\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Normal
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\mu\in{\mathbb R},\sigma \gt 0\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(N(\mu,\sigma)\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\({\mathbb R}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\frac{1}{\sigma \sqrt{2\pi}} e^{-\tfrac{(x-\mu)^2}{2 \sigma^2}}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\mu\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\sigma^2\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Exponential
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\lambda\gt 0\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\operatorname{Exp}(\lambda)\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\((0,\infty)\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\lambda e^{-\lambda x}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\tfrac{1}{\lambda}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\frac{1}{\lambda^2}\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="simulation-of-random-variables-and-monte-carlo.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": false,
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
