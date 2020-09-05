@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="intro.html"/>
-<link rel="next" href="dist.html"/>
+<link rel="next" href="pipeline.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -158,6 +158,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#simulation-of-some-common-probability-distributions"><i class="fa fa-check"></i><b>2.1</b> Simulation of some common probability distributions</a></li>
 <li class="chapter" data-level="2.2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#additional-problems"><i class="fa fa-check"></i><b>2.2</b> Additional Problems</a></li>
 </ul></li>
+<li class="chapter" data-level="3" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>3</b> Pipeline</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="pipeline.html"><a href="pipeline.html#multivariate-distributions"><i class="fa fa-check"></i><b>3.1</b> Multivariate Distributions</a></li>
+<li class="chapter" data-level="3.2" data-path="pipeline.html"><a href="pipeline.html#monte-carlo"><i class="fa fa-check"></i><b>3.2</b> Monte Carlo</a></li>
+<li class="chapter" data-level="3.3" data-path="pipeline.html"><a href="pipeline.html#conditional-probability-and-independence."><i class="fa fa-check"></i><b>3.3</b> Conditional probability and independence.</a></li>
+</ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>A</b> Probability Distributions</a>
 <ul>
@@ -236,9 +242,8 @@ As you can see from the output above, the value <span class="math inline">\(0\)<
 and the value <span class="math inline">\(23\)</span> does not appear at all in this particular simulation run. The
 probability of seeing the value <span class="math inline">\(k\in \{0,1,2,3,\dots\}\)</span> as a result of a single
 draw is given by <span class="math inline">\((1-p)^k p\)</span>, where <span class="math inline">\(p\)</span> is called the <em>parameter</em> of the distribution.</p>
-That corresponds to the following interpretation of the geometric distribution: <em>keep
-tossing a biased coin (with probability <span class="math inline">\(p\)</span> of obtaining H) until you see the first H; the
-number Ts before that is that value your geometric random variable</em>.
+That corresponds to the following interpretation of the geometric distribution:
+keep tossing a biased coin (with probability p of obtaining H) until you see the first H; the number Ts before that is that value your geometric random variable<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>
 If we put these probabilities in a single table (and choose <span class="math inline">\(p=0.4\)</span>, for example) it is
 going to look like this:
 <table>
@@ -314,7 +319,7 @@ Prob.
 In fact, there are infinitely many possible values, but we do not have infinite
 space. Note that even though the value <span class="math inline">\(23\)</span> does not appear in the output of the
 command <code>rgeom</code> above, it probably would if we simulated many more than <span class="math inline">\(50\)</span>
-values. Let’s try it with <span class="math inline">\(500\)</span> draws - the table blow counts how many <span class="math inline">\(0s\)</span>,
+values. Let’s try it with <span class="math inline">\(500\)</span> draws - the table below counts how many <span class="math inline">\(0s\)</span>,
 <span class="math inline">\(1s\)</span>, <span class="math inline">\(2s\)</span>, etc. we got:</p>
 <table>
 <thead>
@@ -578,7 +583,7 @@ this case. Note how we plugged in the entire vector
 do that because this function is <strong>vectorized</strong>. That means that if you give it
 a vector as an argument, it will “apply itself” to each component of the vector
 separately, and return the vector of results. Many (but not all) functions in R
-are vectorized<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
+are vectorized<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
 <p>As a sanity check, let’s apply <code>pnrom</code> (which computes the cdf of the normal) to these quantile values:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="simulation-of-random-variables-and-monte-carlo.html#cb7-1" aria-hidden="true"></a>p =<span class="st"> </span><span class="kw">qnorm</span>(<span class="kw">c</span>(<span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.95</span>), <span class="dt">mean =</span> <span class="dv">1</span>, <span class="dt">sd =</span> <span class="dv">2</span>)</span>
 <span id="cb7-2"><a href="simulation-of-random-variables-and-monte-carlo.html#cb7-2" aria-hidden="true"></a><span class="kw">pnorm</span>(p, <span class="dt">mean =</span> <span class="dv">1</span>, <span class="dt">sd =</span> <span class="dv">2</span>)</span>
@@ -903,9 +908,6 @@ exponential using R?</p>
 
 </div>
 </div>
-
-
-
 <div class="footnotes">
 <hr />
 <ol start="1">
@@ -916,9 +918,10 @@ sequence of nonnegative numbers <span class="math inline">\((p_n)_n\)</span> suc
 distributions appear in nature much more often then the rest. These
 distributions, like the normal, uniform, exponential, binomial, etc. turn out to
 be so important that they each get a name (hence <em>named distributions</em>). <a href="simulation-of-random-variables-and-monte-carlo.html#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p>The function <code>sum</code> adds up all the components of the vector.
+<li id="fn2"><p>Some books will define the geometric random variables as the number of <em>tosses</em> (and not Ts) before the first H is obtained. In that case, the final H is included into the count. Clearly, this definition and the one we have given differ by <span class="math inline">\(1\)</span>, and this is really not a big deal, but you have to be careful about what is meant when a geometric random variable is mentioned.<a href="simulation-of-random-variables-and-monte-carlo.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>The function <code>sum</code> adds up all the components of the vector.
 You would not want such a function to be vectorized. If it were, it would return
-exactly the same vector it got as input.<a href="simulation-of-random-variables-and-monte-carlo.html#fnref2" class="footnote-back">↩︎</a></p></li>
+exactly the same vector it got as input.<a href="simulation-of-random-variables-and-monte-carlo.html#fnref3" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -927,7 +930,7 @@ exactly the same vector it got as input.<a href="simulation-of-random-variables-
         </div>
       </div>
 <a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="dist.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="pipeline.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

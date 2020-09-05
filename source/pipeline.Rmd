@@ -51,7 +51,7 @@ y_c <- cut(y, 20)
 z <- table(x_c, y_c)
 
 ##  Plot as a 3D histogram:
-hist3D(z=z, border="black", zlab="Count")
+plot3d(z=z, border="black", zlab="Count")
 
 ```
  

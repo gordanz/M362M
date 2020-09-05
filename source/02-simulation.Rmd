@@ -49,7 +49,7 @@ and use $n$ as an argument. That is how we arrived to `rgeom(50)` in the
 solution above. The additional arguments of the function `rgeom` have to do with
 the parameters of that distribution. Which parameters go with which
 distributions, and how to input them as arguments to `rgeom` or `rnorm` is best
-looked up inR's extensive documentation. Try `help("rnorm")`, for example. 
+looked up in R's extensive documentation. Try `help("rnorm")`, for example. 
 
 *Math:* 
 You could spend your whole life trying to understand what it really means to
@@ -75,9 +75,8 @@ and the value $23$ does not appear at all in this particular simulation run. The
 probability of seeing the value $k\in \{0,1,2,3,\dots\}$ as a result of a single 
 draw is given by $(1-p)^k p$, where $p$ is called the *parameter* of the distribution. 
 
-That corresponds to the following interpretation of the geometric distribution: *keep 
-tossing a biased coin (with probability $p$ of obtaining H) until you see the first H; the 
-number Ts before that is that value your geometric random variable*. 
+That corresponds to the following interpretation of the geometric distribution:
+keep tossing a biased coin (with probability p of obtaining H) until you see the first H; the  number Ts before that is that value your geometric random variable^[Some books will define the geometric random variables as the number of *tosses* (and not Ts) before the first H is obtained. In that case, the final H is included into the count. Clearly, this definition and the one we have given differ by $1$, and this is really not a big deal, but you have to be careful about what is meant when a geometric random variable is mentioned.]
 If we put these probabilities in a single table (and choose $p=0.4$, for example) it is 
 going to look like this:
 ```{r echo=FALSE}
@@ -94,7 +93,7 @@ Of course, the possible values our random variable can take do not stop at $7$.
 In fact, there are infinitely many possible values, but we do not have infinite
 space. Note that even though the value $23$ does not appear in the output of the
 command `rgeom` above, it probably would if we simulated many more than $50$
-values. Let's try it with $500$ draws - the table blow counts how many $0s$,
+values. Let's try it with $500$ draws - the table below counts how many $0s$,
 $1s$, $2s$, etc. we got:
 
 ```{r echo=FALSE}
@@ -293,7 +292,7 @@ Note how it is mostly $2$s, as expected.
 
 ```{exercise}
 Draw a sample of size $n=10$ from $N(1,2)$, i.e., from the normal distribution
-with parameters $\mu=1$, $\sigma = 2$. Plot a historgram of the obtained
+with parameters $\mu=1$, $\sigma = 2$. Plot a histogram of the obtained
 values. Repeat for $n=100$ and $n=100000$. 
 ```
 **Solution:**
