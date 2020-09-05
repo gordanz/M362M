@@ -12,6 +12,6 @@ rmd_files: [
    "index.Rmd",
    "01-R.Rmd", 
   "02-simulation.Rmd",
-  "pipeline.Rmd",
+  #"pipeline.Rmd",
   "distributions.Rmd"
     ]
