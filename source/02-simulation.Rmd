@@ -427,15 +427,16 @@ and plot their histogram.
     life easier, consider $\tfrac{2}{\pi} Y$ first. 
 
 ```
+
 ```{exercise}
 A basic method for obtaining simulations draws from distributions other than the
 uniform is the **transformation method**. The idea is to start with (pseudo)
 random numbers, i.e., draws from the uniform $U(0,1)$ distribution, and then
 apply a function $g$ to each simulation. The difficulty is, of course, how to
 choose the right function $g$.
-
+<br>
 Let $X$ be a random variable with a continuous and strictly increasing cdf $F$.
-What is the distribution of $Y=F(X)$? What does that have to do with the transformation method? 
+What is the distribution of $Y=F(X)$? What does that have to do with the transformation method?
 ```
  
 ```{exercise} 
