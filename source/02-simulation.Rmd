@@ -336,7 +336,7 @@ to the underlying pdf (if it exists). I keep writing "shape" because the three
 histograms above have very different scales on the $y$ axis. That is because we
 used counts to set the vertical sizes of bins.
 A more natural choice is to use the proportions, i.e. relative frequencies (i.e.
-counts divided by the total number of points) for bar heights. In R, we would
+counts divided by the total number of points) for bar heights. More precisely, the bar height $h$ over the bin $[a,b]$ is chosen so that the area of the bar, i.e., $(b-a)\times h$ equals to the proportion of all points that fall inside $[a,b]$. This way, the total area under the histogram is always $1$. To draw such a **density histogram** in R we would
 need to add the additional option `freq = FALSE` to `hist`:
 ```{r}
 x = rnorm(100000, mean = 1, sd = 2)
