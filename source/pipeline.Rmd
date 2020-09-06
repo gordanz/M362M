@@ -37,22 +37,20 @@ z <- table(x_c, y_c)
 hist3D(z=z, border="black", zlab="Count")
 
 ```
-```{r, setup}
+```{r, webgl=TRUE, results='hide'}
 library(rgl)
-library(plot3D)
+library(plot3Drgl)
 knitr::knit_hooks$set(webgl = hook_webgl)
-```
 
-```{r, test-rgl, webgl=TRUE}
-x_c <- cut(x, 20)
-y_c <- cut(y, 20)
+x_c <- cut(rnorm(1000), 20)
+y_c <- cut(rnorm(1000), 20)
 
 ##  Calculate joint counts at cut levels:
 z <- table(x_c, y_c)
 
 ##  Plot as a 3D histogram:
-plot3d(z=z, border="black", zlab="Count")
-
+hist3Drgl(x = 1:20, y = 1:20, z, col = gg.col(100,1), lighting = TRUE, theta = 000, pi = 20, facets = FALSE)
+writeWebGL( filename="3dscatter.html" ,  width=600, height=600)
 ```
  
 ## Monte Carlo
