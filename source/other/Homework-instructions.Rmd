@@ -29,10 +29,8 @@ knitr::opts_chunk$set(
 
 All submissions of computational work have to be **produced using an R Notebook**, i.e., via an **Rmd file**. There is nothing to worry - it is probably the most painless way, both for the student and for the grader. Let me explain. An R notebook is nothing other than a specially formated text file which contains *chunks* or R code mixed with regular text. The point is that it can be transformed into a good looking pdf (or html) file by a press of a button. When you open an R notebook in RStudio, you will be able to write your problem solutions, perform R computations and even plot graphs in one fell swoop. What is more important, the results of the computations and the graphs you produce will automatically become a part of the output document. To create an R notebook, go to File -> New File -> R Notebook in RStudio, and a new Rmd (Rmarkdown) file will appear in the editor pane (**do not create a new file right now, though; a template will be provided later. Just continue reading.**) It will even have the important instructions already filled in. You should not worry about text markup, or how to produce hyperlinks, or anything like that, though. In fact, the only important thing to know is that the following notation 
 
-
-
 ````markdown
-```r`r ''`
+`r ''````{r}
 
 ```
 ````
