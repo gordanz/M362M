@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Pipeline | Lecture notes for &quot;Introduction to Stochastic Processes&quot;</title>
+  <meta name="description" content="A set of lecture notes for M362M: Introduction to Stochastic Processes" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Pipeline | Lecture notes for &quot;Introduction to Stochastic Processes&quot;" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A set of lecture notes for M362M: Introduction to Stochastic Processes" />
+  <meta name="github-repo" content="gordanz/M362M" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Pipeline | Lecture notes for &quot;Introduction to Stochastic Processes&quot;" />
+  
+  <meta name="twitter:description" content="A set of lecture notes for M362M: Introduction to Stochastic Processes" />
+  
+
+<meta name="author" content="Gordan Zitkovic" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="simulation-of-random-variables-and-monte-carlo.html"/>
+<link rel="next" href="dist.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">M362M Lecture notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> An intro to R and RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#setting-up-an-r-environment-on-your-computer"><i class="fa fa-check"></i><b>1.1</b> Setting up an R environment on your computer</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#installing-r"><i class="fa fa-check"></i><b>1.1.1</b> Installing R</a></li>
+<li class="chapter" data-level="1.1.2" data-path="intro.html"><a href="intro.html#installing-rstudio"><i class="fa fa-check"></i><b>1.1.2</b> Installing RStudio</a></li>
+<li class="chapter" data-level="1.1.3" data-path="intro.html"><a href="intro.html#installing-basic-packages"><i class="fa fa-check"></i><b>1.1.3</b> Installing basic packages</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#learning-the-basics-of-r"><i class="fa fa-check"></i><b>1.2</b> Learning the basics of R</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#the-console-scripts-and-r-notebooks"><i class="fa fa-check"></i><b>1.2.1</b> The console, Scripts and R Notebooks</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#asking-for-help"><i class="fa fa-check"></i><b>1.2.2</b> Asking for help</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#vectors"><i class="fa fa-check"></i><b>1.2.3</b> Vectors</a></li>
+<li class="chapter" data-level="1.2.4" data-path="intro.html"><a href="intro.html#matrices"><i class="fa fa-check"></i><b>1.2.4</b> Matrices</a></li>
+<li class="chapter" data-level="1.2.5" data-path="intro.html"><a href="intro.html#functions"><i class="fa fa-check"></i><b>1.2.5</b> Functions</a></li>
+<li class="chapter" data-level="1.2.6" data-path="intro.html"><a href="intro.html#if-else-statements"><i class="fa fa-check"></i><b>1.2.6</b> If-else statements</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#problems"><i class="fa fa-check"></i><b>1.3</b> Problems</a></li>
+</ul></li>
+<li class="part"><span><b>I Probability and Simulation</b></span></li>
+<li class="chapter" data-level="2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html"><i class="fa fa-check"></i><b>2</b> Simulation of Random Variables and Monte Carlo</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#simulation-of-some-common-probability-distributions"><i class="fa fa-check"></i><b>2.1</b> Simulation of some common probability distributions</a></li>
+<li class="chapter" data-level="2.2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#additional-problems"><i class="fa fa-check"></i><b>2.2</b> Additional Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>3</b> Pipeline</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="pipeline.html"><a href="pipeline.html#multivariate-distributions"><i class="fa fa-check"></i><b>3.1</b> Multivariate Distributions</a></li>
+<li class="chapter" data-level="3.2" data-path="pipeline.html"><a href="pipeline.html#monte-carlo"><i class="fa fa-check"></i><b>3.2</b> Monte Carlo</a></li>
+<li class="chapter" data-level="3.3" data-path="pipeline.html"><a href="pipeline.html#conditional-probability-and-independence."><i class="fa fa-check"></i><b>3.3</b> Conditional probability and independence.</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>A</b> Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="dist.html"><a href="dist.html#discrete-distributions"><i class="fa fa-check"></i><b>A.1</b> Discrete distributions:</a></li>
+<li class="chapter" data-level="A.2" data-path="dist.html"><a href="dist.html#continuous-distributions"><i class="fa fa-check"></i><b>A.2</b> Continuous distributions:</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lecture notes for "Introduction to Stochastic Processes"</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="pipeline" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Pipeline</h1>
+<div id="multivariate-distributions" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Multivariate Distributions</h2>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-2" class="exercise"><strong>Problem 3.1  </strong></span>Let <code>x</code> contain <span class="math inline">\(10,000\)</span> draws from <span class="math inline">\(N(0,1)\)</span>, <code>z</code> another <span class="math inline">\(10,000\)</span> draws from <span class="math inline">\(N(0,1)\)</span> and let <code>y=x+z</code>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Draw a scatterplot of <code>x</code> and <code>y</code>.</p></li>
+<li><p>Is there a better way to visualize the joint distribution of <code>x</code> and <code>y</code>? Would it be enough to simply plot two histograms, one of <code>x</code> and one of <code>y</code>?</p></li>
+<li><p>Do <code>x</code> and <code>y</code> “look independent”? What is the mathematical definition of independence? Is there a practical way to test independence between two simulated random variables?</p>
+</div>
+<p><strong>Solution:</strong></p></li>
+</ol>
+<p>1. </p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="pipeline.html#cb1-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10000</span>)</span>
+<span id="cb1-2"><a href="pipeline.html#cb1-2" aria-hidden="true"></a>z =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10000</span>)</span>
+<span id="cb1-3"><a href="pipeline.html#cb1-3" aria-hidden="true"></a>y =<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>z</span>
+<span id="cb1-4"><a href="pipeline.html#cb1-4" aria-hidden="true"></a><span class="kw">plot</span>(x, y)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Yes, we could use 3d histogram, where the <span class="math inline">\(x-y\)</span> plane is divided into squares and a bar (a skyscraper) is drawn above each square. The height of each skyscraper is proportional to the number of points which fall into its base. This is the most literal analogue of a regular (2d) histogram in 2 dimensions. The one shown below can be rotated and zoomed by the reader (as long as JavaScript is enabled):</li>
+</ol>
+<html>
+<head><meta charset="utf-8" /></head>
+<body>
+    <div>
+        
+                <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>    
+            <div id="f2d9d7c7-084c-4643-bed4-62f5ea618947" class="plotly-graph-div" style="height:700px; width:650px;"></div>
+            <script type="text/javascript">
+                
+                    window.PLOTLYENV=window.PLOTLYENV || {};
+                    
+                if (document.getElementById("f2d9d7c7-084c-4643-bed4-62f5ea618947")) {
+                    Plotly.newPlot(
+                        'f2d9d7c7-084c-4643-bed4-62f5ea618947',
+                        [{"color": "#ba2461", "flatshading": true, "i": [0, 10, 0, 9, 0, 3, 9, 10, 2, 11, 3, 9, 16, 34, 16, 33, 16, 19, 33, 34, 18, 35, 19, 33, 48, 70, 48, 69, 48, 51, 69, 70, 50, 71, 51, 69, 88, 118, 88, 117, 88, 91, 117, 118, 90, 119, 91, 117, 144, 174, 144, 173, 144, 147, 173, 174, 146, 175, 147, 173, 20, 38, 20, 37, 20, 23, 37, 38, 22, 39, 23, 37, 52, 74, 52, 73, 52, 55, 73, 74, 54, 75, 55, 73, 92, 122, 92, 121, 92, 95, 121, 122, 94, 123, 95, 121, 148, 178, 148, 177, 148, 151, 177, 178, 150, 179, 151, 177, 24, 42, 24, 41, 24, 27, 41, 42, 26, 43, 27, 41, 56, 78, 56, 77, 56, 59, 77, 78, 58, 79, 59, 77, 96, 126, 96, 125, 96, 99, 125, 126, 98, 127, 99, 125, 152, 182, 152, 181, 152, 155, 181, 182, 154, 183, 155, 181, 200, 222, 200, 221, 200, 203, 221, 222, 202, 223, 203, 221, 4, 14, 4, 13, 4, 7, 13, 14, 6, 15, 7, 13, 28, 46, 28, 45, 28, 31, 45, 46, 30, 47, 31, 45, 60, 82, 60, 81, 60, 63, 81, 82, 62, 83, 63, 81, 100, 130, 100, 129, 100, 103, 129, 130, 102, 131, 103, 129, 156, 186, 156, 185, 156, 159, 185, 186, 158, 187, 159, 185, 204, 226, 204, 225, 204, 207, 225, 226, 206, 227, 207, 225, 240, 254, 240, 253, 240, 243, 253, 254, 242, 255, 243, 253, 64, 86, 64, 85, 64, 67, 85, 86, 66, 87, 67, 85, 104, 134, 104, 133, 104, 107, 133, 134, 106, 135, 107, 133, 160, 190, 160, 189, 160, 163, 189, 190, 162, 191, 163, 189, 208, 230, 208, 229, 208, 211, 229, 230, 210, 231, 211, 229, 244, 258, 244, 257, 244, 247, 257, 258, 246, 259, 247, 257, 108, 138, 108, 137, 108, 111, 137, 138, 110, 139, 111, 137, 164, 194, 164, 193, 164, 167, 193, 194, 166, 195, 167, 193, 212, 234, 212, 233, 212, 215, 233, 234, 214, 235, 215, 233, 248, 262, 248, 261, 248, 251, 261, 262, 250, 263, 251, 261, 112, 142, 112, 141, 112, 115, 141, 142, 114, 143, 115, 141, 168, 198, 168, 197, 168, 171, 197, 198, 170, 199, 171, 197, 216, 238, 216, 237, 216, 219, 237, 238, 218, 239, 219, 237], "j": [8, 2, 1, 8, 2, 1, 8, 11, 3, 10, 1, 11, 32, 18, 17, 32, 18, 17, 32, 35, 19, 34, 17, 35, 68, 50, 49, 68, 50, 49, 68, 71, 51, 70, 49, 71, 116, 90, 89, 116, 90, 89, 116, 119, 91, 118, 89, 119, 172, 146, 145, 172, 146, 145, 172, 175, 147, 174, 145, 175, 36, 22, 21, 36, 22, 21, 36, 39, 23, 38, 21, 39, 72, 54, 53, 72, 54, 53, 72, 75, 55, 74, 53, 75, 120, 94, 93, 120, 94, 93, 120, 123, 95, 122, 93, 123, 176, 150, 149, 176, 150, 149, 176, 179, 151, 178, 149, 179, 40, 26, 25, 40, 26, 25, 40, 43, 27, 42, 25, 43, 76, 58, 57, 76, 58, 57, 76, 79, 59, 78, 57, 79, 124, 98, 97, 124, 98, 97, 124, 127, 99, 126, 97, 127, 180, 154, 153, 180, 154, 153, 180, 183, 155, 182, 153, 183, 220, 202, 201, 220, 202, 201, 220, 223, 203, 222, 201, 223, 12, 6, 5, 12, 6, 5, 12, 15, 7, 14, 5, 15, 44, 30, 29, 44, 30, 29, 44, 47, 31, 46, 29, 47, 80, 62, 61, 80, 62, 61, 80, 83, 63, 82, 61, 83, 128, 102, 101, 128, 102, 101, 128, 131, 103, 130, 101, 131, 184, 158, 157, 184, 158, 157, 184, 187, 159, 186, 157, 187, 224, 206, 205, 224, 206, 205, 224, 227, 207, 226, 205, 227, 252, 242, 241, 252, 242, 241, 252, 255, 243, 254, 241, 255, 84, 66, 65, 84, 66, 65, 84, 87, 67, 86, 65, 87, 132, 106, 105, 132, 106, 105, 132, 135, 107, 134, 105, 135, 188, 162, 161, 188, 162, 161, 188, 191, 163, 190, 161, 191, 228, 210, 209, 228, 210, 209, 228, 231, 211, 230, 209, 231, 256, 246, 245, 256, 246, 245, 256, 259, 247, 258, 245, 259, 136, 110, 109, 136, 110, 109, 136, 139, 111, 138, 109, 139, 192, 166, 165, 192, 166, 165, 192, 195, 167, 194, 165, 195, 232, 214, 213, 232, 214, 213, 232, 235, 215, 234, 213, 235, 260, 250, 249, 260, 250, 249, 260, 263, 251, 262, 249, 263, 140, 114, 113, 140, 114, 113, 140, 143, 115, 142, 113, 143, 196, 170, 169, 196, 170, 169, 196, 199, 171, 198, 169, 199, 236, 218, 217, 236, 218, 217, 236, 239, 219, 238, 217, 239], "k": [10, 0, 9, 0, 3, 0, 10, 9, 11, 2, 9, 3, 34, 16, 33, 16, 19, 16, 34, 33, 35, 18, 33, 19, 70, 48, 69, 48, 51, 48, 70, 69, 71, 50, 69, 51, 118, 88, 117, 88, 91, 88, 118, 117, 119, 90, 117, 91, 174, 144, 173, 144, 147, 144, 174, 173, 175, 146, 173, 147, 38, 20, 37, 20, 23, 20, 38, 37, 39, 22, 37, 23, 74, 52, 73, 52, 55, 52, 74, 73, 75, 54, 73, 55, 122, 92, 121, 92, 95, 92, 122, 121, 123, 94, 121, 95, 178, 148, 177, 148, 151, 148, 178, 177, 179, 150, 177, 151, 42, 24, 41, 24, 27, 24, 42, 41, 43, 26, 41, 27, 78, 56, 77, 56, 59, 56, 78, 77, 79, 58, 77, 59, 126, 96, 125, 96, 99, 96, 126, 125, 127, 98, 125, 99, 182, 152, 181, 152, 155, 152, 182, 181, 183, 154, 181, 155, 222, 200, 221, 200, 203, 200, 222, 221, 223, 202, 221, 203, 14, 4, 13, 4, 7, 4, 14, 13, 15, 6, 13, 7, 46, 28, 45, 28, 31, 28, 46, 45, 47, 30, 45, 31, 82, 60, 81, 60, 63, 60, 82, 81, 83, 62, 81, 63, 130, 100, 129, 100, 103, 100, 130, 129, 131, 102, 129, 103, 186, 156, 185, 156, 159, 156, 186, 185, 187, 158, 185, 159, 226, 204, 225, 204, 207, 204, 226, 225, 227, 206, 225, 207, 254, 240, 253, 240, 243, 240, 254, 253, 255, 242, 253, 243, 86, 64, 85, 64, 67, 64, 86, 85, 87, 66, 85, 67, 134, 104, 133, 104, 107, 104, 134, 133, 135, 106, 133, 107, 190, 160, 189, 160, 163, 160, 190, 189, 191, 162, 189, 163, 230, 208, 229, 208, 211, 208, 230, 229, 231, 210, 229, 211, 258, 244, 257, 244, 247, 244, 258, 257, 259, 246, 257, 247, 138, 108, 137, 108, 111, 108, 138, 137, 139, 110, 137, 111, 194, 164, 193, 164, 167, 164, 194, 193, 195, 166, 193, 167, 234, 212, 233, 212, 215, 212, 234, 233, 235, 214, 233, 215, 262, 248, 261, 248, 251, 248, 262, 261, 263, 250, 261, 251, 142, 112, 141, 112, 115, 112, 142, 141, 143, 114, 141, 115, 198, 168, 197, 168, 171, 168, 198, 197, 199, 170, 197, 171, 238, 216, 237, 216, 219, 216, 238, 237, 239, 218, 237, 219], "type": "mesh3d", "x": [-1.7689804600849288, -1.7689804600849288, -1.7689804600849288, -1.7689804600849288, -1.7689804600849288, -1.7689804600849288, -1.7689804600849288, -1.7689804600849288, -1.300079394141662, -1.300079394141662, -1.300079394141662, -1.300079394141662, -1.300079394141662, -1.300079394141662, -1.300079394141662, -1.300079394141662, -1.250079394141662, -1.250079394141662, -1.250079394141662, -1.250079394141662, -1.250079394141662, -1.250079394141662, -1.250079394141662, -1.250079394141662, -1.250079394141662, -1.250079394141662, -1.250079394141662, -1.250079394141662, -1.250079394141662, -1.250079394141662, -1.250079394141662, -1.250079394141662, -0.7811783281983951, -0.7811783281983951, -0.7811783281983951, -0.7811783281983951, -0.7811783281983951, -0.7811783281983951, -0.7811783281983951, -0.7811783281983951, -0.7811783281983951, -0.7811783281983951, -0.7811783281983951, -0.7811783281983951, -0.7811783281983951, -0.7811783281983951, -0.7811783281983951, -0.7811783281983951, -0.7311783281983948, -0.7311783281983948, -0.7311783281983948, -0.7311783281983948, -0.7311783281983948, -0.7311783281983948, -0.7311783281983948, -0.7311783281983948, -0.7311783281983948, -0.7311783281983948, -0.7311783281983948, -0.7311783281983948, -0.7311783281983948, -0.7311783281983948, -0.7311783281983948, -0.7311783281983948, -0.7311783281983948, -0.7311783281983948, -0.7311783281983948, -0.7311783281983948, -0.2622772622551279, -0.2622772622551279, -0.2622772622551279, -0.2622772622551279, -0.2622772622551279, -0.2622772622551279, -0.2622772622551279, -0.2622772622551279, -0.2622772622551279, -0.2622772622551279, -0.2622772622551279, -0.2622772622551279, -0.2622772622551279, -0.2622772622551279, -0.2622772622551279, -0.2622772622551279, -0.2622772622551279, -0.2622772622551279, -0.2622772622551279, -0.2622772622551279, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, -0.21227726225512766, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.25662380368813925, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.30662380368813924, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.7755248696314061, 0.8255248696314061, 0.8255248696314061, 0.8255248696314061, 0.8255248696314061, 0.8255248696314061, 0.8255248696314061, 0.8255248696314061, 0.8255248696314061, 0.8255248696314061, 0.8255248696314061, 0.8255248696314061, 0.8255248696314061, 0.8255248696314061, 0.8255248696314061, 0.8255248696314061, 0.8255248696314061, 0.8255248696314061, 0.8255248696314061, 0.8255248696314061, 0.8255248696314061, 1.294425935574673, 1.294425935574673, 1.294425935574673, 1.294425935574673, 1.294425935574673, 1.294425935574673, 1.294425935574673, 1.294425935574673, 1.294425935574673, 1.294425935574673, 1.294425935574673, 1.294425935574673, 1.294425935574673, 1.294425935574673, 1.294425935574673, 1.294425935574673, 1.294425935574673, 1.294425935574673, 1.294425935574673, 1.294425935574673, 1.3444259355746735, 1.3444259355746735, 1.3444259355746735, 1.3444259355746735, 1.3444259355746735, 1.3444259355746735, 1.3444259355746735, 1.3444259355746735, 1.3444259355746735, 1.3444259355746735, 1.3444259355746735, 1.3444259355746735, 1.8133270015179404, 1.8133270015179404, 1.8133270015179404, 1.8133270015179404, 1.8133270015179404, 1.8133270015179404, 1.8133270015179404, 1.8133270015179404, 1.8133270015179404, 1.8133270015179404, 1.8133270015179404, 1.8133270015179404], "y": [-2.9559717821119915, -2.9559717821119915, -2.2327250925496545, -2.2327250925496545, -0.6362317134249813, -0.6362317134249813, 0.08701497613735554, 0.08701497613735554, -2.9559717821119915, -2.9559717821119915, -2.2327250925496545, -2.2327250925496545, -0.6362317134249813, -0.6362317134249813, 0.08701497613735554, 0.08701497613735554, -2.9559717821119915, -2.9559717821119915, -2.2327250925496545, -2.2327250925496545, -2.1827250925496546, -2.1827250925496546, -1.4594784029873178, -1.4594784029873178, -1.4094784029873182, -1.4094784029873182, -0.6862317134249813, -0.6862317134249813, -0.6362317134249813, -0.6362317134249813, 0.08701497613735554, 0.08701497613735554, -2.9559717821119915, -2.9559717821119915, -2.2327250925496545, -2.2327250925496545, -2.1827250925496546, -2.1827250925496546, -1.4594784029873178, -1.4594784029873178, -1.4094784029873182, -1.4094784029873182, -0.6862317134249813, -0.6862317134249813, -0.6362317134249813, -0.6362317134249813, 0.08701497613735554, 0.08701497613735554, -2.9559717821119915, -2.9559717821119915, -2.2327250925496545, -2.2327250925496545, -2.1827250925496546, -2.1827250925496546, -1.4594784029873178, -1.4594784029873178, -1.4094784029873182, -1.4094784029873182, -0.6862317134249813, -0.6862317134249813, -0.6362317134249813, -0.6362317134249813, 0.08701497613735554, 0.08701497613735554, 0.13701497613735514, 0.13701497613735514, 0.860261665699692, 0.860261665699692, -2.9559717821119915, -2.9559717821119915, -2.2327250925496545, -2.2327250925496545, -2.1827250925496546, -2.1827250925496546, -1.4594784029873178, -1.4594784029873178, -1.4094784029873182, -1.4094784029873182, -0.6862317134249813, -0.6862317134249813, -0.6362317134249813, -0.6362317134249813, 0.08701497613735554, 0.08701497613735554, 0.13701497613735514, 0.13701497613735514, 0.860261665699692, 0.860261665699692, -2.9559717821119915, -2.9559717821119915, -2.2327250925496545, -2.2327250925496545, -2.1827250925496546, -2.1827250925496546, -1.4594784029873178, -1.4594784029873178, -1.4094784029873182, -1.4094784029873182, -0.6862317134249813, -0.6862317134249813, -0.6362317134249813, -0.6362317134249813, 0.08701497613735554, 0.08701497613735554, 0.13701497613735514, 0.13701497613735514, 0.860261665699692, 0.860261665699692, 0.9102616656996916, 0.9102616656996916, 1.6335083552620284, 1.6335083552620284, 1.683508355262029, 1.683508355262029, 2.406755044824366, 2.406755044824366, -2.9559717821119915, -2.9559717821119915, -2.2327250925496545, -2.2327250925496545, -2.1827250925496546, -2.1827250925496546, -1.4594784029873178, -1.4594784029873178, -1.4094784029873182, -1.4094784029873182, -0.6862317134249813, -0.6862317134249813, -0.6362317134249813, -0.6362317134249813, 0.08701497613735554, 0.08701497613735554, 0.13701497613735514, 0.13701497613735514, 0.860261665699692, 0.860261665699692, 0.9102616656996916, 0.9102616656996916, 1.6335083552620284, 1.6335083552620284, 1.683508355262029, 1.683508355262029, 2.406755044824366, 2.406755044824366, -2.9559717821119915, -2.9559717821119915, -2.2327250925496545, -2.2327250925496545, -2.1827250925496546, -2.1827250925496546, -1.4594784029873178, -1.4594784029873178, -1.4094784029873182, -1.4094784029873182, -0.6862317134249813, -0.6862317134249813, -0.6362317134249813, -0.6362317134249813, 0.08701497613735554, 0.08701497613735554, 0.13701497613735514, 0.13701497613735514, 0.860261665699692, 0.860261665699692, 0.9102616656996916, 0.9102616656996916, 1.6335083552620284, 1.6335083552620284, 1.683508355262029, 1.683508355262029, 2.406755044824366, 2.406755044824366, -2.9559717821119915, -2.9559717821119915, -2.2327250925496545, -2.2327250925496545, -2.1827250925496546, -2.1827250925496546, -1.4594784029873178, -1.4594784029873178, -1.4094784029873182, -1.4094784029873182, -0.6862317134249813, -0.6862317134249813, -0.6362317134249813, -0.6362317134249813, 0.08701497613735554, 0.08701497613735554, 0.13701497613735514, 0.13701497613735514, 0.860261665699692, 0.860261665699692, 0.9102616656996916, 0.9102616656996916, 1.6335083552620284, 1.6335083552620284, 1.683508355262029, 1.683508355262029, 2.406755044824366, 2.406755044824366, -1.4094784029873182, -1.4094784029873182, -0.6862317134249813, -0.6862317134249813, -0.6362317134249813, -0.6362317134249813, 0.08701497613735554, 0.08701497613735554, 0.13701497613735514, 0.13701497613735514, 0.860261665699692, 0.860261665699692, 0.9102616656996916, 0.9102616656996916, 1.6335083552620284, 1.6335083552620284, 1.683508355262029, 1.683508355262029, 2.406755044824366, 2.406755044824366, -1.4094784029873182, -1.4094784029873182, -0.6862317134249813, -0.6862317134249813, -0.6362317134249813, -0.6362317134249813, 0.08701497613735554, 0.08701497613735554, 0.13701497613735514, 0.13701497613735514, 0.860261665699692, 0.860261665699692, 0.9102616656996916, 0.9102616656996916, 1.6335083552620284, 1.6335083552620284, 1.683508355262029, 1.683508355262029, 2.406755044824366, 2.406755044824366, -0.6362317134249813, -0.6362317134249813, 0.08701497613735554, 0.08701497613735554, 0.13701497613735514, 0.13701497613735514, 0.860261665699692, 0.860261665699692, 0.9102616656996916, 0.9102616656996916, 1.6335083552620284, 1.6335083552620284, -0.6362317134249813, -0.6362317134249813, 0.08701497613735554, 0.08701497613735554, 0.13701497613735514, 0.13701497613735514, 0.860261665699692, 0.860261665699692, 0.9102616656996916, 0.9102616656996916, 1.6335083552620284, 1.6335083552620284], "z": [0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 2.0, 0.0, 2.0, 0.0, 2.0, 0.0, 2.0, 0.0, 4.0, 0.0, 4.0, 0.0, 1.0, 0.0, 1.0, 0.0, 2.0, 0.0, 2.0, 0.0, 2.0, 0.0, 2.0, 0.0, 4.0, 0.0, 4.0, 0.0, 2.0, 0.0, 2.0, 0.0, 13.0, 0.0, 13.0, 0.0, 41.0, 0.0, 41.0, 0.0, 20.0, 0.0, 20.0, 0.0, 13.0, 0.0, 13.0, 0.0, 2.0, 0.0, 2.0, 0.0, 13.0, 0.0, 13.0, 0.0, 41.0, 0.0, 41.0, 0.0, 20.0, 0.0, 20.0, 0.0, 13.0, 0.0, 13.0, 0.0, 2.0, 0.0, 2.0, 0.0, 17.0, 0.0, 17.0, 0.0, 56.0, 0.0, 56.0, 0.0, 76.0, 0.0, 76.0, 0.0, 36.0, 0.0, 36.0, 0.0, 6.0, 0.0, 6.0, 0.0, 1.0, 0.0, 1.0, 0.0, 2.0, 0.0, 2.0, 0.0, 17.0, 0.0, 17.0, 0.0, 56.0, 0.0, 56.0, 0.0, 76.0, 0.0, 76.0, 0.0, 36.0, 0.0, 36.0, 0.0, 6.0, 0.0, 6.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 2.0, 0.0, 2.0, 0.0, 21.0, 0.0, 21.0, 0.0, 52.0, 0.0, 52.0, 0.0, 54.0, 0.0, 54.0, 0.0, 16.0, 0.0, 16.0, 0.0, 3.0, 0.0, 3.0, 0.0, 1.0, 0.0, 1.0, 0.0, 2.0, 0.0, 2.0, 0.0, 21.0, 0.0, 21.0, 0.0, 52.0, 0.0, 52.0, 0.0, 54.0, 0.0, 54.0, 0.0, 16.0, 0.0, 16.0, 0.0, 3.0, 0.0, 3.0, 0.0, 4.0, 0.0, 4.0, 0.0, 14.0, 0.0, 14.0, 0.0, 21.0, 0.0, 21.0, 0.0, 8.0, 0.0, 8.0, 0.0, 3.0, 0.0, 3.0, 0.0, 4.0, 0.0, 4.0, 0.0, 14.0, 0.0, 14.0, 0.0, 21.0, 0.0, 21.0, 0.0, 8.0, 0.0, 8.0, 0.0, 3.0, 0.0, 3.0, 0.0, 2.0, 0.0, 2.0, 0.0, 1.0, 0.0, 1.0, 0.0, 4.0, 0.0, 4.0, 0.0, 2.0, 0.0, 2.0, 0.0, 1.0, 0.0, 1.0, 0.0, 4.0, 0.0, 4.0]}],
+                        {"height": 700, "scene": {"camera": {"eye": {"x": -1.25, "y": 1.25, "z": 1.25}}}, "template": {"data": {"bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "bar"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "barpolar"}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "choropleth": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "choropleth"}], "contour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "contour"}], "contourcarpet": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "contourcarpet"}], "heatmap": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmap"}], "heatmapgl": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "heatmapgl"}], "histogram": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "histogram"}], "histogram2d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2d"}], "histogram2dcontour": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "histogram2dcontour"}], "mesh3d": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "type": "mesh3d"}], "parcoords": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "parcoords"}], "pie": [{"automargin": true, "type": "pie"}], "scatter": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter"}], "scatter3d": [{"line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatter3d"}], "scattercarpet": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattercarpet"}], "scattergeo": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergeo"}], "scattergl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattergl"}], "scattermapbox": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scattermapbox"}], "scatterpolar": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolar"}], "scatterpolargl": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterpolargl"}], "scatterternary": [{"marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "type": "scatterternary"}], "surface": [{"colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "type": "surface"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}]}, "layout": {"annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]], "sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}, "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "geo": {"bgcolor": "white", "lakecolor": "white", "landcolor": "#E5ECF6", "showlakes": true, "showland": true, "subunitcolor": "white"}, "hoverlabel": {"align": "left"}, "hovermode": "closest", "mapbox": {"style": "light"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "gridwidth": 2, "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white"}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "ternary": {"aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "bgcolor": "#E5ECF6", "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "title": {"x": 0.05}, "xaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}, "yaxis": {"automargin": true, "gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "zerolinewidth": 2}}}, "title": {"text": "3D Histogram", "x": 0.5}, "width": 650},
+                        {"responsive": true}
+                    )
+                };
+                
+            </script>
+        </div>
+</body>
+</html>
+<ol start="2" style="list-style-type: decimal">
+<li>A solution that requires less technology would start the same way, i.e., by dividing the <span class="math inline">\(x-y\)</span> plane into bins, but instead of the third dimension, it would use different colors to represent the counts. Here is an example where the bins are hexagons (and not squares; it just looks better, for some reason)</li>
+</ol>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Another possibility which requires deeper statistical tools is the density contour plot:
+<img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></li>
+</ol>
+</div>
+<div id="monte-carlo" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Monte Carlo</h2>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-7" class="exercise"><strong>Problem 3.2  </strong></span>Use Monte Carlo to estimate the expected value of the exponential random variable with parameter <span class="math inline">\(\lambda= 4\)</span> using <span class="math inline">\(n=10\)</span>, <span class="math inline">\(n=1,000\)</span> and <span class="math inline">\(1,000,000\)</span> simulations. Compare to the exact value.
+</div>
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="pipeline.html#cb2-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">rexp</span>(<span class="dv">10</span>, <span class="dt">rate =</span> <span class="dv">4</span>)</span>
+<span id="cb2-2"><a href="pipeline.html#cb2-2" aria-hidden="true"></a><span class="kw">mean</span>(x)</span>
+<span id="cb2-3"><a href="pipeline.html#cb2-3" aria-hidden="true"></a><span class="co">## [1] 0.1779768</span></span></code></pre></div>
+<p>For an exponential random variable with parameter <span class="math inline">\(\lambda\)</span>, the expected value is
+<span class="math inline">\(1/\lambda\)</span> (such information can be found in <a href="./dist.html">Appendix A</a>) which,
+in this case, is <span class="math inline">\(0.25\)</span>. The error made was 0.072023 for <span class="math inline">\(n=10\)</span> simulations.
+We increase the number of simulations to <span class="math inline">\(n=1000\)</span> and get a better result</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="pipeline.html#cb3-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">rexp</span>(<span class="dv">1000</span>, <span class="dt">rate =</span> <span class="dv">4</span>)</span>
+<span id="cb3-2"><a href="pipeline.html#cb3-2" aria-hidden="true"></a><span class="kw">mean</span>(x)</span>
+<span id="cb3-3"><a href="pipeline.html#cb3-3" aria-hidden="true"></a><span class="co">## [1] 0.2564643</span></span></code></pre></div>
+<p>with (smaller) error -0.0064643. Finally, let’s try <span class="math inline">\(n=1,000,000\)</span>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="pipeline.html#cb4-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">rexp</span>(<span class="fl">1e+06</span>, <span class="dt">rate =</span> <span class="dv">4</span>)</span>
+<span id="cb4-2"><a href="pipeline.html#cb4-2" aria-hidden="true"></a><span class="kw">mean</span>(x)</span>
+<span id="cb4-3"><a href="pipeline.html#cb4-3" aria-hidden="true"></a><span class="co">## [1] 0.250381</span></span></code></pre></div>
+<p>The error is even smaller -0.00038101.</p>
+<!-- This can be obtained quite easily by integration (by parts): -->
+<!-- $$ \EE[X] = \int_{-\infty}^{\infty} x f(x)\, dx = \int_0^{\infty} x \ld e^{-\ld x}\, dx = \tfrac{1}{\ld}$$ -->
+<p><strong>Comments:</strong></p>
+<p><em>R.</em> The only new thing here is the command <code>mean</code> which computes the mean of vector.</p>
+<p><em>Math.</em> There is a lot going on here conceptually. This is the first time we used the Monte Carlo method. It is an incredibly method, as you will keep being reminded throughout this class. The idea behind it is simple, and it is based on the <em>Law of large numbers</em>:</p>
+<p><strong>Theorem</strong> Let <span class="math inline">\(X_1,X_2, \dots\)</span> be an independent sequence of random variables with the same distribution, for which the expected value can be computed. Then
+<span class="math display">\[ \tfrac{1}{n} \Big( X_1+X_2+\dots+X_n\Big) \to {\mathbb{E}}[X_1] \text{ as } n\to\infty\]</span>
+The idea behind Monte Carlo is to turn this theorem “upside down”. The goal is to compute <span class="math inline">\({\mathbb{E}}[X_1]\)</span>, and uses a supply of random numbers, each of which comes from the same distribution to accomplish that. The random number generator inside <code>rexp</code> gives us a supply of numbers (stored in the vector <code>x</code>) and all we have to do is compute their average. This gives us the left-hand side of the formula above, and, if <span class="math inline">\(n\)</span> is large enough, we hope that the this average does not differ too much from its theoretical limit. As <span class="math inline">\(n\)</span> gets larger, we expect better and better results. That is why your error above gets smaller as <span class="math inline">\(n\)</span> increases.</p>
+<p>It looks like Monte Carlo can only be used to compute the expected value of a random variable, which does not seem like such a bit deal. It is! You will see in the sequel that almost anything can be written as the expected value of <em>some</em> random variable.</p>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-11" class="exercise"><strong>Problem 3.3  </strong></span>Use Monte Carlo to estimate <span class="math inline">\({\mathbb{E}}[X^2]\)</span>, where <span class="math inline">\(X\)</span> is a standard normal random variable. Do the same thing when <span class="math inline">\(X\)</span> is geometrically distributed with parameter <span class="math inline">\(p=0.5\)</span>.
+</div>
+<p><strong>Solution.</strong>
+When <span class="math inline">\(X\)</span> is standard normal <span class="math inline">\(Y=X^2\)</span> has a <span class="math inline">\(\chi^2\)</span> distribution with one degree of freedom:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="pipeline.html#cb5-1" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">rchisq</span>(<span class="fl">1e+05</span>, <span class="dt">df =</span> <span class="dv">1</span>)</span>
+<span id="cb5-2"><a href="pipeline.html#cb5-2" aria-hidden="true"></a><span class="kw">mean</span>(x)</span>
+<span id="cb5-3"><a href="pipeline.html#cb5-3" aria-hidden="true"></a><span class="co">## [1] 0.250381</span></span></code></pre></div>
+<p>In the second case, we do not know the distribution of <span class="math inline">\(X^2\)</span>, but can still do the following:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="pipeline.html#cb6-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">rgeom</span>(<span class="fl">1e+05</span>, <span class="dt">prob =</span> <span class="fl">0.5</span>)</span>
+<span id="cb6-2"><a href="pipeline.html#cb6-2" aria-hidden="true"></a>y =<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb6-3"><a href="pipeline.html#cb6-3" aria-hidden="true"></a><span class="kw">mean</span>(y)</span>
+<span id="cb6-4"><a href="pipeline.html#cb6-4" aria-hidden="true"></a><span class="co">## [1] 2.99152</span></span></code></pre></div>
+<p><strong>Comments:</strong></p>
+<p><em>Math+R.</em> We are asked to compute <span class="math inline">\({\mathbb{E}}[ X^2]\)</span>, which can be interpreted in two ways. First, we can think of <span class="math inline">\(Y=X^2\)</span> as a random variable in its own and try to take draws from the distribution of <span class="math inline">\(Y\)</span>. In the case of the normal distribution, the distribution of <span class="math inline">\(Y\)</span> is known - it happens to be a <span class="math inline">\(\chi^2\)</span>-distribution with a single degree of freedom (don’t worry if you never heard of it). We can simulate it in R by using its R name <code>chisq</code> and
+get a number close to the exact value of <span class="math inline">\(1\)</span>.</p>
+<p>The case of a geometric distribution is seemingly more difficult, because we do not know what the distribution of <span class="math inline">\(Y=X^2\)</span> is and there is no corresponding R name to put the prefix <code>r</code> in front of. What makes the simulation possible is the fact that <span class="math inline">\(Y\)</span> is a <em>transformation</em> of
+a random variable we know how to simulate. In that case, we simply simulate the required number of draws <code>x</code> from the geometric distribution (using <code>rgeom</code>) and then apply the transformation <span class="math inline">\(x \mapsto x^2\)</span> to the result. The transformed vector <code>y</code> is then nothing but the sequence of draws from the distribution of <span class="math inline">\(X^2\)</span>. Btw, we could have done the same thing in the case of the normal random variable, too - there was no need to recognize its square as a <span class="math inline">\(\chi^2\)</span> random variable:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="pipeline.html#cb7-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e+05</span>)</span>
+<span id="cb7-2"><a href="pipeline.html#cb7-2" aria-hidden="true"></a>y =<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb7-3"><a href="pipeline.html#cb7-3" aria-hidden="true"></a><span class="kw">mean</span>(y)</span>
+<span id="cb7-4"><a href="pipeline.html#cb7-4" aria-hidden="true"></a><span class="co">## [1] 1.008819</span></span></code></pre></div>
+<p>The idea described above is one of main advantages of the Monte Carlo technique: if you know how to simulated a random variable, you also know how to simulated any (deterministic) function of it. That fact will come into its own a bit later when we start working with several random variables and stochastic processes, but it can be very helpful even in the case of a single random variable, as you will see in the next problem.</p>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-15" class="exercise"><strong>Problem 3.4  </strong></span>Let <span class="math inline">\(X\)</span> be a standard normal random variable. Use Monte Carlo to estimate the probability <span class="math inline">\({\mathbb{P}}[ X &gt; 1 ]\)</span>. Compare to the exact value.
+</div>
+<p><strong>Solution:</strong>
+The estimated probability:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="pipeline.html#cb8-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e+05</span>)</span>
+<span id="cb8-2"><a href="pipeline.html#cb8-2" aria-hidden="true"></a>y =<span class="st"> </span>x <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb8-3"><a href="pipeline.html#cb8-3" aria-hidden="true"></a>(<span class="dt">p_est =</span> <span class="kw">mean</span>(y))</span>
+<span id="cb8-4"><a href="pipeline.html#cb8-4" aria-hidden="true"></a><span class="co">## [1] 0.15732</span></span></code></pre></div>
+<p>The exact probability:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="pipeline.html#cb9-1" aria-hidden="true"></a><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="dv">1</span>)</span>
+<span id="cb9-2"><a href="pipeline.html#cb9-2" aria-hidden="true"></a><span class="co">## [1] 0.1586553</span></span></code></pre></div>
+<p>The error is -0.0013353.</p>
+<p><strong>Comments:</strong></p>
+<p><em>R.</em> In R, the symbol <code>&gt;</code> is an operation, which returns a Boolean (<code>TRUE</code> or <code>FALSE</code>) value. For example:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="pipeline.html#cb10-1" aria-hidden="true"></a><span class="dv">1</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span></span>
+<span id="cb10-2"><a href="pipeline.html#cb10-2" aria-hidden="true"></a><span class="co">## [1] FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="pipeline.html#cb11-1" aria-hidden="true"></a><span class="dv">5</span><span class="op">^</span><span class="dv">2</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span></span>
+<span id="cb11-2"><a href="pipeline.html#cb11-2" aria-hidden="true"></a><span class="co">## [1] TRUE</span></span></code></pre></div>
+<p>It works with vectors, too, but now the output is a vector of Boolean values:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="pipeline.html#cb12-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb12-2"><a href="pipeline.html#cb12-2" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">-4</span>, <span class="dv">3</span>)</span>
+<span id="cb12-3"><a href="pipeline.html#cb12-3" aria-hidden="true"></a>x <span class="op">&gt;</span><span class="st"> </span>y</span>
+<span id="cb12-4"><a href="pipeline.html#cb12-4" aria-hidden="true"></a><span class="co">## [1] FALSE  TRUE  TRUE</span></span></code></pre></div>
+<p>You can even compare a vector and a scalar:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="pipeline.html#cb13-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb13-2"><a href="pipeline.html#cb13-2" aria-hidden="true"></a>x <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span></span>
+<span id="cb13-3"><a href="pipeline.html#cb13-3" aria-hidden="true"></a><span class="co">##  [1] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE</span></span></code></pre></div>
+Therefore, the vector <code>y</code> in the solution is a vector of length <span class="math inline">\(100000\)</span> whose elements are either <code>TRUE</code> or <code>FALSE</code>; here are the first 5 rows of the “spreadsheet” (called a <strong>data frame</strong> or a <strong>tibble</strong> in R) with columns <code>x</code> and <code>y</code> from our solution:
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+x
+</th>
+<th style="text-align:left;">
+y
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1.9493
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-1.1015
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1.0448
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-0.1384
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+-0.2573
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+</tbody>
+</table>
+<p>Finally, <code>z</code> contains the <code>mean</code> of <code>y</code>. How do you compute a mean of Boolean values? In R (and many other languages) <code>TRUE</code> and <code>FALSE</code> have default numerical values, usually <span class="math inline">\(1\)</span> and <span class="math inline">\(0\)</span>. This way, when <span class="math inline">\(R\)</span> is asked to compute the <code>sum</code> of a Boolean vector it will effectively count the number of values which are <code>TRUE</code>. Similarly, the <code>mean</code> is the relative proportion of <code>TRUE</code> values.</p>
+<em>Math.</em>
+We computed the <strong>proportion</strong> of the “times” <span class="math inline">\(X&gt;1\)</span> (among many simulations of <span class="math inline">\(X\)</span>) and used it to approximate the <strong>probability</strong> <span class="math inline">\({\mathbb{P}}[ X&gt;1]\)</span>. More formally,
+we started from a random variable <span class="math inline">\(X\)</span> with a normal distribution and then transformed it into another random variable, <span class="math inline">\(Y\)</span>, by setting <span class="math inline">\(Y=1\)</span> whenever <span class="math inline">\(X&gt;1\)</span> and <span class="math inline">\(0\)</span> otherwise. This is often written as follows
+<span class="math display">\[ Y = \begin{cases} 1, &amp; X&gt;1 \\ 0, &amp; X\leq 1.\end{cases}\]</span>
+The random variable <span class="math inline">\(Y\)</span> is very special - it can only take values <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> (i.e., its support is <span class="math inline">\(\{0,1\}\)</span>). Such random variables are called <strong>indicator random variables</strong>, and their distribution, called the <strong>Bernoulli distribution</strong>, always looks like this:
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+0
+</th>
+<th style="text-align:left;">
+1
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1-p
+</td>
+<td style="text-align:left;">
+p
+</td>
+</tr>
+</tbody>
+</table>
+<p>for some <span class="math inline">\(p \in [0,1]\)</span>. The parameter <span class="math inline">\(p\)</span> is nothing but the probability <span class="math inline">\({\mathbb{P}}[Y=1]\)</span>.</p>
+<p>So why did we decide to transform <span class="math inline">\(X\)</span> into <span class="math inline">\(Y\)</span>? Because of the following simple fact:
+<span class="math display">\[ {\mathbb{E}}[ Y] = 1 \times p + 0 \times (1-p) = p.\]</span>
+The expected value of an indicator is the probability <span class="math inline">\(p\)</span>, and we know that we can use Monte Carlo whenever we can express the quantity we are computing as an expected value of a random variable we know how to simulate.</p>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-24" class="exercise"><strong>Problem 3.5  </strong></span>Use Monte Carlo to Estimate the value of <span class="math inline">\(\pi\)</span> and compute the error.
+</div>
+<p><strong>Solution.</strong></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="pipeline.html#cb14-1" aria-hidden="true"></a>nsim =<span class="st"> </span><span class="fl">1e+06</span></span>
+<span id="cb14-2"><a href="pipeline.html#cb14-2" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">runif</span>(nsim, <span class="dv">-1</span>, <span class="dv">1</span>)</span>
+<span id="cb14-3"><a href="pipeline.html#cb14-3" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">runif</span>(nsim, <span class="dv">-1</span>, <span class="dv">1</span>)</span>
+<span id="cb14-4"><a href="pipeline.html#cb14-4" aria-hidden="true"></a>z =<span class="st"> </span>(x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>y<span class="op">^</span><span class="dv">2</span>) <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb14-5"><a href="pipeline.html#cb14-5" aria-hidden="true"></a>(<span class="dt">pi_est =</span> <span class="dv">4</span> <span class="op">*</span><span class="st"> </span><span class="kw">mean</span>(z))</span>
+<span id="cb14-6"><a href="pipeline.html#cb14-6" aria-hidden="true"></a><span class="co">## [1] 3.141728</span></span>
+<span id="cb14-7"><a href="pipeline.html#cb14-7" aria-hidden="true"></a>(<span class="dt">err =</span> pi_est <span class="op">-</span><span class="st"> </span>pi)</span>
+<span id="cb14-8"><a href="pipeline.html#cb14-8" aria-hidden="true"></a><span class="co">## [1] 0.0001353464</span></span></code></pre></div>
+<p>Since we know the “exact” value of <span class="math inline">\(\pi\)</span>, we can compute the error <code>{r} format(err, digits=5)</code>.</p>
+<p><strong>Comments.</strong>:</p>
+<p><em>Math.</em>
+<img src="pics/mc_pi.gif" width="50%" style="float:right; padding:10px" style="display: block; margin: auto;" />
+As we learned in the previous problem, probabilities of events can be computed using Monte Carlo, as long as we know how to simulate the underlying indicator random variable. In this case, we want to compute <span class="math inline">\(\pi\)</span>, so we would need to find a “situation” in which the probability of something is <span class="math inline">\(\pi\)</span>. Of course, <span class="math inline">\(\pi&gt;1\)</span>, so it cannot be a probability of anything, but <span class="math inline">\(\pi/4\)</span> can, and computing <span class="math inline">\(\pi/4\)</span> is as useful as computing <span class="math inline">\(\pi\)</span>. To create the required probabilistic “situation” we think of the geometric meaning of <span class="math inline">\(\pi\)</span>, and come up with the following scheme. Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be two independent uniform random variables each with values between <span class="math inline">\(-1\)</span> and <span class="math inline">\(1\)</span>. We can think of the pair <span class="math inline">\((X,Y)\)</span> as a random point in the square <span class="math inline">\([-1,1]\times [-1,1]\)</span>. This point will sometimes fall inside the unit circle, and sometimes it will not. What is the probability of hitting the circle? Well, since <span class="math inline">\((X,Y)\)</span> is uniformly distributed everywhere inside the square, this probability should be equal to the portion of the area of our square which belongs to the unit circle. The area of the square is <span class="math inline">\(4\)</span> and the area of the circle is <span class="math inline">\(\pi\)</span>, so the required probability is <span class="math inline">\(\pi/4\)</span>. Using the idea from the previous problem, we define the indicator random variable <span class="math inline">\(Z\)</span> as follows
+<span class="math display">\[ Z = \begin{cases} 1 &amp; (X,Y) \text{ is inside the unit circle, } \\ 0 &amp; \text{ otherwise.}
+\end{cases}
+= \begin{cases} 1&amp; X^2+Y^2 &lt; 1, \\ 0 &amp; \text{ otherwise.} \end{cases}\]</span></p>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-27" class="exercise"><strong>Problem 3.6  </strong></span>1. Write an R function <code>cumavg</code> which computes the sequence of running averages of a vector, i.e., if the input is <span class="math inline">\(x=(x_1,x_2,x_3,\dots, x_n)\)</span>, the output should be
+<span class="math display">\[ \Big(x_1, \frac{1}{2} (x_1+x_2), \frac{1}{3}(x_1+x_2+x_3), \dots, \frac{1}{n} (x_1+x_2+\dots+x_n)\Big).\]</span> Test it to check that it really works.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Apply <code>cumavg</code> to the vector <span class="math inline">\(4 z\)</span> from the previous problem and plot your results (use a smaller value for <code>nsim</code>. Maybe <span class="math inline">\(1000\)</span>.) Plot the values against their index. Add a read horizontal line at the level <span class="math inline">\(\pi\)</span>. Rerun the same code (including the simulation part) several times.
+</div></li>
+</ol>
+<p><strong>Solution</strong></p>
+<ol style="list-style-type: decimal">
+<li></li>
+</ol>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="pipeline.html#cb15-1" aria-hidden="true"></a>cumavg =<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb15-2"><a href="pipeline.html#cb15-2" aria-hidden="true"></a>    c =<span class="st"> </span><span class="kw">cumsum</span>(x)</span>
+<span id="cb15-3"><a href="pipeline.html#cb15-3" aria-hidden="true"></a>    n =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x)</span>
+<span id="cb15-4"><a href="pipeline.html#cb15-4" aria-hidden="true"></a>    <span class="kw">return</span>(c<span class="op">/</span>n)</span>
+<span id="cb15-5"><a href="pipeline.html#cb15-5" aria-hidden="true"></a>}</span>
+<span id="cb15-6"><a href="pipeline.html#cb15-6" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">9</span>)</span>
+<span id="cb15-7"><a href="pipeline.html#cb15-7" aria-hidden="true"></a><span class="kw">cumavg</span>(x)</span>
+<span id="cb15-8"><a href="pipeline.html#cb15-8" aria-hidden="true"></a><span class="co">## [1] 1 2 3 3 3 4</span></span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li></li>
+</ol>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="pipeline.html#cb16-1" aria-hidden="true"></a>nsim =<span class="st"> </span><span class="dv">1000</span></span>
+<span id="cb16-2"><a href="pipeline.html#cb16-2" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">runif</span>(nsim, <span class="dv">-1</span>, <span class="dv">1</span>)</span>
+<span id="cb16-3"><a href="pipeline.html#cb16-3" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">runif</span>(nsim, <span class="dv">-1</span>, <span class="dv">1</span>)</span>
+<span id="cb16-4"><a href="pipeline.html#cb16-4" aria-hidden="true"></a>z =<span class="st"> </span>(x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>y<span class="op">^</span><span class="dv">2</span>) <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb16-5"><a href="pipeline.html#cb16-5" aria-hidden="true"></a>pi_est =<span class="st"> </span><span class="kw">cumavg</span>(<span class="dv">4</span> <span class="op">*</span><span class="st"> </span>z)</span>
+<span id="cb16-6"><a href="pipeline.html#cb16-6" aria-hidden="true"></a><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span>nsim, pi_est, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;number of simulations&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;estimate of pi&quot;</span>, </span>
+<span id="cb16-7"><a href="pipeline.html#cb16-7" aria-hidden="true"></a>    <span class="dt">main =</span> <span class="st">&quot;Computing pi by Monte Carlo&quot;</span>)</span>
+<span id="cb16-8"><a href="pipeline.html#cb16-8" aria-hidden="true"></a><span class="kw">abline</span>(pi, <span class="dv">0</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-29-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>Comments:</strong></p>
+<p><em>R.</em></p>
+<p>Part 1: The function <code>cumavg</code> can be written in many ways; the one in the solution is sleek because it does not use any <code>for</code> loops. It is also faster than the other two implementations below. It relies on the fact that many natural operations in R are already vectorized. The builtin function <code>cumsum</code> performs most of the work - once we have partial sums, we simply need to divide each one of them by the index of its position in the vector. If you wanted to use <code>for</code> loops and not rely on the function <code>cumsum</code>, you could write something like this:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="pipeline.html#cb17-1" aria-hidden="true"></a>cumavg =<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb17-2"><a href="pipeline.html#cb17-2" aria-hidden="true"></a>    out =<span class="st"> </span><span class="kw">numeric</span>(<span class="kw">length</span>(x))</span>
+<span id="cb17-3"><a href="pipeline.html#cb17-3" aria-hidden="true"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x)) {</span>
+<span id="cb17-4"><a href="pipeline.html#cb17-4" aria-hidden="true"></a>        p =<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb17-5"><a href="pipeline.html#cb17-5" aria-hidden="true"></a>        <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>i) {</span>
+<span id="cb17-6"><a href="pipeline.html#cb17-6" aria-hidden="true"></a>            p =<span class="st"> </span>p <span class="op">+</span><span class="st"> </span>x[j]</span>
+<span id="cb17-7"><a href="pipeline.html#cb17-7" aria-hidden="true"></a>        }</span>
+<span id="cb17-8"><a href="pipeline.html#cb17-8" aria-hidden="true"></a>        out[i] =<span class="st"> </span>p<span class="op">/</span>i</span>
+<span id="cb17-9"><a href="pipeline.html#cb17-9" aria-hidden="true"></a>    }</span>
+<span id="cb17-10"><a href="pipeline.html#cb17-10" aria-hidden="true"></a>    <span class="kw">return</span>(out)</span>
+<span id="cb17-11"><a href="pipeline.html#cb17-11" aria-hidden="true"></a>}</span></code></pre></div>
+<p>The statement <code>out = numeric(length(x))</code> is there to ask R to reserve enough room (memory) for a numeric vector the same size as <code>x</code>. It is not necessary, but it is a good idea to get into the habit of doing it because is makes your code both faster and easier to read.</p>
+<p>Here is another way, using the <code>sum</code> function:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="pipeline.html#cb18-1" aria-hidden="true"></a>cumavg =<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb18-2"><a href="pipeline.html#cb18-2" aria-hidden="true"></a>    out =<span class="st"> </span><span class="kw">numeric</span>(<span class="dv">0</span>)</span>
+<span id="cb18-3"><a href="pipeline.html#cb18-3" aria-hidden="true"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x)) {</span>
+<span id="cb18-4"><a href="pipeline.html#cb18-4" aria-hidden="true"></a>        out =<span class="st"> </span><span class="kw">c</span>(out, <span class="kw">sum</span>(x[<span class="dv">1</span><span class="op">:</span>i])<span class="op">/</span>i)</span>
+<span id="cb18-5"><a href="pipeline.html#cb18-5" aria-hidden="true"></a>    }</span>
+<span id="cb18-6"><a href="pipeline.html#cb18-6" aria-hidden="true"></a>    <span class="kw">return</span>(out)</span>
+<span id="cb18-7"><a href="pipeline.html#cb18-7" aria-hidden="true"></a>}</span></code></pre></div>
+<p>The line <code>out = c(out, sum(x[1:i]) / i)</code> appends the value <code>sum(x[1:i]) / i</code> to the end of the vector <code>out</code>. Note that <code>x[1:i]</code> is the vector <code>x</code> indexed by the sequence <code>1:i</code> (i.e., <code>1,2,...,i</code>), which is nothing other than the vector containing the first <code>i</code> elements of <code>x</code>. We also “pre-declared” the vector <code>out</code> in the statement `out = numeric(0)’. This time we only made sure that out is an empty numerical vector because of the way we build it incrementally. This is, in general, not a very efficient way of doing things, but it will do just fine for small vectors.</p>
+<p>Part 2. This course is not about R graphics, but I think it is a good idea to teach you how to make basic plots in R. This is what the functions <code>plot</code> and <code>abline</code> (and some others) do. I have already mentioned the fact that R has a number of high-quality graphics packages (like <code>ggplot2</code>), but the builtin R graphics is certainly good enough for “quick-and-dirty” plots.</p>
+<p>The main purpose of the function <code>plot</code> is to plot scatterplots:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="pipeline.html#cb19-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">7</span>)</span>
+<span id="cb19-2"><a href="pipeline.html#cb19-2" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb19-3"><a href="pipeline.html#cb19-3" aria-hidden="true"></a><span class="kw">plot</span>(x, y)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="672" style="display: block; margin: auto;" />
+The corresponding entries of vectors <code>x</code> and <code>y</code> are paired (into <span class="math inline">\((1,2)\)</span>, <span class="math inline">\((3,1)\)</span>, <span class="math inline">\((4,5)\)</span> and <span class="math inline">\((7,5)\)</span> in this case) and these pairs are used as coordinates of points. By default, each point is marked by a small circle, but this, and many other things, can be adjusted by numerous additional arguments. One of such arguments is <code>type</code> which determines the type of the plot. We used <code>type="l"</code> which tells R to join the points with straight lines:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="pipeline.html#cb20-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">7</span>)</span>
+<span id="cb20-2"><a href="pipeline.html#cb20-2" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb20-3"><a href="pipeline.html#cb20-3" aria-hidden="true"></a><span class="kw">plot</span>(x, y, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="672" style="display: block; margin: auto;" />
+The other arguments, <code>xlab</code>, <code>ylab</code> and <code>main</code> determine labels for axes and the entire plot. The function <code>abline(a,b)</code> adds a line <span class="math inline">\(y = a x + b\)</span> to an already existing plot. It is very useful in statistics if one wants to show the regression line superimposed on the scatterplot of data. Finally, the argument <code>col</code>, of course, determines the color of the line. To learn about various graphical parameters, type <code>?par</code>.</p>
+<p><em>Math.</em></p>
+<p>The conceptual reason for this exercise is to explore (numerically) the kinds of errors we make when we use Monte Carlo. Unlike the deterministic numerical procedures, Monte Carlo has a strange property that no bound on the error can be made with absolute certainty. Let me give you an example. Suppose that you have a biased coin, with the probability <span class="math inline">\(0.6\)</span> of heads and <span class="math inline">\(0.4\)</span> of tails. You don’t know this probability, and use a Monte Carlo technique to estimate it - you toss your coin <span class="math inline">\(1000\)</span> times and record the number of times you observe <span class="math inline">\(H\)</span>. The law of large numbers suggests that the relative frequency of heads is close to the true probability of <span class="math inline">\(H\)</span>. Indeed, you run a simulation</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="pipeline.html#cb21-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb21-2"><a href="pipeline.html#cb21-2" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;T&quot;</span>, <span class="st">&quot;H&quot;</span>), <span class="dv">1000</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.4</span>, <span class="fl">0.6</span>), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb21-3"><a href="pipeline.html#cb21-3" aria-hidden="true"></a>y =<span class="st"> </span>x <span class="op">==</span><span class="st"> &quot;H&quot;</span></span>
+<span id="cb21-4"><a href="pipeline.html#cb21-4" aria-hidden="true"></a><span class="kw">mean</span>(y)</span>
+<span id="cb21-5"><a href="pipeline.html#cb21-5" aria-hidden="true"></a><span class="co">## [1] 0.594</span></span></code></pre></div>
+<p>and get a pretty accurate estimate of <span class="math inline">\(0.594\)</span>. If you run the same code a few more times, you will get different estimates, but all of them will be close to <span class="math inline">\(0.6\)</span>. Theoretically, however, your simulation could have yielded <span class="math inline">\(1000\)</span> Hs, which would lead you to report <span class="math inline">\(p=1\)</span> as the Monte-Carlo estimate. The point is that even though such disasters are theoretically possible, they are exceedingly unlikely. The probability of getting all <span class="math inline">\(H\)</span> in <span class="math inline">\(1000\)</span> tosses of this coin is a number with more than <span class="math inline">\(500\)</span> zeros after the decimal point.</p>
+<p>The take-home message is that even though there are no guarantees, Monte Carlo performs well vast majority of the time. The crucial ingredient, however, is the number of simulations. The plot you were asked to make illustrates exactly that. The function <code>cumavg</code> gives you a whole sequence of Monte-Carlo estimates of the same thing (the number <span class="math inline">\(\pi\)</span>) with different numbers of simulations <code>nsim</code>. For small values of <code>nsim</code> the error is typically very large (and very random). As the number of simulations grows, the situations stabilizes and the error decreases. Without going into the theory behind it, let me only mention is that in the majority of practical applications we have the following relationship:
+<span class="math display">\[ error \sim \frac{1}{\sqrt{n}}.\]</span>
+In words, if you want to double the precision, you need to quadruple the number of simulations. If you want an extra digit in your estimate, you need to multiply the number of simulations by <span class="math inline">\(100\)</span>. Instead of going further into the theory, here is an image where I superimposed <span class="math inline">\(40\)</span> plots like the one you were asked to produce (the red lines are <span class="math inline">\(\pm \frac{4}{\sqrt{n}}\)</span>):</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="conditional-probability-and-independence." class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Conditional probability and independence.</h2>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-36" class="exercise"><strong>Problem 3.7  </strong></span>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be two independent geometric random variables with parameters <span class="math inline">\(p=0.5\)</span>, and let <span class="math inline">\(Z=X+Y\)</span>. Compute <span class="math inline">\({\mathbb{P}}[ X = 3| Z = 5]\)</span> using simulation. Compare to the exact value.
+</div>
+<p><strong>Solution:</strong></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="pipeline.html#cb22-1" aria-hidden="true"></a>nsim =<span class="st"> </span><span class="fl">1e+05</span></span>
+<span id="cb22-2"><a href="pipeline.html#cb22-2" aria-hidden="true"></a>X =<span class="st"> </span><span class="kw">rgeom</span>(nsim, <span class="dt">prob =</span> <span class="fl">0.5</span>)</span>
+<span id="cb22-3"><a href="pipeline.html#cb22-3" aria-hidden="true"></a>Y =<span class="st"> </span><span class="kw">rgeom</span>(nsim, <span class="dt">prob =</span> <span class="fl">0.5</span>)</span>
+<span id="cb22-4"><a href="pipeline.html#cb22-4" aria-hidden="true"></a>Z =<span class="st"> </span>X <span class="op">+</span><span class="st"> </span>Y</span>
+<span id="cb22-5"><a href="pipeline.html#cb22-5" aria-hidden="true"></a>X_cond =<span class="st"> </span>X[Z <span class="op">==</span><span class="st"> </span><span class="dv">5</span>]</span>
+<span id="cb22-6"><a href="pipeline.html#cb22-6" aria-hidden="true"></a><span class="kw">mean</span>(X_cond <span class="op">==</span><span class="st"> </span><span class="dv">3</span>)</span>
+<span id="cb22-7"><a href="pipeline.html#cb22-7" aria-hidden="true"></a><span class="co">## [1] 0.1690112</span></span></code></pre></div>
+<p>We have
+<span class="math display">\[ {\mathbb{P}}[ X = 3 | Z= 5 ] = \frac{{\mathbb{P}}[ X=3 \text{ and }Z=5]}{{\mathbb{P}}[Z=5]} = \frac{{\mathbb{P}}[X=3 \text{ and }Y = 2]}{{\mathbb{P}}[Z=5]} \]</span>
+Since <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, we have <span class="math inline">\({\mathbb{P}}[ X=3 \text{ and }Y=2 ] = {\mathbb{P}}[X=3] {\mathbb{P}}[ Y=2] = 2^{-4} 2^{-3} = 2^{-7}\)</span>. To compute <span class="math inline">\({\mathbb{P}}[ Z = 5]\)</span> we need to split the event <span class="math inline">\(\{ Z = 5 \}\)</span> into events we know how to deal with. Since <span class="math inline">\(Z\)</span> is built from <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, we write
+<span class="math display">\[ \begin{align} {\mathbb{P}}[ Z = 5 ] = &amp;{\mathbb{P}}[X=0 \text{ and }Y=5]+ {\mathbb{P}}[ X=1 \text{ and }Y=4] + {\mathbb{P}}[ X=2 \text{ and }Y=3] + \\
+&amp;  {\mathbb{P}}[ X=3 \text{ and }Y=2] + {\mathbb{P}}[ X=4 \text{ and }Y=1] + {\mathbb{P}}[ X = 5 \text{ and }Y=0]. \end{align}\]</span>
+Each of the individual probabilities in the sum above is <span class="math inline">\(2^{-7}\)</span>, so <span class="math inline">\({\mathbb{P}}[ X = 3 | Z = 5] = \frac{1}{6}\)</span>.
+This gives us an error of 0.0023445.</p>
+<p><strong>Comments:</strong></p>
+<p><em>Math.</em> Let us, first, recall what the conditional probability is. The definition we learn in the probability class is the following <span class="math display">\[ {\mathbb{P}}[A | B] = \frac{{\mathbb{P}}[A \text{ and }B]}{{\mathbb{P}}[B]}\]</span>, as long as <span class="math inline">\({\mathbb{P}}[B]&gt;0\)</span>. The interpretation is that <span class="math inline">\({\mathbb{P}}[A|B]\)</span> is still the probability of <span class="math inline">\(A\)</span>, but now in the world where <span class="math inline">\(B\)</span> is guaranteed to happen. Conditioning usually happens when we receive new information. If someone tells us that <span class="math inline">\(B\)</span> happened, we can disregard everything in the complement of <span class="math inline">\(B\)</span> and adjust our probability to account for that fact. First we remove from <span class="math inline">\(A\)</span> anything that belongs to the complement of <span class="math inline">\(B\)</span>, and recompute the probability <span class="math inline">\({\mathbb{P}}[A \cap B]\)</span>. We also have to divide by <span class="math inline">\({\mathbb{P}}[B]\)</span> because we want the total probability to be equal to <span class="math inline">\(1\)</span>.</p>
+<p>Our code starts as usual, but simulating <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> from the required distribution, and constructing a new vector <span class="math inline">\(Z\)</span> as their sum. The variable <code>X_cond</code> is new; we build it from <span class="math inline">\(X\)</span> by removing all the elements whose corresponding <span class="math inline">\(Z\)</span> is <em>not</em> equal to <span class="math inline">\(5\)</span>. This is an example of what is sometimes called the <strong>rejection method</strong> in simulation. We simply “reject” all simulations which do not satisfy the condition we are conditioning on. We can think of <code>X_cond</code> as bunch of simulations of <span class="math inline">\(X\)</span>, but in the world where <span class="math inline">\(Z=5\)</span> is guaranteed to happen. Once we have <code>X_cond</code>, we proceed as usual by computing the relative frequency of the value <span class="math inline">\(3\)</span> among all possible values <span class="math inline">\(X\)</span> can take. Note that the same <code>X_cond</code> can also be used to compute the conditional probability <span class="math inline">\({\mathbb{P}}[ X=1| Z=5]\)</span>. In fact, <code>X_cond</code> contains the information about the entire <strong>conditional distribution of <span class="math inline">\(X\)</span> given <span class="math inline">\(Z=5\)</span></strong>; if we draw a histogram of <code>X_cond</code>, we will get a good idea of what this distribution looks like:
+<img src="_main_files/figure-html/unnamed-chunk-38-1.png" width="672" style="display: block; margin: auto;" />
+The histogram above suggests that the distribution of <span class="math inline">\(X\)</span>, given <span class="math inline">\(Z=5\)</span>, is uniform on <span class="math inline">\(\{0,1,2,3,4,5\}\)</span>. It is - a calculation almost identical to the one we performed above gives that <span class="math inline">\({\mathbb{P}}[ X= i| Z=5] = \frac{1}{6}\)</span> for each <span class="math inline">\(i=0,1,2,3,4,5\)</span>.</p>
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="simulation-of-random-variables-and-monte-carlo.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dist.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": false,
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
