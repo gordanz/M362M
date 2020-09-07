@@ -90,6 +90,8 @@ pts = np.random.multivariate_normal(mean, Sigma, size=500)
 x = np.random.normal(size=10000)
 z = np.random.normal(size=10000)
 y = [ xx ** 2 for xx in x ] + z 
+#y = np.random.permutation([ xx ** 2 for xx in x ] + z )
+
 
 
 
@@ -112,4 +114,5 @@ fig = go.Figure(data=[mesh3d], layout=layout )
 
 
 pio.write_html(fig, config = {"displayModeBar": False},
-    file="test.html",auto_open=True, include_plotlyjs="cdn")
+    file="../source/pics/3dhist.html",auto_open=True,
+    include_plotlyjs="cdn")
