@@ -193,23 +193,140 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.1</span> Multivariate Distributions</h2>
 
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-2" class="exercise"><strong>Problem 3.1  </strong></span>Let <code>x</code> contain <span class="math inline">\(10,000\)</span> draws from <span class="math inline">\(N(0,1)\)</span>, <code>z</code> another <span class="math inline">\(10,000\)</span> draws from <span class="math inline">\(N(0,1)\)</span> and let <code>y=x+z</code>.</p>
+<p><span id="exr:unnamed-chunk-2" class="exercise"><strong>Problem 3.1  </strong></span>Let <code>x</code> contain <span class="math inline">\(2,000\)</span> draws from <span class="math inline">\(N(0,1)\)</span>, <code>z</code> another <span class="math inline">\(2,000\)</span> draws from <span class="math inline">\(N(0,1)\)</span> and let <code>y=x+z</code>.</p>
 <ol style="list-style-type: decimal">
-<li><p>Draw a scatterplot of <code>x</code> and <code>y</code>.</p></li>
-<li><p>Is there a better way to visualize the joint distribution of <code>x</code> and <code>y</code>? Would it be enough to simply plot two histograms, one of <code>x</code> and one of <code>y</code>?</p></li>
-<li><p>Do <code>x</code> and <code>y</code> “look independent”? What is the mathematical definition of independence? Use the permutation test to check of independence between <code>x</code> and <code>y</code>.</p>
+<li><p>Draw a scatterplot of <code>x</code> and <code>y</code> to visualize the joint distribution of <code>x</code> and <code>y</code></p></li>
+<li><p>Plot two histograms, one of <code>x</code> and one of <code>y</code>. Do they tell the whole story about the joint distribution of <code>x</code> and <code>y</code>?</p></li>
+<li><p>Do <code>x</code> and <code>y</code> in your plot “look independent”? Use the permutation test to check of independence between <code>x</code> and <code>y</code>.</p>
 </div>
 <p><strong>Solution:</strong></p></li>
 </ol>
 <p>1. </p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="pipeline.html#cb1-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10000</span>)</span>
-<span id="cb1-2"><a href="pipeline.html#cb1-2" aria-hidden="true"></a>z =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">10000</span>)</span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="pipeline.html#cb1-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">2000</span>)</span>
+<span id="cb1-2"><a href="pipeline.html#cb1-2" aria-hidden="true"></a>z =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">2000</span>)</span>
 <span id="cb1-3"><a href="pipeline.html#cb1-3" aria-hidden="true"></a>y =<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>z</span>
 <span id="cb1-4"><a href="pipeline.html#cb1-4" aria-hidden="true"></a><span class="kw">plot</span>(x, y)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
-<ol start="2" style="list-style-type: decimal">
-<li>Yes, we could use 3d histogram, where the <span class="math inline">\(x-y\)</span> plane is divided into squares and a bar (a skyscraper) is drawn above each square. The height of each skyscraper is proportional to the number of points which fall into its base. This is the most literal analogue of a regular (2d) histogram in 2 dimensions. The one shown below can be rotated and zoomed by the reader (as long as JavaScript is enabled):</li>
-</ol>
+<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" />
+2.  </p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="pipeline.html#cb2-1" aria-hidden="true"></a><span class="kw">hist</span>(x)</span>
+<span id="cb2-2"><a href="pipeline.html#cb2-2" aria-hidden="true"></a><span class="kw">hist</span>(y)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>No, the two histograms would not be enough to describe the joint distribution.
+There are many ways in which two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> can be jointly
+distributed, but whose separate distributions. To give a very simple example,
+let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be discrete random variables, each of which can only take values
+<span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span>. Consider the following two <em>joint</em> distribution tables</p>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;text-align: center;">
+</th>
+<th style="text-align:right;text-align: center;">
+0
+</th>
+<th style="text-align:right;text-align: center;">
+1
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+0
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+1
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;text-align: center;">
+</th>
+<th style="text-align:right;text-align: center;">
+0
+</th>
+<th style="text-align:right;text-align: center;">
+1
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+0
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+1
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<p>In both cases, the marginals are the same, i.e., both <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are equally likely to take the value <span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span>, i.e., they both have the Bernoulli distribution with parameter <span class="math inline">\(p=1/2\)</span>. That would correspond to the separate histograms to be the same. On the other hand, their joint distributions (aka dependence structures) are completely different. In the first (left) case, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, but in the second they are completely dependent.</p>
+<p>3. 
+To apply the permutation test, we first plot the scatterplot of <code>x</code> vs. <code>y</code> as above. Then, we replace <code>y</code> by a vector with the same components, but randomly permute their positions, and then plot a scatterplot again. We repeat this three times:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="pipeline.html#cb3-1" aria-hidden="true"></a>y_perm_<span class="dv">1</span> =<span class="st"> </span><span class="kw">sample</span>(y)</span>
+<span id="cb3-2"><a href="pipeline.html#cb3-2" aria-hidden="true"></a>y_perm_<span class="dv">2</span> =<span class="st"> </span><span class="kw">sample</span>(y)</span>
+<span id="cb3-3"><a href="pipeline.html#cb3-3" aria-hidden="true"></a>y_perm_<span class="dv">3</span> =<span class="st"> </span><span class="kw">sample</span>(y)</span>
+<span id="cb3-4"><a href="pipeline.html#cb3-4" aria-hidden="true"></a><span class="kw">plot</span>(x, y)</span>
+<span id="cb3-5"><a href="pipeline.html#cb3-5" aria-hidden="true"></a><span class="kw">plot</span>(x, y_perm_<span class="dv">1</span>)</span>
+<span id="cb3-6"><a href="pipeline.html#cb3-6" aria-hidden="true"></a><span class="kw">plot</span>(x, y_perm_<span class="dv">2</span>)</span>
+<span id="cb3-7"><a href="pipeline.html#cb3-7" aria-hidden="true"></a><span class="kw">plot</span>(x, y_perm_<span class="dv">3</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The conclusion is clear, the first (upper-left) plot is very different than the other three. Therefore, <code>x</code> and <code>y</code> are probably not independent.</p>
+<p><strong>Comments.</strong></p>
+<p><em>Math.</em> The point of this problem is to review the notion of the <strong>joint distribution</strong> between two random variables. The most important point here is that there is more to the joint distribution of two random vectors, than just the two distributions taken separately. In a sense, the whole is (much) more than the sum of its parts. This is something that does not happen in the deterministic world. If you give me the <span class="math inline">\(x\)</span>-coordinate of a point, and, separately, its <span class="math inline">\(y\)</span>-coordinate, I will be able to pinpoint the exact location of that point.</p>
+<p>On the other hand, suppose that <span class="math inline">\(x\)</span>-coordinate of a point is unknown, so we treat it as a random variable, and suppose that this variable admits the standard normal distribution. Do the same for <span class="math inline">\(y\)</span>. Even with this information, you cannot say anything about the position of the point <span class="math inline">\((x,y)\)</span>. It could be that the reason we are uncertain about <span class="math inline">\(x\)</span> and the reason we are uncertain about <span class="math inline">\(y\)</span> have nothing to do with each other; in that case we would be right to assume that <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are independent. If, on the other hand, we got the values of both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> by measuring them using the same, inaccurate, tape measure, we cannot assume that the errors are independent. It is more likely that both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are too big, or both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are too small.</p>
+<p>Mathematically, we say that random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent if
+<span class="math display">\[ {\mathbb{P}}[X \in [a,b]] \times {\mathbb{P}}[ Y \in [c,d] ] = {\mathbb{P}}[ X\in [a,b] \text{ and } Y\in [c,d]]\text{ for all } a,b,c,d.\]</span>
+While up to the point, this definition is not very eye-opening, or directly applicable in most cases. Intuitively, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent if the distribution of <span class="math inline">\(Y\)</span> would not change if we received additional information about <span class="math inline">\(X\)</span>. In our problem, random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> corresponds to vectors <code>x</code> and <code>y</code>. Their scatterplot above clearly conveys the following message: when <code>x</code> is around <span class="math inline">\(-2\)</span>, we expect <code>y</code> to be around <code>4</code>, while when <code>x</code> is around <span class="math inline">\(0\)</span>, <code>y</code> would be expected to be around <span class="math inline">\(0\)</span>, too.</p>
+<p>Sometimes, it is not so easy to decide whether two variables are independent by staring at a scatterplot. What would you say about the scatterplot below?
+<img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="50%" style="display: block; margin: auto;" />
+The <strong>permutation test</strong> is designed to help you decide when two (simulated) random variables are likely to be independent. The idea is simple. Suppose that <code>x</code> and <code>y</code> are simulations from two independent (not necessarily identical) distributions; say <code>x=runif(1000)</code> and <code>y=rnorm(1000)</code>. The vector <code>y_perm=sample(y)</code> is a randomly permuted version of <code>y</code> (see R section below) and it contains exactly the same information about the distribution of <code>y</code> as <code>y</code> itself does. Both <code>y</code> and <code>y_perm</code> will produce exactly the same histogram. Permuting <code>y</code>, however, “uncouples” it from <code>x</code>. If there was any dependence between the values of <code>x</code> and <code>y</code> before, there certainly isn’t any now. In other the joint distribution of <code>x</code> and <code>y_perm</code> has the same marginals as the joint distribution of <code>x</code> and <code>y</code>, but all the (possible) dependence has been removed. What remains is to compare the scatterplot between <code>x</code> and <code>y</code> and the scatterplot between <code>x</code> and <code>y_perm</code>. If they look about the same, we conclude that <code>x</code> and <code>y</code> are independent. Otherwise, there is some dependence between them.</p>
+<p>One question remains: why did we have to draw three scatterplots of permuted versions of <code>y</code>? That is because we have only finitely many data points, and it can happen, by pure chance, that the permutation we applied to <code>y</code> does not completely scramble its dependence on <code>x</code>. With a “sample” of three such plots, we
+get a better feeling for the inherent randomness in this permutation procedure, and it is much easier to tell whether “one of these things is not like the others”. Btw, the random variables in the scatterplot above are, indeed, independent; here are the <span class="math inline">\(4\)</span> permutation-test plots to “prove” it:
+<img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Unlike univariate (one-variable) distributions which are visualized using histograms or similar plots, multivariate (several-variable) distributions are harder to depict. The most direct relative of the histogram is a <strong>3d histogram</strong>. Just like the <span class="math inline">\(x\)</span>-axis is divided into bins in the univariate case, in the multivariate case we divide the <span class="math inline">\(x-y\)</span>-plane into regions (squares, e.g.) and count the number of points falling into each of these regions. After that a 3d bar (a skyscraper) is drawn above each square with the height of each skyscraper equal (or proportional) to the number of points which fall into its base. Here is a 3d histogram of our original pair (<code>x</code>,<code>y</code>) from the problem. You should be able to rotated and zoom it right here in the notes, provided your browser has JavaScript enabled:
 <html>
 <head><meta charset="utf-8" /></head>
 <body>
@@ -234,43 +351,21 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
             </script>
         </div>
 </body>
-</html>
-<p>A solution that requires less technology would start the same way, i.e., by dividing the <span class="math inline">\(x-y\)</span> plane into bins, but instead of the third dimension, it would use different colors to represent the counts. Here is an example where the bins are hexagons (and not squares; it just looks better, for some reason)</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Another possibility which requires deeper statistical tools is the density contour plot:
-<img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>Displaying just the two histograms would not be enough. Here they are, side to side</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="pipeline.html#cb2-1" aria-hidden="true"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb2-2"><a href="pipeline.html#cb2-2" aria-hidden="true"></a><span class="kw">hist</span>(x, <span class="dt">freq =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb2-3"><a href="pipeline.html#cb2-3" aria-hidden="true"></a><span class="kw">hist</span>(y, <span class="dt">freq =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" />
-And here is a 2d histogram of another joint distribution between <code>x</code> and <code>y</code> which would give exactly the same (1D) histograms.
-<img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" />
-3. No, they don’t look independent. Vary large and very small values of <code>x</code> correspond to larger values of <code>y</code> than the intermediate values. Mathematically, we say that random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent if
-<span class="math display">\[ {\mathbb{P}}[X \in [a,b]] \times {\mathbb{P}}[ Y \in [c,d] ] = {\mathbb{P}}[ X\in [a,b] \text{ and } Y\in [c,d]].\]</span>
-To apply the permutation test, we first plot the scatterplot of <code>x</code> vs. <code>y</code> as above. Then, we replace <code>y</code> by a vector with the same components, but with randomly permuted position, and then plot a scatterplot again</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="pipeline.html#cb3-1" aria-hidden="true"></a>y_perm_<span class="dv">1</span> =<span class="st"> </span><span class="kw">sample</span>(y)</span>
-<span id="cb3-2"><a href="pipeline.html#cb3-2" aria-hidden="true"></a>y_perm_<span class="dv">2</span> =<span class="st"> </span><span class="kw">sample</span>(y)</span>
-<span id="cb3-3"><a href="pipeline.html#cb3-3" aria-hidden="true"></a>y_perm_<span class="dv">3</span> =<span class="st"> </span><span class="kw">sample</span>(y)</span>
-<span id="cb3-4"><a href="pipeline.html#cb3-4" aria-hidden="true"></a><span class="kw">plot</span>(x, y)</span>
-<span id="cb3-5"><a href="pipeline.html#cb3-5" aria-hidden="true"></a><span class="kw">plot</span>(x, y_perm_<span class="dv">1</span>)</span>
-<span id="cb3-6"><a href="pipeline.html#cb3-6" aria-hidden="true"></a><span class="kw">plot</span>(x, y_perm_<span class="dv">2</span>)</span>
-<span id="cb3-7"><a href="pipeline.html#cb3-7" aria-hidden="true"></a><span class="kw">plot</span>(x, y_perm_<span class="dv">3</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" />
-Since the upper left image looks clearly different from the other three, we conclude that <code>x</code> and <code>y</code> are likely not to be independent.</p>
-<p><strong>Comments.</strong></p>
-<p>R. There is a lot of new R here, but most of it is just to make pretty plots. The only thing you need to remember is that <code>plot(x,y)</code> gives you a scatterplot of <code>x</code> and <code>y</code>. Another useful command is <code>par(mfrow=c(m,n))</code> which tells R to plot the next <span class="math inline">\(mn\)</span> plots in a <span class="math inline">\(m\times n\)</span> grid. The extra argument <code>xlim=c(-4,4)</code> sets the range of the <span class="math inline">\(x\)</span>-axis; there is also <code>ylim</code>. All of there are completely cosmetic, but come in very handy when you want to compare several plots as in the case of the permutation test above.</p>
-<p>We used the command <code>sample(y)</code> to obtain a randomly permuted version of <code>y</code>. The simplicity of this is due to default parameters of the command <code>sample</code> which we already learned about. In particular, the default number of samples is exactly the size of the input vector <code>y</code> and, by default, sampling is performed without replacement. If you think about it for a second, you will realize that a sample of size <span class="math inline">\(n\)</span> from the vector of size <span class="math inline">\(n\)</span> <em>without</em> replacement is nothing by a random permutation of <code>y</code>.</p>
-<p>Math.</p>
-<p>Intuitively, this means that the knowledge of one of them (say <span class="math inline">\(X\)</span>) does not effect the prediction of the other
-one (<span class="math inline">\(Y\)</span>). In our case, if we are told that <code>x</code> is around <span class="math inline">\(-2\)</span>, we would expect <code>y</code> to be around <code>4</code>,
-while if we are told that <code>x</code> is around <span class="math inline">\(0\)</span>, <code>y</code> would be expected to be around <span class="math inline">\(0\)</span>, too.</p>
+</html></p>
+<p>A visualization solution that requires less technology would start the same way, i.e., by dividing the <span class="math inline">\(x-y\)</span> plane into regions, but instead of the third dimension, it would use different colors to represent the counts. Here is an example where the regions are hexagon, as opposed to squares; it just looks better, for some reason:</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Just to showcase the range of possibilities, here is another visualization technique which which requires deeper statistical tools, namely the <strong>density contour plot</strong>:
+<img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><em>R.</em> There is very little new R here.
+You should remember that if <code>x</code> and <code>y</code> are vectors of the same length, <code>plot(x,y)</code> gives you a scatterplot of <code>x</code> and <code>y</code>.</p>
+<p>We used the command <code>sample(y)</code> to obtain a randomly permuted version of <code>y</code>. The simplicity of this is due to default parameters of the command <code>sample</code> which we already learned about. In particular, the default number of samples is exactly the size of the input vector <code>y</code> and, by default, sampling is performed <em>without replacement</em>. If you think about it for a second, you will realize that a sample of size <span class="math inline">\(n\)</span> from the vector of size <span class="math inline">\(n\)</span> <em>without</em> replacement is nothing by a random permutation of <code>y</code>.</p>
+<p>You are not required to do this in your submissions, but if you want to learn how to display several plots side-by-side, use the command is <code>par(mfrow=c(m,n))</code> before the <code>plot</code> commands. It tells R to plot the next <span class="math inline">\(mn\)</span> plots in a <span class="math inline">\(m\times n\)</span> grid.</p>
 </div>
 <div id="monte-carlo" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Monte Carlo</h2>
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-10" class="exercise"><strong>Problem 3.2  </strong></span>Use Monte Carlo to estimate the expected value of the exponential random variable with parameter <span class="math inline">\(\lambda= 4\)</span> using <span class="math inline">\(n=10\)</span>, <span class="math inline">\(n=1,000\)</span> and <span class="math inline">\(1,000,000\)</span> simulations. Compare to the exact value.
+<span id="exr:unnamed-chunk-12" class="exercise"><strong>Problem 3.2  </strong></span>Use Monte Carlo to estimate the expected value of the exponential random variable with parameter <span class="math inline">\(\lambda= 4\)</span> using <span class="math inline">\(n=10\)</span>, <span class="math inline">\(n=1,000\)</span> and <span class="math inline">\(1,000,000\)</span> simulations. Compare to the exact value.
 </div>
 <p><strong>Solution:</strong></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="pipeline.html#cb4-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">rexp</span>(<span class="dv">10</span>, <span class="dt">rate =</span> <span class="dv">4</span>)</span>
@@ -299,7 +394,7 @@ The idea behind Monte Carlo is to turn this theorem “upside down”. The goal 
 <p>It looks like Monte Carlo can only be used to compute the expected value of a random variable, which does not seem like such a bit deal. It is! You will see in the sequel that almost anything can be written as the expected value of <em>some</em> random variable.</p>
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-14" class="exercise"><strong>Problem 3.3  </strong></span>Use Monte Carlo to estimate <span class="math inline">\({\mathbb{E}}[X^2]\)</span>, where <span class="math inline">\(X\)</span> is a standard normal random variable. Do the same thing when <span class="math inline">\(X\)</span> is geometrically distributed with parameter <span class="math inline">\(p=0.5\)</span>.
+<span id="exr:unnamed-chunk-16" class="exercise"><strong>Problem 3.3  </strong></span>Use Monte Carlo to estimate <span class="math inline">\({\mathbb{E}}[X^2]\)</span>, where <span class="math inline">\(X\)</span> is a standard normal random variable. Do the same thing when <span class="math inline">\(X\)</span> is geometrically distributed with parameter <span class="math inline">\(p=0.5\)</span>.
 </div>
 <p><strong>Solution.</strong>
 When <span class="math inline">\(X\)</span> is standard normal <span class="math inline">\(Y=X^2\)</span> has a <span class="math inline">\(\chi^2\)</span> distribution with one degree of freedom:</p>
@@ -323,7 +418,7 @@ a random variable we know how to simulate. In that case, we simply simulate the 
 <p>The idea described above is one of main advantages of the Monte Carlo technique: if you know how to simulated a random variable, you also know how to simulated any (deterministic) function of it. That fact will come into its own a bit later when we start working with several random variables and stochastic processes, but it can be very helpful even in the case of a single random variable, as you will see in the next problem.</p>
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-18" class="exercise"><strong>Problem 3.4  </strong></span>Let <span class="math inline">\(X\)</span> be a standard normal random variable. Use Monte Carlo to estimate the probability <span class="math inline">\({\mathbb{P}}[ X &gt; 1 ]\)</span>. Compare to the exact value.
+<span id="exr:unnamed-chunk-20" class="exercise"><strong>Problem 3.4  </strong></span>Let <span class="math inline">\(X\)</span> be a standard normal random variable. Use Monte Carlo to estimate the probability <span class="math inline">\({\mathbb{P}}[ X &gt; 1 ]\)</span>. Compare to the exact value.
 </div>
 <p><strong>Solution:</strong>
 The estimated probability:</p>
@@ -439,7 +534,7 @@ p
 The expected value of an indicator is the probability <span class="math inline">\(p\)</span>, and we know that we can use Monte Carlo whenever we can express the quantity we are computing as an expected value of a random variable we know how to simulate.</p>
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-27" class="exercise"><strong>Problem 3.5  </strong></span>Use Monte Carlo to Estimate the value of <span class="math inline">\(\pi\)</span> and compute the error.
+<span id="exr:unnamed-chunk-29" class="exercise"><strong>Problem 3.5  </strong></span>Use Monte Carlo to Estimate the value of <span class="math inline">\(\pi\)</span> and compute the error.
 </div>
 <p><strong>Solution.</strong></p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="pipeline.html#cb16-1" aria-hidden="true"></a>nsim =<span class="st"> </span><span class="fl">1e+06</span></span>
@@ -460,7 +555,7 @@ As we learned in the previous problem, probabilities of events can be computed u
 = \begin{cases} 1&amp; X^2+Y^2 &lt; 1, \\ 0 &amp; \text{ otherwise.} \end{cases}\]</span></p>
 
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-30" class="exercise"><strong>Problem 3.6  </strong></span>1. Write an R function <code>cumavg</code> which computes the sequence of running averages of a vector, i.e., if the input is <span class="math inline">\(x=(x_1,x_2,x_3,\dots, x_n)\)</span>, the output should be
+<p><span id="exr:unnamed-chunk-32" class="exercise"><strong>Problem 3.6  </strong></span>1. Write an R function <code>cumavg</code> which computes the sequence of running averages of a vector, i.e., if the input is <span class="math inline">\(x=(x_1,x_2,x_3,\dots, x_n)\)</span>, the output should be
 <span class="math display">\[ \Big(x_1, \frac{1}{2} (x_1+x_2), \frac{1}{3}(x_1+x_2+x_3), \dots, \frac{1}{n} (x_1+x_2+\dots+x_n)\Big).\]</span> Test it to check that it really works.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Apply <code>cumavg</code> to the vector <span class="math inline">\(4 z\)</span> from the previous problem and plot your results (use a smaller value for <code>nsim</code>. Maybe <span class="math inline">\(1000\)</span>.) Plot the values against their index. Add a read horizontal line at the level <span class="math inline">\(\pi\)</span>. Rerun the same code (including the simulation part) several times.
@@ -489,7 +584,7 @@ As we learned in the previous problem, probabilities of events can be computed u
 <span id="cb18-6"><a href="pipeline.html#cb18-6" aria-hidden="true"></a><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span>nsim, pi_est, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;number of simulations&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;estimate of pi&quot;</span>, </span>
 <span id="cb18-7"><a href="pipeline.html#cb18-7" aria-hidden="true"></a>    <span class="dt">main =</span> <span class="st">&quot;Computing pi by Monte Carlo&quot;</span>)</span>
 <span id="cb18-8"><a href="pipeline.html#cb18-8" aria-hidden="true"></a><span class="kw">abline</span>(pi, <span class="dv">0</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-34-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><strong>Comments:</strong></p>
 <p><em>R.</em></p>
 <p>Part 1: The function <code>cumavg</code> can be written in many ways; the one in the solution is sleek because it does not use any <code>for</code> loops. It is also faster than the other two implementations below. It relies on the fact that many natural operations in R are already vectorized. The builtin function <code>cumsum</code> performs most of the work - once we have partial sums, we simply need to divide each one of them by the index of its position in the vector. If you wanted to use <code>for</code> loops and not rely on the function <code>cumsum</code>, you could write something like this:</p>
@@ -519,12 +614,12 @@ As we learned in the previous problem, probabilities of events can be computed u
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="pipeline.html#cb21-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">7</span>)</span>
 <span id="cb21-2"><a href="pipeline.html#cb21-2" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">5</span>)</span>
 <span id="cb21-3"><a href="pipeline.html#cb21-3" aria-hidden="true"></a><span class="kw">plot</span>(x, y)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" />
+<p><img src="_main_files/figure-html/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" />
 The corresponding entries of vectors <code>x</code> and <code>y</code> are paired (into <span class="math inline">\((1,2)\)</span>, <span class="math inline">\((3,1)\)</span>, <span class="math inline">\((4,5)\)</span> and <span class="math inline">\((7,5)\)</span> in this case) and these pairs are used as coordinates of points. By default, each point is marked by a small circle, but this, and many other things, can be adjusted by numerous additional arguments. One of such arguments is <code>type</code> which determines the type of the plot. We used <code>type="l"</code> which tells R to join the points with straight lines:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="pipeline.html#cb22-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">7</span>)</span>
 <span id="cb22-2"><a href="pipeline.html#cb22-2" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">5</span>)</span>
 <span id="cb22-3"><a href="pipeline.html#cb22-3" aria-hidden="true"></a><span class="kw">plot</span>(x, y, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-36-1.png" width="672" style="display: block; margin: auto;" />
+<p><img src="_main_files/figure-html/unnamed-chunk-38-1.png" width="672" style="display: block; margin: auto;" />
 The other arguments, <code>xlab</code>, <code>ylab</code> and <code>main</code> determine labels for axes and the entire plot. The function <code>abline(a,b)</code> adds a line <span class="math inline">\(y = a x + b\)</span> to an already existing plot. It is very useful in statistics if one wants to show the regression line superimposed on the scatterplot of data. Finally, the argument <code>col</code>, of course, determines the color of the line. To learn about various graphical parameters, type <code>?par</code>.</p>
 <p><em>Math.</em></p>
 <p>The conceptual reason for this exercise is to explore (numerically) the kinds of errors we make when we use Monte Carlo. Unlike the deterministic numerical procedures, Monte Carlo has a strange property that no bound on the error can be made with absolute certainty. Let me give you an example. Suppose that you have a biased coin, with the probability <span class="math inline">\(0.6\)</span> of heads and <span class="math inline">\(0.4\)</span> of tails. You don’t know this probability, and use a Monte Carlo technique to estimate it - you toss your coin <span class="math inline">\(1000\)</span> times and record the number of times you observe <span class="math inline">\(H\)</span>. The law of large numbers suggests that the relative frequency of heads is close to the true probability of <span class="math inline">\(H\)</span>. Indeed, you run a simulation</p>
@@ -537,13 +632,13 @@ The other arguments, <code>xlab</code>, <code>ylab</code> and <code>main</code> 
 <p>The take-home message is that even though there are no guarantees, Monte Carlo performs well vast majority of the time. The crucial ingredient, however, is the number of simulations. The plot you were asked to make illustrates exactly that. The function <code>cumavg</code> gives you a whole sequence of Monte-Carlo estimates of the same thing (the number <span class="math inline">\(\pi\)</span>) with different numbers of simulations <code>nsim</code>. For small values of <code>nsim</code> the error is typically very large (and very random). As the number of simulations grows, the situations stabilizes and the error decreases. Without going into the theory behind it, let me only mention is that in the majority of practical applications we have the following relationship:
 <span class="math display">\[ error \sim \frac{1}{\sqrt{n}}.\]</span>
 In words, if you want to double the precision, you need to quadruple the number of simulations. If you want an extra digit in your estimate, you need to multiply the number of simulations by <span class="math inline">\(100\)</span>. Instead of going further into the theory, here is an image where I superimposed <span class="math inline">\(40\)</span> plots like the one you were asked to produce (the red lines are <span class="math inline">\(\pm \frac{4}{\sqrt{n}}\)</span>):</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-38-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="conditional-probability-and-independence." class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Conditional probability and independence.</h2>
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-39" class="exercise"><strong>Problem 3.7  </strong></span>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be two independent geometric random variables with parameters <span class="math inline">\(p=0.5\)</span>, and let <span class="math inline">\(Z=X+Y\)</span>. Compute <span class="math inline">\({\mathbb{P}}[ X = 3| Z = 5]\)</span> using simulation. Compare to the exact value.
+<span id="exr:unnamed-chunk-41" class="exercise"><strong>Problem 3.7  </strong></span>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be two independent geometric random variables with parameters <span class="math inline">\(p=0.5\)</span>, and let <span class="math inline">\(Z=X+Y\)</span>. Compute <span class="math inline">\({\mathbb{P}}[ X = 3| Z = 5]\)</span> using simulation. Compare to the exact value.
 </div>
 <p><strong>Solution:</strong></p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="pipeline.html#cb24-1" aria-hidden="true"></a>nsim =<span class="st"> </span><span class="fl">1e+05</span></span>
@@ -563,7 +658,7 @@ This gives us an error of 0.0023445.</p>
 <p><strong>Comments:</strong></p>
 <p><em>Math.</em> Let us, first, recall what the conditional probability is. The definition we learn in the probability class is the following <span class="math display">\[ {\mathbb{P}}[A | B] = \frac{{\mathbb{P}}[A \text{ and }B]}{{\mathbb{P}}[B]}\]</span>, as long as <span class="math inline">\({\mathbb{P}}[B]&gt;0\)</span>. The interpretation is that <span class="math inline">\({\mathbb{P}}[A|B]\)</span> is still the probability of <span class="math inline">\(A\)</span>, but now in the world where <span class="math inline">\(B\)</span> is guaranteed to happen. Conditioning usually happens when we receive new information. If someone tells us that <span class="math inline">\(B\)</span> happened, we can disregard everything in the complement of <span class="math inline">\(B\)</span> and adjust our probability to account for that fact. First we remove from <span class="math inline">\(A\)</span> anything that belongs to the complement of <span class="math inline">\(B\)</span>, and recompute the probability <span class="math inline">\({\mathbb{P}}[A \cap B]\)</span>. We also have to divide by <span class="math inline">\({\mathbb{P}}[B]\)</span> because we want the total probability to be equal to <span class="math inline">\(1\)</span>.</p>
 <p>Our code starts as usual, but simulating <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> from the required distribution, and constructing a new vector <span class="math inline">\(Z\)</span> as their sum. The variable <code>X_cond</code> is new; we build it from <span class="math inline">\(X\)</span> by removing all the elements whose corresponding <span class="math inline">\(Z\)</span> is <em>not</em> equal to <span class="math inline">\(5\)</span>. This is an example of what is sometimes called the <strong>rejection method</strong> in simulation. We simply “reject” all simulations which do not satisfy the condition we are conditioning on. We can think of <code>X_cond</code> as bunch of simulations of <span class="math inline">\(X\)</span>, but in the world where <span class="math inline">\(Z=5\)</span> is guaranteed to happen. Once we have <code>X_cond</code>, we proceed as usual by computing the relative frequency of the value <span class="math inline">\(3\)</span> among all possible values <span class="math inline">\(X\)</span> can take. Note that the same <code>X_cond</code> can also be used to compute the conditional probability <span class="math inline">\({\mathbb{P}}[ X=1| Z=5]\)</span>. In fact, <code>X_cond</code> contains the information about the entire <strong>conditional distribution of <span class="math inline">\(X\)</span> given <span class="math inline">\(Z=5\)</span></strong>; if we draw a histogram of <code>X_cond</code>, we will get a good idea of what this distribution looks like:
-<img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="672" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-43-1.png" width="672" style="display: block; margin: auto;" />
 The histogram above suggests that the distribution of <span class="math inline">\(X\)</span>, given <span class="math inline">\(Z=5\)</span>, is uniform on <span class="math inline">\(\{0,1,2,3,4,5\}\)</span>. It is - a calculation almost identical to the one we performed above gives that <span class="math inline">\({\mathbb{P}}[ X= i| Z=5] = \frac{1}{6}\)</span> for each <span class="math inline">\(i=0,1,2,3,4,5\)</span>.</p>
 
 </div>

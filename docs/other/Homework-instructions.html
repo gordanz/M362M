@@ -388,7 +388,7 @@ summary {
 <div id="r-notebooks" class="section level2 unnumbered">
 <h2>R Notebooks</h2>
 <p>All submissions of computational work have to be <strong>produced using an R Notebook</strong>, i.e., via an <strong>Rmd file</strong>. There is nothing to worry - it is probably the most painless way, both for the student and for the grader. Let me explain. An R notebook is nothing other than a specially formated text file which contains <em>chunks</em> or R code mixed with regular text. The point is that it can be transformed into a good looking pdf (or html) file by a press of a button. When you open an R notebook in RStudio, you will be able to write your problem solutions, perform R computations and even plot graphs in one fell swoop. What is more important, the results of the computations and the graphs you produce will automatically become a part of the output document. To create an R notebook, go to File -&gt; New File -&gt; R Notebook in RStudio, and a new Rmd (Rmarkdown) file will appear in the editor pane (<strong>do not create a new file right now, though; a template will be provided later. Just continue reading.</strong>) It will even have the important instructions already filled in. You should not worry about text markup, or how to produce hyperlinks, or anything like that, though. In fact, the only important thing to know is that the following notation</p>
-<pre class="markdown"><code>```r
+<pre class="markdown"><code>```{r}
 
 ```</code></pre>
 <p>marks a <strong>code chunk</strong>. Btw, the apostrophe-like symbols above are backticks - they live on the key below the escape key. You should not worry about counting how many there are or how to type them in - pressing <em>Cmd+Option+I</em> (on a Mac) or <em>Ctrl+Alt+I</em> (on Windows or Linux) will insert the whole thing for you. To see all available keyboard shortcuts available on your platform, press <em>Option+Shift+K</em> (on a Mac) or <em>Alt+Shift+K</em> (on Windows or Linux) in RStudio. To get more information about a typical workflow (how to run code chunks in place, for example) make sure to check the the following short book chapter <a href="https://bookdown.org/yihui/rmarkdown/notebook.html">R notebooks</a> - feel free to skip sections 3.2.2 and 3.2.3.</p>
@@ -425,7 +425,7 @@ output: pdf_document
 </div>
 <div id="upload-to-canvas" class="section level2 unnumbered">
 <h2>Upload to Canvas</h2>
-<p>Unless you are going for the extra 5%, you will have two files to submit for a typical homework assignment. Canvas allows you to submit several files by first submitting one, then then clicking on “+Add Another File” to upload another one.</p>
+<p>Unless you are going for the extra 5%, you will have two files to submit for a typical homework assignment. Canvas allows you to submit several files by first submitting one, then then clicking on “+Add Another File” to upload another one. Alternatively, you can merge your two pdf files into one and submit the merged file.</p>
 </div>
 
 
