@@ -361,13 +361,13 @@ points(x,y, type="l", lwd=3, col="red" )
 ## Multivariate Distributions
 
 ```{exercise}
-Let `x` contain $2,000$ draws from $N(0,1)$, `z` another $2,000$ draws from $N(0,1)$ and let `y=x+z`. 
+Let `x` contain $2,000$ draws from $N(0,1)$, `z` another $2,000$ draws from $N(0,1)$ and let `y=x^2+z`. 
 
 1. Draw a scatterplot of `x` and `y` to visualize the joint distribution of `x` and `y`
 
 2. Plot two histograms, one of `x` and one of `y`. Do they tell the whole story about the joint distribution of `x` and `y`?
    
-3. Do `x` and `y` in your plot "look independent"?  Use the permutation test to check of independence between `x` and `y`. 
+3. Are `x` and `y` correlated? Do `x` and `y` in your plot "look independent"?  Use the permutation test to check of independence between `x` and `y`. 
 ```
 **Solution:**
 
@@ -389,9 +389,9 @@ hist(y)
 
 No, the two histograms would not be enough to describe the joint distribution.
 There are many ways in which two random variables $X$ and $Y$ can be jointly
-distributed, but whose separate distributions. To give a very simple example,
+distributed, but whose separate (marginal) distributions match the histograms above. To give a very simple example,
 let $X$ and $Y$ be discrete random variables, each of which can only take values
-$0$ or $1$. Consider the following two *joint* distribution tables
+$0$ or $1$. Consider the following two possible *joint* distribution tables for the random pair $(X,Y)$:
 
 
 ```{r echo=FALSE}
@@ -424,7 +424,13 @@ knitr::kables(list(t1,t2))
 
 In both cases, the marginals are the same, i.e., both $X$ and $Y$ are equally likely to take the value $0$ or $1$, i.e., they both have the Bernoulli distribution with parameter $p=1/2$. That would correspond to the separate histograms to be the same. On the other hand, their joint distributions (aka dependence structures) are completely different. In the first (left) case, $X$ and $Y$ are independent, but in the second they are completely dependent.
 
-3.\  
+3.\  They are probably not correlated since the sample correlation between `x` and `y` is close to $0$:
+```{r}
+(cor(x,y))
+```
+but they do not look independent.
+
+
 To apply the permutation test, we first plot the scatterplot of `x` vs. `y` as above. Then, we replace `y` by a vector with the same components, but  randomly permute their positions, and then plot a scatterplot again. We repeat this three times:
 ```{r echo=2:12}
 par(mfrow=c(2,2))
@@ -445,11 +451,11 @@ The conclusion is clear, the first (upper-left) plot is very different than the 
 
 *Math.* The point of this problem is to review the notion of the **joint distribution** between two random variables. The most important point here is that there is more to the joint distribution of two random vectors, than just the two distributions taken separately. In a sense, the whole is (much) more than the sum of its parts. This is something that does not happen in the deterministic world. If you give me the $x$-coordinate of a point, and, separately, its $y$-coordinate, I will be able to pinpoint the exact location of that point. 
 
-On the other hand, suppose that $x$-coordinate of a point is unknown, so we treat it as a random variable, and suppose that this variable admits the standard normal distribution. Do the same for $y$. Even with this information, you cannot say anything about the position of the point $(x,y)$. It could be that the reason we are uncertain about $x$ and the reason we are uncertain about $y$ have nothing to do with each other; in that case we would be right to assume that $x$ and $y$ are independent. If, on the other hand, we got the values of  both $x$ and $y$ by measuring them using the same, inaccurate, tape measure, we cannot assume that the errors are independent. It is more likely that both $x$ and $y$ are too big, or both $x$ and $y$ are too small. 
+On the other hand, suppose that the $x$-coordinate of a point is unknown, so we treat it as a random variable, and suppose that this variable admits the standard normal distribution. Do the same for $y$. Even with this information, you cannot say anything about the position of the point $(x,y)$. It could be that the reason we are uncertain about $x$ and the reason we are uncertain about $y$ have nothing to do with each other; in that case we would be right to assume that $x$ and $y$ are independent. If, on the other hand, we got the values of  both $x$ and $y$ by measuring them using the same, inaccurate, tape measure, we cannot assume that the errors are independent. It is more likely that both $x$ and $y$ are too big, or both $x$ and $y$ are too small. 
 
  Mathematically, we say that random variables $X$ and $Y$ are independent if
 $$ \PP[X \in [a,b]] \times \PP[ Y \in [c,d] ] = \PP[ X\in [a,b] \text{ and } Y\in [c,d]]\text{ for all } a,b,c,d.$$
-While up to the point, this definition is not very eye-opening, or directly applicable in most cases. Intuitively, $X$ and $Y$ are independent if the distribution of $Y$ would not change if we received additional information about $X$. In our problem, random variables $X$ and $Y$ corresponds to vectors `x` and `y`. Their scatterplot above clearly conveys the following message: when `x` is around $-2$, we expect `y` to be around `4`, while when `x` is around $0$, `y` would be expected to be around $0$, too. 
+While up to the point, this definition is not very eye-opening, or directly applicable in most cases. Intuitively, $X$ and $Y$ are independent if the distribution of $Y$ would not change if we received additional information about $X$. In our problem, random variables $X$ and $Y$ correspond to vectors `x` and `y`. Their scatterplot above clearly conveys the following message: when `x` is around $-2$, we expect `y` to be around `4`, while when `x` is around $0$, `y` would be expected to be around $0$, too. 
 
 Sometimes, it is not so easy to decide whether two variables are independent by staring at a scatterplot. What would you say about the scatterplot below?
 ```{r echo=FALSE, fig.asp=1, out.width="50%"}
@@ -472,12 +478,12 @@ plot(sample(y1)~x1, xlab="x", ylab="y_perm_3",asp=1, xlim=c(-1,1))
 
 ```
 
-Unlike univariate (one-variable) distributions which are visualized using histograms or similar plots, multivariate (several-variable) distributions are harder to depict. The most direct relative of the histogram is a **3d histogram**. Just like the $x$-axis is divided into bins in the univariate case, in the multivariate case we divide the $x-y$-plane into regions (squares, e.g.) and count the number of points falling into each of these regions. After that a 3d bar (a skyscraper) is drawn above each square with the height of each skyscraper equal (or proportional)  to the number of points which fall into its base. Here is a 3d histogram of our original pair (`x`,`y`) from the problem. You should be able to rotated and zoom it right here in the notes, provided your browser has JavaScript enabled:
+Unlike univariate (one-variable) distributions which are visualized using histograms or similar plots, multivariate (several-variable) distributions are harder to depict. The most direct relative of the histogram is a **3d histogram**. Just like the $x$-axis is divided into bins in the univariate case, in the multivariate case we divide the $xy$-plane into regions (squares, e.g.) and count the number of points falling into each of these regions. After that a 3d bar (a skyscraper) is drawn above each square with the height of each skyscraper equal (or proportional)  to the number of points which fall into its base. Here is a 3d histogram of our original pair (`x`,`y`) from the problem. You should be able to rotate and zoom it right here in the notes, provided your browser has JavaScript enabled:
 ```{r, echo=FALSE}
 htmltools::includeHTML("pics/test.html")
 ```
 
-A visualization solution that requires less technology would start the same way, i.e., by dividing the $x-y$ plane into regions, but instead of the third dimension, it would use different colors to represent the counts. Here is an example where the regions are hexagon, as opposed to squares; it just looks better, for some reason:
+A visualization solution that requires less technology would start the same way, i.e., by dividing the $xy$ plane into regions, but instead of the third dimension, it would use different colors to represent the counts. Here is an example where the regions are hexagons, as opposed to squares; it just looks better, for some reason:
 
 ```{r echo=FALSE}
 library(hexbin)
@@ -497,9 +503,42 @@ ggplot(data=df, aes(x=x, y=y) ) +
 *R.* There is very little new R here. 
 You should remember that if `x` and `y` are vectors of the same length,  `plot(x,y)` gives you a scatterplot of `x` and `y`. 
 
+To compute the sample correlation between two vectors, use the `cor`. 
+
 We used the command `sample(y)` to obtain a randomly permuted version of `y`. The simplicity of this is due to default parameters of the command `sample` which we already learned about. In particular, the default number of samples is exactly the size of the input vector `y` and, by default, sampling is performed *without replacement*. If you think about it for a second, you will realize that a sample of size $n$ from the vector of size $n$ *without* replacement is nothing by a random permutation of `y`. 
 
-You are not required to do this in your submissions, but if you want to learn how to display several plots side-by-side, use the command is `par(mfrow=c(m,n))` before the `plot` commands. It tells R to plot the next $mn$  plots in a $m\times n$ grid. 
+You are not required to do this in your submissions, but if you want to  display several plots side-by-side, use the command is `par(mfrow=c(m,n))` before the `plot` commands. It tells R to plot the next $mn$  plots in a $m\times n$ grid. 
+
+```{exercise}
+Random variables $X$ and $Y$ have the joint distribution given by the following table:
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;text-align: center;">   </th>
+   <th style="text-align:right;text-align: center;"> 1 </th>
+   <th style="text-align:right;text-align: center;"> 2 </th>
+   <th style="text-align:right;text-align: center;"> 3 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> 1 </td>
+   <td style="text-align:right;"> 0.1 </td>
+   <td style="text-align:right;"> 0.2 </td>
+   <td style="text-align:right;"> 0.3 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> 2 </td>
+   <td style="text-align:right;"> 0.2 </td>
+   <td style="text-align:right;"> 0.2 </td>
+   <td style="text-align:right;"> 0.0 </td>
+  </tr>
+</tbody>
+</table>
+   
+Simulate $10,000$ draws from the distribution of $(X,Y)$ and display a 
+contingency table of your results.
+```
 
 
 ## Additional Problems
