@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>First_day.utf8</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="First_day_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="First_day_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="presentation.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="First_day_files/header-attrs-2.3/header-attrs.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="welcome-to-m362m-introduction-to-stochastic-processes" class="slide level1">
+<h1>Welcome to M362M <br> <em>Introduction to Stochastic Processes</em></h1>
+<p><img src="../pics/jittered_walk_transp.png" width="50%" style="display: block; margin: auto;" /></p>
+</section>
+<section id="what-are-stochastic-processes" class="slide level1">
+<h1>What are Stochastic Processes?</h1>
+</section>
+<section class="slide level1">
+
+<p><strong>Question 1.</strong> The price of a share of a stock goes either up or down by <code>$</code>1 each day, with equal probabilities, namely 1/2.</p>
+<p>You own a single share whose value today is <code>$</code>100, so that its tomorrow’s price will be either</p>
+<ul>
+<li><code>$</code>101 with probability <span class="math inline">\(\frac{1}{2}\)</span>, or</li>
+<li><code>$</code>99 with probability <span class="math inline">\(\frac{1}{2}\)</span>.</li>
+</ul>
+<p>Your strategy is to hold onto your share until one of the following two things happen: you go bankrupt (the stock price hits <code>$</code>0), or you make a <code>$</code>50 dollar profit (the stock price hits <code>$</code>150.)</p>
+</section>
+<section class="slide level1">
+
+<ol type="1">
+<li><p>How likely is it that your strategy will result in a profit?</p></li>
+<li><p>How long will it take?</p></li>
+<li><p>Is it possible that it takes forever, i.e., that the stock price hovers between <code>$</code>1 and <code>$</code>149 forever?</p></li>
+</ol>
+</section>
+<section class="slide level1">
+
+<p><strong>Question 2.</strong> A person carrying a certain disease infects either <span class="math inline">\(0\)</span>, <span class="math inline">\(1\)</span>, <span class="math inline">\(2\)</span> or <span class="math inline">\(4\)</span> people in given week and then stops being infectious. These four possibilities are equally likely, but different infectious individuals may infect different numbers of people and behave independently of each other.</p>
+<ol type="1">
+<li>What is the probability that the disease will ever be eradicated?</li>
+<li>What is the probability that every single individual in the population of <span class="math inline">\(328,000,000\)</span> will eventually be infected?</li>
+</ol>
+</section>
+<section class="slide level1">
+
+<p><strong>Question 3.</strong> In a game of tennis, Player <span class="math inline">\(1\)</span> wins against Player <span class="math inline">\(2\)</span> in each rally with probability <span class="math inline">\(p\)</span>.</p>
+<p>What is the probability that Player <span class="math inline">\(1\)</span> wins</p>
+<ol type="1">
+<li>A game</li>
+<li>A set? The entire match?</li>
+<li>Is the game of tennis set up in such a way that is <em>amplifies</em> or <em>reduces</em> the difference in skill between players?</li>
+</ol>
+</section>
+<section class="slide level1">
+
+<p><strong>Question 4.</strong> A knight starts in the lower left corner of the chess board and starts moving “randomly”.</p>
+<p><img src="../pics/knight1.png" width="55%" style="display: block; margin: auto;" /></p>
+</section>
+<section class="slide level1">
+
+<ol type="1">
+<li><p>What is the expected number of moves the knight will make before it returns to “square one”?</p></li>
+<li><p>How about the same problem, but using a different chess piece? Which one do you think will come back in the smallest (expected) number of steps?</p></li>
+<li><p>(*) How about the same problem, but until <em>all</em> squares have been visited at least once?</p></li>
+</ol>
+</section>
+<section class="slide level1">
+
+<p><strong>Question 5.</strong> How does Google search work?</p>
+</section>
+<section id="syllabus-highlights" class="slide level1">
+<h1>Syllabus highlights</h1>
+</section>
+<section class="slide level1">
+
+<h2 id="basic-info">Basic info</h2>
+<p><strong>Course number.</strong> M362M (53875)</p>
+<p><strong>Course meets.</strong> online, TTh 12:30am - 2:00pm</p>
+<p><strong>Flags.</strong> QR (quantitative reasoning)</p>
+<p><strong>Instructor.</strong> Gordan Žitković</p>
+<p><strong>Email.</strong> Use Canvas to email</p>
+<p><strong>Individual Office Hours.</strong> Contact me for an appointment.</p>
+</section>
+<section class="slide level1">
+
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li><p>This course is all about probability. Please go on Canvas to assess your probability knowledge!</p></li>
+<li><p>Other than that, we will work with matrices, so some linear algebra is necessary, too.</p></li>
+<li><p>Basics of R will be covered from scratch, but it would really help if you had some (not necessarily formal) programming experience. Nothing fancy, but you should understand the concept of a loop, an if-then statement or a function.</p></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="online-resources.">Online resources.</h2>
+<ol type="1">
+<li><p><strong>Zoom</strong>. Transcripts of the lectures and chat logs will be available.</p></li>
+<li><p><strong>Canvas</strong> will be used to keep track of grades, host links and relay announcements. Make sure that <em>Announcements</em> in your account’s <em>Notification</em> menu are turned on.</p></li>
+<li><p><strong>Piazza</strong> will be used for class discussions. All questions about the material should be posted on Piazza first. I will check in regularly to answer questions. So will the grader if there is time.</p></li>
+<li><p><strong>Online lecture notes</strong> written by the instructor will be provided. The link will appear on Canvas soon. Source files for all materials (except for solutions to hw problems) will be available on Github.</p></li>
+</ol>
+</section>
+<section class="slide level1">
+
+<h2 id="class-format">Class format</h2>
+<ul>
+<li><p>Lecture notes will be posted online, and reading assignments (with short “motivational” quizzed) assigned.</p></li>
+<li><p>No attendance is required.</p></li>
+<li><p>There will be no classical lecturing. Class time will be used to answer questions, clarify concepts, etc. Think office hours, but only for questions about the material. If you need to discuss a private matter, contact me and we’ll meet privately.</p></li>
+<li><p>Use the Piazza tag <code>topic_suggestions</code> to suggest topics or problems for the following lecture.</p></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="assessment">Assessment</h2>
+<ol type="1">
+<li><p><strong>Quizzes</strong>. A short Canvas quiz will be assigned in parallel with each reading assignment. <em>Two</em> lowest quiz scores will be dropped.</p></li>
+<li><p><strong>Homework assignments.</strong> A weekly or bi-weekly homework will be assigned (with the assignments posted on Canvas). The submission will be <strong>electronic</strong>, through Canvas. You will get detailed instructions on the proper format of your submissions soon.</p></li>
+</ol>
+<p>You can work on your homework in groups of up to 4 people, and to submit a single document per group. Do not forget to include the names of all group members. <em>Two</em> lowest hw scores will be dropped.</p>
+</section>
+<section class="slide level1">
+
+<ol start="3" type="1">
+<li><strong>Exams.</strong> There will be three longer, take-home exams. They will be designed to take not more than two hours, but you will get a 24-hour period for each of them. Here is the schedule:
+<ul>
+<li><strong>In-term 1</strong> : Oct 1</li>
+<li><strong>In-term 2</strong> : Nov 12</li>
+<li><strong>In-term 3</strong> : Dec 12 (date of the final exam)</li>
+</ul></li>
+</ol>
+</section>
+<section class="slide level1">
+
+<h2 id="extra-credit">Extra credit</h2>
+<ul>
+<li><p><strong>2%</strong>: if you give a correct answer to a student question on Piazza. Each student can accumulate at most 6% extra credit this way.</p>
+<p><class style="font-size: x-large;"> <em>The instructor will choose the best among all the answers, and assign its author 2%. The instructor reserved the right not to assign any extra credit is the question is not meaningful or too easy, or is none of the answers is correct and/or complete.</em> </class></p></li>
+<li><p><strong>1%</strong>: for each topic suggestion made on Piazza.</p>
+<p><class style="font-size: x-large;"><em>At most one person may get credit for a given suggestion, and the instructor will be the final arbiter of what deserves a point and what does not. Each student can accumulate at most 4% extra credit this way. </em></class></p></li>
+<li><p><strong>5%</strong>: if you submit all your homework in R markdown. This includes both theoretical and programming questions.</p></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h2 id="the-final-grade">The final grade</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Assignment</th>
+<th>Percentage of final grade</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Quizzes</td>
+<td>15%</td>
+</tr>
+<tr class="even">
+<td>Homework</td>
+<td>25%</td>
+</tr>
+<tr class="odd">
+<td>Exams</td>
+<td>60% (20% each)</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>There is <em>no curve</em> in this class and the letter grades are assigned according to the following table:</p>
+<p><br></p>
+<table>
+<thead>
+<tr class="header">
+<th>A</th>
+<th>A-</th>
+<th>B+</th>
+<th>B</th>
+<th>B-</th>
+<th>C+</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>94 - 100</td>
+<td>90-94</td>
+<td>86 - 90</td>
+<td>83 - 86</td>
+<td>80 - 83</td>
+<td>75 - 80</td>
+<td>70-75</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>C-</th>
+<th>D+</th>
+<th>D</th>
+<th>D-</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>65 - 70</td>
+<td>60 - 65</td>
+<td>55 - 60</td>
+<td>50 - 55</td>
+<td>0 - 50</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="slide level1">
+
+<h2 id="zoom-etiquette">Zoom etiquette</h2>
+<ul>
+<li>Mute yourself unless you are speaking.</li>
+<li>Keep your camera on unless you have a good reason not to (bandwidth problems, privacy concerns, etc.)</li>
+<li>Use your real name unless you are shy :)</li>
+<li>Be on time</li>
+<li>Keep chat messages relevant to the lesson</li>
+</ul>
+<p>If you have any suggestions about additional rules we should adopt, feel free to post them on Piazza.</p>
+</section>
+    </div>
+  </div>
+
+  <script src="First_day_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="First_day_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Display a presentation progress bar
+        progress: false,
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>
