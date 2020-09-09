@@ -4,6 +4,7 @@
 \newcommand{\EE}{{\mathbb{E}}}
 \newcommand{\ld}{\lambda}
 \newcommand{\eand}{\text{ and }}
+
 # Pipeline 
  
 
@@ -39,37 +40,23 @@ contingency table of your results.
 ```
 
 **Solution.** 
-```{r}
-library(tidyverse)
-probabilities = c(0.1,0.2,0.3,
-                  0.2,0.2,0.0)
+```{r tidy=FALSE}
+joint_distribution_long = data.frame(
+   x = c(1, 1, 1, 2, 2, 2),
+   y = c(1, 2, 3, 1, 2, 3),
+   prob = c(0.1, 0.2, 0.3, 0.2, 0.2, 0.0)
+)
 
-value_pairs = matrix( c(1,1,
-                        1,2,
-                        1,3,
-                        2,1,
-                        2,2,
-                        2,3), 
-                      byrow=TRUE, nrow=6)
+sampled_rows = sample(
+   x = 1:nrow(joint_distribution_long),
+   size = 10000,
+   replace = TRUE,
+   prob = joint_distribution_long$prob
+)
 
-n_sim = 5
-sampled_rows=sample( x = 1:6,
-        size=n_sim,
-        replace=TRUE,
-        prob=probabilities)
+draws = joint_distribution_long[sampled_rows, ]
 
-drawn_pairs=value_pairs[sampled_rows,]
-x=drawn_pairs[,1]
-
-
-
-```
-
-xy = sample(x=value_pairs, 
-            size= 10000,
-            prob=probabilities, 
-            replace=TRUE)
-t(data.frame(xy))
+table(draws$x, draws$y)
 ```
 
 
