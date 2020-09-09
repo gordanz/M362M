@@ -83,7 +83,7 @@ The most important thing about **learning R** (and many other things, for that m
 
 Another way to get information about a command or a concept in R is to use the command `help`. For example, if you input `help("log")` or `?log` in your console, the right hand of your screen will display information on the function `log` and some of its cousins. Almost every help entry has examples at the bottom, and that is where I always go first. 
 
-### Vectors
+### Vectors {#vectors}
 
 Objects we will be manipulating in this class are almost exclusively vectors and matrices. The simplest vectors are those that have a single component, in other words, numbers. In R, you can assign a number to a variable using two different notations. Both
 ```{r}

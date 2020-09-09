@@ -43,21 +43,69 @@ contingency table of your results.
 ```{r tidy=FALSE}
 joint_distribution_long = data.frame(
    x = c(1, 1, 1, 2, 2, 2),
-   y = c(1, 2, 3, 1, 2, 3),
-   prob = c(0.1, 0.2, 0.3, 0.2, 0.2, 0.0)
+   y = c(1, 2, 3, 1, 2, 3)
 )
+probabilities_long = 
+       c(0.1, 0.2, 0.3, 0.2, 0.2, 0.0)
 
 sampled_rows = sample(
    x = 1:nrow(joint_distribution_long),
    size = 10000,
    replace = TRUE,
-   prob = joint_distribution_long$prob
+   prob = probabilities_long
 )
 
 draws = joint_distribution_long[sampled_rows, ]
 
-table(draws$x, draws$y)
+table(draws)
 ```
+
+
+**Comments:** 
+
+*Math.* The main mathematical idea is to think of *each pair* of possible values of $X$ and $Y$ as a separate "object", put all these objects in a "bag", then then draw from the bag. In other words, we convert the bivariate distribution from the problem to the following univariate distribution
+```{r echo=FALSE}
+library(tidyverse)
+paired = joint_distribution_long %>% 
+   transmute(val=str_c("(", x,",",y,")"))
+
+knitr::kable(t(probabilities_long), col.names=paired$val, striped=TRUE) %>% 
+   kable_styling( full_width=FALSE)
+```
+and sample from it. When you do, you will get a vector whose elements are pairs of numbers. The last step is to extract the components of those pairs into separate vectors. 
+
+*R.* The most important new R concept here is `data.frame`. You should think of it as a spreadsheet. It is, mathematically, a matrix, but we do not perform any mathematical operations on it. Moreover, not all columns in the data frame have to be numeric. Some of them can be strings, and other can be something even more exotic. You should think of a data frame as a bunch of column vectors of the same length stacked side by side. It is important to note that each column of a data frame will have a name, so that we don't have to access it by its position only (as we would have to in the case of a matrix).  
+
+In this class, the column vectors of data frames are going to contain simulated values. In statistics, it is data that comes in data frames, with rows corresponding to different observations, and columns to various observed variables.
+
+The easiest way to construct a data frame using already existing vectors is as follows:
+```{r}
+x = c(1,2,3)
+y = c("a","b","c")
+(df=data.frame(x,y))
+```
+
+Note that the two columns inherited their names from the vectors `x` and `y` that fed into them. Note, also, that all rows got consecutive numerical values as names by default. Row names are sometimes useful to have, but are in general a nuisance and should be ignored (especially in this class). Column names are more important, and there is a special notation (the dollar-sign notation) that allows you to access a column by its name:
+
+```{r}
+df$y
+```
+If you want to give your columns custom names (or if you are building them out of explicitly given vectors as in the solution above) use the following syntax
+```{r}
+z = c("a","b","c","d")
+(df = data.frame( letters = z, numbers = c(1,2,3,4)))
+```
+A feature that data frames share with vectors and matrices is that you can use vector indexing as in the following example (where `df` is as above)
+```{r}
+df[c(2,4,4,1),]
+```
+Make sure you understand why the expression inside the brackets is `c(2,4,4,1),` and not `c(2,4,4,1)`. R's desire to keep row names unique leads to some cumbersome constructs such as `4.1` above. As I mentioned before, just disregard them. 
+
+A nice thing about data frames is that they can easily be pretty-printed in RStudio. Go to the Environment tab in one of your RStudio panes, and double click on the name of the data frame you just built. It will appear as a nicely formatted spreadsheet. 
+
+Once we have the data frame containing all $6$ pairs of possible values $X$ and $Y$ can take (called )`joint_distribution_long` in the solution above), we can proceed by sampling from its rows, by sampling from the set `1,2,3,4,5,6` with probabilities `0.1, 0.2, 0.3, 0.2, 0.2, 0.0`. The result of the corresponding `sample` command will be a sequence - called `sampled_rows` in the solution -  of length $10,000$ composed of numbers $1,2,3,4,5$ or $6$. The reason we chose the name `sampled_rows` is because each number corresponds to a row from the data frame `joint_distribution_long`, and by indexing  `joint_distribution_long` by `sampled_rows` we are effectively sampling from its rows. In other words, the command `joint_distribution_long[sampled_rows, ]` turns a bunch of numbers into a bunch of rows (many of them repeated) of the data frame `joint_distribution_long`. 
+
+The final step is to use the function `table`. This time, we are applying it to a data frame and not to a vector, but the effect is the same. It tabulates all possible combinations of values of the columns, and counts how many times each of them happened. The same result would have been obtained by calling `table(draws$x, draws$y)`. 
 
 
 
@@ -220,7 +268,7 @@ z = (x^2+y^2) < 1
 ```
 Since we know the "exact" value of $\pi$, we can compute the error `{r} format(err, digits=5)`.
 
-**Comments.**:
+**Comments:**
 
 *Math.*
 ```{r echo=FALSE, out.width= "50%", out.extra='style="float:right; padding:10px"'}
