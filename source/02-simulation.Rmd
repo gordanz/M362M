@@ -295,6 +295,7 @@ Draw a sample of size $n=10$ from $N(1,2)$, i.e., from the normal distribution
 with parameters $\mu=1$, $\sigma = 2$. Plot a histogram of the obtained
 values. Repeat for $n=100$ and $n=100000$. 
 ```
+
 **Solution:**
 ```{r}
 x = rnorm(10, mean = 1, sd = 2)
@@ -389,9 +390,10 @@ hist(y)
 
 No, the two histograms would not be enough to describe the joint distribution.
 There are many ways in which two random variables $X$ and $Y$ can be jointly
-distributed, but whose separate (marginal) distributions match the histograms above. To give a very simple example,
-let $X$ and $Y$ be discrete random variables, each of which can only take values
-$0$ or $1$. Consider the following two possible *joint* distribution tables for the random pair $(X,Y)$:
+distributed, but whose separate (marginal) distributions match the histograms
+above. To give a very simple example, let $X$ and $Y$ be discrete random
+variables, each of which can only take values $0$ or $1$. Consider the following
+two possible *joint* distribution tables for the random pair $(X,Y)$:
 
 
 ```{r echo=FALSE}
@@ -422,16 +424,25 @@ knitr::kables(list(t1,t2))
    
 ```
 
-In both cases, the marginals are the same, i.e., both $X$ and $Y$ are equally likely to take the value $0$ or $1$, i.e., they both have the Bernoulli distribution with parameter $p=1/2$. That would correspond to the separate histograms to be the same. On the other hand, their joint distributions (aka dependence structures) are completely different. In the first (left) case, $X$ and $Y$ are independent, but in the second they are completely dependent.
+In both cases, the marginals are the same, i.e., both $X$ and $Y$ are equally
+likely to take the value $0$ or $1$, i.e., they both have the Bernoulli
+distribution with parameter $p=1/2$. That would correspond to the separate
+histograms to be the same. On the other hand, their joint distributions (aka
+dependence structures) are completely different. In the first (left) case, $X$
+and $Y$ are independent, but in the second they are completely dependent.
 
-3.\  They are probably not correlated since the sample correlation between `x` and `y` is close to $0$:
+3.\ They are probably not correlated since the sample correlation between `x`
+and `y` is close to $0$:
 ```{r}
 (cor(x,y))
 ```
 but they do not look independent.
 
 
-To apply the permutation test, we first plot the scatterplot of `x` vs. `y` as above. Then, we replace `y` by a vector with the same components, but  randomly permute their positions, and then plot a scatterplot again. We repeat this three times:
+To apply the permutation test, we first plot the scatterplot of `x` vs. `y` as
+above. Then, we replace `y` by a vector with the same components, but randomly
+permute their positions, and then plot a scatterplot again. We repeat this three
+times:
 ```{r echo=2:12}
 par(mfrow=c(2,2))
 y_perm_1 = sample(y)
@@ -443,18 +454,42 @@ plot(x,y_perm_2)
 plot(x,y_perm_3)
 ```
 
-The conclusion is clear, the first (upper-left) plot is very different than the other three. Therefore, `x` and `y` are probably not independent. 
+The conclusion is clear, the first (upper-left) plot is very different than the
+other three. Therefore, `x` and `y` are probably not independent.
 
 
 **Comments.**
 
-*Math.* The point of this problem is to review the notion of the **joint distribution** between two random variables. The most important point here is that there is more to the joint distribution of two random vectors, than just the two distributions taken separately. In a sense, the whole is (much) more than the sum of its parts. This is something that does not happen in the deterministic world. If you give me the $x$-coordinate of a point, and, separately, its $y$-coordinate, I will be able to pinpoint the exact location of that point. 
+*Math.* The point of this problem is to review the notion of the **joint
+distribution** between two random variables. The most important point here is
+that there is more to the joint distribution of two random vectors, than just
+the two distributions taken separately. In a sense, the whole is (much) more
+than the sum of its parts. This is something that does not happen in the
+deterministic world. If you give me the $x$-coordinate of a point, and,
+separately, its $y$-coordinate, I will be able to pinpoint the exact location of
+that point. 
 
-On the other hand, suppose that the $x$-coordinate of a point is unknown, so we treat it as a random variable, and suppose that this variable admits the standard normal distribution. Do the same for $y$. Even with this information, you cannot say anything about the position of the point $(x,y)$. It could be that the reason we are uncertain about $x$ and the reason we are uncertain about $y$ have nothing to do with each other; in that case we would be right to assume that $x$ and $y$ are independent. If, on the other hand, we got the values of  both $x$ and $y$ by measuring them using the same, inaccurate, tape measure, we cannot assume that the errors are independent. It is more likely that both $x$ and $y$ are too big, or both $x$ and $y$ are too small. 
+On the other hand, suppose that the $x$-coordinate of a point is unknown, so we
+treat it as a random variable, and suppose that this variable admits the
+standard normal distribution. Do the same for $y$. Even with this information,
+you cannot say anything about the position of the point $(x,y)$. It could be
+that the reason we are uncertain about $x$ and the reason we are uncertain about
+$y$ have nothing to do with each other; in that case we would be right to assume
+that $x$ and $y$ are independent. If, on the other hand, we got the values of
+both $x$ and $y$ by measuring them using the same, inaccurate, tape measure, we
+cannot assume that the errors are independent. It is more likely that both $x$
+and $y$ are too big, or both $x$ and $y$ are too small.
 
- Mathematically, we say that random variables $X$ and $Y$ are independent if
-$$ \PP[X \in [a,b]] \times \PP[ Y \in [c,d] ] = \PP[ X\in [a,b] \text{ and } Y\in [c,d]]\text{ for all } a,b,c,d.$$
-While up to the point, this definition is not very eye-opening, or directly applicable in most cases. Intuitively, $X$ and $Y$ are independent if the distribution of $Y$ would not change if we received additional information about $X$. In our problem, random variables $X$ and $Y$ correspond to vectors `x` and `y`. Their scatterplot above clearly conveys the following message: when `x` is around $-2$, we expect `y` to be around `4`, while when `x` is around $0$, `y` would be expected to be around $0$, too. 
+Mathematically, we say that random variables $X$ and $Y$ are independent if $$
+\PP[X \in [a,b]] \times \PP[ Y \in [c,d] ] = \PP[ X\in [a,b]
+\text{ and } Y\in [c,d]]\text{ for all } a,b,c,d.$$ While up to the point,
+this definition is not very eye-opening, or directly applicable in most cases.
+Intuitively, $X$ and $Y$ are independent if the distribution of $Y$ would not
+change if we received additional information about $X$. In our problem, random
+variables $X$ and $Y$ correspond to vectors `x` and `y`. Their scatterplot above
+clearly conveys the following message: when `x` is around $-2$, we expect `y` to
+be around `4`, while when `x` is around $0$, `y` would be expected to be around
+$0$, too.
 
 Sometimes, it is not so easy to decide whether two variables are independent by staring at a scatterplot. What would you say about the scatterplot below?
 ```{r echo=FALSE, fig.asp=1, out.width="50%"}
@@ -462,10 +497,31 @@ x1 = sin(runif(3000,0,2*pi)**2)
 y1 = cos(runif(3000,0,2*pi)**2)
 plot(y1~x1, xlab="x", ylab="y",asp=1, xlim=c(-1,1))
 ```
-The **permutation test** is designed to help you decide when two (simulated) random variables are likely to be independent. The idea is simple. Suppose that `x` and `y` are simulations from two independent (not necessarily identical) distributions; say `x=runif(1000)` and `y=rnorm(1000)`. The vector `y_perm=sample(y)` is a randomly permuted version of `y` (see R section below) and it contains exactly the same information about the distribution of `y` as `y` itself does. Both `y` and `y_perm` will produce exactly the same histogram. Permuting `y`, however, "uncouples" it from `x`. If there was any dependence between the values of `x` and `y` before, there certainly isn't any now. In other the joint distribution of  `x` and `y_perm` has the same marginals as the joint distribution of `x` and `y`, but all the (possible) dependence has been removed. What remains is to compare the scatterplot between `x` and `y` and the scatterplot between `x` and `y_perm`. If they look about the same, we conclude that `x` and `y` are independent. Otherwise, there is some dependence between them. 
+The **permutation test** is designed to help you decide when two (simulated)
+random variables are likely to be independent. The idea is simple. Suppose that
+`x` and `y` are simulations from two independent (not necessarily identical)
+distributions; say `x=runif(1000)` and `y=rnorm(1000)`. The vector
+`y_perm=sample(y)` is a randomly permuted version of `y` (see R section below)
+and it contains exactly the same information about the distribution of `y` as
+`y` itself does. Both `y` and `y_perm` will produce exactly the same histogram.
+Permuting `y`, however, "uncouples" it from `x`. If there was any dependence
+between the values of `x` and `y` before, there certainly isn't any now. In
+other the joint distribution of `x` and `y_perm` has the same marginals as the
+joint distribution of `x` and `y`, but all the (possible) dependence has been
+removed. What remains is to compare the scatterplot between `x` and `y` and the
+scatterplot between `x` and `y_perm`. If they look about the same, we conclude
+that `x` and `y` are independent. Otherwise, there is some dependence between
+them. 
 
-One question remains: why did we have to draw three scatterplots of permuted versions of `y`? That is because we have only finitely many data points, and it can happen, by pure chance, that the permutation we applied to `y` does not completely scramble its dependence on `x`. With a "sample" of three such plots, we 
-get a better feeling for the inherent randomness in this permutation procedure, and it is much easier to tell whether "one of these things is not like the others". Btw, the random variables in the scatterplot above are, indeed, independent; here are the $4$ permutation-test plots to "prove" it:
+One question remains: why did we have to draw three scatterplots of permuted
+versions of `y`? That is because we have only finitely many data points, and it
+can happen, by pure chance, that the permutation we applied to `y` does not
+completely scramble its dependence on `x`. With a "sample" of three such plots,
+we 
+get a better feeling for the inherent randomness in this permutation procedure,
+and it is much easier to tell whether "one of these things is not like the
+others". Btw, the random variables in the scatterplot above are, indeed,
+independent; here are the $4$ permutation-test plots to "prove" it:
 ```{r, fig.asp=1, echo=FALSE}
 x1 = sin(runif(3000,0,2*pi)**2)
 y1 = cos(runif(3000,0,2*pi)**2)
@@ -477,12 +533,28 @@ plot(sample(y1)~x1, xlab="x", ylab="y_perm_3",asp=1, xlim=c(-1,1))
 
 ```
 
-Unlike univariate (one-variable) distributions which are visualized using histograms or similar plots, multivariate (several-variable) distributions are harder to depict. The most direct relative of the histogram is a **3d histogram**. Just like the $x$-axis is divided into bins in the univariate case, in the multivariate case we divide the $xy$-plane into regions (squares, e.g.) and count the number of points falling into each of these regions. After that a 3d bar (a skyscraper) is drawn above each square with the height of each skyscraper equal (or proportional)  to the number of points which fall into its base. Here is a 3d histogram of our original pair (`x`,`y`) from the problem. You should be able to rotate and zoom it right here in the notes, provided your browser has JavaScript enabled:
-```{r, echo=FALSE}
-htmltools::includeHTML("pics/test.html")
-```
+Unlike univariate (one-variable) distributions which are visualized using
+histograms or similar plots, multivariate (several-variable) distributions are
+harder to depict. The most direct relative of the histogram is a **3d
+histogram**. Just like the $x$-axis is divided into bins in the univariate case,
+in the multivariate case we divide the $xy$-plane into regions (squares, e.g.)
+and count the number of points falling into each of these regions. After that
+a 3d bar (a skyscraper) is drawn above each square with the height of each
+skyscraper equal (or proportional) to the number of points which fall into its
+base. Here is a 3d histogram of our original pair (`x`,`y`) from the problem.
+You should be able to rotate and zoom it right here in the notes, provided your
+browser has JavaScript enabled:
 
-A visualization solution that requires less technology would start the same way, i.e., by dividing the $xy$ plane into regions, but instead of the third dimension, it would use different colors to represent the counts. Here is an example where the regions are hexagons, as opposed to squares; it just looks better, for some reason:
+<div align="center">
+```{r, echo=FALSE, fig.align="center"}
+htmltools::includeHTML("pics/3dhist.html")
+```
+</div>
+A visualization solution that requires less technology would start the same way,
+i.e., by dividing the $xy$ plane into regions, but instead of the third
+dimension, it would use different colors to represent the counts. Here is an
+example where the regions are hexagons, as opposed to squares; it just looks
+better, for some reason:
 
 ```{r echo=FALSE}
 library(hexbin)
@@ -490,7 +562,9 @@ df=data.frame(x,y)
 hexbinplot(y~x, data=df, colramp = heat.ob, asp=1)
 ```
 
-Just to showcase the range of possibilities, here is another visualization technique which  which requires deeper statistical tools, namely the **density contour plot**:
+Just to showcase the range of possibilities, here is another visualization
+technique which which requires deeper statistical tools, namely the 
+**density contour plot**:
 ```{r echo=FALSE, out.width="80%"}
 library(ggplot2)
 ggplot(data=df, aes(x=x, y=y) ) +
@@ -499,14 +573,473 @@ ggplot(data=df, aes(x=x, y=y) ) +
    theme(aspect.ratio=0.8)
 ```
 
-*R.* There is very little new R here. 
-You should remember that if `x` and `y` are vectors of the same length,  `plot(x,y)` gives you a scatterplot of `x` and `y`. 
+*R.* There is very little new R here. You should remember that if `x` and `y` are
+vectors of the same length, `plot(x,y)` gives you a scatterplot of `x` and `y`.
 
 To compute the sample correlation between two vectors, use the `cor`. 
 
-We used the command `sample(y)` to obtain a randomly permuted version of `y`. The simplicity of this is due to default parameters of the command `sample` which we already learned about. In particular, the default number of samples is exactly the size of the input vector `y` and, by default, sampling is performed *without replacement*. If you think about it for a second, you will realize that a sample of size $n$ from the vector of size $n$ *without* replacement is nothing by a random permutation of `y`. 
+We used the command `sample(y)` to obtain a randomly permuted version of `y`.
+The simplicity of this is due to default parameters of the command `sample`
+which we already learned about. In particular, the default number of samples is
+exactly the size of the input vector `y` and, by default, sampling is performed
+*without replacement*. If you think about it for a second, you will realize that
+a sample of size $n$ from the vector of size $n$ *without* replacement is
+nothing by a random permutation of `y`. 
 
-You are not required to do this in your submissions, but if you want to  display several plots side-by-side, use the command is `par(mfrow=c(m,n))` before the `plot` commands. It tells R to plot the next $mn$  plots in a $m\times n$ grid. 
+You are not required to do this in your submissions, but if you want to display
+several plots side-by-side, use the command is `par(mfrow=c(m,n))` before the
+`plot` commands. It tells R to plot the next $mn$ plots in a $m\times n$ grid. 
+
+
+```{exercise}
+Random variables $X$ and $Y$ have the joint distribution given by the following
+table:
+<table class="table table-striped" 
+style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;text-align: center;">   </th>
+   <th style="text-align:right;text-align: center;"> 1 </th>
+   <th style="text-align:right;text-align: center;"> 2 </th>
+   <th style="text-align:right;text-align: center;"> 3 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> 1 </td>
+   <td style="text-align:right;"> 0.1 </td>
+   <td style="text-align:right;"> 0.2 </td>
+   <td style="text-align:right;"> 0.3 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> 2 </td>
+   <td style="text-align:right;"> 0.2 </td>
+   <td style="text-align:right;"> 0.2 </td>
+   <td style="text-align:right;"> 0.0 </td>
+  </tr>
+</tbody>
+</table>
+   
+Simulate $10,000$ draws from the distribution of $(X,Y)$ and display a 
+contingency table of your results.
+```
+
+**Solution.** 
+```{r tidy=FALSE}
+joint_distribution_long = data.frame(
+   x = c(1, 1, 1, 2, 2, 2),
+   y = c(1, 2, 3, 1, 2, 3)
+)
+probabilities_long = 
+       c(0.1, 0.2, 0.3, 0.2, 0.2, 0.0)
+
+sampled_rows = sample(
+   x = 1:nrow(joint_distribution_long),
+   size = 10000,
+   replace = TRUE,
+   prob = probabilities_long
+)
+
+draws = joint_distribution_long[sampled_rows, ]
+
+table(draws)
+```
+
+
+**Comments:** 
+
+*Math.* The main mathematical idea is to think of *each pair* of possible values
+of $X$ and $Y$ as a separate "object", put all these objects in a "bag", then
+then draw from the bag. In other words, we convert the bivariate distribution
+from the problem to the following univariate distribution
+```{r echo=FALSE}
+library(tidyverse)
+paired = joint_distribution_long %>% 
+   transmute(val=str_c("(", x,",",y,")"))
+
+knitr::kable(t(probabilities_long), col.names=paired$val, striped=TRUE) %>% 
+   kable_styling( full_width=FALSE)
+```
+and sample from it. When you do, you will get a vector whose elements are pairs
+of numbers. The last step is to extract the components of those pairs into
+separate vectors. 
+
+*R.* The most important new R concept here is `data.frame`. You should think of
+it as a spreadsheet. It is, mathematically, a matrix, but we do not perform any
+mathematical operations on it. Moreover, not all columns in the data frame have
+to be numeric. Some of them can be strings, and other can be something even more
+exotic. You should think of a data frame as a bunch of column vectors of the
+same length stacked side by side. It is important to note that each column of a
+data frame will have a name, so that we don't have to access it by its position
+only (as we would have to in the case of a matrix).  
+
+In this class, the column vectors of data frames are going to contain simulated
+values. In statistics, it is data that comes in data frames, with rows
+corresponding to different observations, and columns to various observed
+variables.
+
+The easiest way to construct a data frame using already existing vectors is as follows:
+```{r}
+x = c(1,2,3)
+y = c("a","b","c")
+(df=data.frame(x,y))
+```
+
+Note that the two columns inherited their names from the vectors `x` and `y`
+that fed into them. Note, also, that all rows got consecutive numerical values
+as names by default. Row names are sometimes useful to have, but are in general
+a nuisance and should be ignored (especially in this class). Column names are
+more important, and there is a special notation (the dollar-sign notation) that
+allows you to access a column by its name:
+
+```{r}
+df$y
+```
+If you want to give your columns custom names (or if you are building them out
+of explicitly given vectors as in the solution above) use the following syntax
+```{r}
+z = c("a","b","c","d")
+(df = data.frame( letters = z, numbers = c(1,2,3,4)))
+```
+A feature that data frames share with vectors and matrices is that you can use vector indexing as in the following example (where `df` is as above)
+```{r}
+df[c(2,4,4,1),]
+```
+Make sure you understand why the expression inside the brackets is `c(2,4,4,1),`
+and not `c(2,4,4,1)`. R's desire to keep row names unique leads to some
+cumbersome constructs such as `4.1` above. As I mentioned before, just disregard
+them. 
+
+A nice thing about data frames is that they can easily be pretty-printed in
+RStudio. Go to the Environment tab in one of your RStudio panes, and double
+click on the name of the data frame you just built. It will appear as a nicely
+formatted spreadsheet. 
+
+Once we have the data frame containing all $6$ pairs of possible values $X$ and
+$Y$ can take (called `joint_distribution_long` in the solution above), we can
+proceed by sampling from its rows, by sampling from the set `1,2,3,4,5,6` with
+probabilities `0.1, 0.2, 0.3, 0.2, 0.2, 0.0`. The result of the corresponding
+`sample` command will be a sequence - called `sampled_rows` in the solution - of
+length $10,000$ composed of numbers $1,2,3,4,5$ or $6$. The reason we chose the
+name `sampled_rows` is because each number corresponds to a row from the data
+frame `joint_distribution_long`, and by indexing `joint_distribution_long` by
+`sampled_rows` we are effectively sampling from its rows. In other words, the
+command `joint_distribution_long[sampled_rows, ]` turns a bunch of numbers into
+a bunch of rows (many of them repeated) of the data frame
+`joint_distribution_long`. 
+
+The final step is to use the function `table`. This time, we are applying it to
+a data frame and not to a vector, but the effect is the same. It tabulates all
+possible combinations of values of the columns, and counts how many times each
+of them happened. The same result would have been obtained by calling
+`table(draws$x, draws$y)`. 
+
+
+
+## Monte Carlo
+
+```{exercise}
+Use Monte Carlo to estimate the expected value of the exponential random
+variable with parameter $\ld = 4$ using $n=10$, $n=1,000$ and $1,000,000$
+simulations. Compare to the exact value.
+```
+**Solution:**
+```{r echo = c(2,4)}
+set.seed(12341)
+x = rexp(10, rate=4)
+err = 0.25 - mean(x)
+mean(x)
+```
+For an exponential random variable with parameter $\ld$, the expected value is 
+$1/\ld$ (such information can be found in [Appendix A](./dist.html)) which, 
+in this case, is  $0.25$. The error made was `r format(err,digits=5)` for $n=10$ simulations.
+
+We increase the number of simulations to $n=1000$ and get a better result
+```{r echo = c(2,4)}
+set.seed(12342)
+x = rexp(1000, rate=4)
+err = 0.25 - mean(x)
+mean(x)
+```
+with (smaller) error `r format(err, digits=5)`. Finally, let's try $n=1,000,000$:
+```{r echo = c(2,4)}
+set.seed(12342)
+x = rexp(1000000, rate=4)
+err = 0.25 - mean(x)
+mean(x)
+```
+The error is even smaller `r format(err, digits=5)`. 
+
+<!-- This can be obtained quite easily by integration (by parts): -->
+<!-- $$ \EE[X] = \int_{-\infty}^{\infty} x f(x)\, dx = \int_0^{\infty} x \ld e^{-\ld x}\, dx = \tfrac{1}{\ld}$$ -->
+
+**Comments:**
+
+*R.* The only new thing here is the command `mean` which computes the mean of a vector. 
+
+*Math.* There is a lot going on here conceptually. This is the first time we
+used the Monte Carlo method. It is an incredibly useful tool, as you will keep
+being reminded throughout this class. The idea behind it is simple, and it is
+based on the *Law of large numbers*:
+
+**Theorem** Let $X\_1,X\_2, \dots$ be an independent sequence of random
+variables with the same distribution, for which the expected value can be
+computed. Then
+$$ \tfrac{1}{n} \Big( X_1+X_2+\dots+X_n\Big) \to \EE[X_1] \text{ as } n\to\infty$$
+The idea behind Monte Carlo is to turn this theorem "upside down". The goal is
+to compute $\EE[X\_1]$ and use a supply of random numbers, each of which
+comes from the same distribution, to accomplish that. The random number
+generator inside `rexp` gives us a supply of numbers (stored in the vector `x`)
+and all we have to do is compute their average. This gives us the left-hand side
+of the formula above, and, if $n$ is large enough, we hope that the this average
+does not differ too much from its theoretical limit. As $n$ gets larger, we
+expect better and better results. That is why your error above gets smaller as
+$n$ increases. 
+
+It looks like Monte Carlo can only be used to compute the expected value of a
+random variable, which does not seem like such a bit deal. But it is! You will see
+in the sequel that almost anything can be written as the expected value of
+*some* random variable.
+
+```{exercise}
+Use Monte Carlo to estimate $\EE[X^2]$, where $X$ is a standard normal 
+random variable. 
+```
+
+**Solution.**
+You may or may now know that when $X$ is standard normal $Y=X^2$ has a $\chi^2$
+distribution with one degree of freedom. If you do, you can solve the problem
+like this:
+```{r}
+y = rchisq(5000 ,df=1)
+mean(y)
+```
+If you don't, you can do the following: 
+```{r}
+x = rnorm(5000)
+y = x^2
+mean(y)
+```
+
+**Comments:**
+
+*Math+R.* We are asked to compute $\EE[ X^2]$, which can be interpreted in
+two ways. First, we can think of $Y=X^2$ as a random variable in its own and you
+can try to take draws from the distribution of $Y$. In the case of the normal
+distribution, the distribution of $Y$ is known - it happens to be a
+$\chi^2$-distribution with a single degree of freedom (don't worry if you never
+heard of it). We can simulate it in R by using its R name `chisq` and 
+get a number close to the exact value of $1$. 
+
+If you did not know about the $\chi^2$ distribution, you would not know what R
+name to put the prefix `r` in front of. What makes the simulation possible is
+the fact that $Y$ is a *transformation* of 
+a random variable we know how to simulate. In that case, we simply simulate the
+required number of draws `x` from the geometric distribution (using `rnorm`) and
+then apply the transformation $x \mapsto x^2$ to the result. The transformed
+vector `y` is then nothing but the sequence of draws from the distribution of
+$X^2$. 
+
+The idea described above is one of main advantages of the Monte Carlo technique:
+if you know how to simulated a random variable, you also know how to simulated
+any (deterministic) function of it. That fact will come into its own a bit later
+when we start working with several random variables and stochastic processes,
+but it can be very helpful even in the case of a single random variable, as you
+will see in the next problem. 
+
+
+```{exercise}
+Let $X$ be a standard normal random variable. Use Monte Carlo to estimate the
+probability $\PP[ X > 1 ]$. Compare to the exact value.
+```
+**Solution:**
+The estimated probability:
+```{r tidy=FALSE}
+x = rnorm(10000)
+y = x > 1
+(p_est = mean(y))
+```
+The exact probability and the error
+```{r}
+p_true = 1-pnorm(1)
+(err = p_est-p_true)
+```
+
+
+**Comments:**
+
+*R.* As we learned before,  the symbol `>` is an operation, which returns a Boolean (`TRUE` or `FALSE`) value. For example:
+```{r}
+1>2
+```
+```{r}
+5^2>20
+```
+It is vectorized:
+```{r}
+x = c(1,2,4)
+y = c(5,-4,3)
+x>y
+```
+and recycling rules apply to it (so that you can compare a vector and a scalar, for example)
+```{r}
+x = 1:10
+x>5
+```
+Therefore, the vector `y` in the solution is a vector of length $10000$ whose elements are either `TRUE` or `FALSE`; here are the first 5 rows of data frame with columns `x` and `y` from our solution:
+```{r echo=FALSE}
+set.seed(2123)
+df = data.frame(x = rnorm(100000), y = x > 1)[1:5,]
+kable(df, digits = 4) %>% 
+   kable_styling(full_width = FALSE)
+``` 
+Finally, `z` contains the `mean` of `y`. How do you compute a mean of Boolean values?  In R (and many other languages) `TRUE` and `FALSE` have default numerical values, usually $1$ and $0$. This way, when $R$ is asked to compute the `sum` of a Boolean vector it will effectively count the number of values which are `TRUE`. Similarly, the `mean` is the relative proportion of `TRUE` values. 
+
+*Math.* 
+We computed the **proportion** of the "times" $X>1$ (among many simulations of $X$) and used it to approximate the **probability** $\PP[ X>1]$.  More formally, 
+we started from a random variable $X$ with a normal distribution and then transformed it into another random variable, $Y$, by setting $Y=1$ whenever $X>1$ and $0$ otherwise. This is often written as follows
+$$ Y = \begin{cases} 1, & X>1 \\ 0, & X\leq 1.\end{cases}$$
+The random variable $Y$ is very special - it can only take values $0$ and $1$ (i.e., its support is $\{0,1\}$). Such random variables are called **indicator random variables**, and their distribution, called the **Bernoulli distribution**, always looks like this:
+```{r echo=FALSE}
+library(tidyverse)
+library(kableExtra)
+knitr::kable(t(c("1-p", "p")), col.names = c(0,1)) %>% 
+   kable_styling(full_width = F)
+```
+for some $p \in [0,1]$. The parameter $p$  is nothing but the probability $\PP[Y=1]$. 
+
+So why did we decide to transform $X$ into $Y$? Because of the following simple fact:
+$$ \EE[ Y] = 1 \times p + 0 \times (1-p) = p.$$
+The expected value of an indicator is the probability $p$, and we know that we can use Monte Carlo whenever we can express the quantity we are computing as an expected value of a random variable we know how to simulate. 
+
+Many times, simulating a random variable is easier than analyzing it analytically. Here is a fun example:
+
+```{exercise}
+Use Monte Carlo to estimate the value of $\pi$ and compute the error. 
+```
+**Solution.**
+```{r tidy=FALSE}
+nsim = 1000000
+x =  runif(nsim,-1, 1)
+y =  runif(nsim,-1, 1)
+z = (x ^ 2 + y ^ 2) < 1
+(pi_est = 4 * mean(z))
+(err = pi_est - pi)
+```
+
+
+**Comments:**
+
+*Math.*
+```{r echo=FALSE, out.width= "50%", out.extra='style="float:right; padding:10px"'}
+knitr::include_graphics('pics/mc_pi.gif')
+```
+As we learned in the previous problem, probabilities of events can be computed using Monte Carlo, as long as we know how to simulate the underlying indicator random variable. In this case, we want to compute $\pi$, so we would need to find a "situation" in which the probability of something is $\pi$. Of course, $\pi>1$, so it cannot be a probability of anything, but $\pi/4$ can, and computing $\pi/4$ is as useful as computing $\pi$. To create the required probabilistic "situation" we think of the geometric meaning of $\pi$, and come up with the following scheme. Let $X$ and $Y$ be two independent uniform random variables each with values between $-1$ and $1$. We can think of the pair $(X,Y)$ as a random point in the square $[-1,1]\times [-1,1]$. This point will sometimes fall inside the unit circle, and sometimes it will not. What is the probability of hitting the circle? Well, since $(X,Y)$ is uniformly distributed everywhere inside the square, this probability should be equal to the portion of the area of our square which belongs to the unit circle. The area of the square is $4$ and the area of the circle is $\pi$, so the required probability is $\pi/4$. Using the idea from the previous problem, we define the indicator random variable $Z$ as follows
+$$ Z = \begin{cases} 1 & (X,Y) \text{ is inside the unit circle, } \\ 0 & \text{ otherwise.}
+\end{cases}
+= \begin{cases} 1& X^2+Y^2 < 1, \\ 0 & \text{ otherwise.} \end{cases}$$
+
+```{exercise}
+1. Write an R function `cumavg` which computes the sequence of running averages of a vector, i.e., if the input is $x=(x_1,x_2,x_3,\dots, x_n)$, the output should be
+$$ \Big(x_1, \frac{1}{2} (x_1+x_2), \frac{1}{3}(x_1+x_2+x_3), \dots, \frac{1}{n} (x_1+x_2+\dots+x_n)\Big).$$ Test it to check that it really works. (*Hint:* look up the funcion `cumsum`. )
+   
+2. Apply `cumavg` to the vector $4 z$ from the previous problem and plot your results (use a smaller value for `nsim`. Maybe $1000$.) Plot the values against their index. Add a read horizontal line at the level $\pi$. Rerun the same code (including the simulation part) several times.
+```
+
+**Solution**
+
+1.
+```{r}
+cumavg = function(x) {
+   c = cumsum(x)
+   n = 1:length(x)
+   return(c / n)
+}
+x = c(1, 3, 5, 3, 3, 9)
+cumavg(x)
+```
+
+2.
+```{r tidy=FALSE}
+nsim = 1000
+x =  runif(nsim,-1, 1)
+y =  runif(nsim,-1, 1)
+z = (x ^ 2 + y ^ 2) < 1
+pi_est = cumavg(4 * z)
+plot(
+   1:nsim,
+   pi_est,
+   type = "l",
+   xlab = "number of simulations",
+   ylab = "estimate of pi",
+   main = "Computing pi by Monte Carlo"
+)
+abline(pi, 0,
+       col = "red")
+```
+
+**Comments:**
+
+*R.* 
+
+Part 1. Once you know about `cumsum`, the problem becomes much easier. 
+
+
+Part 2. This course is not about R graphics, but I think it is a good idea to teach you how to make basic plots in R. We already used the function `plot` to draw scatterplots.
+By default, each point drawn by `plot` is marked by a small circle so it might not seem like a good idea to use it. Luckily this, and mony other things, can be adjusted by numerous additional arguments. One of such arguments is `type` which determines the type of the plot. We used `type="l"` which tells R to join the points with straight lines:
+```{r}
+x = c(1,3,4,7)
+y = c(2,1,5,5)
+plot(x,y, type="l")
+```
+The other arguments, `xlab`, `ylab` and `main` determine labels for axes and the entire plot. The function `abline(a,b)` adds a line $y = a x + b$ to an already existing plot. It is very useful in statistics if one wants to show the regression line superimposed on the scatterplot of data. Finally, the argument `col`, of course, determines the color of the line. To learn about various graphical parameters, type `?par`. 
+
+*Math.*
+
+The conceptual reason for this exercise is to explore (numerically) the kinds of errors we make when we use Monte Carlo. Unlike the deterministic numerical procedures,  Monte Carlo has a strange property that no bound on the error can be made with absolute certainty. Let me give you an example. Suppose that you have a biased coin, with the probability $0.6$ of heads and $0.4$ of tails. You don't know this probability, and use a Monte Carlo technique to estimate it - you toss your coin $1000$ times and record the number of times you observe $H$. The law of large numbers suggests that the relative frequency of heads is close to the true probability of $H$. Indeed, you run a simulation
+```{r echo=2:10}
+set.seed(1234)
+x = sample( c("T","H"), 1000, prob = c(0.4, 0.6), replace = TRUE)
+y = x == "H"
+mean(y)
+```
+and get a pretty accurate estimate of $0.594$. If you run the same code a few more times, you will get different estimates, but all of them will be close to $0.6$. Theoretically, however, your simulation could have yielded $1000$ Hs, which would lead you to report $p=1$ as the Monte-Carlo estimate. The point is that even though such disasters are theoretically possible, they are exceedingly unlikely. The probability of getting all $H$ in $1000$ tosses of this coin is a number with more than $500$ zeros after the decimal point.  
+
+The take-home message is that even though there are no guarantees, Monte Carlo performs well vast majority of the time. The crucial ingredient, however, is the number of simulations. The plot you were asked to make illustrates exactly that. The function `cumavg` gives you a whole sequence of Monte-Carlo estimates of the same thing (the number $\pi$) with different numbers of simulations `nsim`. For small values of `nsim` the error is typically very large (and very random). As the number of simulations grows, the situations stabilizes and the error decreases. Without going into the theory behind it, let me only mention is that in the majority of practical applications we have the following relationship:
+$$ error \sim \frac{1}{\sqrt{n}}.$$
+In words, if you want to double the precision, you need to quadruple the number of simulations. If you want an extra digit in your estimate, you need to multiply the number of simulations by $100$. Here is an image where I superimposed $40$ plots like the one you were asked to produce (the red lines are $\pm \frac{4}{\sqrt{n}}$):
+
+```{r echo=F, warning = F}
+library(tidyverse)
+library(latex2exp)
+nsim = 250
+ns = 1:nsim
+single = function() {
+   x =  runif(nsim, -1, 1)
+   y =  runif(nsim, -1, 1)
+   z = (x ^ 2 + y ^ 2) < 1
+   return(4*cumsum(z)/ns)
+}
+nbatch = 40
+S = data.frame(t(replicate(nbatch,single() ))) %>% 
+   mutate(omega = factor(1:nbatch)) %>% 
+   pivot_longer(starts_with("X"), 
+                names_prefix = "X",
+                values_to = "estimate") %>% 
+   mutate(time = as.numeric(name)) %>% 
+   group_by(omega)
+E = data.frame( time = 1:nsim, error = 4/sqrt(1:nsim))
+
+ggplot(S, aes(x=time, y=estimate-pi, group = omega)) +
+   geom_line(size=0.3, color="#999999")+
+   geom_path(aes(time, error), data = E, inherit.aes = F, color="red") +
+   geom_path(aes(time, -error), data = E, inherit.aes = F, color="red") +
+   theme_bw()+
+   xlab("number of simulations")+
+   ylab("error")+
+   ggtitle(TeX("Errors in  Monte Carlo estimation of $\\pi$"))
+```
+
 
 ## Additional Problems
 

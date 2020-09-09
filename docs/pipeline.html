@@ -157,12 +157,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#simulation-of-some-common-probability-distributions"><i class="fa fa-check"></i><b>2.1</b> Simulation of some common probability distributions</a></li>
 <li class="chapter" data-level="2.2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#multivariate-distributions"><i class="fa fa-check"></i><b>2.2</b> Multivariate Distributions</a></li>
-<li class="chapter" data-level="2.3" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#additional-problems"><i class="fa fa-check"></i><b>2.3</b> Additional Problems</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="pipeline.html"><a href="pipeline.html"><i class="fa fa-check"></i><b>3</b> Pipeline</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="pipeline.html"><a href="pipeline.html#monte-carlo"><i class="fa fa-check"></i><b>3.1</b> Monte Carlo</a></li>
 <li class="chapter" data-level="3.2" data-path="pipeline.html"><a href="pipeline.html#conditional-probability-and-independence."><i class="fa fa-check"></i><b>3.2</b> Conditional probability and independence.</a></li>
+<li class="chapter" data-level="3.3" data-path="pipeline.html"><a href="pipeline.html#additional-problems"><i class="fa fa-check"></i><b>3.3</b> Additional Problems</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>A</b> Probability Distributions</a>
@@ -191,7 +191,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 3</span> Pipeline</h1>
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-2" class="exercise"><strong>Problem 3.1  </strong></span>Random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have the joint distribution given by the following table:
+<span id="exr:unnamed-chunk-39" class="exercise"><strong>Problem 3.1  </strong></span>Random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have the joint distribution given by the following table:
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -243,27 +243,27 @@ Simulate <span class="math inline">\(10,000\)</span> draws from the distribution
 contingency table of your results.
 </div>
 <p><strong>Solution.</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="pipeline.html#cb1-1" aria-hidden="true"></a>joint_distribution_long =<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb1-2"><a href="pipeline.html#cb1-2" aria-hidden="true"></a>   <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>),</span>
-<span id="cb1-3"><a href="pipeline.html#cb1-3" aria-hidden="true"></a>   <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb1-4"><a href="pipeline.html#cb1-4" aria-hidden="true"></a>)</span>
-<span id="cb1-5"><a href="pipeline.html#cb1-5" aria-hidden="true"></a>probabilities_long =<span class="st"> </span></span>
-<span id="cb1-6"><a href="pipeline.html#cb1-6" aria-hidden="true"></a><span class="st">       </span><span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">0.0</span>)</span>
-<span id="cb1-7"><a href="pipeline.html#cb1-7" aria-hidden="true"></a></span>
-<span id="cb1-8"><a href="pipeline.html#cb1-8" aria-hidden="true"></a>sampled_rows =<span class="st"> </span><span class="kw">sample</span>(</span>
-<span id="cb1-9"><a href="pipeline.html#cb1-9" aria-hidden="true"></a>   <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(joint_distribution_long),</span>
-<span id="cb1-10"><a href="pipeline.html#cb1-10" aria-hidden="true"></a>   <span class="dt">size =</span> <span class="dv">10000</span>,</span>
-<span id="cb1-11"><a href="pipeline.html#cb1-11" aria-hidden="true"></a>   <span class="dt">replace =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb1-12"><a href="pipeline.html#cb1-12" aria-hidden="true"></a>   <span class="dt">prob =</span> probabilities_long</span>
-<span id="cb1-13"><a href="pipeline.html#cb1-13" aria-hidden="true"></a>)</span>
-<span id="cb1-14"><a href="pipeline.html#cb1-14" aria-hidden="true"></a></span>
-<span id="cb1-15"><a href="pipeline.html#cb1-15" aria-hidden="true"></a>draws =<span class="st"> </span>joint_distribution_long[sampled_rows, ]</span>
-<span id="cb1-16"><a href="pipeline.html#cb1-16" aria-hidden="true"></a></span>
-<span id="cb1-17"><a href="pipeline.html#cb1-17" aria-hidden="true"></a><span class="kw">table</span>(draws)</span>
-<span id="cb1-18"><a href="pipeline.html#cb1-18" aria-hidden="true"></a><span class="co">##    y</span></span>
-<span id="cb1-19"><a href="pipeline.html#cb1-19" aria-hidden="true"></a><span class="co">## x      1    2    3</span></span>
-<span id="cb1-20"><a href="pipeline.html#cb1-20" aria-hidden="true"></a><span class="co">##   1 1002 1940 2964</span></span>
-<span id="cb1-21"><a href="pipeline.html#cb1-21" aria-hidden="true"></a><span class="co">##   2 2052 2042    0</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="pipeline.html#cb22-1" aria-hidden="true"></a>joint_distribution_long =<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb22-2"><a href="pipeline.html#cb22-2" aria-hidden="true"></a>   <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>),</span>
+<span id="cb22-3"><a href="pipeline.html#cb22-3" aria-hidden="true"></a>   <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb22-4"><a href="pipeline.html#cb22-4" aria-hidden="true"></a>)</span>
+<span id="cb22-5"><a href="pipeline.html#cb22-5" aria-hidden="true"></a>probabilities_long =<span class="st"> </span></span>
+<span id="cb22-6"><a href="pipeline.html#cb22-6" aria-hidden="true"></a><span class="st">       </span><span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">0.0</span>)</span>
+<span id="cb22-7"><a href="pipeline.html#cb22-7" aria-hidden="true"></a></span>
+<span id="cb22-8"><a href="pipeline.html#cb22-8" aria-hidden="true"></a>sampled_rows =<span class="st"> </span><span class="kw">sample</span>(</span>
+<span id="cb22-9"><a href="pipeline.html#cb22-9" aria-hidden="true"></a>   <span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(joint_distribution_long),</span>
+<span id="cb22-10"><a href="pipeline.html#cb22-10" aria-hidden="true"></a>   <span class="dt">size =</span> <span class="dv">10000</span>,</span>
+<span id="cb22-11"><a href="pipeline.html#cb22-11" aria-hidden="true"></a>   <span class="dt">replace =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb22-12"><a href="pipeline.html#cb22-12" aria-hidden="true"></a>   <span class="dt">prob =</span> probabilities_long</span>
+<span id="cb22-13"><a href="pipeline.html#cb22-13" aria-hidden="true"></a>)</span>
+<span id="cb22-14"><a href="pipeline.html#cb22-14" aria-hidden="true"></a></span>
+<span id="cb22-15"><a href="pipeline.html#cb22-15" aria-hidden="true"></a>draws =<span class="st"> </span>joint_distribution_long[sampled_rows, ]</span>
+<span id="cb22-16"><a href="pipeline.html#cb22-16" aria-hidden="true"></a></span>
+<span id="cb22-17"><a href="pipeline.html#cb22-17" aria-hidden="true"></a><span class="kw">table</span>(draws)</span>
+<span id="cb22-18"><a href="pipeline.html#cb22-18" aria-hidden="true"></a><span class="co">##    y</span></span>
+<span id="cb22-19"><a href="pipeline.html#cb22-19" aria-hidden="true"></a><span class="co">## x      1    2    3</span></span>
+<span id="cb22-20"><a href="pipeline.html#cb22-20" aria-hidden="true"></a><span class="co">##   1  962 2027 3047</span></span>
+<span id="cb22-21"><a href="pipeline.html#cb22-21" aria-hidden="true"></a><span class="co">##   2 1945 2019    0</span></span></code></pre></div>
 <p><strong>Comments:</strong></p>
 <em>Math.</em> The main mathematical idea is to think of <em>each pair</em> of possible values of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> as a separate “object”, put all these objects in a “bag”, then then draw from the bag. In other words, we convert the bivariate distribution from the problem to the following univariate distribution
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -316,31 +316,31 @@ contingency table of your results.
 <p><em>R.</em> The most important new R concept here is <code>data.frame</code>. You should think of it as a spreadsheet. It is, mathematically, a matrix, but we do not perform any mathematical operations on it. Moreover, not all columns in the data frame have to be numeric. Some of them can be strings, and other can be something even more exotic. You should think of a data frame as a bunch of column vectors of the same length stacked side by side. It is important to note that each column of a data frame will have a name, so that we don’t have to access it by its position only (as we would have to in the case of a matrix).</p>
 <p>In this class, the column vectors of data frames are going to contain simulated values. In statistics, it is data that comes in data frames, with rows corresponding to different observations, and columns to various observed variables.</p>
 <p>The easiest way to construct a data frame using already existing vectors is as follows:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="pipeline.html#cb2-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb2-2"><a href="pipeline.html#cb2-2" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)</span>
-<span id="cb2-3"><a href="pipeline.html#cb2-3" aria-hidden="true"></a>(<span class="dt">df =</span> <span class="kw">data.frame</span>(x, y))</span>
-<span id="cb2-4"><a href="pipeline.html#cb2-4" aria-hidden="true"></a><span class="co">##   x y</span></span>
-<span id="cb2-5"><a href="pipeline.html#cb2-5" aria-hidden="true"></a><span class="co">## 1 1 a</span></span>
-<span id="cb2-6"><a href="pipeline.html#cb2-6" aria-hidden="true"></a><span class="co">## 2 2 b</span></span>
-<span id="cb2-7"><a href="pipeline.html#cb2-7" aria-hidden="true"></a><span class="co">## 3 3 c</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="pipeline.html#cb23-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb23-2"><a href="pipeline.html#cb23-2" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)</span>
+<span id="cb23-3"><a href="pipeline.html#cb23-3" aria-hidden="true"></a>(<span class="dt">df =</span> <span class="kw">data.frame</span>(x, y))</span>
+<span id="cb23-4"><a href="pipeline.html#cb23-4" aria-hidden="true"></a><span class="co">##   x y</span></span>
+<span id="cb23-5"><a href="pipeline.html#cb23-5" aria-hidden="true"></a><span class="co">## 1 1 a</span></span>
+<span id="cb23-6"><a href="pipeline.html#cb23-6" aria-hidden="true"></a><span class="co">## 2 2 b</span></span>
+<span id="cb23-7"><a href="pipeline.html#cb23-7" aria-hidden="true"></a><span class="co">## 3 3 c</span></span></code></pre></div>
 <p>Note that the two columns inherited their names from the vectors <code>x</code> and <code>y</code> that fed into them. Note, also, that all rows got consecutive numerical values as names by default. Row names are sometimes useful to have, but are in general a nuisance and should be ignored (especially in this class). Column names are more important, and there is a special notation (the dollar-sign notation) that allows you to access a column by its name:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="pipeline.html#cb3-1" aria-hidden="true"></a>df<span class="op">$</span>y</span>
-<span id="cb3-2"><a href="pipeline.html#cb3-2" aria-hidden="true"></a><span class="co">## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="pipeline.html#cb24-1" aria-hidden="true"></a>df<span class="op">$</span>y</span>
+<span id="cb24-2"><a href="pipeline.html#cb24-2" aria-hidden="true"></a><span class="co">## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</span></span></code></pre></div>
 <p>If you want to give your columns custom names (or if you are building them out of explicitly given vectors as in the solution above) use the following syntax</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="pipeline.html#cb4-1" aria-hidden="true"></a>z =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>)</span>
-<span id="cb4-2"><a href="pipeline.html#cb4-2" aria-hidden="true"></a>(<span class="dt">df =</span> <span class="kw">data.frame</span>(<span class="dt">letters =</span> z, <span class="dt">numbers =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)))</span>
-<span id="cb4-3"><a href="pipeline.html#cb4-3" aria-hidden="true"></a><span class="co">##   letters numbers</span></span>
-<span id="cb4-4"><a href="pipeline.html#cb4-4" aria-hidden="true"></a><span class="co">## 1       a       1</span></span>
-<span id="cb4-5"><a href="pipeline.html#cb4-5" aria-hidden="true"></a><span class="co">## 2       b       2</span></span>
-<span id="cb4-6"><a href="pipeline.html#cb4-6" aria-hidden="true"></a><span class="co">## 3       c       3</span></span>
-<span id="cb4-7"><a href="pipeline.html#cb4-7" aria-hidden="true"></a><span class="co">## 4       d       4</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="pipeline.html#cb25-1" aria-hidden="true"></a>z =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>)</span>
+<span id="cb25-2"><a href="pipeline.html#cb25-2" aria-hidden="true"></a>(<span class="dt">df =</span> <span class="kw">data.frame</span>(<span class="dt">letters =</span> z, <span class="dt">numbers =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)))</span>
+<span id="cb25-3"><a href="pipeline.html#cb25-3" aria-hidden="true"></a><span class="co">##   letters numbers</span></span>
+<span id="cb25-4"><a href="pipeline.html#cb25-4" aria-hidden="true"></a><span class="co">## 1       a       1</span></span>
+<span id="cb25-5"><a href="pipeline.html#cb25-5" aria-hidden="true"></a><span class="co">## 2       b       2</span></span>
+<span id="cb25-6"><a href="pipeline.html#cb25-6" aria-hidden="true"></a><span class="co">## 3       c       3</span></span>
+<span id="cb25-7"><a href="pipeline.html#cb25-7" aria-hidden="true"></a><span class="co">## 4       d       4</span></span></code></pre></div>
 <p>A feature that data frames share with vectors and matrices is that you can use vector indexing as in the following example (where <code>df</code> is as above)</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="pipeline.html#cb5-1" aria-hidden="true"></a>df[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">1</span>), ]</span>
-<span id="cb5-2"><a href="pipeline.html#cb5-2" aria-hidden="true"></a><span class="co">##     letters numbers</span></span>
-<span id="cb5-3"><a href="pipeline.html#cb5-3" aria-hidden="true"></a><span class="co">## 2         b       2</span></span>
-<span id="cb5-4"><a href="pipeline.html#cb5-4" aria-hidden="true"></a><span class="co">## 4         d       4</span></span>
-<span id="cb5-5"><a href="pipeline.html#cb5-5" aria-hidden="true"></a><span class="co">## 4.1       d       4</span></span>
-<span id="cb5-6"><a href="pipeline.html#cb5-6" aria-hidden="true"></a><span class="co">## 1         a       1</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="pipeline.html#cb26-1" aria-hidden="true"></a>df[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">1</span>), ]</span>
+<span id="cb26-2"><a href="pipeline.html#cb26-2" aria-hidden="true"></a><span class="co">##     letters numbers</span></span>
+<span id="cb26-3"><a href="pipeline.html#cb26-3" aria-hidden="true"></a><span class="co">## 2         b       2</span></span>
+<span id="cb26-4"><a href="pipeline.html#cb26-4" aria-hidden="true"></a><span class="co">## 4         d       4</span></span>
+<span id="cb26-5"><a href="pipeline.html#cb26-5" aria-hidden="true"></a><span class="co">## 4.1       d       4</span></span>
+<span id="cb26-6"><a href="pipeline.html#cb26-6" aria-hidden="true"></a><span class="co">## 1         a       1</span></span></code></pre></div>
 <p>Make sure you understand why the expression inside the brackets is <code>c(2,4,4,1),</code> and not <code>c(2,4,4,1)</code>. R’s desire to keep row names unique leads to some cumbersome constructs such as <code>4.1</code> above. As I mentioned before, just disregard them.</p>
 <p>A nice thing about data frames is that they can easily be pretty-printed in RStudio. Go to the Environment tab in one of your RStudio panes, and double click on the name of the data frame you just built. It will appear as a nicely formatted spreadsheet.</p>
 <p>Once we have the data frame containing all <span class="math inline">\(6\)</span> pairs of possible values <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> can take (called )<code>joint_distribution_long</code> in the solution above), we can proceed by sampling from its rows, by sampling from the set <code>1,2,3,4,5,6</code> with probabilities <code>0.1, 0.2, 0.3, 0.2, 0.2, 0.0</code>. The result of the corresponding <code>sample</code> command will be a sequence - called <code>sampled_rows</code> in the solution - of length <span class="math inline">\(10,000\)</span> composed of numbers <span class="math inline">\(1,2,3,4,5\)</span> or <span class="math inline">\(6\)</span>. The reason we chose the name <code>sampled_rows</code> is because each number corresponds to a row from the data frame <code>joint_distribution_long</code>, and by indexing <code>joint_distribution_long</code> by <code>sampled_rows</code> we are effectively sampling from its rows. In other words, the command <code>joint_distribution_long[sampled_rows, ]</code> turns a bunch of numbers into a bunch of rows (many of them repeated) of the data frame <code>joint_distribution_long</code>.</p>
@@ -349,23 +349,23 @@ contingency table of your results.
 <h2><span class="header-section-number">3.1</span> Monte Carlo</h2>
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-9" class="exercise"><strong>Problem 3.2  </strong></span>Use Monte Carlo to estimate the expected value of the exponential random variable with parameter <span class="math inline">\(\lambda= 4\)</span> using <span class="math inline">\(n=10\)</span>, <span class="math inline">\(n=1,000\)</span> and <span class="math inline">\(1,000,000\)</span> simulations. Compare to the exact value.
+<span id="exr:unnamed-chunk-46" class="exercise"><strong>Problem 3.2  </strong></span>Use Monte Carlo to estimate the expected value of the exponential random variable with parameter <span class="math inline">\(\lambda= 4\)</span> using <span class="math inline">\(n=10\)</span>, <span class="math inline">\(n=1,000\)</span> and <span class="math inline">\(1,000,000\)</span> simulations. Compare to the exact value.
 </div>
 <p><strong>Solution:</strong></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="pipeline.html#cb6-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">rexp</span>(<span class="dv">10</span>, <span class="dt">rate =</span> <span class="dv">4</span>)</span>
-<span id="cb6-2"><a href="pipeline.html#cb6-2" aria-hidden="true"></a><span class="kw">mean</span>(x)</span>
-<span id="cb6-3"><a href="pipeline.html#cb6-3" aria-hidden="true"></a><span class="co">## [1] 0.1779768</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="pipeline.html#cb27-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">rexp</span>(<span class="dv">10</span>, <span class="dt">rate =</span> <span class="dv">4</span>)</span>
+<span id="cb27-2"><a href="pipeline.html#cb27-2" aria-hidden="true"></a><span class="kw">mean</span>(x)</span>
+<span id="cb27-3"><a href="pipeline.html#cb27-3" aria-hidden="true"></a><span class="co">## [1] 0.1779768</span></span></code></pre></div>
 <p>For an exponential random variable with parameter <span class="math inline">\(\lambda\)</span>, the expected value is
 <span class="math inline">\(1/\lambda\)</span> (such information can be found in <a href="./dist.html">Appendix A</a>) which,
 in this case, is <span class="math inline">\(0.25\)</span>. The error made was 0.072023 for <span class="math inline">\(n=10\)</span> simulations.
 We increase the number of simulations to <span class="math inline">\(n=1000\)</span> and get a better result</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="pipeline.html#cb7-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">rexp</span>(<span class="dv">1000</span>, <span class="dt">rate =</span> <span class="dv">4</span>)</span>
-<span id="cb7-2"><a href="pipeline.html#cb7-2" aria-hidden="true"></a><span class="kw">mean</span>(x)</span>
-<span id="cb7-3"><a href="pipeline.html#cb7-3" aria-hidden="true"></a><span class="co">## [1] 0.2564643</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="pipeline.html#cb28-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">rexp</span>(<span class="dv">1000</span>, <span class="dt">rate =</span> <span class="dv">4</span>)</span>
+<span id="cb28-2"><a href="pipeline.html#cb28-2" aria-hidden="true"></a><span class="kw">mean</span>(x)</span>
+<span id="cb28-3"><a href="pipeline.html#cb28-3" aria-hidden="true"></a><span class="co">## [1] 0.2564643</span></span></code></pre></div>
 <p>with (smaller) error -0.0064643. Finally, let’s try <span class="math inline">\(n=1,000,000\)</span>:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="pipeline.html#cb8-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">rexp</span>(<span class="fl">1e+06</span>, <span class="dt">rate =</span> <span class="dv">4</span>)</span>
-<span id="cb8-2"><a href="pipeline.html#cb8-2" aria-hidden="true"></a><span class="kw">mean</span>(x)</span>
-<span id="cb8-3"><a href="pipeline.html#cb8-3" aria-hidden="true"></a><span class="co">## [1] 0.250381</span></span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="pipeline.html#cb29-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">rexp</span>(<span class="fl">1e+06</span>, <span class="dt">rate =</span> <span class="dv">4</span>)</span>
+<span id="cb29-2"><a href="pipeline.html#cb29-2" aria-hidden="true"></a><span class="kw">mean</span>(x)</span>
+<span id="cb29-3"><a href="pipeline.html#cb29-3" aria-hidden="true"></a><span class="co">## [1] 0.250381</span></span></code></pre></div>
 <p>The error is even smaller -0.00038101.</p>
 <!-- This can be obtained quite easily by integration (by parts): -->
 <!-- $$ \EE[X] = \int_{-\infty}^{\infty} x f(x)\, dx = \int_0^{\infty} x \ld e^{-\ld x}\, dx = \tfrac{1}{\ld}$$ -->
@@ -378,57 +378,57 @@ The idea behind Monte Carlo is to turn this theorem “upside down”. The goal 
 <p>It looks like Monte Carlo can only be used to compute the expected value of a random variable, which does not seem like such a bit deal. It is! You will see in the sequel that almost anything can be written as the expected value of <em>some</em> random variable.</p>
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-13" class="exercise"><strong>Problem 3.3  </strong></span>Use Monte Carlo to estimate <span class="math inline">\({\mathbb{E}}[X^2]\)</span>, where <span class="math inline">\(X\)</span> is a standard normal random variable. Do the same thing when <span class="math inline">\(X\)</span> is geometrically distributed with parameter <span class="math inline">\(p=0.5\)</span>.
+<span id="exr:unnamed-chunk-50" class="exercise"><strong>Problem 3.3  </strong></span>Use Monte Carlo to estimate <span class="math inline">\({\mathbb{E}}[X^2]\)</span>, where <span class="math inline">\(X\)</span> is a standard normal random variable. Do the same thing when <span class="math inline">\(X\)</span> is geometrically distributed with parameter <span class="math inline">\(p=0.5\)</span>.
 </div>
 <p><strong>Solution.</strong>
 When <span class="math inline">\(X\)</span> is standard normal <span class="math inline">\(Y=X^2\)</span> has a <span class="math inline">\(\chi^2\)</span> distribution with one degree of freedom:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="pipeline.html#cb9-1" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">rchisq</span>(<span class="fl">1e+05</span>, <span class="dt">df =</span> <span class="dv">1</span>)</span>
-<span id="cb9-2"><a href="pipeline.html#cb9-2" aria-hidden="true"></a><span class="kw">mean</span>(x)</span>
-<span id="cb9-3"><a href="pipeline.html#cb9-3" aria-hidden="true"></a><span class="co">## [1] 0.250381</span></span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="pipeline.html#cb30-1" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">rchisq</span>(<span class="fl">1e+05</span>, <span class="dt">df =</span> <span class="dv">1</span>)</span>
+<span id="cb30-2"><a href="pipeline.html#cb30-2" aria-hidden="true"></a><span class="kw">mean</span>(x)</span>
+<span id="cb30-3"><a href="pipeline.html#cb30-3" aria-hidden="true"></a><span class="co">## [1] 0.250381</span></span></code></pre></div>
 <p>In the second case, we do not know the distribution of <span class="math inline">\(X^2\)</span>, but can still do the following:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="pipeline.html#cb10-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">rgeom</span>(<span class="fl">1e+05</span>, <span class="dt">prob =</span> <span class="fl">0.5</span>)</span>
-<span id="cb10-2"><a href="pipeline.html#cb10-2" aria-hidden="true"></a>y =<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span></span>
-<span id="cb10-3"><a href="pipeline.html#cb10-3" aria-hidden="true"></a><span class="kw">mean</span>(y)</span>
-<span id="cb10-4"><a href="pipeline.html#cb10-4" aria-hidden="true"></a><span class="co">## [1] 2.99152</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="pipeline.html#cb31-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">rgeom</span>(<span class="fl">1e+05</span>, <span class="dt">prob =</span> <span class="fl">0.5</span>)</span>
+<span id="cb31-2"><a href="pipeline.html#cb31-2" aria-hidden="true"></a>y =<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb31-3"><a href="pipeline.html#cb31-3" aria-hidden="true"></a><span class="kw">mean</span>(y)</span>
+<span id="cb31-4"><a href="pipeline.html#cb31-4" aria-hidden="true"></a><span class="co">## [1] 2.99152</span></span></code></pre></div>
 <p><strong>Comments:</strong></p>
 <p><em>Math+R.</em> We are asked to compute <span class="math inline">\({\mathbb{E}}[ X^2]\)</span>, which can be interpreted in two ways. First, we can think of <span class="math inline">\(Y=X^2\)</span> as a random variable in its own and try to take draws from the distribution of <span class="math inline">\(Y\)</span>. In the case of the normal distribution, the distribution of <span class="math inline">\(Y\)</span> is known - it happens to be a <span class="math inline">\(\chi^2\)</span>-distribution with a single degree of freedom (don’t worry if you never heard of it). We can simulate it in R by using its R name <code>chisq</code> and
 get a number close to the exact value of <span class="math inline">\(1\)</span>.</p>
 <p>The case of a geometric distribution is seemingly more difficult, because we do not know what the distribution of <span class="math inline">\(Y=X^2\)</span> is and there is no corresponding R name to put the prefix <code>r</code> in front of. What makes the simulation possible is the fact that <span class="math inline">\(Y\)</span> is a <em>transformation</em> of
 a random variable we know how to simulate. In that case, we simply simulate the required number of draws <code>x</code> from the geometric distribution (using <code>rgeom</code>) and then apply the transformation <span class="math inline">\(x \mapsto x^2\)</span> to the result. The transformed vector <code>y</code> is then nothing but the sequence of draws from the distribution of <span class="math inline">\(X^2\)</span>. Btw, we could have done the same thing in the case of the normal random variable, too - there was no need to recognize its square as a <span class="math inline">\(\chi^2\)</span> random variable:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="pipeline.html#cb11-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e+05</span>)</span>
-<span id="cb11-2"><a href="pipeline.html#cb11-2" aria-hidden="true"></a>y =<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span></span>
-<span id="cb11-3"><a href="pipeline.html#cb11-3" aria-hidden="true"></a><span class="kw">mean</span>(y)</span>
-<span id="cb11-4"><a href="pipeline.html#cb11-4" aria-hidden="true"></a><span class="co">## [1] 1.008819</span></span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="pipeline.html#cb32-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e+05</span>)</span>
+<span id="cb32-2"><a href="pipeline.html#cb32-2" aria-hidden="true"></a>y =<span class="st"> </span>x<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb32-3"><a href="pipeline.html#cb32-3" aria-hidden="true"></a><span class="kw">mean</span>(y)</span>
+<span id="cb32-4"><a href="pipeline.html#cb32-4" aria-hidden="true"></a><span class="co">## [1] 1.008819</span></span></code></pre></div>
 <p>The idea described above is one of main advantages of the Monte Carlo technique: if you know how to simulated a random variable, you also know how to simulated any (deterministic) function of it. That fact will come into its own a bit later when we start working with several random variables and stochastic processes, but it can be very helpful even in the case of a single random variable, as you will see in the next problem.</p>
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-17" class="exercise"><strong>Problem 3.4  </strong></span>Let <span class="math inline">\(X\)</span> be a standard normal random variable. Use Monte Carlo to estimate the probability <span class="math inline">\({\mathbb{P}}[ X &gt; 1 ]\)</span>. Compare to the exact value.
+<span id="exr:unnamed-chunk-54" class="exercise"><strong>Problem 3.4  </strong></span>Let <span class="math inline">\(X\)</span> be a standard normal random variable. Use Monte Carlo to estimate the probability <span class="math inline">\({\mathbb{P}}[ X &gt; 1 ]\)</span>. Compare to the exact value.
 </div>
 <p><strong>Solution:</strong>
 The estimated probability:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="pipeline.html#cb12-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e+05</span>)</span>
-<span id="cb12-2"><a href="pipeline.html#cb12-2" aria-hidden="true"></a>y =<span class="st"> </span>x <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb12-3"><a href="pipeline.html#cb12-3" aria-hidden="true"></a>(<span class="dt">p_est =</span> <span class="kw">mean</span>(y))</span>
-<span id="cb12-4"><a href="pipeline.html#cb12-4" aria-hidden="true"></a><span class="co">## [1] 0.15732</span></span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="pipeline.html#cb33-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e+05</span>)</span>
+<span id="cb33-2"><a href="pipeline.html#cb33-2" aria-hidden="true"></a>y =<span class="st"> </span>x <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb33-3"><a href="pipeline.html#cb33-3" aria-hidden="true"></a>(<span class="dt">p_est =</span> <span class="kw">mean</span>(y))</span>
+<span id="cb33-4"><a href="pipeline.html#cb33-4" aria-hidden="true"></a><span class="co">## [1] 0.15732</span></span></code></pre></div>
 <p>The exact probability:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="pipeline.html#cb13-1" aria-hidden="true"></a><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="dv">1</span>)</span>
-<span id="cb13-2"><a href="pipeline.html#cb13-2" aria-hidden="true"></a><span class="co">## [1] 0.1586553</span></span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="pipeline.html#cb34-1" aria-hidden="true"></a><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="dv">1</span>)</span>
+<span id="cb34-2"><a href="pipeline.html#cb34-2" aria-hidden="true"></a><span class="co">## [1] 0.1586553</span></span></code></pre></div>
 <p>The error is -0.0013353.</p>
 <p><strong>Comments:</strong></p>
 <p><em>R.</em> In R, the symbol <code>&gt;</code> is an operation, which returns a Boolean (<code>TRUE</code> or <code>FALSE</code>) value. For example:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="pipeline.html#cb14-1" aria-hidden="true"></a><span class="dv">1</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span></span>
-<span id="cb14-2"><a href="pipeline.html#cb14-2" aria-hidden="true"></a><span class="co">## [1] FALSE</span></span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="pipeline.html#cb15-1" aria-hidden="true"></a><span class="dv">5</span><span class="op">^</span><span class="dv">2</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span></span>
-<span id="cb15-2"><a href="pipeline.html#cb15-2" aria-hidden="true"></a><span class="co">## [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="pipeline.html#cb35-1" aria-hidden="true"></a><span class="dv">1</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span></span>
+<span id="cb35-2"><a href="pipeline.html#cb35-2" aria-hidden="true"></a><span class="co">## [1] FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="pipeline.html#cb36-1" aria-hidden="true"></a><span class="dv">5</span><span class="op">^</span><span class="dv">2</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span></span>
+<span id="cb36-2"><a href="pipeline.html#cb36-2" aria-hidden="true"></a><span class="co">## [1] TRUE</span></span></code></pre></div>
 <p>It works with vectors, too, but now the output is a vector of Boolean values:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="pipeline.html#cb16-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb16-2"><a href="pipeline.html#cb16-2" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">-4</span>, <span class="dv">3</span>)</span>
-<span id="cb16-3"><a href="pipeline.html#cb16-3" aria-hidden="true"></a>x <span class="op">&gt;</span><span class="st"> </span>y</span>
-<span id="cb16-4"><a href="pipeline.html#cb16-4" aria-hidden="true"></a><span class="co">## [1] FALSE  TRUE  TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="pipeline.html#cb37-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb37-2"><a href="pipeline.html#cb37-2" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">-4</span>, <span class="dv">3</span>)</span>
+<span id="cb37-3"><a href="pipeline.html#cb37-3" aria-hidden="true"></a>x <span class="op">&gt;</span><span class="st"> </span>y</span>
+<span id="cb37-4"><a href="pipeline.html#cb37-4" aria-hidden="true"></a><span class="co">## [1] FALSE  TRUE  TRUE</span></span></code></pre></div>
 <p>You can even compare a vector and a scalar:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="pipeline.html#cb17-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
-<span id="cb17-2"><a href="pipeline.html#cb17-2" aria-hidden="true"></a>x <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span></span>
-<span id="cb17-3"><a href="pipeline.html#cb17-3" aria-hidden="true"></a><span class="co">##  [1] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="pipeline.html#cb38-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb38-2"><a href="pipeline.html#cb38-2" aria-hidden="true"></a>x <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span></span>
+<span id="cb38-3"><a href="pipeline.html#cb38-3" aria-hidden="true"></a><span class="co">##  [1] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE</span></span></code></pre></div>
 Therefore, the vector <code>y</code> in the solution is a vector of length <span class="math inline">\(100000\)</span> whose elements are either <code>TRUE</code> or <code>FALSE</code>; here are the first 5 rows of the “spreadsheet” (called a <strong>data frame</strong> or a <strong>tibble</strong> in R) with columns <code>x</code> and <code>y</code> from our solution:
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -518,17 +518,17 @@ p
 The expected value of an indicator is the probability <span class="math inline">\(p\)</span>, and we know that we can use Monte Carlo whenever we can express the quantity we are computing as an expected value of a random variable we know how to simulate.</p>
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-26" class="exercise"><strong>Problem 3.5  </strong></span>Use Monte Carlo to Estimate the value of <span class="math inline">\(\pi\)</span> and compute the error.
+<span id="exr:unnamed-chunk-63" class="exercise"><strong>Problem 3.5  </strong></span>Use Monte Carlo to Estimate the value of <span class="math inline">\(\pi\)</span> and compute the error.
 </div>
 <p><strong>Solution.</strong></p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="pipeline.html#cb18-1" aria-hidden="true"></a>nsim =<span class="st"> </span><span class="fl">1e+06</span></span>
-<span id="cb18-2"><a href="pipeline.html#cb18-2" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">runif</span>(nsim, <span class="dv">-1</span>, <span class="dv">1</span>)</span>
-<span id="cb18-3"><a href="pipeline.html#cb18-3" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">runif</span>(nsim, <span class="dv">-1</span>, <span class="dv">1</span>)</span>
-<span id="cb18-4"><a href="pipeline.html#cb18-4" aria-hidden="true"></a>z =<span class="st"> </span>(x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>y<span class="op">^</span><span class="dv">2</span>) <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb18-5"><a href="pipeline.html#cb18-5" aria-hidden="true"></a>(<span class="dt">pi_est =</span> <span class="dv">4</span> <span class="op">*</span><span class="st"> </span><span class="kw">mean</span>(z))</span>
-<span id="cb18-6"><a href="pipeline.html#cb18-6" aria-hidden="true"></a><span class="co">## [1] 3.141728</span></span>
-<span id="cb18-7"><a href="pipeline.html#cb18-7" aria-hidden="true"></a>(<span class="dt">err =</span> pi_est <span class="op">-</span><span class="st"> </span>pi)</span>
-<span id="cb18-8"><a href="pipeline.html#cb18-8" aria-hidden="true"></a><span class="co">## [1] 0.0001353464</span></span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="pipeline.html#cb39-1" aria-hidden="true"></a>nsim =<span class="st"> </span><span class="fl">1e+06</span></span>
+<span id="cb39-2"><a href="pipeline.html#cb39-2" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">runif</span>(nsim, <span class="dv">-1</span>, <span class="dv">1</span>)</span>
+<span id="cb39-3"><a href="pipeline.html#cb39-3" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">runif</span>(nsim, <span class="dv">-1</span>, <span class="dv">1</span>)</span>
+<span id="cb39-4"><a href="pipeline.html#cb39-4" aria-hidden="true"></a>z =<span class="st"> </span>(x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>y<span class="op">^</span><span class="dv">2</span>) <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb39-5"><a href="pipeline.html#cb39-5" aria-hidden="true"></a>(<span class="dt">pi_est =</span> <span class="dv">4</span> <span class="op">*</span><span class="st"> </span><span class="kw">mean</span>(z))</span>
+<span id="cb39-6"><a href="pipeline.html#cb39-6" aria-hidden="true"></a><span class="co">## [1] 3.141728</span></span>
+<span id="cb39-7"><a href="pipeline.html#cb39-7" aria-hidden="true"></a>(<span class="dt">err =</span> pi_est <span class="op">-</span><span class="st"> </span>pi)</span>
+<span id="cb39-8"><a href="pipeline.html#cb39-8" aria-hidden="true"></a><span class="co">## [1] 0.0001353464</span></span></code></pre></div>
 <p>Since we know the “exact” value of <span class="math inline">\(\pi\)</span>, we can compute the error <code>{r} format(err, digits=5)</code>.</p>
 <p><strong>Comments:</strong></p>
 <p><em>Math.</em>
@@ -539,7 +539,7 @@ As we learned in the previous problem, probabilities of events can be computed u
 = \begin{cases} 1&amp; X^2+Y^2 &lt; 1, \\ 0 &amp; \text{ otherwise.} \end{cases}\]</span></p>
 
 <div class="exercise">
-<p><span id="exr:unnamed-chunk-29" class="exercise"><strong>Problem 3.6  </strong></span>1. Write an R function <code>cumavg</code> which computes the sequence of running averages of a vector, i.e., if the input is <span class="math inline">\(x=(x_1,x_2,x_3,\dots, x_n)\)</span>, the output should be
+<p><span id="exr:unnamed-chunk-66" class="exercise"><strong>Problem 3.6  </strong></span>1. Write an R function <code>cumavg</code> which computes the sequence of running averages of a vector, i.e., if the input is <span class="math inline">\(x=(x_1,x_2,x_3,\dots, x_n)\)</span>, the output should be
 <span class="math display">\[ \Big(x_1, \frac{1}{2} (x_1+x_2), \frac{1}{3}(x_1+x_2+x_3), \dots, \frac{1}{n} (x_1+x_2+\dots+x_n)\Big).\]</span> Test it to check that it really works.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Apply <code>cumavg</code> to the vector <span class="math inline">\(4 z\)</span> from the previous problem and plot your results (use a smaller value for <code>nsim</code>. Maybe <span class="math inline">\(1000\)</span>.) Plot the values against their index. Add a read horizontal line at the level <span class="math inline">\(\pi\)</span>. Rerun the same code (including the simulation part) several times.
@@ -549,89 +549,89 @@ As we learned in the previous problem, probabilities of events can be computed u
 <ol style="list-style-type: decimal">
 <li></li>
 </ol>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="pipeline.html#cb19-1" aria-hidden="true"></a>cumavg =<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb19-2"><a href="pipeline.html#cb19-2" aria-hidden="true"></a>    c =<span class="st"> </span><span class="kw">cumsum</span>(x)</span>
-<span id="cb19-3"><a href="pipeline.html#cb19-3" aria-hidden="true"></a>    n =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x)</span>
-<span id="cb19-4"><a href="pipeline.html#cb19-4" aria-hidden="true"></a>    <span class="kw">return</span>(c<span class="op">/</span>n)</span>
-<span id="cb19-5"><a href="pipeline.html#cb19-5" aria-hidden="true"></a>}</span>
-<span id="cb19-6"><a href="pipeline.html#cb19-6" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">9</span>)</span>
-<span id="cb19-7"><a href="pipeline.html#cb19-7" aria-hidden="true"></a><span class="kw">cumavg</span>(x)</span>
-<span id="cb19-8"><a href="pipeline.html#cb19-8" aria-hidden="true"></a><span class="co">## [1] 1 2 3 3 3 4</span></span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="pipeline.html#cb40-1" aria-hidden="true"></a>cumavg =<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb40-2"><a href="pipeline.html#cb40-2" aria-hidden="true"></a>    c =<span class="st"> </span><span class="kw">cumsum</span>(x)</span>
+<span id="cb40-3"><a href="pipeline.html#cb40-3" aria-hidden="true"></a>    n =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x)</span>
+<span id="cb40-4"><a href="pipeline.html#cb40-4" aria-hidden="true"></a>    <span class="kw">return</span>(c<span class="op">/</span>n)</span>
+<span id="cb40-5"><a href="pipeline.html#cb40-5" aria-hidden="true"></a>}</span>
+<span id="cb40-6"><a href="pipeline.html#cb40-6" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">9</span>)</span>
+<span id="cb40-7"><a href="pipeline.html#cb40-7" aria-hidden="true"></a><span class="kw">cumavg</span>(x)</span>
+<span id="cb40-8"><a href="pipeline.html#cb40-8" aria-hidden="true"></a><span class="co">## [1] 1 2 3 3 3 4</span></span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li></li>
 </ol>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="pipeline.html#cb20-1" aria-hidden="true"></a>nsim =<span class="st"> </span><span class="dv">1000</span></span>
-<span id="cb20-2"><a href="pipeline.html#cb20-2" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">runif</span>(nsim, <span class="dv">-1</span>, <span class="dv">1</span>)</span>
-<span id="cb20-3"><a href="pipeline.html#cb20-3" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">runif</span>(nsim, <span class="dv">-1</span>, <span class="dv">1</span>)</span>
-<span id="cb20-4"><a href="pipeline.html#cb20-4" aria-hidden="true"></a>z =<span class="st"> </span>(x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>y<span class="op">^</span><span class="dv">2</span>) <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb20-5"><a href="pipeline.html#cb20-5" aria-hidden="true"></a>pi_est =<span class="st"> </span><span class="kw">cumavg</span>(<span class="dv">4</span> <span class="op">*</span><span class="st"> </span>z)</span>
-<span id="cb20-6"><a href="pipeline.html#cb20-6" aria-hidden="true"></a><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span>nsim, pi_est, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;number of simulations&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;estimate of pi&quot;</span>, </span>
-<span id="cb20-7"><a href="pipeline.html#cb20-7" aria-hidden="true"></a>    <span class="dt">main =</span> <span class="st">&quot;Computing pi by Monte Carlo&quot;</span>)</span>
-<span id="cb20-8"><a href="pipeline.html#cb20-8" aria-hidden="true"></a><span class="kw">abline</span>(pi, <span class="dv">0</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="pipeline.html#cb41-1" aria-hidden="true"></a>nsim =<span class="st"> </span><span class="dv">1000</span></span>
+<span id="cb41-2"><a href="pipeline.html#cb41-2" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">runif</span>(nsim, <span class="dv">-1</span>, <span class="dv">1</span>)</span>
+<span id="cb41-3"><a href="pipeline.html#cb41-3" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">runif</span>(nsim, <span class="dv">-1</span>, <span class="dv">1</span>)</span>
+<span id="cb41-4"><a href="pipeline.html#cb41-4" aria-hidden="true"></a>z =<span class="st"> </span>(x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>y<span class="op">^</span><span class="dv">2</span>) <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb41-5"><a href="pipeline.html#cb41-5" aria-hidden="true"></a>pi_est =<span class="st"> </span><span class="kw">cumavg</span>(<span class="dv">4</span> <span class="op">*</span><span class="st"> </span>z)</span>
+<span id="cb41-6"><a href="pipeline.html#cb41-6" aria-hidden="true"></a><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span>nsim, pi_est, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">xlab =</span> <span class="st">&quot;number of simulations&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;estimate of pi&quot;</span>, </span>
+<span id="cb41-7"><a href="pipeline.html#cb41-7" aria-hidden="true"></a>    <span class="dt">main =</span> <span class="st">&quot;Computing pi by Monte Carlo&quot;</span>)</span>
+<span id="cb41-8"><a href="pipeline.html#cb41-8" aria-hidden="true"></a><span class="kw">abline</span>(pi, <span class="dv">0</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-68-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><strong>Comments:</strong></p>
 <p><em>R.</em></p>
 <p>Part 1: The function <code>cumavg</code> can be written in many ways; the one in the solution is sleek because it does not use any <code>for</code> loops. It is also faster than the other two implementations below. It relies on the fact that many natural operations in R are already vectorized. The builtin function <code>cumsum</code> performs most of the work - once we have partial sums, we simply need to divide each one of them by the index of its position in the vector. If you wanted to use <code>for</code> loops and not rely on the function <code>cumsum</code>, you could write something like this:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="pipeline.html#cb21-1" aria-hidden="true"></a>cumavg =<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb21-2"><a href="pipeline.html#cb21-2" aria-hidden="true"></a>    out =<span class="st"> </span><span class="kw">numeric</span>(<span class="kw">length</span>(x))</span>
-<span id="cb21-3"><a href="pipeline.html#cb21-3" aria-hidden="true"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x)) {</span>
-<span id="cb21-4"><a href="pipeline.html#cb21-4" aria-hidden="true"></a>        p =<span class="st"> </span><span class="dv">0</span></span>
-<span id="cb21-5"><a href="pipeline.html#cb21-5" aria-hidden="true"></a>        <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>i) {</span>
-<span id="cb21-6"><a href="pipeline.html#cb21-6" aria-hidden="true"></a>            p =<span class="st"> </span>p <span class="op">+</span><span class="st"> </span>x[j]</span>
-<span id="cb21-7"><a href="pipeline.html#cb21-7" aria-hidden="true"></a>        }</span>
-<span id="cb21-8"><a href="pipeline.html#cb21-8" aria-hidden="true"></a>        out[i] =<span class="st"> </span>p<span class="op">/</span>i</span>
-<span id="cb21-9"><a href="pipeline.html#cb21-9" aria-hidden="true"></a>    }</span>
-<span id="cb21-10"><a href="pipeline.html#cb21-10" aria-hidden="true"></a>    <span class="kw">return</span>(out)</span>
-<span id="cb21-11"><a href="pipeline.html#cb21-11" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="pipeline.html#cb42-1" aria-hidden="true"></a>cumavg =<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb42-2"><a href="pipeline.html#cb42-2" aria-hidden="true"></a>    out =<span class="st"> </span><span class="kw">numeric</span>(<span class="kw">length</span>(x))</span>
+<span id="cb42-3"><a href="pipeline.html#cb42-3" aria-hidden="true"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x)) {</span>
+<span id="cb42-4"><a href="pipeline.html#cb42-4" aria-hidden="true"></a>        p =<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb42-5"><a href="pipeline.html#cb42-5" aria-hidden="true"></a>        <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>i) {</span>
+<span id="cb42-6"><a href="pipeline.html#cb42-6" aria-hidden="true"></a>            p =<span class="st"> </span>p <span class="op">+</span><span class="st"> </span>x[j]</span>
+<span id="cb42-7"><a href="pipeline.html#cb42-7" aria-hidden="true"></a>        }</span>
+<span id="cb42-8"><a href="pipeline.html#cb42-8" aria-hidden="true"></a>        out[i] =<span class="st"> </span>p<span class="op">/</span>i</span>
+<span id="cb42-9"><a href="pipeline.html#cb42-9" aria-hidden="true"></a>    }</span>
+<span id="cb42-10"><a href="pipeline.html#cb42-10" aria-hidden="true"></a>    <span class="kw">return</span>(out)</span>
+<span id="cb42-11"><a href="pipeline.html#cb42-11" aria-hidden="true"></a>}</span></code></pre></div>
 <p>The statement <code>out = numeric(length(x))</code> is there to ask R to reserve enough room (memory) for a numeric vector the same size as <code>x</code>. It is not necessary, but it is a good idea to get into the habit of doing it because is makes your code both faster and easier to read.</p>
 <p>Here is another way, using the <code>sum</code> function:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="pipeline.html#cb22-1" aria-hidden="true"></a>cumavg =<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb22-2"><a href="pipeline.html#cb22-2" aria-hidden="true"></a>    out =<span class="st"> </span><span class="kw">numeric</span>(<span class="dv">0</span>)</span>
-<span id="cb22-3"><a href="pipeline.html#cb22-3" aria-hidden="true"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x)) {</span>
-<span id="cb22-4"><a href="pipeline.html#cb22-4" aria-hidden="true"></a>        out =<span class="st"> </span><span class="kw">c</span>(out, <span class="kw">sum</span>(x[<span class="dv">1</span><span class="op">:</span>i])<span class="op">/</span>i)</span>
-<span id="cb22-5"><a href="pipeline.html#cb22-5" aria-hidden="true"></a>    }</span>
-<span id="cb22-6"><a href="pipeline.html#cb22-6" aria-hidden="true"></a>    <span class="kw">return</span>(out)</span>
-<span id="cb22-7"><a href="pipeline.html#cb22-7" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="pipeline.html#cb43-1" aria-hidden="true"></a>cumavg =<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb43-2"><a href="pipeline.html#cb43-2" aria-hidden="true"></a>    out =<span class="st"> </span><span class="kw">numeric</span>(<span class="dv">0</span>)</span>
+<span id="cb43-3"><a href="pipeline.html#cb43-3" aria-hidden="true"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(x)) {</span>
+<span id="cb43-4"><a href="pipeline.html#cb43-4" aria-hidden="true"></a>        out =<span class="st"> </span><span class="kw">c</span>(out, <span class="kw">sum</span>(x[<span class="dv">1</span><span class="op">:</span>i])<span class="op">/</span>i)</span>
+<span id="cb43-5"><a href="pipeline.html#cb43-5" aria-hidden="true"></a>    }</span>
+<span id="cb43-6"><a href="pipeline.html#cb43-6" aria-hidden="true"></a>    <span class="kw">return</span>(out)</span>
+<span id="cb43-7"><a href="pipeline.html#cb43-7" aria-hidden="true"></a>}</span></code></pre></div>
 <p>The line <code>out = c(out, sum(x[1:i]) / i)</code> appends the value <code>sum(x[1:i]) / i</code> to the end of the vector <code>out</code>. Note that <code>x[1:i]</code> is the vector <code>x</code> indexed by the sequence <code>1:i</code> (i.e., <code>1,2,...,i</code>), which is nothing other than the vector containing the first <code>i</code> elements of <code>x</code>. We also “pre-declared” the vector <code>out</code> in the statement `out = numeric(0)’. This time we only made sure that out is an empty numerical vector because of the way we build it incrementally. This is, in general, not a very efficient way of doing things, but it will do just fine for small vectors.</p>
 <p>Part 2. This course is not about R graphics, but I think it is a good idea to teach you how to make basic plots in R. This is what the functions <code>plot</code> and <code>abline</code> (and some others) do. I have already mentioned the fact that R has a number of high-quality graphics packages (like <code>ggplot2</code>), but the builtin R graphics is certainly good enough for “quick-and-dirty” plots.</p>
 <p>The main purpose of the function <code>plot</code> is to plot scatterplots:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="pipeline.html#cb23-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">7</span>)</span>
-<span id="cb23-2"><a href="pipeline.html#cb23-2" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">5</span>)</span>
-<span id="cb23-3"><a href="pipeline.html#cb23-3" aria-hidden="true"></a><span class="kw">plot</span>(x, y)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-34-1.png" width="672" style="display: block; margin: auto;" />
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="pipeline.html#cb44-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">7</span>)</span>
+<span id="cb44-2"><a href="pipeline.html#cb44-2" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb44-3"><a href="pipeline.html#cb44-3" aria-hidden="true"></a><span class="kw">plot</span>(x, y)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-71-1.png" width="672" style="display: block; margin: auto;" />
 The corresponding entries of vectors <code>x</code> and <code>y</code> are paired (into <span class="math inline">\((1,2)\)</span>, <span class="math inline">\((3,1)\)</span>, <span class="math inline">\((4,5)\)</span> and <span class="math inline">\((7,5)\)</span> in this case) and these pairs are used as coordinates of points. By default, each point is marked by a small circle, but this, and many other things, can be adjusted by numerous additional arguments. One of such arguments is <code>type</code> which determines the type of the plot. We used <code>type="l"</code> which tells R to join the points with straight lines:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="pipeline.html#cb24-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">7</span>)</span>
-<span id="cb24-2"><a href="pipeline.html#cb24-2" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">5</span>)</span>
-<span id="cb24-3"><a href="pipeline.html#cb24-3" aria-hidden="true"></a><span class="kw">plot</span>(x, y, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" />
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="pipeline.html#cb45-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">7</span>)</span>
+<span id="cb45-2"><a href="pipeline.html#cb45-2" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb45-3"><a href="pipeline.html#cb45-3" aria-hidden="true"></a><span class="kw">plot</span>(x, y, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-72-1.png" width="672" style="display: block; margin: auto;" />
 The other arguments, <code>xlab</code>, <code>ylab</code> and <code>main</code> determine labels for axes and the entire plot. The function <code>abline(a,b)</code> adds a line <span class="math inline">\(y = a x + b\)</span> to an already existing plot. It is very useful in statistics if one wants to show the regression line superimposed on the scatterplot of data. Finally, the argument <code>col</code>, of course, determines the color of the line. To learn about various graphical parameters, type <code>?par</code>.</p>
 <p><em>Math.</em></p>
 <p>The conceptual reason for this exercise is to explore (numerically) the kinds of errors we make when we use Monte Carlo. Unlike the deterministic numerical procedures, Monte Carlo has a strange property that no bound on the error can be made with absolute certainty. Let me give you an example. Suppose that you have a biased coin, with the probability <span class="math inline">\(0.6\)</span> of heads and <span class="math inline">\(0.4\)</span> of tails. You don’t know this probability, and use a Monte Carlo technique to estimate it - you toss your coin <span class="math inline">\(1000\)</span> times and record the number of times you observe <span class="math inline">\(H\)</span>. The law of large numbers suggests that the relative frequency of heads is close to the true probability of <span class="math inline">\(H\)</span>. Indeed, you run a simulation</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="pipeline.html#cb25-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb25-2"><a href="pipeline.html#cb25-2" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;T&quot;</span>, <span class="st">&quot;H&quot;</span>), <span class="dv">1000</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.4</span>, <span class="fl">0.6</span>), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb25-3"><a href="pipeline.html#cb25-3" aria-hidden="true"></a>y =<span class="st"> </span>x <span class="op">==</span><span class="st"> &quot;H&quot;</span></span>
-<span id="cb25-4"><a href="pipeline.html#cb25-4" aria-hidden="true"></a><span class="kw">mean</span>(y)</span>
-<span id="cb25-5"><a href="pipeline.html#cb25-5" aria-hidden="true"></a><span class="co">## [1] 0.594</span></span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="pipeline.html#cb46-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb46-2"><a href="pipeline.html#cb46-2" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="st">&quot;T&quot;</span>, <span class="st">&quot;H&quot;</span>), <span class="dv">1000</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="fl">0.4</span>, <span class="fl">0.6</span>), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb46-3"><a href="pipeline.html#cb46-3" aria-hidden="true"></a>y =<span class="st"> </span>x <span class="op">==</span><span class="st"> &quot;H&quot;</span></span>
+<span id="cb46-4"><a href="pipeline.html#cb46-4" aria-hidden="true"></a><span class="kw">mean</span>(y)</span>
+<span id="cb46-5"><a href="pipeline.html#cb46-5" aria-hidden="true"></a><span class="co">## [1] 0.594</span></span></code></pre></div>
 <p>and get a pretty accurate estimate of <span class="math inline">\(0.594\)</span>. If you run the same code a few more times, you will get different estimates, but all of them will be close to <span class="math inline">\(0.6\)</span>. Theoretically, however, your simulation could have yielded <span class="math inline">\(1000\)</span> Hs, which would lead you to report <span class="math inline">\(p=1\)</span> as the Monte-Carlo estimate. The point is that even though such disasters are theoretically possible, they are exceedingly unlikely. The probability of getting all <span class="math inline">\(H\)</span> in <span class="math inline">\(1000\)</span> tosses of this coin is a number with more than <span class="math inline">\(500\)</span> zeros after the decimal point.</p>
 <p>The take-home message is that even though there are no guarantees, Monte Carlo performs well vast majority of the time. The crucial ingredient, however, is the number of simulations. The plot you were asked to make illustrates exactly that. The function <code>cumavg</code> gives you a whole sequence of Monte-Carlo estimates of the same thing (the number <span class="math inline">\(\pi\)</span>) with different numbers of simulations <code>nsim</code>. For small values of <code>nsim</code> the error is typically very large (and very random). As the number of simulations grows, the situations stabilizes and the error decreases. Without going into the theory behind it, let me only mention is that in the majority of practical applications we have the following relationship:
 <span class="math display">\[ error \sim \frac{1}{\sqrt{n}}.\]</span>
 In words, if you want to double the precision, you need to quadruple the number of simulations. If you want an extra digit in your estimate, you need to multiply the number of simulations by <span class="math inline">\(100\)</span>. Instead of going further into the theory, here is an image where I superimposed <span class="math inline">\(40\)</span> plots like the one you were asked to produce (the red lines are <span class="math inline">\(\pm \frac{4}{\sqrt{n}}\)</span>):</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-74-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="conditional-probability-and-independence." class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Conditional probability and independence.</h2>
 
 <div class="exercise">
-<span id="exr:unnamed-chunk-38" class="exercise"><strong>Problem 3.7  </strong></span>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be two independent geometric random variables with parameters <span class="math inline">\(p=0.5\)</span>, and let <span class="math inline">\(Z=X+Y\)</span>. Compute <span class="math inline">\({\mathbb{P}}[ X = 3| Z = 5]\)</span> using simulation. Compare to the exact value.
+<span id="exr:unnamed-chunk-75" class="exercise"><strong>Problem 3.7  </strong></span>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be two independent geometric random variables with parameters <span class="math inline">\(p=0.5\)</span>, and let <span class="math inline">\(Z=X+Y\)</span>. Compute <span class="math inline">\({\mathbb{P}}[ X = 3| Z = 5]\)</span> using simulation. Compare to the exact value.
 </div>
 <p><strong>Solution:</strong></p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="pipeline.html#cb26-1" aria-hidden="true"></a>nsim =<span class="st"> </span><span class="fl">1e+05</span></span>
-<span id="cb26-2"><a href="pipeline.html#cb26-2" aria-hidden="true"></a>X =<span class="st"> </span><span class="kw">rgeom</span>(nsim, <span class="dt">prob =</span> <span class="fl">0.5</span>)</span>
-<span id="cb26-3"><a href="pipeline.html#cb26-3" aria-hidden="true"></a>Y =<span class="st"> </span><span class="kw">rgeom</span>(nsim, <span class="dt">prob =</span> <span class="fl">0.5</span>)</span>
-<span id="cb26-4"><a href="pipeline.html#cb26-4" aria-hidden="true"></a>Z =<span class="st"> </span>X <span class="op">+</span><span class="st"> </span>Y</span>
-<span id="cb26-5"><a href="pipeline.html#cb26-5" aria-hidden="true"></a>X_cond =<span class="st"> </span>X[Z <span class="op">==</span><span class="st"> </span><span class="dv">5</span>]</span>
-<span id="cb26-6"><a href="pipeline.html#cb26-6" aria-hidden="true"></a><span class="kw">mean</span>(X_cond <span class="op">==</span><span class="st"> </span><span class="dv">3</span>)</span>
-<span id="cb26-7"><a href="pipeline.html#cb26-7" aria-hidden="true"></a><span class="co">## [1] 0.1690112</span></span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="pipeline.html#cb47-1" aria-hidden="true"></a>nsim =<span class="st"> </span><span class="fl">1e+05</span></span>
+<span id="cb47-2"><a href="pipeline.html#cb47-2" aria-hidden="true"></a>X =<span class="st"> </span><span class="kw">rgeom</span>(nsim, <span class="dt">prob =</span> <span class="fl">0.5</span>)</span>
+<span id="cb47-3"><a href="pipeline.html#cb47-3" aria-hidden="true"></a>Y =<span class="st"> </span><span class="kw">rgeom</span>(nsim, <span class="dt">prob =</span> <span class="fl">0.5</span>)</span>
+<span id="cb47-4"><a href="pipeline.html#cb47-4" aria-hidden="true"></a>Z =<span class="st"> </span>X <span class="op">+</span><span class="st"> </span>Y</span>
+<span id="cb47-5"><a href="pipeline.html#cb47-5" aria-hidden="true"></a>X_cond =<span class="st"> </span>X[Z <span class="op">==</span><span class="st"> </span><span class="dv">5</span>]</span>
+<span id="cb47-6"><a href="pipeline.html#cb47-6" aria-hidden="true"></a><span class="kw">mean</span>(X_cond <span class="op">==</span><span class="st"> </span><span class="dv">3</span>)</span>
+<span id="cb47-7"><a href="pipeline.html#cb47-7" aria-hidden="true"></a><span class="co">## [1] 0.1690112</span></span></code></pre></div>
 <p>We have
 <span class="math display">\[ {\mathbb{P}}[ X = 3 | Z= 5 ] = \frac{{\mathbb{P}}[ X=3 \text{ and }Z=5]}{{\mathbb{P}}[Z=5]} = \frac{{\mathbb{P}}[X=3 \text{ and }Y = 2]}{{\mathbb{P}}[Z=5]} \]</span>
 Since <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, we have <span class="math inline">\({\mathbb{P}}[ X=3 \text{ and }Y=2 ] = {\mathbb{P}}[X=3] {\mathbb{P}}[ Y=2] = 2^{-4} 2^{-3} = 2^{-7}\)</span>. To compute <span class="math inline">\({\mathbb{P}}[ Z = 5]\)</span> we need to split the event <span class="math inline">\(\{ Z = 5 \}\)</span> into events we know how to deal with. Since <span class="math inline">\(Z\)</span> is built from <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, we write
@@ -642,8 +642,126 @@ This gives us an error of 0.0023445.</p>
 <p><strong>Comments:</strong></p>
 <p><em>Math.</em> Let us, first, recall what the conditional probability is. The definition we learn in the probability class is the following <span class="math display">\[ {\mathbb{P}}[A | B] = \frac{{\mathbb{P}}[A \text{ and }B]}{{\mathbb{P}}[B]}\]</span>, as long as <span class="math inline">\({\mathbb{P}}[B]&gt;0\)</span>. The interpretation is that <span class="math inline">\({\mathbb{P}}[A|B]\)</span> is still the probability of <span class="math inline">\(A\)</span>, but now in the world where <span class="math inline">\(B\)</span> is guaranteed to happen. Conditioning usually happens when we receive new information. If someone tells us that <span class="math inline">\(B\)</span> happened, we can disregard everything in the complement of <span class="math inline">\(B\)</span> and adjust our probability to account for that fact. First we remove from <span class="math inline">\(A\)</span> anything that belongs to the complement of <span class="math inline">\(B\)</span>, and recompute the probability <span class="math inline">\({\mathbb{P}}[A \cap B]\)</span>. We also have to divide by <span class="math inline">\({\mathbb{P}}[B]\)</span> because we want the total probability to be equal to <span class="math inline">\(1\)</span>.</p>
 <p>Our code starts as usual, but simulating <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> from the required distribution, and constructing a new vector <span class="math inline">\(Z\)</span> as their sum. The variable <code>X_cond</code> is new; we build it from <span class="math inline">\(X\)</span> by removing all the elements whose corresponding <span class="math inline">\(Z\)</span> is <em>not</em> equal to <span class="math inline">\(5\)</span>. This is an example of what is sometimes called the <strong>rejection method</strong> in simulation. We simply “reject” all simulations which do not satisfy the condition we are conditioning on. We can think of <code>X_cond</code> as bunch of simulations of <span class="math inline">\(X\)</span>, but in the world where <span class="math inline">\(Z=5\)</span> is guaranteed to happen. Once we have <code>X_cond</code>, we proceed as usual by computing the relative frequency of the value <span class="math inline">\(3\)</span> among all possible values <span class="math inline">\(X\)</span> can take. Note that the same <code>X_cond</code> can also be used to compute the conditional probability <span class="math inline">\({\mathbb{P}}[ X=1| Z=5]\)</span>. In fact, <code>X_cond</code> contains the information about the entire <strong>conditional distribution of <span class="math inline">\(X\)</span> given <span class="math inline">\(Z=5\)</span></strong>; if we draw a histogram of <code>X_cond</code>, we will get a good idea of what this distribution looks like:
-<img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="672" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-77-1.png" width="672" style="display: block; margin: auto;" />
 The histogram above suggests that the distribution of <span class="math inline">\(X\)</span>, given <span class="math inline">\(Z=5\)</span>, is uniform on <span class="math inline">\(\{0,1,2,3,4,5\}\)</span>. It is - a calculation almost identical to the one we performed above gives that <span class="math inline">\({\mathbb{P}}[ X= i| Z=5] = \frac{1}{6}\)</span> for each <span class="math inline">\(i=0,1,2,3,4,5\)</span>.</p>
+</div>
+<div id="additional-problems" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Additional Problems</h2>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-78" class="exercise"><strong>Problem 3.8  </strong></span><br></p>
+<ol style="list-style-type: decimal">
+<li><p>Find the Weibull distribution in R’s help system.<!-- ' -->
+Simulate <span class="math inline">\(n=10000\)</span> draws from the Weibull distribution with shape parameter <span class="math inline">\(2\)</span> and scale parameter <span class="math inline">\(3\)</span>. Draw a histogram of your simulations.</p></li>
+<li><p>Suppose that the vector <code>x</code> contains <span class="math inline">\(n=10000\)</span> simulations from the standard
+normal <span class="math inline">\(\mu=0, \sigma=1)\)</span>. Without simulating any new random numbers,
+transform it into the vector <code>y</code> such that <code>y</code> is a vector of <span class="math inline">\(n=10000\)</span>
+simulations from the normal with <span class="math inline">\(\mu=1\)</span> and <span class="math inline">\(\sigma=0.5\)</span>. Draw histograms
+of both <code>x</code> and <code>y</code> on the same plot. (<em>Note:</em> the extra parameter <code>add</code> is
+used to superimpose plots. You may want to use different colors, too. Use
+the e parameter <code>col</code> for that. )</p></li>
+<li><p>Starting with <code>x=seq(-3,3,by=0.1)</code>, define the appropriate vector <code>y</code> and
+use <code>x</code> and <code>y</code> to plot the graph of the cdf of the standard normal. The
+command you want to use is <code>plot</code> with the following extra arguments</p></li>
+</ol>
+<ul>
+<li><code>type="l"</code> (to get a smooth line instead of a bunch of points).</li>
+<li><code>main="The CDF of the standard normal"</code> (to set the title), and</li>
+<li>another argument (which you must look up youself) that will set the <span class="math inline">\(y\)</span>-axis label to <span class="math inline">\(F(x)\)</span>.
+</div></li>
+</ul>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-79" class="exercise"><strong>Problem 3.9  </strong></span><br></p>
+<ol style="list-style-type: decimal">
+<li><p>Simulate <span class="math inline">\(n=1000\)</span> draws from the distribution whose distribution table is given by</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+<p>2</p>
+</th>
+<th style="text-align:right;">
+<p>4</p>
+</th>
+<th style="text-align:right;">
+<p>8</p>
+</th>
+<th style="text-align:right;">
+<p>16</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+<p>0.2</p>
+</td>
+<td style="text-align:right;">
+<p>0.3</p>
+</td>
+<td style="text-align:right;">
+<p>0.1</p>
+</td>
+<td style="text-align:right;">
+<p>0.4</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>and plot their histogram.</p></li>
+<li><p>You may have learned in probability how to compute the pdf <span class="math inline">\(f_Y(y)\)</span> of a
+transformation <span class="math inline">\(Y=g(X)\)</span> of a random variable with pdf <span class="math inline">\(f_X(x)\)</span>. Suppose
+that you forgot how to do that, but have access to <span class="math inline">\(10,000\)</span> simulations from
+the distribution of <span class="math inline">\(X\)</span>. How would you get an approximate idea about the
+shape of the function <span class="math inline">\(f_Y\)</span>? <br>
+More concretely, take <span class="math inline">\(X\)</span> to be exponentially distributed with parameter <span class="math inline">\(1\)</span> and
+<span class="math inline">\(g(x) = \sin(x)\)</span> and produce a picture that approximates the pdf <span class="math inline">\(f_Y\)</span> of <span class="math inline">\(Y\)</span>.
+(Note: even if you remember how to do this analytically, you will run into a
+difficulty. The function <span class="math inline">\(\sin(x)\)</span> is not one-to-one and the method usually
+taught in probability classes will not apply. If you learned how to do it in the
+many-to-one case of <span class="math inline">\(g(x)= \sin(x)\)</span>, kudos to your instructor!)</p></li>
+<li><p>Let <span class="math inline">\(X\)</span> be a random variable with the Cauchy distribution, and <span class="math inline">\(Y = \operatorname{arctan}(X)\)</span>. R allows you to simulate from the Cauchy
+distribution, even if you do not know what it is. How would you use that to
+make an educated guess as to what the distribution of <span class="math inline">\(Y\)</span> is? To make your
+life easier, consider <span class="math inline">\(\tfrac{2}{\pi} Y\)</span> first.</p></li>
+</ol>
+</div>
+
+<div class="exercise">
+<span id="exr:unnamed-chunk-80" class="exercise"><strong>Problem 3.10  </strong></span>A basic method for obtaining simulations draws from distributions other than the
+uniform is the <strong>transformation method</strong>. The idea is to start with (pseudo)
+random numbers, i.e., draws from the uniform <span class="math inline">\(U(0,1)\)</span> distribution, and then
+apply a function <span class="math inline">\(g\)</span> to each simulation. The difficulty is, of course, how to
+choose the right function <span class="math inline">\(g\)</span>.
+<br>
+Let <span class="math inline">\(X\)</span> be a random variable with a continuous and strictly increasing cdf <span class="math inline">\(F\)</span>.
+What is the distribution of <span class="math inline">\(Y=F(X)\)</span>? What does that have to do with the transformation method?
+</div>
+
+<div class="exercise">
+<p><span id="exr:unnamed-chunk-81" class="exercise"><strong>Problem 3.11  </strong></span>(Extra credit)</p>
+<ol style="list-style-type: decimal">
+<li><p>Let <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span> be two pdfs. We take a constant <span class="math inline">\(\alpha \in (0,1)\)</span> and define the function <span class="math inline">\(f\)</span> by
+<span class="math display">\[ f(x) = \alpha f_1(x) + (1-\alpha) f_2(x).\]</span>
+The function <span class="math inline">\(f\)</span> is the pdf of a third distribution, which is called the
+<strong>mixture of <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span> with weights <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(1-\alpha\)</span></strong>.
+Assuming that you know how to simulate from the distributions with pdfs <span class="math inline">\(f_1\)</span>
+and <span class="math inline">\(f_2\)</span>, how would you draw <span class="math inline">\(10,000\)</span> simulations from the mixture <span class="math inline">\(f\)</span>? Show
+your method on the example of a mixture of <span class="math inline">\(N(0,1)\)</span> and <span class="math inline">\(N(4,1)\)</span> with
+<span class="math inline">\(\alpha=2/3\)</span>. Plot the histogram of the obtained sample (play with the
+parameter <code>breaks</code> until you get a nice picture.)</p>
+<p>(<em>Hint:</em> start with two vectors, the first containing <span class="math inline">\(10,000\)</span> simulations from
+<span class="math inline">\(f_1\)</span> and the second from <span class="math inline">\(f_2\)</span>. Then “toss” <span class="math inline">\(10,000\)</span> biased coins with
+<span class="math inline">\(\mathbb{P}[ H ] = \alpha\)</span> … )</p></li>
+<li><p>The <strong>double exponential</strong> or
+<strong>Laplace</strong> distribution is a continuous probability distribution whose pdf is
+given by <span class="math display">\[ \tfrac{1}{2} \exp(-|x|), x\in {\mathbb R}.\]</span> This distribution
+is not built into R. How would you produce simulations from the double
+exponential using R?</p>
+</div></li>
+</ol>
+<p>⬇︎ In case you were wondering, the text below belongs to footnotes from somewhere high above.⬇︎</p>
 
 </div>
 </div>

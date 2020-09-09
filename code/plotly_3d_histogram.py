@@ -113,6 +113,7 @@ layout = go.Layout(width=650,
 fig = go.Figure(data=[mesh3d], layout=layout )
 
 
-pio.write_html(fig, config = {"displayModeBar": False},
+pio.write_html(fig, config = {"displayModeBar": False, 'scrollZoom':
+  False},
     file="../source/pics/3dhist.html",auto_open=True,
     include_plotlyjs="cdn")
