@@ -480,9 +480,9 @@ both $x$ and $y$ by measuring them using the same, inaccurate, tape measure, we
 cannot assume that the errors are independent. It is more likely that both $x$
 and $y$ are too big, or both $x$ and $y$ are too small.
 
-Mathematically, we say that random variables $X$ and $Y$ are independent if $$
-\PP[X \in [a,b]] \times \PP[ Y \in [c,d] ] = \PP[ X\in [a,b]
-\text{ and } Y\in [c,d]]\text{ for all } a,b,c,d.$$ While up to the point,
+Mathematically, we say that random variables $X$ and $Y$ are independent if 
+$$\PP[X \in [a,b]] \times \PP[ Y \in [c,d] ] = \PP[ X\in [a,b] \text{ and } Y\in [c,d]]\text{ for all } a,b,c,d.$$ 
+While up to the point,
 this definition is not very eye-opening, or directly applicable in most cases.
 Intuitively, $X$ and $Y$ are independent if the distribution of $Y$ would not
 change if we received additional information about $X$. In our problem, random
