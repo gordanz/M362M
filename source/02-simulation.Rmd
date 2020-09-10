@@ -740,7 +740,7 @@ of them happened. The same result would have been obtained by calling
 
 ```{exercise}
 Use Monte Carlo to estimate the expected value of the exponential random
-variable with parameter $\ld = 4$ using $n=10$, $n=1,000$ and $1,000,000$
+variable with parameter $\ld = 4$ using $n=10$, $n=1,000$ and $n=1,000,000$
 simulations. Compare to the exact value.
 ```
 **Solution:**
@@ -782,7 +782,7 @@ used the Monte Carlo method. It is an incredibly useful tool, as you will keep
 being reminded throughout this class. The idea behind it is simple, and it is
 based on the *Law of large numbers*:
 
-**Theorem** Let $X\_1,X\_2, \dots$ be an independent sequence of random
+**Theorem** Let $X_1,X_2, \dots$ be an independent sequence of random
 variables with the same distribution, for which the expected value can be
 computed. Then
 $$ \tfrac{1}{n} \Big( X_1+X_2+\dots+X_n\Big) \to \EE[X_1] \text{ as } n\to\infty$$
@@ -791,7 +791,7 @@ to compute $\EE[X\_1]$ and use a supply of random numbers, each of which
 comes from the same distribution, to accomplish that. The random number
 generator inside `rexp` gives us a supply of numbers (stored in the vector `x`)
 and all we have to do is compute their average. This gives us the left-hand side
-of the formula above, and, if $n$ is large enough, we hope that the this average
+of the formula above, and, if $n$ is large enough, we hope that  this average
 does not differ too much from its theoretical limit. As $n$ gets larger, we
 expect better and better results. That is why your error above gets smaller as
 $n$ increases. 
@@ -824,7 +824,7 @@ mean(y)
 **Comments:**
 
 *Math+R.* We are asked to compute $\EE[ X^2]$, which can be interpreted in
-two ways. First, we can think of $Y=X^2$ as a random variable in its own and you
+two ways. First, we can think of $Y=X^2$ as a random variable in its own right and you
 can try to take draws from the distribution of $Y$. In the case of the normal
 distribution, the distribution of $Y$ is known - it happens to be a
 $\chi^2$-distribution with a single degree of freedom (don't worry if you never
@@ -841,7 +841,7 @@ vector `y` is then nothing but the sequence of draws from the distribution of
 $X^2$. 
 
 The idea described above is one of main advantages of the Monte Carlo technique:
-if you know how to simulated a random variable, you also know how to simulated
+if you know how to simulate a random variable, you also know how to simulate
 any (deterministic) function of it. That fact will come into its own a bit later
 when we start working with several random variables and stochastic processes,
 but it can be very helpful even in the case of a single random variable, as you
@@ -943,7 +943,7 @@ $$ Z = \begin{cases} 1 & (X,Y) \text{ is inside the unit circle, } \\ 0 & \text{
 1. Write an R function `cumavg` which computes the sequence of running averages of a vector, i.e., if the input is $x=(x_1,x_2,x_3,\dots, x_n)$, the output should be
 $$ \Big(x_1, \frac{1}{2} (x_1+x_2), \frac{1}{3}(x_1+x_2+x_3), \dots, \frac{1}{n} (x_1+x_2+\dots+x_n)\Big).$$ Test it to check that it really works. (*Hint:* look up the funcion `cumsum`. )
    
-2. Apply `cumavg` to the vector $4 z$ from the previous problem and plot your results (use a smaller value for `nsim`. Maybe $1000$.) Plot the values against their index. Add a read horizontal line at the level $\pi$. Rerun the same code (including the simulation part) several times.
+2. Apply `cumavg` to the vector $4 z$ from the previous problem and plot your results (use a smaller value for `nsim`. Maybe $1000$.) Plot the values against their index. Add a red horizontal line at the level $\pi$. Rerun the same code (including the simulation part) several times.
 ```
 
 **Solution**
@@ -986,7 +986,7 @@ Part 1. Once you know about `cumsum`, the problem becomes much easier.
 
 
 Part 2. This course is not about R graphics, but I think it is a good idea to teach you how to make basic plots in R. We already used the function `plot` to draw scatterplots.
-By default, each point drawn by `plot` is marked by a small circle so it might not seem like a good idea to use it. Luckily this, and mony other things, can be adjusted by numerous additional arguments. One of such arguments is `type` which determines the type of the plot. We used `type="l"` which tells R to join the points with straight lines:
+By default, each point drawn by `plot` is marked by a small circle so it might not seem like a good idea to use it. Luckily this, and many other things, can be adjusted by numerous additional arguments. One of such arguments is `type` which determines the type of the plot. We used `type="l"` which tells R to join the points with straight lines:
 ```{r}
 x = c(1,3,4,7)
 y = c(2,1,5,5)
@@ -1005,7 +1005,7 @@ mean(y)
 ```
 and get a pretty accurate estimate of $0.594$. If you run the same code a few more times, you will get different estimates, but all of them will be close to $0.6$. Theoretically, however, your simulation could have yielded $1000$ Hs, which would lead you to report $p=1$ as the Monte-Carlo estimate. The point is that even though such disasters are theoretically possible, they are exceedingly unlikely. The probability of getting all $H$ in $1000$ tosses of this coin is a number with more than $500$ zeros after the decimal point.  
 
-The take-home message is that even though there are no guarantees, Monte Carlo performs well vast majority of the time. The crucial ingredient, however, is the number of simulations. The plot you were asked to make illustrates exactly that. The function `cumavg` gives you a whole sequence of Monte-Carlo estimates of the same thing (the number $\pi$) with different numbers of simulations `nsim`. For small values of `nsim` the error is typically very large (and very random). As the number of simulations grows, the situations stabilizes and the error decreases. Without going into the theory behind it, let me only mention is that in the majority of practical applications we have the following relationship:
+The take-home message is that even though there are no guarantees, Monte Carlo performs well the vast majority of the time. The crucial ingredient, however, is the number of simulations. The plot you were asked to make illustrates exactly that. The function `cumavg` gives you a whole sequence of Monte-Carlo estimates of the same thing (the number $\pi$) with different numbers of simulations `nsim`. For small values of `nsim` the error is typically very large (and very random). As the number of simulations grows, the situations stabilizes and the error decreases. Without going into the theory behind it, let me only mention is that in the majority of practical applications we have the following relationship:
 $$ error \sim \frac{1}{\sqrt{n}}.$$
 In words, if you want to double the precision, you need to quadruple the number of simulations. If you want an extra digit in your estimate, you need to multiply the number of simulations by $100$. Here is an image where I superimposed $40$ plots like the one you were asked to produce (the red lines are $\pm \frac{4}{\sqrt{n}}$):
 
