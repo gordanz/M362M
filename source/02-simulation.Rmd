@@ -588,7 +588,7 @@ nothing by a random permutation of `y`.
 
 You are not required to do this in your submissions, but if you want to display
 several plots side-by-side, use the command is `par(mfrow=c(m,n))` before the
-`plot` commands. It tells R to plot the next $mn$ plots in a $m\times n$ grid. 
+`plot` commands. It tells R to plot the next $mn$ plots in a $m\\times n$ grid.
 
 
 ```{exercise}
@@ -649,7 +649,9 @@ table(draws)
 
 **Comments:** 
 
-*Math.* The main mathematical idea is to think of *each pair* of possible values
+*Math.* 
+
+The main mathematical idea is to think of *each pair* of possible values
 of $X$ and $Y$ as a separate "object", put all these objects in a "bag", then
 then draw from the bag. In other words, we convert the bivariate distribution
 from the problem to the following univariate distribution
@@ -897,6 +899,7 @@ kable(df, digits = 4) %>%
 Finally, `z` contains the `mean` of `y`. How do you compute a mean of Boolean values?  In R (and many other languages) `TRUE` and `FALSE` have default numerical values, usually $1$ and $0$. This way, when $R$ is asked to compute the `sum` of a Boolean vector it will effectively count the number of values which are `TRUE`. Similarly, the `mean` is the relative proportion of `TRUE` values. 
 
 *Math.* 
+
 We computed the **proportion** of the "times" $X>1$ (among many simulations of $X$) and used it to approximate the **probability** $\PP[ X>1]$.  More formally, 
 we started from a random variable $X$ with a normal distribution and then transformed it into another random variable, $Y$, by setting $Y=1$ whenever $X>1$ and $0$ otherwise. This is often written as follows
 $$ Y = \begin{cases} 1, & X>1 \\ 0, & X\leq 1.\end{cases}$$
@@ -1199,6 +1202,43 @@ table:
 </table>
   
 Display the contingency table of your results, as well as a table showing the "errors", i.e.,  differences between the theoretical frequencies (i.e., probabilities given above) and the obtained relative frequencies in the sample. 
+```
+
+
+```{exercise} 
+Estimate the following integrals using Monte Carlo 
+
+a) $\int_0^1 \cos(x)\, dx$
+
+
+b) $\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}\frac{e^{-x^2/2}}{1+x^4}\,dx$
+
+c) $\int_0^{\infty} e^{-x^3-x}\, dx$
+   
+d) $\int_{-\infty}^{\infty} \frac{\cos(x^2)}{1+x^2}\, dx$ (extra credit) 
+
+```
+
+```{exercise}
+The **tricylinder** is a solid  body constructed as follows: create three cylinders of radius 1 around each of the three coordinate axes  and intersect them: 
+<figure style="
+    display: flex;
+    flex-flow: column;
+    padding: 5px;
+    margin: auto;">
+ <img src="pics/tricylinder.png" style="border-bottom: -10px;"></img>
+<figcaption style=" 
+    background-color: #fff;
+    color: #000;
+    font: italic smaller sans-serif;
+    padding: 3px;
+    text-align: center;">
+Image by Ag2gaeh - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=63604565 
+</figcaption>
+</figure>
+
+Use Monte Carlo to estimate the volume of the tricylinder and 
+check your estimate against the exact value $8(2-\sqrt{2})$. 
 ```
 
 
