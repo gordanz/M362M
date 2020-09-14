@@ -1210,7 +1210,6 @@ Estimate the following integrals using Monte Carlo
 
 a) $\int_0^1 \cos(x)\, dx$
 
-
 b) $\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}\frac{e^{-x^2/2}}{1+x^4}\,dx$
 
 c) $\int_0^{\infty} e^{-x^3-x}\, dx$
@@ -1241,5 +1240,9 @@ Use Monte Carlo to estimate the volume of the tricylinder and
 check your estimate against the exact value $8(2-\sqrt{2})$. 
 ```
 
+```{exercise}
+Read about the Monty Hall Problem online (the introduction to its  [Wikipedia page](https://en.wikipedia.org/wiki/Monty_Hall_problem) has a nice  description),
+Use Monte Carlo to compare the two possible strategies (switching and not-switching) and decide which is better. 
+```
 
 ⬇︎ In case you were wondering, the text below belongs to footnotes from somewhere high above.⬇︎
