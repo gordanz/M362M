@@ -32,6 +32,7 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="solutions-to-problems-in-chapter-2.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -49,22 +50,20 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -84,7 +83,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {  background-color: #f8f8f8; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -152,7 +151,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="solutions-to-problems-in-chapter-1" class="section level1">
+<div id="solutions-to-problems-in-chapter-1" class="section level1" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Solutions to problems in Chapter 1</h1>
 
 <div class="exercise">
@@ -170,25 +169,25 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div></li>
 </ol>
 <p><strong>Solution.</strong></p>
-<p>Remember, parentheses around the whole expression tell R to print out the result</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="solutions-to-problems-in-chapter-1.html#cb1-1"></a>(<span class="dv">1</span><span class="op">/</span><span class="dv">238746238746</span>)</span>
-<span id="cb1-2"><a href="solutions-to-problems-in-chapter-1.html#cb1-2"></a><span class="co">## [1] 4.188548e-12</span></span>
-<span id="cb1-3"><a href="solutions-to-problems-in-chapter-1.html#cb1-3"></a>(<span class="dv">2</span><span class="op">^</span>(<span class="dv">45</span>))  <span class="co"># this is the same as 2**45</span></span>
-<span id="cb1-4"><a href="solutions-to-problems-in-chapter-1.html#cb1-4"></a><span class="co">## [1] 3.518437e+13</span></span>
-<span id="cb1-5"><a href="solutions-to-problems-in-chapter-1.html#cb1-5"></a>(<span class="dv">3</span><span class="op">^</span>(<span class="dv">28</span>))</span>
-<span id="cb1-6"><a href="solutions-to-problems-in-chapter-1.html#cb1-6"></a><span class="co">## [1] 2.287679e+13</span></span>
-<span id="cb1-7"><a href="solutions-to-problems-in-chapter-1.html#cb1-7"></a>(<span class="kw">sqrt</span>(<span class="dv">15</span>))</span>
-<span id="cb1-8"><a href="solutions-to-problems-in-chapter-1.html#cb1-8"></a><span class="co">## [1] 3.872983</span></span>
-<span id="cb1-9"><a href="solutions-to-problems-in-chapter-1.html#cb1-9"></a>(<span class="kw">cos</span>(pi<span class="op">/</span><span class="dv">8</span>))</span>
-<span id="cb1-10"><a href="solutions-to-problems-in-chapter-1.html#cb1-10"></a><span class="co">## [1] 0.9238795</span></span>
-<span id="cb1-11"><a href="solutions-to-problems-in-chapter-1.html#cb1-11"></a>(<span class="kw">exp</span>(<span class="dv">2</span>))</span>
-<span id="cb1-12"><a href="solutions-to-problems-in-chapter-1.html#cb1-12"></a><span class="co">## [1] 7.389056</span></span>
-<span id="cb1-13"><a href="solutions-to-problems-in-chapter-1.html#cb1-13"></a>(<span class="kw">log</span>(<span class="dv">2</span>))</span>
-<span id="cb1-14"><a href="solutions-to-problems-in-chapter-1.html#cb1-14"></a><span class="co">## [1] 0.6931472</span></span>
-<span id="cb1-15"><a href="solutions-to-problems-in-chapter-1.html#cb1-15"></a>(<span class="kw">log10</span>(<span class="dv">2</span>))</span>
-<span id="cb1-16"><a href="solutions-to-problems-in-chapter-1.html#cb1-16"></a><span class="co">## [1] 0.30103</span></span>
-<span id="cb1-17"><a href="solutions-to-problems-in-chapter-1.html#cb1-17"></a>(((<span class="fl">1342.16</span> <span class="op">-</span><span class="st"> </span><span class="fl">2.18</span>)<span class="op">/</span>(<span class="dv">3</span> <span class="op">*</span><span class="st"> </span>pi <span class="op">+</span><span class="st"> </span><span class="fl">4.12</span>)<span class="op">^</span><span class="dv">2</span>)<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>))</span>
-<span id="cb1-18"><a href="solutions-to-problems-in-chapter-1.html#cb1-18"></a><span class="co">## [1] 1.940222</span></span></code></pre></div>
+<p>Remember, pa`xrentheses around the whole expression tell R to print out the result</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="solutions-to-problems-in-chapter-1.html#cb1-1" aria-hidden="true"></a>(<span class="dv">1</span><span class="op">/</span><span class="dv">238746238746</span>)</span>
+<span id="cb1-2"><a href="solutions-to-problems-in-chapter-1.html#cb1-2" aria-hidden="true"></a><span class="co">## [1] 4.188548e-12</span></span>
+<span id="cb1-3"><a href="solutions-to-problems-in-chapter-1.html#cb1-3" aria-hidden="true"></a>(<span class="dv">2</span><span class="op">^</span>(<span class="dv">45</span>))  <span class="co"># this is the same as 2**45</span></span>
+<span id="cb1-4"><a href="solutions-to-problems-in-chapter-1.html#cb1-4" aria-hidden="true"></a><span class="co">## [1] 3.518437e+13</span></span>
+<span id="cb1-5"><a href="solutions-to-problems-in-chapter-1.html#cb1-5" aria-hidden="true"></a>(<span class="dv">3</span><span class="op">^</span>(<span class="dv">28</span>))</span>
+<span id="cb1-6"><a href="solutions-to-problems-in-chapter-1.html#cb1-6" aria-hidden="true"></a><span class="co">## [1] 2.287679e+13</span></span>
+<span id="cb1-7"><a href="solutions-to-problems-in-chapter-1.html#cb1-7" aria-hidden="true"></a>(<span class="kw">sqrt</span>(<span class="dv">15</span>))</span>
+<span id="cb1-8"><a href="solutions-to-problems-in-chapter-1.html#cb1-8" aria-hidden="true"></a><span class="co">## [1] 3.872983</span></span>
+<span id="cb1-9"><a href="solutions-to-problems-in-chapter-1.html#cb1-9" aria-hidden="true"></a>(<span class="kw">cos</span>(pi<span class="op">/</span><span class="dv">8</span>))</span>
+<span id="cb1-10"><a href="solutions-to-problems-in-chapter-1.html#cb1-10" aria-hidden="true"></a><span class="co">## [1] 0.9238795</span></span>
+<span id="cb1-11"><a href="solutions-to-problems-in-chapter-1.html#cb1-11" aria-hidden="true"></a>(<span class="kw">exp</span>(<span class="dv">2</span>))</span>
+<span id="cb1-12"><a href="solutions-to-problems-in-chapter-1.html#cb1-12" aria-hidden="true"></a><span class="co">## [1] 7.389056</span></span>
+<span id="cb1-13"><a href="solutions-to-problems-in-chapter-1.html#cb1-13" aria-hidden="true"></a>(<span class="kw">log</span>(<span class="dv">2</span>))</span>
+<span id="cb1-14"><a href="solutions-to-problems-in-chapter-1.html#cb1-14" aria-hidden="true"></a><span class="co">## [1] 0.6931472</span></span>
+<span id="cb1-15"><a href="solutions-to-problems-in-chapter-1.html#cb1-15" aria-hidden="true"></a>(<span class="kw">log10</span>(<span class="dv">2</span>))</span>
+<span id="cb1-16"><a href="solutions-to-problems-in-chapter-1.html#cb1-16" aria-hidden="true"></a><span class="co">## [1] 0.30103</span></span>
+<span id="cb1-17"><a href="solutions-to-problems-in-chapter-1.html#cb1-17" aria-hidden="true"></a>(((<span class="fl">1342.16</span> <span class="op">-</span><span class="st"> </span><span class="fl">2.18</span>)<span class="op">/</span>(<span class="dv">3</span> <span class="op">*</span><span class="st"> </span>pi <span class="op">+</span><span class="st"> </span><span class="fl">4.12</span>)<span class="op">^</span><span class="dv">2</span>)<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>))</span>
+<span id="cb1-18"><a href="solutions-to-problems-in-chapter-1.html#cb1-18" aria-hidden="true"></a><span class="co">## [1] 1.940222</span></span></code></pre></div>
 
 <div class="exercise">
 <p><span id="exr:unnamed-chunk-5" class="exercise"><strong>Problem 1.2  </strong></span> </p>
@@ -200,22 +199,25 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div></li>
 </ol>
 <p><strong>Solution.</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="solutions-to-problems-in-chapter-1.html#cb2-1"></a>a =<span class="st"> </span><span class="dv">3</span></span>
-<span id="cb2-2"><a href="solutions-to-problems-in-chapter-1.html#cb2-2"></a>b =<span class="st"> </span><span class="dv">4</span></span>
-<span id="cb2-3"><a href="solutions-to-problems-in-chapter-1.html#cb2-3"></a>(<span class="dt">c =</span> a <span class="op">*</span><span class="st"> </span>b)</span>
-<span id="cb2-4"><a href="solutions-to-problems-in-chapter-1.html#cb2-4"></a><span class="co">## [1] 12</span></span>
-<span id="cb2-5"><a href="solutions-to-problems-in-chapter-1.html#cb2-5"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb2-6"><a href="solutions-to-problems-in-chapter-1.html#cb2-6"></a>y =<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">0</span>)</span>
-<span id="cb2-7"><a href="solutions-to-problems-in-chapter-1.html#cb2-7"></a>(x <span class="op">+</span><span class="st"> </span>y)</span>
-<span id="cb2-8"><a href="solutions-to-problems-in-chapter-1.html#cb2-8"></a><span class="co">## [1]  9 11  3</span></span>
-<span id="cb2-9"><a href="solutions-to-problems-in-chapter-1.html#cb2-9"></a>(<span class="dt">A =</span> <span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">-1</span>, <span class="dv">3</span>), <span class="dt">byrow =</span> <span class="ot">TRUE</span>, <span class="dt">nrow =</span> <span class="dv">2</span>))</span>
-<span id="cb2-10"><a href="solutions-to-problems-in-chapter-1.html#cb2-10"></a><span class="co">##      [,1] [,2]</span></span>
-<span id="cb2-11"><a href="solutions-to-problems-in-chapter-1.html#cb2-11"></a><span class="co">## [1,]    1    2</span></span>
-<span id="cb2-12"><a href="solutions-to-problems-in-chapter-1.html#cb2-12"></a><span class="co">## [2,]   -1    3</span></span>
-<span id="cb2-13"><a href="solutions-to-problems-in-chapter-1.html#cb2-13"></a>(A <span class="op">%*%</span><span class="st"> </span>A)</span>
-<span id="cb2-14"><a href="solutions-to-problems-in-chapter-1.html#cb2-14"></a><span class="co">##      [,1] [,2]</span></span>
-<span id="cb2-15"><a href="solutions-to-problems-in-chapter-1.html#cb2-15"></a><span class="co">## [1,]   -1    8</span></span>
-<span id="cb2-16"><a href="solutions-to-problems-in-chapter-1.html#cb2-16"></a><span class="co">## [2,]   -4    7</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="solutions-to-problems-in-chapter-1.html#cb2-1" aria-hidden="true"></a>a =<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb2-2"><a href="solutions-to-problems-in-chapter-1.html#cb2-2" aria-hidden="true"></a>b =<span class="st"> </span><span class="dv">4</span></span>
+<span id="cb2-3"><a href="solutions-to-problems-in-chapter-1.html#cb2-3" aria-hidden="true"></a>(<span class="dt">c =</span> a <span class="op">*</span><span class="st"> </span>b)</span>
+<span id="cb2-4"><a href="solutions-to-problems-in-chapter-1.html#cb2-4" aria-hidden="true"></a><span class="co">## [1] 12</span></span>
+<span id="cb2-5"><a href="solutions-to-problems-in-chapter-1.html#cb2-5" aria-hidden="true"></a></span>
+<span id="cb2-6"><a href="solutions-to-problems-in-chapter-1.html#cb2-6" aria-hidden="true"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb2-7"><a href="solutions-to-problems-in-chapter-1.html#cb2-7" aria-hidden="true"></a>y =<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">0</span>)</span>
+<span id="cb2-8"><a href="solutions-to-problems-in-chapter-1.html#cb2-8" aria-hidden="true"></a>(x <span class="op">+</span><span class="st"> </span>y)</span>
+<span id="cb2-9"><a href="solutions-to-problems-in-chapter-1.html#cb2-9" aria-hidden="true"></a><span class="co">## [1]  9 11  3</span></span>
+<span id="cb2-10"><a href="solutions-to-problems-in-chapter-1.html#cb2-10" aria-hidden="true"></a></span>
+<span id="cb2-11"><a href="solutions-to-problems-in-chapter-1.html#cb2-11" aria-hidden="true"></a>(<span class="dt">A =</span> <span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">-1</span>, <span class="dv">3</span>), <span class="dt">byrow =</span> <span class="ot">TRUE</span>, <span class="dt">nrow =</span> <span class="dv">2</span>))</span>
+<span id="cb2-12"><a href="solutions-to-problems-in-chapter-1.html#cb2-12" aria-hidden="true"></a><span class="co">##      [,1] [,2]</span></span>
+<span id="cb2-13"><a href="solutions-to-problems-in-chapter-1.html#cb2-13" aria-hidden="true"></a><span class="co">## [1,]    1    2</span></span>
+<span id="cb2-14"><a href="solutions-to-problems-in-chapter-1.html#cb2-14" aria-hidden="true"></a><span class="co">## [2,]   -1    3</span></span>
+<span id="cb2-15"><a href="solutions-to-problems-in-chapter-1.html#cb2-15" aria-hidden="true"></a></span>
+<span id="cb2-16"><a href="solutions-to-problems-in-chapter-1.html#cb2-16" aria-hidden="true"></a>(A <span class="op">%*%</span><span class="st"> </span>A)</span>
+<span id="cb2-17"><a href="solutions-to-problems-in-chapter-1.html#cb2-17" aria-hidden="true"></a><span class="co">##      [,1] [,2]</span></span>
+<span id="cb2-18"><a href="solutions-to-problems-in-chapter-1.html#cb2-18" aria-hidden="true"></a><span class="co">## [1,]   -1    8</span></span>
+<span id="cb2-19"><a href="solutions-to-problems-in-chapter-1.html#cb2-19" aria-hidden="true"></a><span class="co">## [2,]   -4    7</span></span></code></pre></div>
 
 <div class="exercise">
 <p><span id="exr:unnamed-chunk-7" class="exercise"><strong>Problem 1.3  </strong></span> </p>
@@ -230,28 +232,28 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li></li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="solutions-to-problems-in-chapter-1.html#cb3-1"></a>x =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="solutions-to-problems-in-chapter-1.html#cb3-1" aria-hidden="true"></a>x =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100</span></span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li></li>
 </ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="solutions-to-problems-in-chapter-1.html#cb4-1"></a>y =<span class="st"> </span>(<span class="dv">20</span><span class="op">:</span><span class="dv">2000</span>)<span class="op">^</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="solutions-to-problems-in-chapter-1.html#cb4-1" aria-hidden="true"></a>y =<span class="st"> </span>(<span class="dv">20</span><span class="op">:</span><span class="dv">2000</span>)<span class="op">^</span><span class="dv">2</span></span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li></li>
 </ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="solutions-to-problems-in-chapter-1.html#cb5-1"></a>(<span class="dt">z =</span> y[y <span class="op">&gt;</span><span class="st"> </span><span class="fl">4e+05</span> <span class="op">&amp;</span><span class="st"> </span>y <span class="op">&lt;</span><span class="st"> </span><span class="fl">5e+05</span>])</span>
-<span id="cb5-2"><a href="solutions-to-problems-in-chapter-1.html#cb5-2"></a><span class="co">##  [1] 400689 401956 403225 404496 405769 407044 408321 409600 410881 412164</span></span>
-<span id="cb5-3"><a href="solutions-to-problems-in-chapter-1.html#cb5-3"></a><span class="co">## [11] 413449 414736 416025 417316 418609 419904 421201 422500 423801 425104</span></span>
-<span id="cb5-4"><a href="solutions-to-problems-in-chapter-1.html#cb5-4"></a><span class="co">## [21] 426409 427716 429025 430336 431649 432964 434281 435600 436921 438244</span></span>
-<span id="cb5-5"><a href="solutions-to-problems-in-chapter-1.html#cb5-5"></a><span class="co">## [31] 439569 440896 442225 443556 444889 446224 447561 448900 450241 451584</span></span>
-<span id="cb5-6"><a href="solutions-to-problems-in-chapter-1.html#cb5-6"></a><span class="co">## [41] 452929 454276 455625 456976 458329 459684 461041 462400 463761 465124</span></span>
-<span id="cb5-7"><a href="solutions-to-problems-in-chapter-1.html#cb5-7"></a><span class="co">## [51] 466489 467856 469225 470596 471969 473344 474721 476100 477481 478864</span></span>
-<span id="cb5-8"><a href="solutions-to-problems-in-chapter-1.html#cb5-8"></a><span class="co">## [61] 480249 481636 483025 484416 485809 487204 488601 490000 491401 492804</span></span>
-<span id="cb5-9"><a href="solutions-to-problems-in-chapter-1.html#cb5-9"></a><span class="co">## [71] 494209 495616 497025 498436 499849</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="solutions-to-problems-in-chapter-1.html#cb5-1" aria-hidden="true"></a>(<span class="dt">z =</span> y[y <span class="op">&gt;</span><span class="st"> </span><span class="fl">4e+05</span> <span class="op">&amp;</span><span class="st"> </span>y <span class="op">&lt;</span><span class="st"> </span><span class="fl">5e+05</span>])</span>
+<span id="cb5-2"><a href="solutions-to-problems-in-chapter-1.html#cb5-2" aria-hidden="true"></a><span class="co">##  [1] 400689 401956 403225 404496 405769 407044 408321 409600 410881 412164</span></span>
+<span id="cb5-3"><a href="solutions-to-problems-in-chapter-1.html#cb5-3" aria-hidden="true"></a><span class="co">## [11] 413449 414736 416025 417316 418609 419904 421201 422500 423801 425104</span></span>
+<span id="cb5-4"><a href="solutions-to-problems-in-chapter-1.html#cb5-4" aria-hidden="true"></a><span class="co">## [21] 426409 427716 429025 430336 431649 432964 434281 435600 436921 438244</span></span>
+<span id="cb5-5"><a href="solutions-to-problems-in-chapter-1.html#cb5-5" aria-hidden="true"></a><span class="co">## [31] 439569 440896 442225 443556 444889 446224 447561 448900 450241 451584</span></span>
+<span id="cb5-6"><a href="solutions-to-problems-in-chapter-1.html#cb5-6" aria-hidden="true"></a><span class="co">## [41] 452929 454276 455625 456976 458329 459684 461041 462400 463761 465124</span></span>
+<span id="cb5-7"><a href="solutions-to-problems-in-chapter-1.html#cb5-7" aria-hidden="true"></a><span class="co">## [51] 466489 467856 469225 470596 471969 473344 474721 476100 477481 478864</span></span>
+<span id="cb5-8"><a href="solutions-to-problems-in-chapter-1.html#cb5-8" aria-hidden="true"></a><span class="co">## [61] 480249 481636 483025 484416 485809 487204 488601 490000 491401 492804</span></span>
+<span id="cb5-9"><a href="solutions-to-problems-in-chapter-1.html#cb5-9" aria-hidden="true"></a><span class="co">## [71] 494209 495616 497025 498436 499849</span></span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li></li>
 </ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="solutions-to-problems-in-chapter-1.html#cb6-1"></a>(<span class="kw">mean</span>(z))</span>
-<span id="cb6-2"><a href="solutions-to-problems-in-chapter-1.html#cb6-2"></a><span class="co">## [1] 449368.7</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="solutions-to-problems-in-chapter-1.html#cb6-1" aria-hidden="true"></a>(<span class="kw">mean</span>(z))</span>
+<span id="cb6-2"><a href="solutions-to-problems-in-chapter-1.html#cb6-2" aria-hidden="true"></a><span class="co">## [1] 449368.7</span></span></code></pre></div>
 
 <div class="exercise">
 <p><span id="exr:unnamed-chunk-12" class="exercise"><strong>Problem 1.4  </strong></span> </p>
@@ -265,57 +267,57 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li></li>
 </ol>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="solutions-to-problems-in-chapter-1.html#cb7-1"></a>f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb7-2"><a href="solutions-to-problems-in-chapter-1.html#cb7-2"></a>    <span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>) {</span>
-<span id="cb7-3"><a href="solutions-to-problems-in-chapter-1.html#cb7-3"></a>        <span class="kw">return</span>(<span class="dv">5</span>)</span>
-<span id="cb7-4"><a href="solutions-to-problems-in-chapter-1.html#cb7-4"></a>    } <span class="cf">else</span> {</span>
-<span id="cb7-5"><a href="solutions-to-problems-in-chapter-1.html#cb7-5"></a>        <span class="kw">return</span>(x)</span>
-<span id="cb7-6"><a href="solutions-to-problems-in-chapter-1.html#cb7-6"></a>    }</span>
-<span id="cb7-7"><a href="solutions-to-problems-in-chapter-1.html#cb7-7"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="solutions-to-problems-in-chapter-1.html#cb7-1" aria-hidden="true"></a>f &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb7-2"><a href="solutions-to-problems-in-chapter-1.html#cb7-2" aria-hidden="true"></a>    <span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>) {</span>
+<span id="cb7-3"><a href="solutions-to-problems-in-chapter-1.html#cb7-3" aria-hidden="true"></a>        <span class="kw">return</span>(<span class="dv">5</span>)</span>
+<span id="cb7-4"><a href="solutions-to-problems-in-chapter-1.html#cb7-4" aria-hidden="true"></a>    } <span class="cf">else</span> {</span>
+<span id="cb7-5"><a href="solutions-to-problems-in-chapter-1.html#cb7-5" aria-hidden="true"></a>        <span class="kw">return</span>(x)</span>
+<span id="cb7-6"><a href="solutions-to-problems-in-chapter-1.html#cb7-6" aria-hidden="true"></a>    }</span>
+<span id="cb7-7"><a href="solutions-to-problems-in-chapter-1.html#cb7-7" aria-hidden="true"></a>}</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li></li>
 </ol>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="solutions-to-problems-in-chapter-1.html#cb8-1"></a>g &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb8-2"><a href="solutions-to-problems-in-chapter-1.html#cb8-2"></a>    <span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>) {</span>
-<span id="cb8-3"><a href="solutions-to-problems-in-chapter-1.html#cb8-3"></a>        <span class="kw">return</span>(<span class="ot">TRUE</span>)</span>
-<span id="cb8-4"><a href="solutions-to-problems-in-chapter-1.html#cb8-4"></a>    } <span class="cf">else</span> {</span>
-<span id="cb8-5"><a href="solutions-to-problems-in-chapter-1.html#cb8-5"></a>        <span class="kw">return</span>(<span class="ot">FALSE</span>)</span>
-<span id="cb8-6"><a href="solutions-to-problems-in-chapter-1.html#cb8-6"></a>    }</span>
-<span id="cb8-7"><a href="solutions-to-problems-in-chapter-1.html#cb8-7"></a>}</span>
-<span id="cb8-8"><a href="solutions-to-problems-in-chapter-1.html#cb8-8"></a></span>
-<span id="cb8-9"><a href="solutions-to-problems-in-chapter-1.html#cb8-9"></a><span class="co"># more R-ic (what&#39;s &#39;Pythonic&#39;, but for R?)</span></span>
-<span id="cb8-10"><a href="solutions-to-problems-in-chapter-1.html#cb8-10"></a>g &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb8-11"><a href="solutions-to-problems-in-chapter-1.html#cb8-11"></a>    x <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span></span>
-<span id="cb8-12"><a href="solutions-to-problems-in-chapter-1.html#cb8-12"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="solutions-to-problems-in-chapter-1.html#cb8-1" aria-hidden="true"></a>g &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb8-2"><a href="solutions-to-problems-in-chapter-1.html#cb8-2" aria-hidden="true"></a>    <span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>) {</span>
+<span id="cb8-3"><a href="solutions-to-problems-in-chapter-1.html#cb8-3" aria-hidden="true"></a>        <span class="kw">return</span>(<span class="ot">TRUE</span>)</span>
+<span id="cb8-4"><a href="solutions-to-problems-in-chapter-1.html#cb8-4" aria-hidden="true"></a>    } <span class="cf">else</span> {</span>
+<span id="cb8-5"><a href="solutions-to-problems-in-chapter-1.html#cb8-5" aria-hidden="true"></a>        <span class="kw">return</span>(<span class="ot">FALSE</span>)</span>
+<span id="cb8-6"><a href="solutions-to-problems-in-chapter-1.html#cb8-6" aria-hidden="true"></a>    }</span>
+<span id="cb8-7"><a href="solutions-to-problems-in-chapter-1.html#cb8-7" aria-hidden="true"></a>}</span>
+<span id="cb8-8"><a href="solutions-to-problems-in-chapter-1.html#cb8-8" aria-hidden="true"></a></span>
+<span id="cb8-9"><a href="solutions-to-problems-in-chapter-1.html#cb8-9" aria-hidden="true"></a><span class="co"># more R-ic (what&#39;s &#39;Pythonic&#39;, but for R?)</span></span>
+<span id="cb8-10"><a href="solutions-to-problems-in-chapter-1.html#cb8-10" aria-hidden="true"></a>g &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb8-11"><a href="solutions-to-problems-in-chapter-1.html#cb8-11" aria-hidden="true"></a>    x <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span></span>
+<span id="cb8-12"><a href="solutions-to-problems-in-chapter-1.html#cb8-12" aria-hidden="true"></a>}</span></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li></li>
 </ol>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="solutions-to-problems-in-chapter-1.html#cb9-1"></a>angle &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</span>
-<span id="cb9-2"><a href="solutions-to-problems-in-chapter-1.html#cb9-2"></a>    length_x =<span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">sum</span>(x<span class="op">^</span><span class="dv">2</span>))</span>
-<span id="cb9-3"><a href="solutions-to-problems-in-chapter-1.html#cb9-3"></a>    length_y =<span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">sum</span>(y<span class="op">^</span><span class="dv">2</span>))</span>
-<span id="cb9-4"><a href="solutions-to-problems-in-chapter-1.html#cb9-4"></a>    <span class="cf">if</span> (length_y <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">|</span><span class="st"> </span>length_x <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</span>
-<span id="cb9-5"><a href="solutions-to-problems-in-chapter-1.html#cb9-5"></a>        <span class="kw">return</span>(<span class="dv">0</span>)</span>
-<span id="cb9-6"><a href="solutions-to-problems-in-chapter-1.html#cb9-6"></a>    } <span class="cf">else</span> {</span>
-<span id="cb9-7"><a href="solutions-to-problems-in-chapter-1.html#cb9-7"></a>        inn_prod =<span class="st"> </span><span class="kw">sum</span>(x <span class="op">*</span><span class="st"> </span>y)</span>
-<span id="cb9-8"><a href="solutions-to-problems-in-chapter-1.html#cb9-8"></a>        cos_alpha =<span class="st"> </span>inn_prod<span class="op">/</span>(length_x <span class="op">*</span><span class="st"> </span>length_y)</span>
-<span id="cb9-9"><a href="solutions-to-problems-in-chapter-1.html#cb9-9"></a>        <span class="kw">return</span>(<span class="kw">acos</span>(cos_alpha)<span class="op">/</span>pi <span class="op">*</span><span class="st"> </span><span class="dv">180</span>)</span>
-<span id="cb9-10"><a href="solutions-to-problems-in-chapter-1.html#cb9-10"></a>    }</span>
-<span id="cb9-11"><a href="solutions-to-problems-in-chapter-1.html#cb9-11"></a>}</span>
-<span id="cb9-12"><a href="solutions-to-problems-in-chapter-1.html#cb9-12"></a></span>
-<span id="cb9-13"><a href="solutions-to-problems-in-chapter-1.html#cb9-13"></a><span class="co"># some testing</span></span>
-<span id="cb9-14"><a href="solutions-to-problems-in-chapter-1.html#cb9-14"></a></span>
-<span id="cb9-15"><a href="solutions-to-problems-in-chapter-1.html#cb9-15"></a><span class="co"># should be 0</span></span>
-<span id="cb9-16"><a href="solutions-to-problems-in-chapter-1.html#cb9-16"></a>(<span class="kw">angle</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)))</span>
-<span id="cb9-17"><a href="solutions-to-problems-in-chapter-1.html#cb9-17"></a><span class="co">## [1] 1.207418e-06</span></span>
-<span id="cb9-18"><a href="solutions-to-problems-in-chapter-1.html#cb9-18"></a><span class="co"># should be 0</span></span>
-<span id="cb9-19"><a href="solutions-to-problems-in-chapter-1.html#cb9-19"></a>(<span class="kw">angle</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)))</span>
-<span id="cb9-20"><a href="solutions-to-problems-in-chapter-1.html#cb9-20"></a><span class="co">## [1] 0</span></span>
-<span id="cb9-21"><a href="solutions-to-problems-in-chapter-1.html#cb9-21"></a><span class="co"># should be 45</span></span>
-<span id="cb9-22"><a href="solutions-to-problems-in-chapter-1.html#cb9-22"></a>(<span class="kw">angle</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)))</span>
-<span id="cb9-23"><a href="solutions-to-problems-in-chapter-1.html#cb9-23"></a><span class="co">## [1] 45</span></span>
-<span id="cb9-24"><a href="solutions-to-problems-in-chapter-1.html#cb9-24"></a><span class="co"># should be 90</span></span>
-<span id="cb9-25"><a href="solutions-to-problems-in-chapter-1.html#cb9-25"></a>(<span class="kw">angle</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">0</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)))</span>
-<span id="cb9-26"><a href="solutions-to-problems-in-chapter-1.html#cb9-26"></a><span class="co">## [1] 90</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="solutions-to-problems-in-chapter-1.html#cb9-1" aria-hidden="true"></a>angle &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</span>
+<span id="cb9-2"><a href="solutions-to-problems-in-chapter-1.html#cb9-2" aria-hidden="true"></a>    length_x =<span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">sum</span>(x<span class="op">^</span><span class="dv">2</span>))</span>
+<span id="cb9-3"><a href="solutions-to-problems-in-chapter-1.html#cb9-3" aria-hidden="true"></a>    length_y =<span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">sum</span>(y<span class="op">^</span><span class="dv">2</span>))</span>
+<span id="cb9-4"><a href="solutions-to-problems-in-chapter-1.html#cb9-4" aria-hidden="true"></a>    <span class="cf">if</span> (length_y <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">|</span><span class="st"> </span>length_x <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb9-5"><a href="solutions-to-problems-in-chapter-1.html#cb9-5" aria-hidden="true"></a>        <span class="kw">return</span>(<span class="dv">0</span>)</span>
+<span id="cb9-6"><a href="solutions-to-problems-in-chapter-1.html#cb9-6" aria-hidden="true"></a>    } <span class="cf">else</span> {</span>
+<span id="cb9-7"><a href="solutions-to-problems-in-chapter-1.html#cb9-7" aria-hidden="true"></a>        inn_prod =<span class="st"> </span><span class="kw">sum</span>(x <span class="op">*</span><span class="st"> </span>y)</span>
+<span id="cb9-8"><a href="solutions-to-problems-in-chapter-1.html#cb9-8" aria-hidden="true"></a>        cos_alpha =<span class="st"> </span>inn_prod<span class="op">/</span>(length_x <span class="op">*</span><span class="st"> </span>length_y)</span>
+<span id="cb9-9"><a href="solutions-to-problems-in-chapter-1.html#cb9-9" aria-hidden="true"></a>        <span class="kw">return</span>(<span class="kw">acos</span>(cos_alpha)<span class="op">/</span>pi <span class="op">*</span><span class="st"> </span><span class="dv">180</span>)</span>
+<span id="cb9-10"><a href="solutions-to-problems-in-chapter-1.html#cb9-10" aria-hidden="true"></a>    }</span>
+<span id="cb9-11"><a href="solutions-to-problems-in-chapter-1.html#cb9-11" aria-hidden="true"></a>}</span>
+<span id="cb9-12"><a href="solutions-to-problems-in-chapter-1.html#cb9-12" aria-hidden="true"></a></span>
+<span id="cb9-13"><a href="solutions-to-problems-in-chapter-1.html#cb9-13" aria-hidden="true"></a><span class="co"># some testing</span></span>
+<span id="cb9-14"><a href="solutions-to-problems-in-chapter-1.html#cb9-14" aria-hidden="true"></a></span>
+<span id="cb9-15"><a href="solutions-to-problems-in-chapter-1.html#cb9-15" aria-hidden="true"></a><span class="co"># should be 0</span></span>
+<span id="cb9-16"><a href="solutions-to-problems-in-chapter-1.html#cb9-16" aria-hidden="true"></a>(<span class="kw">angle</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)))</span>
+<span id="cb9-17"><a href="solutions-to-problems-in-chapter-1.html#cb9-17" aria-hidden="true"></a><span class="co">## [1] 1.207418e-06</span></span>
+<span id="cb9-18"><a href="solutions-to-problems-in-chapter-1.html#cb9-18" aria-hidden="true"></a><span class="co"># should be 0</span></span>
+<span id="cb9-19"><a href="solutions-to-problems-in-chapter-1.html#cb9-19" aria-hidden="true"></a>(<span class="kw">angle</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)))</span>
+<span id="cb9-20"><a href="solutions-to-problems-in-chapter-1.html#cb9-20" aria-hidden="true"></a><span class="co">## [1] 0</span></span>
+<span id="cb9-21"><a href="solutions-to-problems-in-chapter-1.html#cb9-21" aria-hidden="true"></a><span class="co"># should be 45</span></span>
+<span id="cb9-22"><a href="solutions-to-problems-in-chapter-1.html#cb9-22" aria-hidden="true"></a>(<span class="kw">angle</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>)))</span>
+<span id="cb9-23"><a href="solutions-to-problems-in-chapter-1.html#cb9-23" aria-hidden="true"></a><span class="co">## [1] 45</span></span>
+<span id="cb9-24"><a href="solutions-to-problems-in-chapter-1.html#cb9-24" aria-hidden="true"></a><span class="co"># should be 90</span></span>
+<span id="cb9-25"><a href="solutions-to-problems-in-chapter-1.html#cb9-25" aria-hidden="true"></a>(<span class="kw">angle</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">0</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)))</span>
+<span id="cb9-26"><a href="solutions-to-problems-in-chapter-1.html#cb9-26" aria-hidden="true"></a><span class="co">## [1] 90</span></span></code></pre></div>
 
 </div>
             </section>
