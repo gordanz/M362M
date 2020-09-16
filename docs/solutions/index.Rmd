@@ -1,0 +1,14 @@
+--- 
+title: Solutions 
+author: "Gordan Zitkovic"
+date: "last updated -  `r Sys.Date()`"
+documentclass: book
+description: "Solutions for  *M362M: Introduction to Stochastic Processes*"
+site: bookdown::bookdown_site
+output: 
+  bookdown::gitbook
+---
+
+#  {-}
+
+**IMPORTANT:** The numbering of solutions **does not match** the numbering of problems in the notes. The Chapter number should be OK, and the problems should appear in the same order,  but the problem number within the chapter will often be too small. That is why the statement of the problem is always included. This will get fixed eventually, but don't hold your breath. 
