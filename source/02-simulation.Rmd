@@ -1044,6 +1044,60 @@ ggplot(S, aes(x=time, y=estimate-pi, group = omega)) +
    ggtitle(TeX("Errors in  Monte Carlo estimation of $\\pi$"))
 ```
 
+## Conditional distributions
+
+```{exercise}
+Let $X$ and $Y$ be two independent geometric random variables with parameters $p=0.5,$ and let $Z=X+Y$. Compute $\PP[ X = 3| Z = 5]$ using simulation. Compare to the exact value. 
+```
+
+**Solution:** By simulation:
+
+```{r tidy=FALSE, echo=2:10}
+set.seed(1211)
+nsim = 1000000
+X = rgeom(nsim, prob = 0.5)
+Y = rgeom(nsim, prob = 0.5)
+Z = X + Y
+X_cond = X[Z == 5]
+mean(X_cond  == 3) 
+```
+
+To get the exact value, we start from the definition:
+$$ \PP[ X = 3 | Z= 5 ] = \frac{\PP[ X=3 \eand Z=5]}{\PP[Z=5]} = \frac{\PP[X=3 \eand Y = 2]}{\PP[Z=5]}, $$
+where the last equality follows from the fact that $\{ X=3 \text{ and } Z=5 \}$ is exactly the same event as $\{ X = 3 \text{ and } Y=2\}$. 
+Since $X$ and $Y$ are independent, we have 
+$$\PP[ X=3 \eand Y=2 ] = \PP[X=3] \times \PP[ Y=2] = 2^{-4} 2^{-3} = 2^{-7}.$$
+To compute $\PP[ Z = 5]$ we need to split the event $\{ Z = 5 \}$ into events we know how to deal with. Since $Z$ is built from $X$ and $Y$, we write
+$$ \begin{align} \PP[ Z = 5 ] = &\PP[X=0 \eand Y=5]+ \PP[ X=1 \eand Y=4] + \PP[ X=2 \eand Y=3] + \\
+&  \PP[ X=3 \eand Y=2] + \PP[ X=4 \eand Y=1] + \PP[ X = 5 \eand Y=0]. \end{align}$$
+Each of the individual probabilities in the sum above is $2^{-7}$, so $\PP[ X = 3 | Z = 5] = \frac{1}{6}$. 
+This gives us an error of `r mean(X_cond == 3) - 1/6`.
+
+**Comments:**
+
+*Math.*  Let us, first, recall what the conditional probability is. The definition we learn in the probability class is the following $$ \PP[A | B] = \frac{\PP[A \eand B]}{\PP[B]},$$ as long as $\PP[B]>0$. The interpretation is that $\PP[A|B]$ is still the probability of $A$, but now in the world where $B$ is guaranteed to happen. Conditioning usually happens when we receive new information. If someone tells us that $B$ happened, we can disregard everything in the complement of $B$ and adjust our probability to account for that fact. First we remove from $A$ anything that belongs to the complement of $B$, and recompute the probability $\PP[A \cap B]$. We also have to divide by $\PP[B]$ because we want the total probability to be equal to $1$. 
+
+Our code starts as usual, but simulating $X$ and $Y$ from the required distribution, and constructing a new vector $Z$ as their sum.  The variable `X_cond` is new; we build it from $X$ by removing all the elements whose corresponding $Z$ is *not* equal to $5$. This is an example of what is sometimes called the **rejection method** in simulation. We simply "reject" all simulations which do not satisfy the condition we are conditioning on. We can think of `X_cond` as bunch of simulations of $X$, but in the world where $Z=5$ is guaranteed to happen. Once we have `X_cond`, we proceed as usual by computing the relative frequency of the value $3$ among all possible values $X$ can take. Note that the same `X_cond` can also be used to compute the conditional probability $\PP[ X=1| Z=5]$. In fact, `X_cond` contains the information about the entire **conditional distribution of $X$ given $Z=5$**; if we draw a histogram of `X_cond`, we will get a good idea of what this distribution looks like:
+```{r echo=F}
+hist(X_cond, breaks=seq(-0.5,5.5, by=1))
+```
+Since `X_cond` contains only discrete values from $0$ to $5$, a contingency table might be a better tool for understanding its distribution:
+```{r echo=FALSE}
+library(kableExtra)
+kable(t(table(X_cond))) %>% 
+  kable_styling(full_width=FALSE)
+```
+
+The histogram and the table  above suggest that  the distribution of $X$, given $Z=5$, is uniform on $\{0,1,2,3,4,5\}$. It is - a calculation almost identical to the one we performed above gives that $\PP[ X= i| Z=5] = \frac{1}{6}$ for each $i=0,1,2,3,4,5$. 
+
+One more observation at the end. Note that we drew $n=1,000,000$ simulations this time. While it is probably an overkill for this particular example, conditional probabilities in general require more simulations than unconditional ones. Of course, that is because we reject most of our original draws. Indeed, the size of the vector `X_cond` is `r length(X_cond)` - more than a $20$-fold decrease. This fact becomes particularly apparent when we try to use Monte Carlo for  conditional distributions associated with *continuous* random vectors as we will see in out next problem. 
+
+```{exercise}
+Let $X$ and $Y$ be independent random variables where $X$ has the $N(0,1)$ distribution and $Y$ the exponential distribution with parameter $\ld=1$. Find a graphical approximation to the conditional density of $Y$, given $X+Y=1$. 
+```
+
+**Solution.**
+
 
 ## Additional Problems
 
