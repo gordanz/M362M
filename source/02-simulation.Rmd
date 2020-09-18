@@ -1328,7 +1328,8 @@ check your estimate against the exact value $8(2-\sqrt{2})$.
 ```
 
 ```{exercise}
-Read about the Monty Hall Problem online (the introduction to its  [Wikipedia page](https://en.wikipedia.org/wiki/Monty_Hall_problem) has a nice  description),
+Read about the Monty Hall Problem online (the introduction to its 
+[Wikipedia page](https://en.wikipedia.org/wiki/Monty_Hall_problem) has a nice  description),
 Use Monte Carlo to compare the two possible strategies (switching and not-switching) and decide which is better. 
 ```
 
