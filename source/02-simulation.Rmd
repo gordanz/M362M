@@ -1392,7 +1392,7 @@ probability $0.9$. A person chosen at random from the population tested
 positive. What is the probability the he/she is, in fact, sick. Do the problem
 both analytically and by Monte Carlo.
 ```
-`
+
 
 
 ```{exercise}
