@@ -1338,7 +1338,6 @@ Use Monte Carlo to compare the two possible strategies (switching and
 not-switching) and decide which is better.
 ```
 
-
 ```{exercise}
 We learned how to simulate from a joint distribution of two discrete vectors
 $(X,Y$) by thinking of it as one-dimensional distribution but with values
@@ -1393,8 +1392,6 @@ positive. What is the probability the he/she is, in fact, sick. Do the problem
 both analytically and by Monte Carlo.
 ```
 
-
-
 ```{exercise}
 A point is chosen at random, uniformly in the unit cube 
 $[0,1]\times[0,1]\times [0,1]$. Its distance to the origin $(0,0)$ is measured, and
@@ -1407,9 +1404,8 @@ known.
 
 Compute the mean of this (conditional) distribution for a few values of
 the parameter $\eps$ you use to deal with conditioning in 
-the continuous case. Make sure you include both too big and too small 
-values of $\eps$. 
+the continuous case. Make sure you include values of $\eps$ on both sides 
+of the spectrum - too big, and too small.
 ```
-
 
 ⬇︎ In case you were wondering, the text below belongs to footnotes from somewhere high above.⬇︎
