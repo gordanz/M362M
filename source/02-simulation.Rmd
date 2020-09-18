@@ -4,7 +4,6 @@
 \newcommand{\EE}{{\mathbb{E}}}
 \newcommand{\ld}{\lambda}
 \newcommand{\eps}{\varepsilon}
-
 \newcommand{\eand}{\text{ and }}
 
 # (PART) Probability and Simulation {-}
