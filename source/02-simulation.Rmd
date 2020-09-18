@@ -589,7 +589,7 @@ nothing by a random permutation of `y`.
 
 You are not required to do this in your submissions, but if you want to display
 several plots side-by-side, use the command is `par(mfrow=c(m,n))` before the
-`plot` commands. It tells R to plot the next $mn$ plots in a $m\\times n$ grid.
+`plot` commands. It tells R to plot the next $mn$ plots in a $m\times n$ grid.
 
 
 ```{exercise}
@@ -1287,7 +1287,9 @@ table:
 </tbody>
 </table>
   
-Display the contingency table of your results, as well as a table showing the "errors", i.e.,  differences between the theoretical frequencies (i.e., probabilities given above) and the obtained relative frequencies in the sample. 
+Display the contingency table of your results, as well as a table showing the
+"errors", i.e., differences between the theoretical frequencies (i.e.,
+probabilities given above) and the obtained relative frequencies in the sample.
 ```
 
 
@@ -1305,7 +1307,9 @@ d) $\int_{-\infty}^{\infty} \frac{\cos(x^2)}{1+x^2}\, dx$ (extra credit)
 ```
 
 ```{exercise}
-The **tricylinder** is a solid  body constructed as follows: create three cylinders of radius 1 around each of the three coordinate axes  and intersect them: 
+The **tricylinder** is a solid body constructed as follows: create three
+cylinders of radius 1 around each of the three coordinate axes and intersect
+them:
 <figure style="
     display: flex;
     flex-flow: column;
@@ -1326,10 +1330,86 @@ Use Monte Carlo to estimate the volume of the tricylinder and
 check your estimate against the exact value $8(2-\sqrt{2})$. 
 ```
 
-```{exercise}
+```{exercise} 
+(extra credit)
 Read about the Monty Hall Problem online (the introduction to its 
 [Wikipedia page](https://en.wikipedia.org/wiki/Monty_Hall_problem) has a nice  description),
-Use Monte Carlo to compare the two possible strategies (switching and not-switching) and decide which is better. 
+Use Monte Carlo to compare the two possible strategies (switching and
+not-switching) and decide which is better.
 ```
+
+
+```{exercise}
+We learned how to simulate from a joint distribution of two discrete vectors
+$(X,Y$) by thinking of it as one-dimensional distribution but with values
+represented by pairs of numbers. Here is another way this can be done:
+  
+1. Find the marginal distribution of one of them, say $X$, and simulate from it
+
+2. Given the value you just obtained, let's <!--'--> call it $x$,  simulate from the conditional distribution of $Y$, given $X=x$. 
+
+Implement this procedure on the following joint distribution:
+  <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;text-align: center;">   </th>
+   <th style="text-align:right;text-align: center;"> 1 </th>
+   <th style="text-align:right;text-align: center;"> 2 </th>
+   <th style="text-align:right;text-align: center;"> 3 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> 1 </td>
+   <td style="text-align:right;"> 0.1 </td>
+   <td style="text-align:right;"> 0.0 </td>
+   <td style="text-align:right;"> 0.3 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;font-weight: bold;"> 2 </td>
+   <td style="text-align:right;"> 0.1 </td>
+   <td style="text-align:right;"> 0.1 </td>
+   <td style="text-align:right;"> 0.0 </td>
+  </tr>
+   <tr>
+   <td style="text-align:left;font-weight: bold;"> 3 </td>
+   <td style="text-align:right;"> 0.0 </td>
+   <td style="text-align:right;"> 0.0 </td>
+   <td style="text-align:right;"> 0.4 </td>
+  </tr>
+</tbody>
+</table> 
+Display the contingency table of your simulations, first using counts, and then
+using relative frequencies. Compare to the theoretical values (i.e., the
+probabilities in the table above).
+```
+
+```{exercise}
+Exactly one percent of the people in a given population have a certain disease.
+The accuracy of the diagnostic test for it is such that it
+detects the sick as sick with probability $0.95$ and the healthy as healthy with
+probability $0.9$. A person chosen at random from the population tested
+positive. What is the probability the he/she is, in fact, sick. Do the problem
+both analytically and by Monte Carlo.
+```
+`
+
+
+```{exercise}
+A point is chosen at random, uniformly in the unit cube 
+$[0,1]\times[0,1]\times [0,1]$. Its distance to the origin $(0,0)$ is measured, and
+turns out to be equal to $1.5$.
+
+Use simulations to estimate the shape of the pdf of the conditional distribution
+of the point's <!--'--> distance to $(1,1,1)$. Compare it to the unconditional
+case, i.e., the case where no information about the distance to $(0,0,0)$ is
+known.
+
+Compute the mean of this (conditional) distribution for a few values of
+the parameter $\eps$ you use to deal with conditioning in 
+the continuous case. Make sure you include both too big and too small 
+values of $\eps$. 
+```
+
 
 ⬇︎ In case you were wondering, the text below belongs to footnotes from somewhere high above.⬇︎
