@@ -31,3 +31,51 @@ pre code {
 .title {
   margin-right: 350px;
 }
+
+/* numbering headings */
+body { counter-reset: H1; } 	/* Create the counter for H1 */
+h1:before {
+  counter-increment: H1;
+  content: ""; /* Does not work unless there is some content*/
+
+}
+
+h1 { counter-reset: H2; }
+
+h2::before {
+  counter-increment: H2;
+  content: "";
+}
+
+/* examples, theorems and such */
+.problem, .preblemec, .example { 
+    margin-top: 3ex;
+    padding: 10px;
+    background: #EEFEEE;
+    counter-increment: nmb ;  
+}
+
+.problem{ 
+    margin-top: 3ex;
+    padding: 10px;
+    background: #FDF5E6;
+    counter-increment: nmb ;  
+}
+
+.problemec{ 
+    margin-top: 3ex;
+    padding: 10px;
+    background: #FDF0E6;
+    counter-increment: nmb ;  
+}
+
+.example:before, .problem:before, .problemec:before {
+    font-weight: bold; 
+    font-size: Large;
+   
+}
+
+.example::before { content: "Problem " counter(H1) "." counter(H2) "." counter(nmb);}
+.problem:before { content: "Problem " counter(H1) "." counter(H2) "." counter(nmb);}
+.problemec:before { content: "Problem " counter(H1) "." counter(H2) "." counter(nmb) " (extra credit)";}
+

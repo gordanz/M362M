@@ -11,22 +11,21 @@
 # Simulation of Random Variables and Monte Carlo
 
 In the spirit of "learn by doing", these lecture notes contain many "Problems".
-Those with solutions usually introduce new concepts and feature a *Comments*
-section right after the solution. These comments are subdivided into *R* and
+The green ones come with solutions and usually introduce new concepts and feature a *Comments* section right after the solution. These comments are subdivided into *R* and
 *Math* comments focusing on the computational or conceptual features,
-respectively. Note that you are not expected to be able to do the solved
+respectively. Note that you are not expected to be able to do the green
 problems before reading their solutions and comments, so don't worry if you
-cannot. It is a good practice to try, though. Problems which are left unsolved,
-however, do not feature any new ideas and are there to help you practice the
-skills presented before. 
+cannot. It is a good practice to try, though. Problems in the Additional Problems section,  which are left unsolved,
+however, do not require any new ideas and are there to help you practice the
+skills presented before.
 
 ## Simulation of some common probability distributions
 
 ... where we also review some probability along the way.
 
-```{exercise}
+<div class="example">
 ''Draw'' 50 simulations from the geometric distribution with parameter $p=0.4$.
-```
+</div>
 **Solution:** 
 ```{r}
 rgeom(50,prob=0.4)
@@ -117,10 +116,10 @@ kable(out)
 ```
 
 
-```{exercise}
+<div class="example">
 Compute the probability that among $1,000,000$ draws of a geometric random
 variable with parameter $p=0.4$, we never see a number greater than $22$.
-```
+</div>
 
 **Solution:** First, we compute the probability that the value seen in a *single* draw does not exceed $22$:
 ```{r echo=2}
@@ -196,10 +195,10 @@ $2690$ rounds of $1,000,000$ simulations before the largest number falls below
 $23$.
 
 
-```{exercise} 
+<div class="example"> 
 Compute the $0.05$, $0.1$, $0.4$, $0.6$ and $0.95$ quantiles of the normal 
 distribution with mean $1$ and standard deviation $2$.
-```
+</div>
 **Solution:**
 ```{r}
 qnorm( c(0.05, 0.1, 0.4, 0.6, 0.95), mean = 1, sd = 2)
@@ -231,9 +230,9 @@ the table and find your value, and then figure out which "Z" would give you that
 value. 
 
 
-```{exercise}
+<div class="example">
 Simulate $60$ throws of a fair $10$-sided die. 
-```
+</div>
 **Solution:**
 ```{r}
 sample( 1:10 , 60, replace = TRUE)
@@ -291,11 +290,11 @@ sample( c(1,2,3), 10, replace = TRUE, prob = c(0.2,0.7, 0.1))
 Note how it is mostly $2$s, as expected.
 
 
-```{exercise}
+<div class="example">
 Draw a sample of size $n=10$ from $N(1,2)$, i.e., from the normal distribution
 with parameters $\mu=1$, $\sigma = 2$. Plot a histogram of the obtained
 values. Repeat for $n=100$ and $n=100000$. 
-```
+</div>
 
 **Solution:**
 ```{r}
@@ -362,7 +361,7 @@ points(x,y, type="l", lwd=3, col="red" )
 
 ## Multivariate Distributions
 
-```{exercise}
+<div class="example">
 Let `x` contain $2,000$ draws from $N(0,1)$, `z` another $2,000$ draws from $N(0,1)$ and let `y=x^2+z`. 
 
 1. Draw a scatterplot of `x` and `y` to visualize the joint distribution of `x` and `y`
@@ -370,7 +369,7 @@ Let `x` contain $2,000$ draws from $N(0,1)$, `z` another $2,000$ draws from $N(0
 2. Plot two histograms, one of `x` and one of `y`. Do they tell the whole story about the joint distribution of `x` and `y`?
    
 3. Are `x` and `y` correlated? Do `x` and `y` in your plot "look independent"?  Use the permutation test to check of independence between `x` and `y`. 
-```
+</div>
 **Solution:**
 
 1.\  
@@ -592,7 +591,7 @@ several plots side-by-side, use the command is `par(mfrow=c(m,n))` before the
 `plot` commands. It tells R to plot the next $mn$ plots in a $m\times n$ grid.
 
 
-```{exercise}
+<div class="example">
 Random variables $X$ and $Y$ have the joint distribution given by the following
 table:
    
@@ -624,7 +623,7 @@ table:
    
 Simulate $10,000$ draws from the distribution of $(X,Y)$ and display a 
 contingency table of your results.
-```
+</div>
 
 **Solution.** 
 ```{r tidy=FALSE}
@@ -742,11 +741,12 @@ of them happened. The same result would have been obtained by calling
 
 ## Monte Carlo
 
-```{exercise}
+<div class="example">
 Use Monte Carlo to estimate the expected value of the exponential random
 variable with parameter $\ld = 4$ using $n=10$, $n=1,000$ and $n=1,000,000$
 simulations. Compare to the exact value.
-```
+</div>
+
 **Solution:**
 ```{r echo = c(2,4)}
 set.seed(12341)
@@ -805,10 +805,10 @@ random variable, which does not seem like such a bit deal. But it is! You will s
 in the sequel that almost anything can be written as the expected value of
 *some* random variable.
 
-```{exercise}
+<div class="example">
 Use Monte Carlo to estimate $\EE[X^2]$, where $X$ is a standard normal 
 random variable. 
-```
+</div>
 
 **Solution.**
 You may or may now know that when $X$ is standard normal $Y=X^2$ has a $\chi^2$
@@ -852,10 +852,10 @@ but it can be very helpful even in the case of a single random variable, as you
 will see in the next problem. 
 
 
-```{exercise}
+<div class="example">
 Let $X$ be a standard normal random variable. Use Monte Carlo to estimate the
 probability $\PP[ X > 1 ]$. Compare to the exact value.
-```
+</div>
 **Solution:**
 The estimated probability:
 ```{r tidy=FALSE}
@@ -919,9 +919,9 @@ The expected value of an indicator is the probability $p$, and we know that we c
 
 Many times, simulating a random variable is easier than analyzing it analytically. Here is a fun example:
 
-```{exercise}
+<div class="example">
 Use Monte Carlo to estimate the value of $\pi$ and compute the error. 
-```
+</div>
 **Solution.**
 ```{r tidy=FALSE}
 nsim = 1000000
@@ -944,12 +944,12 @@ $$ Z = \begin{cases} 1 & (X,Y) \text{ is inside the unit circle, } \\ 0 & \text{
 \end{cases}
 = \begin{cases} 1& X^2+Y^2 < 1, \\ 0 & \text{ otherwise.} \end{cases}$$
 
-```{exercise}
+<div class="example">
 1. Write an R function `cumavg` which computes the sequence of running averages of a vector, i.e., if the input is $x=(x_1,x_2,x_3,\dots, x_n)$, the output should be
-$$ \Big(x_1, \frac{1}{2} (x_1+x_2), \frac{1}{3}(x_1+x_2+x_3), \dots, \frac{1}{n} (x_1+x_2+\dots+x_n)\Big).$$ Test it to check that it really works. (*Hint:* look up the funcion `cumsum`. )
+$$ \Big(x_1, \frac{1}{2} (x_1+x_2), \frac{1}{3}(x_1+x_2+x_3), \dots, \frac{1}{n} (x_1+x_2+\dots+x_n)\Big).$$ Test it to check that it really works. (*Hint:* look up the function `cumsum`. )
    
 2. Apply `cumavg` to the vector $4 z$ from the previous problem and plot your results (use a smaller value for `nsim`. Maybe $1000$.) Plot the values against their index. Add a red horizontal line at the level $\pi$. Rerun the same code (including the simulation part) several times.
-```
+</div>
 
 **Solution**
 
@@ -1047,9 +1047,9 @@ ggplot(S, aes(x=time, y=estimate-pi, group = omega)) +
 
 ## Conditional distributions
 
-```{exercise}
+<div class="example">
 Let $X$ and $Y$ be two independent geometric random variables with parameters $p=0.5,$ and let $Z=X+Y$. Compute $\PP[ X = 3| Z = 5]$ using simulation. Compare to the exact value. 
-```
+</div>
 
 **Solution:** By simulation:
 
@@ -1093,9 +1093,9 @@ The histogram and the table  above suggest that  the distribution of $X$, given 
 
 One more observation at the end. Note that we drew $n=1,000,000$ simulations this time. While it is probably an overkill for this particular example, conditional probabilities in general require more simulations than unconditional ones. Of course, that is because we reject most of our original draws. Indeed, the size of the vector `X_cond` is `r length(X_cond)` - more than a $20$-fold decrease. This fact becomes particularly apparent when we try to use Monte Carlo for  conditional distributions associated with *continuous* random vectors as we will see in out next problem. 
 
-```{exercise}
+<div class="example">
 Let $X$ and $Y$ be independent random variables where $X$ has the $N(0,1)$ distribution and $Y$ the exponential distribution with parameter $\ld=1$. Find a graphical approximation to the conditional density of $Y$, given $X+Y\geq 1$. Repeat the same, but condition on $X+Y=1$.  
-```
+</div>
 
 **Solution.** 
 
@@ -1134,7 +1134,7 @@ $$ X+Y \in (1-\eps, 1+\eps) $$ for a small, but positive, $\eps$. In many cases 
 
 ## Additional Problems
 
-```{exercise} 
+<div class="problem"> 
    
 1. Find the Weibull distribution in R's help system.<!-- ' -->
 Simulate $n=10000$ draws from the Weibull distribution with shape parameter $2$ and scale parameter $3$. Draw a histogram of your simulations. 
@@ -1153,11 +1153,9 @@ Simulate $n=10000$ draws from the Weibull distribution with shape parameter $2$ 
      - `type="l"` (to get a smooth line instead of a bunch of points). 
      - `main="The CDF of the standard normal"` (to set the title), and
      -  another argument (which you must look up youself) that will set the $y$-axis label to $F(x)$. 
-```
+</div>
 
-```{exercise}
-<br>
-   
+<div class="problem">
 1. Simulate $n=1000$ draws from the  distribution whose distribution table is given by
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
  <thead>
@@ -1197,9 +1195,9 @@ and plot their histogram.
     make an educated guess as to what the distribution of $Y$ is? To make your
     life easier, consider $\tfrac{2}{\pi} Y$ first. 
 
-```
+</div>
 
-```{exercise}
+<div class="problem">
 A basic method for obtaining simulations draws from distributions other than the
 uniform is the **transformation method**. The idea is to start with (pseudo)
 random numbers, i.e., draws from the uniform $U(0,1)$ distribution, and then
@@ -1210,10 +1208,10 @@ Let $X$ be a random variable with a continuous and strictly increasing cdf $F$.
 What is the distribution of $Y=F(X)$? What does that have to do with the transformation method?
    
 (Hint: if you are having difficulty with this problem, feel free to run some experiments using R. )
-```
+</div>
  
-```{exercise} 
-(Extra credit) 
+<div class="problemec"> 
+ 
 
 1. Let $f_1$ and $f_2$ be two pdfs. We take a constant $\alpha \in (0,1)$ and define the function $f$ by
 $$ f(x) = \alpha f_1(x) + (1-\alpha) f_2(x).$$
@@ -1234,9 +1232,9 @@ $\mathbb{P}[ H ] = \alpha$ ... )
 given by $$ \tfrac{1}{2} \exp(-|x|), x\in {\mathbb R}.$$ This distribution
 is not built into R. How would you produce simulations from the double
 exponential using R?
-```
+</div>
 
-```{exercise}
+<div class="problem">
 Let `x=rnorm(1000)` and `y=rnorm(1000)`. For each of the following pairs, use the permutation test to decide whether they  are independent or not
 
    a) `x^2+y^2` and `y^2`
@@ -1248,11 +1246,11 @@ What your conclusions in b. and d. suggest about the geometric properties of the
    
 (Note: do not worry about dividing by $0$ in d. It will  happen with probability $0$.)
    
-```
+</div>
 
 
 
-```{exercise}
+<div class="problem">
 Simulate $n=10000$ draws from the joint distribution given by the following
 table:
 
@@ -1290,12 +1288,10 @@ table:
 Display the contingency table of your results, as well as a table showing the
 "errors", i.e., differences between the theoretical frequencies (i.e.,
 probabilities given above) and the obtained relative frequencies in the sample.
-```
+</div>
 
-
-```{exercise} 
+<div class="problem">
 Estimate the following integrals using Monte Carlo 
-
 a) $\int_0^1 \cos(x)\, dx$
 
 b) $\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}\frac{e^{-x^2/2}}{1+x^4}\,dx$
@@ -1303,10 +1299,12 @@ b) $\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}\frac{e^{-x^2/2}}{1+x^4}\,dx$
 c) $\int_0^{\infty} e^{-x^3-x}\, dx$
    
 d) $\int_{-\infty}^{\infty} \frac{\cos(x^2)}{1+x^2}\, dx$ (extra credit) 
+</div>
 
-```
 
-```{exercise}
+
+
+<div class="problem"> <p>
 The **tricylinder** is a solid body constructed as follows: create three
 cylinders of radius 1 around each of the three coordinate axes and intersect
 them:
@@ -1327,18 +1325,17 @@ Image by Ag2gaeh - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index
 </figure>
 
 Use Monte Carlo to estimate the volume of the tricylinder and 
-check your estimate against the exact value $8(2-\sqrt{2})$. 
-```
+check your estimate against the exact value $8(2-\sqrt{2})$. </p>
+</div>
 
-```{exercise} 
-(extra credit)
-Read about the Monty Hall Problem online (the introduction to its 
+<div class="problemec"> 
+Read about the **Monty Hall Problem** online (the introduction to its 
 [Wikipedia page](https://en.wikipedia.org/wiki/Monty_Hall_problem) has a nice  description),
 Use Monte Carlo to compare the two possible strategies (switching and
 not-switching) and decide which is better.
-```
+</div>
 
-```{exercise}
+<div class="problem">
 We learned how to simulate from a joint distribution of two discrete vectors
 $(X,Y$) by thinking of it as one-dimensional distribution but with values
 represented by pairs of numbers. Here is another way this can be done:
@@ -1348,51 +1345,33 @@ represented by pairs of numbers. Here is another way this can be done:
 2. Given the value you just obtained, let's <!--'--> call it $x$,  simulate from the conditional distribution of $Y$, given $X=x$. 
 
 Implement this procedure on the following joint distribution:
-  <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:left;text-align: center;">   </th>
-   <th style="text-align:right;text-align: center;"> 1 </th>
-   <th style="text-align:right;text-align: center;"> 2 </th>
-   <th style="text-align:right;text-align: center;"> 3 </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> 1 </td>
-   <td style="text-align:right;"> 0.1 </td>
-   <td style="text-align:right;"> 0.0 </td>
-   <td style="text-align:right;"> 0.3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> 2 </td>
-   <td style="text-align:right;"> 0.1 </td>
-   <td style="text-align:right;"> 0.1 </td>
-   <td style="text-align:right;"> 0.0 </td>
-  </tr>
-   <tr>
-   <td style="text-align:left;font-weight: bold;"> 3 </td>
-   <td style="text-align:right;"> 0.0 </td>
-   <td style="text-align:right;"> 0.0 </td>
-   <td style="text-align:right;"> 0.4 </td>
-  </tr>
-</tbody>
-</table> 
+```{r echo=FALSE}
+library(kableExtra)
+df = data.frame(matrix(c(0.1,0.0,0.3,0.1,0.1,0.0,0.0,0.0,0.4),
+                       nrow=3, byrow=TRUE))
+colnames(df) = c("1","2","3")
+rownames(df) = c("1","2","3")
+kable(df, striped=TRUE) %>% 
+   kable_styling(full_width=FALSE)
+```
+
 Display the contingency table of your simulations, first using counts, and then
 using relative frequencies. Compare to the theoretical values (i.e., the
 probabilities in the table above).
-```
+</div>  
 
-```{exercise}
+
+<div class="problem">
 Exactly one percent of the people in a given population have a certain disease.
 The accuracy of the diagnostic test for it is such that it
 detects the sick as sick with probability $0.95$ and the healthy as healthy with
 probability $0.9$. A person chosen at random from the population tested
 positive. What is the probability the he/she is, in fact, sick. Do the problem
 both analytically and by Monte Carlo.
-```
+</div>
 
-```{exercise}
+
+<div class="problem">
 A point is chosen at random, uniformly in the unit cube 
 $[0,1]\times[0,1]\times [0,1]$. Its distance to the origin $(0,0)$ is measured, and
 turns out to be equal to $1.5$.
@@ -1406,6 +1385,6 @@ Compute the mean of this (conditional) distribution for a few values of
 the parameter $\eps$ you use to deal with conditioning in 
 the continuous case. Make sure you include values of $\eps$ on both sides 
 of the spectrum - too big, and too small.
-```
+</div>
 
 ⬇︎ In case you were wondering, the text below belongs to footnotes from somewhere high above.⬇︎
