@@ -384,7 +384,7 @@ font-weight: bold; font-size: Large;
 }
 .example::before { content: "Problem " counter(H1) "." counter(H2) "." counter(nmb);}
 .problem::before { content: "Problem " counter(H1) "." counter(H2) "." counter(nmb);}
-.problemst::before { content: "Problem"; }
+.problemst::before { content: "Problem " attr(id) ; }
 .problemec::before { content: "Problem " counter(H1) "." counter(H2) "." counter(nmb) " (extra credit)";}
 .solution::before { content: "Solution:";}
 .comments::before { content: "Comments:"; }
@@ -509,7 +509,7 @@ summary {
 
 
 
-<div class="problemst">
+<div id="2.3.1" class="problemst">
 <p>Compute the following (your answer should be a decimal number):</p>
 <ol style="list-style-type: lower-alpha">
 <li><p><span class="math inline">\(1/238746238746\)</span></p></li>
@@ -544,7 +544,7 @@ summary {
 <span id="cb1-17"><a href="#cb1-17"></a>(((<span class="fl">1342.16</span> <span class="op">-</span><span class="st"> </span><span class="fl">2.18</span>)<span class="op">/</span>(<span class="dv">3</span> <span class="op">*</span><span class="st"> </span>pi <span class="op">+</span><span class="st"> </span><span class="fl">4.12</span>)<span class="op">^</span><span class="dv">2</span>)<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>))</span>
 <span id="cb1-18"><a href="#cb1-18"></a><span class="co">## [1] 1.940222</span></span></code></pre></div>
 </div>
-<div class="problemst">
+<div id="2.3.2" class="problemst">
 <ol style="list-style-type: decimal">
 <li><p>Define two variables <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> with values <span class="math inline">\(3\)</span> and <span class="math inline">\(4\)</span> and “put” their product into a variable called <span class="math inline">\(c\)</span>. Output the value of <span class="math inline">\(c\)</span>.</p></li>
 <li><p>Define two vectors <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> of length <span class="math inline">\(3\)</span>, such that the components of <span class="math inline">\(x\)</span> are <span class="math inline">\(1,2,3\)</span> and the components of <span class="math inline">\(y\)</span> are <span class="math inline">\(8,9,0\)</span>. Ouput their (componentwise) sum.</p></li>
@@ -573,7 +573,7 @@ summary {
 <span id="cb2-18"><a href="#cb2-18"></a><span class="co">## [1,]   -1    8</span></span>
 <span id="cb2-19"><a href="#cb2-19"></a><span class="co">## [2,]   -4    7</span></span></code></pre></div>
 </div>
-<div class="problemst">
+<div id="2.3.3" class="problemst">
 <ol style="list-style-type: decimal">
 <li><p>Construct a vector <span class="math inline">\(x\)</span> which contains all numbers from <span class="math inline">\(1\)</span> to <span class="math inline">\(100\)</span>.</p></li>
 <li><p>Construct a vector <span class="math inline">\(y\)</span> which contains <em>squares</em> of all numbers between <span class="math inline">\(20\)</span> and <span class="math inline">\(2000\)</span>.</p></li>
@@ -600,7 +600,7 @@ summary {
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>(<span class="kw">mean</span>(z))</span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="co">## [1] 449368.7</span></span></code></pre></div>
 </div>
-<div class="problemst">
+<div id="2.3.4" class="problemst">
 <ol style="list-style-type: decimal">
 <li><p>Write a function that takes a numerical argument <span class="math inline">\(x\)</span> and returns <span class="math inline">\(5\)</span> if <span class="math inline">\(x\geq 5\)</span> and <span class="math inline">\(x\)</span> itself otherwise.</p></li>
 <li><p>Write a function that returns <code>TRUE</code> (a logical value) if its argument is between <span class="math inline">\(2\)</span> and <span class="math inline">\(3\)</span> and <code>FALSE</code> otherwise.</p></li>
