@@ -343,25 +343,56 @@ pre code {
 white-space: inherit;
 }
 .exercise {
-margin-bottom: 10px;
 margin-top: 20px;
+margin-bottom: 10px;
 background-color: #FDF5E6;
 padding:5px;
 }
-h2 {
-margin-top: 5px;
-}
-.solution h2 {
-margin-top: 0px;
-}
-.solution {
-margin-top: 20px;
-}
+
 @media screen {
-.sourceCode { overflow: visible; }
+div.sourceCode { overflow: visible; }
 }
 .title {
-margin-bottom: 50px;
+margin-right: 350px;
+}
+
+body { counter-reset: H1; } 
+h1:before {
+counter-increment: H1;
+content: ""; 
+}
+h1 { counter-reset: H2; }
+h2::before {
+counter-increment: H2;
+content: "";
+}
+
+
+.problem, .problemec, .example, .problemst { padding: 10px; margin-bottom: 25px;
+counter-increment: nmb;
+}
+.solution { padding: 10px;
+margin-bottom: 25px; }
+
+.problem { background: #FDF5E6; }
+.problemec { background: #FDF0E6; }
+.problemst { background: #FDF5E6; }
+.example { background: #EEFEEE; }
+
+.example:before, .problem:before, .problemec:before, .problemst::before, .solution::before, .comments::before {
+font-weight: bold; font-size: Large;
+}
+.example::before { content: "Problem " counter(H1) "." counter(H2) "." counter(nmb);}
+.problem::before { content: "Problem " counter(H1) "." counter(H2) "." counter(nmb);}
+.problemst::before { content: "Problem"; }
+.problemec::before { content: "Problem " counter(H1) "." counter(H2) "." counter(nmb) " (extra credit)";}
+.solution::before { content: "Solution:";}
+.comments::before { content: "Comments:"; }
+part {
+font-weight: bold;
+}
+part::before {
+content: "Part" ;
 }
 </style>
 
@@ -478,8 +509,7 @@ summary {
 
 
 
-<div class="exercise">
-<h2 id="problem-1.1">Problem 1.1</h2>
+<div class="problemst">
 <p>Compute the following (your answer should be a decimal number):</p>
 <ol style="list-style-type: lower-alpha">
 <li><p><span class="math inline">\(1/238746238746\)</span></p></li>
@@ -494,7 +524,6 @@ summary {
 </ol>
 </div>
 <div class="solution">
-<h2 id="solution">Solution</h2>
 <p>Remember, parentheses around the whole expression tell R to print out the result</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>(<span class="dv">1</span><span class="op">/</span><span class="dv">238746238746</span>)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="co">## [1] 4.188548e-12</span></span>
@@ -515,8 +544,7 @@ summary {
 <span id="cb1-17"><a href="#cb1-17"></a>(((<span class="fl">1342.16</span> <span class="op">-</span><span class="st"> </span><span class="fl">2.18</span>)<span class="op">/</span>(<span class="dv">3</span> <span class="op">*</span><span class="st"> </span>pi <span class="op">+</span><span class="st"> </span><span class="fl">4.12</span>)<span class="op">^</span><span class="dv">2</span>)<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>))</span>
 <span id="cb1-18"><a href="#cb1-18"></a><span class="co">## [1] 1.940222</span></span></code></pre></div>
 </div>
-<div class="exercise">
-<h2 id="problem-1.2">Problem 1.2</h2>
+<div class="problemst">
 <ol style="list-style-type: decimal">
 <li><p>Define two variables <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> with values <span class="math inline">\(3\)</span> and <span class="math inline">\(4\)</span> and “put” their product into a variable called <span class="math inline">\(c\)</span>. Output the value of <span class="math inline">\(c\)</span>.</p></li>
 <li><p>Define two vectors <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> of length <span class="math inline">\(3\)</span>, such that the components of <span class="math inline">\(x\)</span> are <span class="math inline">\(1,2,3\)</span> and the components of <span class="math inline">\(y\)</span> are <span class="math inline">\(8,9,0\)</span>. Ouput their (componentwise) sum.</p></li>
@@ -525,7 +553,6 @@ summary {
 </ol>
 </div>
 <div class="solution">
-<h2 id="solution-1">Solution</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>a =<span class="st"> </span><span class="dv">3</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>b =<span class="st"> </span><span class="dv">4</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a>(<span class="dt">c =</span> a <span class="op">*</span><span class="st"> </span>b)</span>
@@ -546,8 +573,7 @@ summary {
 <span id="cb2-18"><a href="#cb2-18"></a><span class="co">## [1,]   -1    8</span></span>
 <span id="cb2-19"><a href="#cb2-19"></a><span class="co">## [2,]   -4    7</span></span></code></pre></div>
 </div>
-<div class="exercise">
-<h2 id="problem-1.3">Problem 1.3</h2>
+<div class="problemst">
 <ol style="list-style-type: decimal">
 <li><p>Construct a vector <span class="math inline">\(x\)</span> which contains all numbers from <span class="math inline">\(1\)</span> to <span class="math inline">\(100\)</span>.</p></li>
 <li><p>Construct a vector <span class="math inline">\(y\)</span> which contains <em>squares</em> of all numbers between <span class="math inline">\(20\)</span> and <span class="math inline">\(2000\)</span>.</p></li>
@@ -556,19 +582,11 @@ summary {
 </ol>
 </div>
 <div class="solution">
-
-<div id="solution-2" class="section level2">
-<h2>Solution</h2>
-<div id="part-1" class="section level3">
-<h3>Part 1</h3>
+<p><part> 1. </part></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>x =<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100</span></span></code></pre></div>
-</div>
-<div id="part-2" class="section level3">
-<h3>Part 2</h3>
+<p><part> 2. </part></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>y =<span class="st"> </span>(<span class="dv">20</span><span class="op">:</span><span class="dv">2000</span>)<span class="op">^</span><span class="dv">2</span></span></code></pre></div>
-</div>
-<div id="part-3" class="section level3">
-<h3>Part 3</h3>
+<p><part> 3. </part></p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>(<span class="dt">z =</span> y[y <span class="op">&gt;</span><span class="st"> </span><span class="fl">4e+05</span> <span class="op">&amp;</span><span class="st"> </span>y <span class="op">&lt;</span><span class="st"> </span><span class="fl">5e+05</span>])</span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="co">##  [1] 400689 401956 403225 404496 405769 407044 408321 409600 410881 412164</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a><span class="co">## [11] 413449 414736 416025 417316 418609 419904 421201 422500 423801 425104</span></span>
@@ -578,13 +596,11 @@ summary {
 <span id="cb5-7"><a href="#cb5-7"></a><span class="co">## [51] 466489 467856 469225 470596 471969 473344 474721 476100 477481 478864</span></span>
 <span id="cb5-8"><a href="#cb5-8"></a><span class="co">## [61] 480249 481636 483025 484416 485809 487204 488601 490000 491401 492804</span></span>
 <span id="cb5-9"><a href="#cb5-9"></a><span class="co">## [71] 494209 495616 497025 498436 499849</span></span></code></pre></div>
-</div>
-<div id="part-4." class="section level3">
-<h3>Part 4.</h3>
+<p><part> 4. </part></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>(<span class="kw">mean</span>(z))</span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="co">## [1] 449368.7</span></span></code></pre></div>
-<div class="exercise">
-<h2 id="problem-1.4">Problem 1.4</h2>
+</div>
+<div class="problemst">
 <ol style="list-style-type: decimal">
 <li><p>Write a function that takes a numerical argument <span class="math inline">\(x\)</span> and returns <span class="math inline">\(5\)</span> if <span class="math inline">\(x\geq 5\)</span> and <span class="math inline">\(x\)</span> itself otherwise.</p></li>
 <li><p>Write a function that returns <code>TRUE</code> (a logical value) if its argument is between <span class="math inline">\(2\)</span> and <span class="math inline">\(3\)</span> and <code>FALSE</code> otherwise.</p></li>
@@ -592,8 +608,7 @@ summary {
 </ol>
 </div>
 <div class="solution">
-<h2 id="solution-3">Solution</h2>
-<h3 id="part-1-1">Part 1</h3>
+<p><part> 1. </part></p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>f =<span class="st"> </span><span class="cf">function</span>(x) {</span>
 <span id="cb7-2"><a href="#cb7-2"></a>    <span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>) {</span>
 <span id="cb7-3"><a href="#cb7-3"></a>        <span class="kw">return</span>(<span class="dv">5</span>)</span>
@@ -603,7 +618,7 @@ summary {
 <span id="cb7-7"><a href="#cb7-7"></a>}</span></code></pre></div>
 <p>This could be made much shorter using the function <code>ifelse</code>:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>f =<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">ifelse</span>(x <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>, <span class="dv">5</span>, x)</span></code></pre></div>
-<h3 id="part-2-1">Part 2</h3>
+<p><part> 2. </part></p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>g &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
 <span id="cb9-2"><a href="#cb9-2"></a>    <span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>) {</span>
 <span id="cb9-3"><a href="#cb9-3"></a>        <span class="kw">return</span>(<span class="ot">TRUE</span>)</span>
@@ -614,7 +629,7 @@ summary {
 <span id="cb9-8"><a href="#cb9-8"></a></span>
 <span id="cb9-9"><a href="#cb9-9"></a><span class="co"># more R-ic (what&#39;s &#39;Pythonic&#39;, but for R?)</span></span>
 <span id="cb9-10"><a href="#cb9-10"></a>g &lt;-<span class="st"> </span><span class="cf">function</span>(x) x <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
-<h3 id="part-3-1">Part 3</h3>
+<p><part> 3. </part></p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>angle &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</span>
 <span id="cb10-2"><a href="#cb10-2"></a>    length_x =<span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">sum</span>(x<span class="op">^</span><span class="dv">2</span>))</span>
 <span id="cb10-3"><a href="#cb10-3"></a>    length_y =<span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">sum</span>(y<span class="op">^</span><span class="dv">2</span>))</span>
@@ -643,8 +658,6 @@ summary {
 <span id="cb11-15"><a href="#cb11-15"></a><span class="co"># should be 90</span></span>
 <span id="cb11-16"><a href="#cb11-16"></a>(<span class="kw">angle</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">0</span>), <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)))</span>
 <span id="cb11-17"><a href="#cb11-17"></a><span class="co">## [1] 90</span></span></code></pre></div>
-</div>
-</div>
 </div>
 
 
