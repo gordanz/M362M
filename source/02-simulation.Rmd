@@ -26,11 +26,14 @@ skills presented before.
 <div class="example">
 ''Draw'' 50 simulations from the geometric distribution with parameter $p=0.4$.
 </div>
-**Solution:** 
+
+<p class="solution">
 ```{r}
 rgeom(50,prob=0.4)
 ```
-**Comments**
+</p>
+
+<div class="comments">
 
 *R:* R makes it very easy to simulate draws from a large class of *named
 distributions*^[There are infinitely many ways random variables can be
@@ -114,25 +117,26 @@ out[,5]=c("...")
 names(out)[5]="..." 
 kable(out)
 ```
-
+</div>
 
 <div class="example">
 Compute the probability that among $1,000,000$ draws of a geometric random
 variable with parameter $p=0.4$, we never see a number greater than $22$.
 </div>
 
-**Solution:** First, we compute the probability that the value seen in a *single* draw does not exceed $22$:
+<p class="solution">
+First, we compute the probability that the value seen in a *single* draw does not exceed $22$:
 ```{r echo=2}
 options(digits=7)
 pgeom(22,prob=0.4)
 ```
-
 Different draws are *independent* of each other, so we need to raise this to the power $1,000,000$. 
 ```{r}
 (pgeom(22,prob=0.4))^(1000000)
 ```
-**Comments:**
+</p>
 
+<div class="comments">
 *R.* The command we used here is `pgeom` which is a cousin of `rgeom`. In
 general, R commands that involve named probability distributions consist of two
 parts. The prefix, i.e., the initial letter (`p` in this case) stands for the
@@ -193,17 +197,21 @@ Coming back to our original problem, we note that the probability we obtained is
 quite small. Since $1/0.000372$ is about $2690$, we would have to run about
 $2690$ rounds of $1,000,000$ simulations before the largest number falls below
 $23$.
+</div>
 
 
 <div class="example"> 
 Compute the $0.05$, $0.1$, $0.4$, $0.6$ and $0.95$ quantiles of the normal 
 distribution with mean $1$ and standard deviation $2$.
 </div>
-**Solution:**
+
+<p class="solution">
 ```{r}
 qnorm( c(0.05, 0.1, 0.4, 0.6, 0.95), mean = 1, sd = 2)
 ```
+</p>
 
+<div class="comments">
 *R.* The function we used is `qnorm`, with the prefix `q` which computes the
 quantile function and the R name `norm` because we are looking for the quantiles
 of the normal distribution. The additional (named) parameters are where the
@@ -228,18 +236,20 @@ As expected, we got the original values back - the normal quantile function and 
 *normal table*. Computing a quantile is the opposite; you go into the middle of
 the table and find your value, and then figure out which "Z" would give you that
 value. 
+</div>
 
 
 <div class="example">
 Simulate $60$ throws of a fair $10$-sided die. 
 </div>
-**Solution:**
+
+<p class="solution">
 ```{r}
 sample( 1:10 , 60, replace = TRUE)
 ```
+</p>
 
-**Comments**:
-
+<div class="comments">
 *Math.* Let $X$ denote the outcome of a single throw of a fair $10$-sided die.
 The distribution of $X$ is discrete (it can only take the values
 $1,2,\dots, 10$) but it is not one of the more famous named distributions. I
@@ -288,7 +298,7 @@ set.seed(513)
 sample( c(1,2,3), 10, replace = TRUE, prob = c(0.2,0.7, 0.1))
 ```
 Note how it is mostly $2$s, as expected.
-
+</div>
 
 <div class="example">
 Draw a sample of size $n=10$ from $N(1,2)$, i.e., from the normal distribution
@@ -296,7 +306,9 @@ with parameters $\mu=1$, $\sigma = 2$. Plot a histogram of the obtained
 values. Repeat for $n=100$ and $n=100000$. 
 </div>
 
-**Solution:**
+
+<p class="solution">
+
 ```{r}
 x = rnorm(10, mean = 1, sd = 2)
 hist(x)
@@ -309,7 +321,9 @@ hist(x)
 x = rnorm(100000, mean = 1, sd = 2)
 hist(x)
 ```
-**Comments:**
+</p>
+
+<div class="comments">
 
 *R.* It cannot be simpler! You use the command `hist`, feed it a vector of
 values, and it produces a histogram. It will even label the axes for you. If you
@@ -358,6 +372,7 @@ y = dnorm(x, mean = 1, sd = 2)
 hist(sims, freq=FALSE, main = "")
 points(x,y, type="l", lwd=3, col="red" )
 ```
+</div>
 
 ## Multivariate Distributions
 
@@ -370,9 +385,10 @@ Let `x` contain $2,000$ draws from $N(0,1)$, `z` another $2,000$ draws from $N(0
    
 3. Are `x` and `y` correlated? Do `x` and `y` in your plot "look independent"?  Use the permutation test to check of independence between `x` and `y`. 
 </div>
-**Solution:**
 
-1.\  
+<p class="solution">
+
+<part> 1. </part>
 
 ```{r}
 x = rnorm(2000)
@@ -380,7 +396,8 @@ z = rnorm(2000)
 y = x^2+z
 plot(x,y)
 ```
-2. \ 
+
+<part> 2. </part>
 
 ```{r echo=2:3}
 par(mfrow=c(1,2))
@@ -431,7 +448,9 @@ histograms to be the same. On the other hand, their joint distributions (aka
 dependence structures) are completely different. In the first (left) case, $X$
 and $Y$ are independent, but in the second they are completely dependent.
 
-3.\ They are probably not correlated since the sample correlation between `x`
+<part> 3. </part>
+
+They are probably not correlated since the sample correlation between `x`
 and `y` is close to $0$:
 ```{r}
 (cor(x,y))
@@ -456,10 +475,9 @@ plot(x,y_perm_3)
 
 The conclusion is clear, the first (upper-left) plot is very different than the
 other three. Therefore, `x` and `y` are probably not independent.
+</p>
 
-
-**Comments.**
-
+<div class="comments">
 *Math.* The point of this problem is to review the notion of the **joint
 distribution** between two random variables. The most important point here is
 that there is more to the joint distribution of two random vectors, than just
@@ -550,6 +568,7 @@ browser has JavaScript enabled:
 htmltools::includeHTML("pics/3dhist.html")
 ```
 </div>
+
 A visualization solution that requires less technology would start the same way,
 i.e., by dividing the $xy$ plane into regions, but instead of the third
 dimension, it would use different colors to represent the counts. Here is an
@@ -590,42 +609,28 @@ You are not required to do this in your submissions, but if you want to display
 several plots side-by-side, use the command is `par(mfrow=c(m,n))` before the
 `plot` commands. It tells R to plot the next $mn$ plots in a $m\times n$ grid.
 
+</div>
 
 <div class="example">
-Random variables $X$ and $Y$ have the joint distribution given by the following
-table:
-   
-<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
- <thead>
-  <tr>
-   <th style="text-align:left;text-align: center;">   </th>
-   <th style="text-align:right;text-align: center;"> 1 </th>
-   <th style="text-align:right;text-align: center;"> 2 </th>
-   <th style="text-align:right;text-align: center;"> 3 </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> 1 </td>
-   <td style="text-align:right;"> 0.1 </td>
-   <td style="text-align:right;"> 0.2 </td>
-   <td style="text-align:right;"> 0.3 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;font-weight: bold;"> 2 </td>
-   <td style="text-align:right;"> 0.2 </td>
-   <td style="text-align:right;"> 0.2 </td>
-   <td style="text-align:right;"> 0.0 </td>
-  </tr>
-</tbody>
-</table>
-   
+Let the random variables $X$ and $Y$ have the joint distribution given by 
+the following table:
+
+```{r echo=FALSE}
+library(kableExtra)
+df = data.frame(matrix(c(0.1,0.2,0.3,0.2,0.2,0.0),
+                       nrow=2, byrow=TRUE))
+colnames(df) = c("1","2","3")
+rownames(df) = c("1","2")
+kable(df, striped=TRUE) %>% 
+   kable_styling(full_width=FALSE)
+```
    
 Simulate $10,000$ draws from the distribution of $(X,Y)$ and display a 
 contingency table of your results.
 </div>
 
-**Solution.** 
+<p class="solution">
+
 ```{r tidy=FALSE}
 joint_distribution_long = data.frame(
    x = c(1, 1, 1, 2, 2, 2),
@@ -646,15 +651,14 @@ draws = joint_distribution_long[sampled_rows, ]
 table(draws)
 ```
 
+</p>
 
-**Comments:** 
-
-*Math.* 
-
-The main mathematical idea is to think of *each pair* of possible values
+<div class="comments"> 
+*Math.* The main mathematical idea is to think of *each pair* of possible values
 of $X$ and $Y$ as a separate "object", put all these objects in a "bag", then
 then draw from the bag. In other words, we convert the bivariate distribution
 from the problem to the following univariate distribution
+
 ```{r echo=FALSE}
 library(tidyverse)
 paired = joint_distribution_long %>% 
@@ -663,6 +667,7 @@ paired = joint_distribution_long %>%
 knitr::kable(t(probabilities_long), col.names=paired$val, striped=TRUE) %>% 
    kable_styling( full_width=FALSE)
 ```
+
 and sample from it. When you do, you will get a vector whose elements are pairs
 of numbers. The last step is to extract the components of those pairs into
 separate vectors. 
@@ -682,6 +687,7 @@ corresponding to different observations, and columns to various observed
 variables.
 
 The easiest way to construct a data frame using already existing vectors is as follows:
+
 ```{r}
 x = c(1,2,3)
 y = c("a","b","c")
@@ -698,16 +704,21 @@ allows you to access a column by its name:
 ```{r}
 df$y
 ```
+
 If you want to give your columns custom names (or if you are building them out
 of explicitly given vectors as in the solution above) use the following syntax
+
 ```{r}
 z = c("a","b","c","d")
 (df = data.frame( letters = z, numbers = c(1,2,3,4)))
 ```
+
 A feature that data frames share with vectors and matrices is that you can use vector indexing as in the following example (where `df` is as above)
+
 ```{r}
 df[c(2,4,4,1),]
 ```
+
 Make sure you understand why the expression inside the brackets is `c(2,4,4,1),`
 and not `c(2,4,4,1)`. R's desire to keep row names unique leads to some
 cumbersome constructs such as `4.1` above. As I mentioned before, just disregard
@@ -736,7 +747,7 @@ a data frame and not to a vector, but the effect is the same. It tabulates all
 possible combinations of values of the columns, and counts how many times each
 of them happened. The same result would have been obtained by calling
 `table(draws$x, draws$y)`. 
-
+</div>
 
 
 ## Monte Carlo
@@ -747,37 +758,43 @@ variable with parameter $\ld = 4$ using $n=10$, $n=1,000$ and $n=1,000,000$
 simulations. Compare to the exact value.
 </div>
 
-**Solution:**
+<p class="solution">
+
 ```{r echo = c(2,4)}
 set.seed(12341)
 x = rexp(10, rate=4)
 err = 0.25 - mean(x)
 mean(x)
 ```
+
 For an exponential random variable with parameter $\ld$, the expected value is 
 $1/\ld$ (such information can be found in [Appendix A](./dist.html)) which, 
 in this case, is  $0.25$. The error made was `r format(err,digits=5)` for $n=10$ simulations.
 
 We increase the number of simulations to $n=1000$ and get a better result
+
 ```{r echo = c(2,4)}
 set.seed(12342)
 x = rexp(1000, rate=4)
 err = 0.25 - mean(x)
 mean(x)
 ```
+
 with (smaller) error `r format(err, digits=5)`. Finally, let's try $n=1,000,000$:
+
 ```{r echo = c(2,4)}
 set.seed(12342)
 x = rexp(1000000, rate=4)
 err = 0.25 - mean(x)
 mean(x)
 ```
-The error is even smaller `r format(err, digits=5)`. 
 
+The error is even smaller `r format(err, digits=5)`. 
+</p>
 <!-- This can be obtained quite easily by integration (by parts): -->
 <!-- $$ \EE[X] = \int_{-\infty}^{\infty} x f(x)\, dx = \int_0^{\infty} x \ld e^{-\ld x}\, dx = \tfrac{1}{\ld}$$ -->
 
-**Comments:**
+<div class="comments">
 
 *R.* The only new thing here is the command `mean` which computes the mean of a vector. 
 
@@ -804,28 +821,35 @@ It looks like Monte Carlo can only be used to compute the expected value of a
 random variable, which does not seem like such a bit deal. But it is! You will see
 in the sequel that almost anything can be written as the expected value of
 *some* random variable.
+</div>
 
 <div class="example">
 Use Monte Carlo to estimate $\EE[X^2]$, where $X$ is a standard normal 
 random variable. 
 </div>
 
-**Solution.**
+<p class="solution">
+
 You may or may now know that when $X$ is standard normal $Y=X^2$ has a $\chi^2$
 distribution with one degree of freedom. If you do, you can solve the problem
 like this:
+
 ```{r}
 y = rchisq(5000 ,df=1)
 mean(y)
 ```
+
 If you don't, you can do the following: 
+
 ```{r}
 x = rnorm(5000)
 y = x^2
 mean(y)
 ```
 
-**Comments:**
+</p>
+
+<div class="comments">
 
 *Math+R.* We are asked to compute $\EE[ X^2]$, which can be interpreted in
 two ways. First, we can think of $Y=X^2$ as a random variable in its own right and you
@@ -851,60 +875,76 @@ when we start working with several random variables and stochastic processes,
 but it can be very helpful even in the case of a single random variable, as you
 will see in the next problem. 
 
+</div>
 
 <div class="example">
 Let $X$ be a standard normal random variable. Use Monte Carlo to estimate the
 probability $\PP[ X > 1 ]$. Compare to the exact value.
 </div>
-**Solution:**
+
+<p class="solution">
+
 The estimated probability:
+
 ```{r tidy=FALSE}
 x = rnorm(10000)
 y = x > 1
 (p_est = mean(y))
 ```
+
 The exact probability and the error
+
 ```{r}
 p_true = 1-pnorm(1)
 (err = p_est-p_true)
 ```
 
+</p>
 
-**Comments:**
+<div class="comments">
 
 *R.* As we learned before,  the symbol `>` is an operation, which returns a Boolean (`TRUE` or `FALSE`) value. For example:
+
 ```{r}
 1>2
 ```
 ```{r}
 5^2>20
 ```
+
 It is vectorized:
+
 ```{r}
 x = c(1,2,4)
 y = c(5,-4,3)
 x>y
 ```
+
 and recycling rules apply to it (so that you can compare a vector and a scalar, for example)
+
 ```{r}
 x = 1:10
 x>5
 ```
-Therefore, the vector `y` in the solution is a vector of length $10000$ whose elements are either `TRUE` or `FALSE`; here are the first 5 rows of data frame with columns `x` and `y` from our solution:
+
+Therefore, the vector `y` in the solution is a vector of length $10000$ whose
+elements are either `TRUE` or `FALSE`; here are the first 5 rows of data frame
+with columns `x` and `y` from our solution:
+
 ```{r echo=FALSE}
 set.seed(2123)
 df = data.frame(x = rnorm(100000), y = x > 1)[1:5,]
 kable(df, digits = 4) %>% 
    kable_styling(full_width = FALSE)
 ``` 
+
 Finally, `z` contains the `mean` of `y`. How do you compute a mean of Boolean values?  In R (and many other languages) `TRUE` and `FALSE` have default numerical values, usually $1$ and $0$. This way, when $R$ is asked to compute the `sum` of a Boolean vector it will effectively count the number of values which are `TRUE`. Similarly, the `mean` is the relative proportion of `TRUE` values. 
 
-*Math.* 
-
-We computed the **proportion** of the "times" $X>1$ (among many simulations of $X$) and used it to approximate the **probability** $\PP[ X>1]$.  More formally, 
+*Math.* We computed the **proportion** of the "times" $X>1$ (among many simulations of $X$) and used it to approximate the **probability** $\PP[ X>1]$.  More formally, 
 we started from a random variable $X$ with a normal distribution and then transformed it into another random variable, $Y$, by setting $Y=1$ whenever $X>1$ and $0$ otherwise. This is often written as follows
 $$ Y = \begin{cases} 1, & X>1 \\ 0, & X\leq 1.\end{cases}$$
 The random variable $Y$ is very special - it can only take values $0$ and $1$ (i.e., its support is $\{0,1\}$). Such random variables are called **indicator random variables**, and their distribution, called the **Bernoulli distribution**, always looks like this:
+
 ```{r echo=FALSE}
 library(tidyverse)
 library(kableExtra)
@@ -916,13 +956,16 @@ for some $p \in [0,1]$. The parameter $p$  is nothing but the probability $\PP[Y
 So why did we decide to transform $X$ into $Y$? Because of the following simple fact:
 $$ \EE[ Y] = 1 \times p + 0 \times (1-p) = p.$$
 The expected value of an indicator is the probability $p$, and we know that we can use Monte Carlo whenever we can express the quantity we are computing as an expected value of a random variable we know how to simulate. 
+</div>
 
 Many times, simulating a random variable is easier than analyzing it analytically. Here is a fun example:
 
 <div class="example">
 Use Monte Carlo to estimate the value of $\pi$ and compute the error. 
 </div>
-**Solution.**
+
+<p class="solution">
+
 ```{r tidy=FALSE}
 nsim = 1000000
 x =  runif(nsim,-1, 1)
@@ -931,9 +974,9 @@ z = (x ^ 2 + y ^ 2) < 1
 (pi_est = 4 * mean(z))
 (err = pi_est - pi)
 ```
+</p>
 
-
-**Comments:**
+<div class="comments">
 
 *Math.*
 ```{r echo=FALSE, out.width= "50%", out.extra='style="float:right; padding:10px"'}
@@ -943,6 +986,7 @@ As we learned in the previous problem, probabilities of events can be computed u
 $$ Z = \begin{cases} 1 & (X,Y) \text{ is inside the unit circle, } \\ 0 & \text{ otherwise.}
 \end{cases}
 = \begin{cases} 1& X^2+Y^2 < 1, \\ 0 & \text{ otherwise.} \end{cases}$$
+</div>
 
 <div class="example">
 1. Write an R function `cumavg` which computes the sequence of running averages of a vector, i.e., if the input is $x=(x_1,x_2,x_3,\dots, x_n)$, the output should be
@@ -951,9 +995,11 @@ $$ \Big(x_1, \frac{1}{2} (x_1+x_2), \frac{1}{3}(x_1+x_2+x_3), \dots, \frac{1}{n}
 2. Apply `cumavg` to the vector $4 z$ from the previous problem and plot your results (use a smaller value for `nsim`. Maybe $1000$.) Plot the values against their index. Add a red horizontal line at the level $\pi$. Rerun the same code (including the simulation part) several times.
 </div>
 
-**Solution**
 
-1.
+<p class="solution">
+
+<part> 1. </part>
+
 ```{r}
 cumavg = function(x) {
    c = cumsum(x)
@@ -964,7 +1010,8 @@ x = c(1, 3, 5, 3, 3, 9)
 cumavg(x)
 ```
 
-2.
+<part> 2. </part>
+
 ```{r tidy=FALSE}
 nsim = 1000
 x =  runif(nsim,-1, 1)
@@ -982,13 +1029,11 @@ plot(
 abline(pi, 0,
        col = "red")
 ```
+</p>
 
-**Comments:**
-
-*R.* 
+<div class="comments">
 
 Part 1. Once you know about `cumsum`, the problem becomes much easier. 
-
 
 Part 2. This course is not about R graphics, but I think it is a good idea to teach you how to make basic plots in R. We already used the function `plot` to draw scatterplots.
 By default, each point drawn by `plot` is marked by a small circle so it might not seem like a good idea to use it. Luckily this, and many other things, can be adjusted by numerous additional arguments. One of such arguments is `type` which determines the type of the plot. We used `type="l"` which tells R to join the points with straight lines:
@@ -999,9 +1044,7 @@ plot(x,y, type="l")
 ```
 The other arguments, `xlab`, `ylab` and `main` determine labels for axes and the entire plot. The function `abline(a,b)` adds a line $y = a x + b$ to an already existing plot. It is very useful in statistics if one wants to show the regression line superimposed on the scatterplot of data. Finally, the argument `col`, of course, determines the color of the line. To learn about various graphical parameters, type `?par`. 
 
-*Math.*
-
-The conceptual reason for this exercise is to explore (numerically) the kinds of errors we make when we use Monte Carlo. Unlike the deterministic numerical procedures,  Monte Carlo has a strange property that no bound on the error can be made with absolute certainty. Let me give you an example. Suppose that you have a biased coin, with the probability $0.6$ of heads and $0.4$ of tails. You don't know this probability, and use a Monte Carlo technique to estimate it - you toss your coin $1000$ times and record the number of times you observe $H$. The law of large numbers suggests that the relative frequency of heads is close to the true probability of $H$. Indeed, you run a simulation
+*Math.* The conceptual reason for this exercise is to explore (numerically) the kinds of errors we make when we use Monte Carlo. Unlike the deterministic numerical procedures,  Monte Carlo has a strange property that no bound on the error can be made with absolute certainty. Let me give you an example. Suppose that you have a biased coin, with the probability $0.6$ of heads and $0.4$ of tails. You don't know this probability, and use a Monte Carlo technique to estimate it - you toss your coin $1000$ times and record the number of times you observe $H$. The law of large numbers suggests that the relative frequency of heads is close to the true probability of $H$. Indeed, you run a simulation
 ```{r echo=2:10}
 set.seed(1234)
 x = sample( c("T","H"), 1000, prob = c(0.4, 0.6), replace = TRUE)
@@ -1044,6 +1087,7 @@ ggplot(S, aes(x=time, y=estimate-pi, group = omega)) +
    ylab("error")+
    ggtitle(TeX("Errors in  Monte Carlo estimation of $\\pi$"))
 ```
+</div>
 
 ## Conditional distributions
 
@@ -1051,7 +1095,10 @@ ggplot(S, aes(x=time, y=estimate-pi, group = omega)) +
 Let $X$ and $Y$ be two independent geometric random variables with parameters $p=0.5,$ and let $Z=X+Y$. Compute $\PP[ X = 3| Z = 5]$ using simulation. Compare to the exact value. 
 </div>
 
-**Solution:** By simulation:
+ 
+<p class="solution">
+
+By simulation:
 
 ```{r tidy=FALSE, echo=2:10}
 set.seed(1211)
@@ -1073,8 +1120,9 @@ $$ \begin{align} \PP[ Z = 5 ] = &\PP[X=0 \eand Y=5]+ \PP[ X=1 \eand Y=4] + \PP[ 
 &  \PP[ X=3 \eand Y=2] + \PP[ X=4 \eand Y=1] + \PP[ X = 5 \eand Y=0]. \end{align}$$
 Each of the individual probabilities in the sum above is $2^{-7}$, so $\PP[ X = 3 | Z = 5] = \frac{1}{6}$. 
 This gives us an error of `r mean(X_cond == 3) - 1/6`.
+</p>
 
-**Comments:**
+<div class="comments">
 
 *Math.*  Let us, first, recall what the conditional probability is. The definition we learn in the probability class is the following $$ \PP[A | B] = \frac{\PP[A \eand B]}{\PP[B]},$$ as long as $\PP[B]>0$. The interpretation is that $\PP[A|B]$ is still the probability of $A$, but now in the world where $B$ is guaranteed to happen. Conditioning usually happens when we receive new information. If someone tells us that $B$ happened, we can disregard everything in the complement of $B$ and adjust our probability to account for that fact. First we remove from $A$ anything that belongs to the complement of $B$, and recompute the probability $\PP[A \cap B]$. We also have to divide by $\PP[B]$ because we want the total probability to be equal to $1$. 
 
@@ -1092,12 +1140,13 @@ kable(t(table(X_cond))) %>%
 The histogram and the table  above suggest that  the distribution of $X$, given $Z=5$, is uniform on $\{0,1,2,3,4,5\}$. It is - a calculation almost identical to the one we performed above gives that $\PP[ X= i| Z=5] = \frac{1}{6}$ for each $i=0,1,2,3,4,5$. 
 
 One more observation at the end. Note that we drew $n=1,000,000$ simulations this time. While it is probably an overkill for this particular example, conditional probabilities in general require more simulations than unconditional ones. Of course, that is because we reject most of our original draws. Indeed, the size of the vector `X_cond` is `r length(X_cond)` - more than a $20$-fold decrease. This fact becomes particularly apparent when we try to use Monte Carlo for  conditional distributions associated with *continuous* random vectors as we will see in out next problem. 
+</div>
 
 <div class="example">
 Let $X$ and $Y$ be independent random variables where $X$ has the $N(0,1)$ distribution and $Y$ the exponential distribution with parameter $\ld=1$. Find a graphical approximation to the conditional density of $Y$, given $X+Y\geq 1$. Repeat the same, but condition on $X+Y=1$.  
 </div>
 
-**Solution.** 
+<p class="solution">
 
 ```{r}
 nsim=100000
@@ -1121,7 +1170,9 @@ hist(x_cond, breaks=100)
 
 ```
 
+</p>
 
+<div class="comments">
 *Math.* In the case of conditioning on $X+Y\geq 1$ we repeated the same procedure as in the discrete case. We simply rejected all draws that do not satisfy the condition.
 
 When Conditioning on $X+Y=1$, however, you immediately encounter a  problem  that you don't get with discrete distributions. The event $\{ X+Y=1\}$ has probability $0$ and will never happen.
@@ -1129,7 +1180,7 @@ That means that our strategy form the previous problem will simply not work - yo
 $$ \PP[ Y \geq 0 | X+Y=1] "=" \frac{\PP[ Y\geq 0 \text{ and } X+Y=1]}{ \PP[X+Y=1]}$$
 requires that the probability in the denominator be strictly positive. Otherwise you are dividing by zero. The theoretical solution to this is by no means simple and requires mathematics beyond the scope of these notes. Practically, there is a very simple way of going around it. Instead of conditioning on the zero-probability event $X+Y=1$, we use  a slightly more relaxed condition
 $$ X+Y \in (1-\eps, 1+\eps) $$ for a small, but positive, $\eps$. In many cases of interest, this approximation works very well, as long as $\eps$ is not too big. How big? Well, that will depend on the particular problem, as well as on the number of simulations you are drawing. The best way is to try several values and experiment. For example, if we chose $\eps=0.01$ in our problem, the number of elements in `x_cond` (i.e., the number of non-rejected draws) would be on the order of $100$, which may be considered to small to produce an accurate histogram. On the other hand, when $\eps=1$, your result will be inaccurate because. The rule of thumb is to take the smallest $\eps$ you can, while keeping the number of non-rejected draws sufficiently large. 
-
+</div>
 
 
 ## Additional Problems
