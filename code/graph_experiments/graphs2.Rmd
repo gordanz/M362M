@@ -1,0 +1,136 @@
+# Random Walks
+
+```{r}
+library(tidyverse)
+T <-  15
+nsim <-3
+
+single <- function(T) {
+  dx = sample(c(-1,1), replace = TRUE, T)
+  return(c(0,cumsum(dx)))
+}
+
+S = data.frame(t(replicate(nsim, single(T))))
+variable_name_X <- function(i){
+  paste("X",toString(i),sep="")
+}
+variable_name_i <- function(i) return(i)
+
+colnames(S) = lapply(0:T, variable_name_i)
+
+S$omega = rownames(S) # this way it is a <chr> and that is good!, makes it a factor 
+```
+
+```{r}
+library(tidyverse)
+# put it is long form for plotting
+L = S %>% 
+  pivot_longer(-omega, names_to = "t", values_to = "X") 
+L$t = as.numeric(L$t) # because columns names become characters
+L$X = L$X + rnorm(length(L$X), sd = 0.0) # jitter
+```
+
+```{r}
+library(plotly)
+
+L %>% 
+  plot_ly(x=~t, y=~X, color=~omega) %>% 
+  config(displayModeBar = FALSE) %>% 
+  add_trace(type="scatter",mode = "markers+lines",
+            hovertemplate = "X_{%{x}} = %{y}<extra></extra>") %>% 
+  layout(title = "Several trajectories",
+         xaxis = list(#range = c(-1.01,1.01), 
+                        showgrid = T,
+                        zeroline = T,
+                        visible = T),
+         yaxis = list(#range = c(-1.01,1.01), 
+                      showgrid = T,
+                      zeroline = T,
+                      visible = T,
+                      scaleanchor = "x",
+                      scaleratio = 1)
+         )
+         
+
+```
+```{r}
+nsim = 100
+L = data.frame(x = runif(min = -1, max = 1, nsim), y=runif(min = -1, max = 1, nsim))
+L$omega = as.numeric(rownames(L))
+L$inside = (L$x)^2+(L$y)^2 < 1
+
+accumulate_by <- function(dat, var) {
+  var <- lazyeval::f_eval(var, dat)
+  lvls <- plotly:::getLevels(var)
+  dats <- lapply(seq_along(lvls), function(x) {
+    cbind(dat[var %in% lvls[seq(1, x)], ], frame = lvls[[x]])
+  })
+  dplyr::bind_rows(dats)
+}
+
+fL = L %>% accumulate_by(~omega)
+
+fL %>% 
+  plot_ly(x=~x, y=~y, color=~as.numeric(inside), colors = c("red", "darkgreen"), hovertemplate = "") %>% 
+  add_markers(size=I(20),
+              hoverinfo = FALSE,
+              frame = ~frame,
+              showlegend = FALSE) %>% 
+   hide_colorbar %>% 
+   layout(xaxis = list(range = c(-1.01,1.01), 
+                        showgrid = F, 
+                        zeroline = F,
+                        visible = F),
+         yaxis = list(range = c(-1.01,1.01), 
+                      showgrid = F,
+                      zeroline = F,
+                      visible = F,
+                      scaleanchor = "x",
+                      scaleratio = 1),
+        shapes = list(
+          list(type = 'rectangle',
+                   xref = 'x', x0 = -1, x1 = 1,
+                   yref = 'y', y0 = -1, y1 = 1,
+                   line = list(color = 'rgb(200,200,200)')
+                   ),
+              list(type = 'circle',
+                   xref = 'x', x0 = -1, x1 = 1,
+                   yref = 'y', y0 = -1, y1 = 1,
+                    line = list(color = 'rgb(0,0,0)')
+                   )
+              )
+        ) %>% 
+  config(displayModeBar = FALSE) %>% 
+  animation_opts(50,
+    redraw = TRUE,
+    easing = "elastic",
+    mode = "immediate"
+  )
+
+```
+
+```{r}
+library(ggplot2)
+library(gganimate)
+theme_set(theme_bw())
+library(gapminder)
+head(gapminder)
+p <- ggplot(
+  gapminder, 
+  aes(x = gdpPercap, y=lifeExp, size = pop, colour = country)
+  ) +
+  geom_point(show.legend = FALSE, alpha = 0.7) +
+  scale_color_viridis_d() +
+  scale_size(range = c(2, 12)) +
+  scale_x_log10() +
+  labs(x = "GDP per capita", y = "Life expectancy")
+p + transition_time(year) +
+  labs(title = "Year: {frame_time}")
+
+```
+```{r}
+library(ggplot2)
+library(gganimate)
+p <- ggplot()
+```
+

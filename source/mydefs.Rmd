@@ -1,0 +1,17 @@
+\newcommand{\PP}{{\mathbb{P}}}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand{\sS}{{\mathcal{S}}}
+\newcommand{\EE}{{\mathbb{E}}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\corr}{\operatorname{corr}}
+\newcommand{\ld}{\lambda}
+\newcommand{\eand}{\text{ and }}
+\newcommand{\efor}{\text{ for }}
+\newcommand{\tot}{\tfrac{1}{2}}
+\newcommand{\seqz}[1]{\{#1_n\}_{n\in \N_0}}
+\newcommand{\abs}[1]{|#1|}
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\tf}[2]{\frac{#1}{#2}}
+          
+          

@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Random Walks | Lecture notes for &quot;Introduction to Stochastic Processes&quot;</title>
+  <meta name="description" content="A set of lecture notes for M362M: Introduction to Stochastic Processes" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Random Walks | Lecture notes for &quot;Introduction to Stochastic Processes&quot;" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A set of lecture notes for M362M: Introduction to Stochastic Processes" />
+  <meta name="github-repo" content="gordanz/M362M" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Random Walks | Lecture notes for &quot;Introduction to Stochastic Processes&quot;" />
+  
+  <meta name="twitter:description" content="A set of lecture notes for M362M: Introduction to Stochastic Processes" />
+  
+
+<meta name="author" content="Gordan Zitkovic" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="simulation-of-random-variables-and-monte-carlo.html"/>
+<link rel="next" href="dist.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">M362M Lecture notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> An intro to R and RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#setting-up-an-r-environment-on-your-computer"><i class="fa fa-check"></i><b>1.1</b> Setting up an R environment on your computer</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#installing-r"><i class="fa fa-check"></i><b>1.1.1</b> Installing R</a></li>
+<li class="chapter" data-level="1.1.2" data-path="intro.html"><a href="intro.html#installing-rstudio"><i class="fa fa-check"></i><b>1.1.2</b> Installing RStudio</a></li>
+<li class="chapter" data-level="1.1.3" data-path="intro.html"><a href="intro.html#installing-basic-packages"><i class="fa fa-check"></i><b>1.1.3</b> Installing basic packages</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#learning-the-basics-of-r"><i class="fa fa-check"></i><b>1.2</b> Learning the basics of R</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#the-console-scripts-and-r-notebooks"><i class="fa fa-check"></i><b>1.2.1</b> The console, Scripts and R Notebooks</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#asking-for-help"><i class="fa fa-check"></i><b>1.2.2</b> Asking for help</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#vectors"><i class="fa fa-check"></i><b>1.2.3</b> Vectors</a></li>
+<li class="chapter" data-level="1.2.4" data-path="intro.html"><a href="intro.html#matrices"><i class="fa fa-check"></i><b>1.2.4</b> Matrices</a></li>
+<li class="chapter" data-level="1.2.5" data-path="intro.html"><a href="intro.html#functions"><i class="fa fa-check"></i><b>1.2.5</b> Functions</a></li>
+<li class="chapter" data-level="1.2.6" data-path="intro.html"><a href="intro.html#if-else-statements"><i class="fa fa-check"></i><b>1.2.6</b> If-else statements</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#problems"><i class="fa fa-check"></i><b>1.3</b> Problems</a></li>
+</ul></li>
+<li class="part"><span><b>I Probability and Simulation</b></span></li>
+<li class="chapter" data-level="2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html"><i class="fa fa-check"></i><b>2</b> Simulation of Random Variables and Monte Carlo</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#simulation-of-some-common-probability-distributions"><i class="fa fa-check"></i><b>2.1</b> Simulation of some common probability distributions</a></li>
+<li class="chapter" data-level="2.2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#multivariate-distributions"><i class="fa fa-check"></i><b>2.2</b> Multivariate Distributions</a></li>
+<li class="chapter" data-level="2.3" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#monte-carlo"><i class="fa fa-check"></i><b>2.3</b> Monte Carlo</a></li>
+<li class="chapter" data-level="2.4" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#conditional-distributions"><i class="fa fa-check"></i><b>2.4</b> Conditional distributions</a></li>
+<li class="chapter" data-level="2.5" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#additional-problems"><i class="fa fa-check"></i><b>2.5</b> Additional Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="random-walks.html"><a href="random-walks.html"><i class="fa fa-check"></i><b>3</b> Random Walks</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="random-walks.html"><a href="random-walks.html#what-are-stochastic-processes"><i class="fa fa-check"></i><b>3.1</b> What are stochastic processes?</a></li>
+<li class="chapter" data-level="3.2" data-path="random-walks.html"><a href="random-walks.html#the-simple-symmetric-random-walk"><i class="fa fa-check"></i><b>3.2</b> The Simple Symmetric Random Walk</a></li>
+<li class="chapter" data-level="3.3" data-path="random-walks.html"><a href="random-walks.html#how-to-simulate-random-walks"><i class="fa fa-check"></i><b>3.3</b> How to simulate random walks</a></li>
+<li class="chapter" data-level="3.4" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#additional-problems"><i class="fa fa-check"></i><b>3.4</b> Additional problems</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>A</b> Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="dist.html"><a href="dist.html#discrete-distributions"><i class="fa fa-check"></i><b>A.1</b> Discrete distributions:</a></li>
+<li class="chapter" data-level="A.2" data-path="dist.html"><a href="dist.html#continuous-distributions"><i class="fa fa-check"></i><b>A.2</b> Continuous distributions:</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lecture notes for "Introduction to Stochastic Processes"</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="random-walks" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Random Walks</h1>
+<div id="what-are-stochastic-processes" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> What are stochastic processes?</h2>
+<p>A <strong>stochastic process</strong> is a sequence - finite or infinite - of random
+variables. We usually write <span class="math inline">\(\{X_n\}_{n\in{\mathbb{N}}}\)</span> or <span class="math inline">\(\{X_n\}_{0\leq n \leq T}\)</span>,
+depending on whether we are talking about an infinite or a finite sequence. The
+number <span class="math inline">\(T\in {\mathbb{N}}_0\)</span> is called the <strong>time horizon</strong>, and we sometimes set
+<span class="math inline">\(T=+\infty\)</span> when the sequence is infinite. The index <span class="math inline">\(n\)</span> is often interpreted
+as <em>time</em>, so that a stochastic process can be thought of as a model of a random
+process evolving in time. The initial value of the index <span class="math inline">\(n\)</span> is often normalized
+to <span class="math inline">\(0\)</span>, even though other values may be used. This it usually very clear from
+the context.</p>
+<p>It is important that all the random variables <span class="math inline">\(X_0, X_1,\dots\)</span> “live” on the
+same sample space <span class="math inline">\(\Omega\)</span>. This way, we can talk about the notion of a
+<strong>trajectory</strong> or a <strong>sample path</strong> of a stochastic process: it is, simply, the
+sequence of numbers <span class="math display">\[X_0(\omega), X_1(\omega), \dots\]</span> but with <span class="math inline">\(\omega\in \Omega\)</span> considered “fixed”. In other words, we can think of a stochastic
+process as a random variable whose value is not a numbers, but sequence of
+numbers. This will become much clearer once we introduce enough examples.</p>
+</div>
+<div id="the-simple-symmetric-random-walk" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> The Simple Symmetric Random Walk</h2>
+<p>A stochastic process <span class="math inline">\(\{X\}_{n\in{\mathbb{N}}_0}\)</span> is said to be a
+<strong>simple symmetric random walk</strong> if</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(X_0=0\)</span>,</p></li>
+<li><p>the random variables <span class="math inline">\(\delta_1 = X_1-X_0\)</span>, <span class="math inline">\(\delta_2 = X_2 - X_1\)</span>, …, called the <strong>steps</strong> of the random walk,
+are independent</p></li>
+<li><p>each <span class="math inline">\(\delta_n\)</span> has a <strong>coin-toss distribution</strong>, i.e., its distribution is given by
+<span class="math display">\[{\mathbb{P}}[ \delta_n = 1] = {\mathbb{P}}[ \delta_n=-1] = \tfrac{1}{2} \text{ for each } n.\]</span></p></li>
+</ol>
+<p>Some comments:</p>
+<ul>
+<li><p>This definition captures the main features of an
+idealized notion of a particle that gets shoved, randomly, in one of
+two possible directions, over and over. In other words, these “shoves”
+force the particle to take a step, and steps are
+modeled by the random variables
+variables <span class="math inline">\(\delta_1,\delta_2, \dots\)</span>. The position of the
+particle after <span class="math inline">\(n\)</span> steps is <span class="math inline">\(X_n\)</span>; indeed,
+<span class="math display">\[X_n = \delta_1 + \delta_2 + \dots + \delta_n \text{ for }n\in {\mathbb{N}}.\]</span> It
+is important to assume that any two steps are independent of each
+other - the most important properties of random walks depend on this
+in a critical way.</p></li>
+<li><p>Sometimes, we only need a finite number of steps of a random walk,
+so we only care about the random variables <span class="math inline">\(X_0, X_1,\dots, X_T\)</span>. This
+stochastic process (now with a finite time horizon <span class="math inline">\(T\)</span>) will also be
+called a random walk. Sometimges we will call it the
+<strong>finite-horizon random walk</strong> to stress the distinction, but it should be
+clear from the context whether <span class="math inline">\(T\)</span> is finite or infinite.</p></li>
+<li><p>The starting point <span class="math inline">\(X_0=0\)</span> is just a normalization. Sometimes we
+need more flexibility and allow our process to start at <span class="math inline">\(X_0=x\)</span> for
+some <span class="math inline">\(x\in {\mathbb{N}}\)</span>. To stress that fact, we talk about the random walk .
+If no starting point is mentioned, you should assume <span class="math inline">\(X_0=0\)</span>.</p></li>
+<li><p>We will talk about <strong>biased</strong> the or <strong>asymmetric</strong> random walks a bit later.
+The only
+difference will be that the probabilities of each <span class="math inline">\(\delta_n\)</span> taking
+values <span class="math inline">\(1\)</span> or <span class="math inline">\(-1\)</span> will be <span class="math inline">\(p\in (0,1)\)</span> and not necessarily <span class="math inline">\(\tfrac{1}{2}\)</span>,
+The probability <span class="math inline">\(p\)</span> will not change
+from step to step and the steps <span class="math inline">\(\delta_1,\dots\)</span> will continue to be
+independent from each other.</p></li>
+<li><p>The word simple in its name refers to the fact that distribution of every
+step is a coin toss. You can easily imagine a more complicated mechanism that
+would govern each step. For example, not only the direction, but also the
+size of the step could be random. In fact, any distribution you can think
+of can be used as a step distribution of a random walk. Unfortunately, we will
+have very little to say about such, general, random walks in these notes.</p></li>
+</ul>
+</div>
+<div id="how-to-simulate-random-walks" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> How to simulate random walks</h2>
+<p>In addition to being quite simple conceptually, random walks are also easy
+to simulate. The fact that the steps <span class="math inline">\(\delta_n = X_n - X_{n-1}\)</span> are independent
+coin tosses, immediately suggests a feasible strategy:
+simulate <span class="math inline">\(T\)</span> independent coin tosses first, and then define each
+<span class="math inline">\(X_n\)</span> as the sum of the first <span class="math inline">\(n\)</span> tosses.</p>
+<p>Before we implement this idea in R, let us agree on a few conventions which
+we will use whenever we simulate a stochastic process:</p>
+<ul>
+<li>the result of each simulation is a <code>data.frame</code> object</li>
+<li>its columns will be the random variables <span class="math inline">\(X_0\)</span>, <span class="math inline">\(X_1\)</span>, It is a good
+idea to name your columns <code>X0</code>, <code>X1</code>, <code>X2</code>, etc., or <code>x0</code> <code>x1</code> <code>x2</code>, etc.</li>
+<li>each row will represent one “draw”</li>
+</ul>
+<p>This is best achieved by the following two-stage approach in R:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>write a function which will simulate a single trajectory of your process</p></li>
+<li><p>use the function <code>replicate</code> to stack together many such simulations and
+convert the result to a <code>data.frame</code>. Don’t
+forget to transpose first (use the function <code>t</code>) because <code>replicate</code> works column by column,
+and not row by row.</p></li>
+</ol>
+<p>Let’s implement this in the case of a simple random walk. Of course, it is
+impossible to simulate a random walk on an infinite horizon (<span class="math inline">\(T=\infty\)</span>)
+so we must restrict to finite-horizon random walks. The function <code>cumsum</code> which
+produces partial sums of its input comes in very handy.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="random-walks.html#cb98-1" aria-hidden="true"></a>single_trajectory =<span class="st"> </span><span class="cf">function</span>() {</span>
+<span id="cb98-2"><a href="random-walks.html#cb98-2" aria-hidden="true"></a>    T =<span class="st"> </span><span class="dv">10</span></span>
+<span id="cb98-3"><a href="random-walks.html#cb98-3" aria-hidden="true"></a>    delta =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">size =</span> T, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb98-4"><a href="random-walks.html#cb98-4" aria-hidden="true"></a>    x =<span class="st"> </span><span class="kw">cumsum</span>(delta)</span>
+<span id="cb98-5"><a href="random-walks.html#cb98-5" aria-hidden="true"></a>    <span class="kw">return</span>(x)</span>
+<span id="cb98-6"><a href="random-walks.html#cb98-6" aria-hidden="true"></a>}</span></code></pre></div>
+<p>Next, we run the same function <code>nsim</code> times and record the results. It is a
+lucky break that the default names given to columns are <code>X1</code>, <code>X2</code>, … so we
+don’t have to rename them. We do have to add the zero-th column <span class="math inline">\(X_0=1\)</span> because,
+formally speaking, the “random variable” <span class="math inline">\(X_0=0\)</span> is a part of the stochastic
+process. This needs to be done before other columns are added to maintain the
+proper order of columns, which is important when you want to plot trajectories.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="random-walks.html#cb99-1" aria-hidden="true"></a>nsim =<span class="st"> </span><span class="fl">1e+05</span></span>
+<span id="cb99-2"><a href="random-walks.html#cb99-2" aria-hidden="true"></a>df =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">X0 =</span> <span class="dv">1</span>, <span class="kw">t</span>(<span class="kw">replicate</span>(nsim, <span class="kw">single_trajectory</span>())))</span></code></pre></div>
+We are ready to explore <code>df</code> in several ways. We can plot histograms of various random variables:
+<center>
+<img src="_main_files/figure-html/unnamed-chunk-122-1.png" width="100%" style="display: block; margin: auto;" />
+</center>
+We can also study the dependence of various random variables by plotting
+2d histograms
+<center>
+<img src="_main_files/figure-html/unnamed-chunk-123-1.png" width="672" style="display: block; margin: auto;" />
+</center>
+<p>Let us go back to the notion of a trajectory (sample path) of a stochastic
+We defined a notion of a sample path (or a trajectory) of a stochastic
+process. For a random walk on a finite horizon <span class="math inline">\(T\)</span>, a trajectory is
+simply a sequence of natural numbers starting from <span class="math inline">\(0\)</span>. Different
+realizations of the coin-tosses <span class="math inline">\(\delta_n\)</span> will lead to different
+trajectories, but not every sequence of natural numbers corresponds to a
+trajectory. For example <span class="math inline">\((0,3,4,5)\)</span> is not a sample path of a random
+walk because <span class="math inline">\(X_1\)</span> can only take values <span class="math inline">\(1\)</span> or <span class="math inline">\(-1\)</span>. In fact, a finite
+sequence <span class="math inline">\((x_0, x_1, \dots, x_T)\)</span> is a (possible) sample path of a
+random walk if and only if <span class="math inline">\(x_0=0\)</span> and <span class="math inline">\(x_{k}-x_{k-1} \in \{-1,1\}\)</span>
+for each <span class="math inline">\(k\)</span>.</p>
+<!-- \bigskip -->
+<!-- \refstepcounter{picnumber} -->
+<!-- ![image](Trajectory1.pdf) ![image](Trajectory2.pdf)\ -->
+<!-- [\[fig:Trajectory1.pdf\]]{#fig:Trajectory1.pdf -->
+<!-- label="fig:Trajectory1.pdf"} -->
+<!-- Two figures above show two different trajectories of a simple random -->
+<!-- walk. Each one corresponds to a (different) frozen $\omega\in\Omega$, -->
+<!-- with $n$ going from $0$ to $20$. -->
+<!-- \medskip -->
+<!-- Unlike in Figure 1. above, Figure 2. below shows two "time slices" of -->
+<!-- the same random process; in each graph, the time $t$ is fixed ($n=15$ -->
+<!-- vs. $n=25$) but the various values random variables $X_{15}$ and -->
+<!-- $X_{25}$ can take are presented through the probability mass functions. -->
+<!-- \refstepcounter{picnumber} -->
+<!-- ![image](pmf_15.pdf) ![image](pmf_25.pdf)\ -->
+<!-- [\[fig:pmf_15.pdf\]]{#fig:pmf_15.pdf label="fig:pmf_15.pdf"} -->
+<!-- The canonical probability space -->
+<!-- =============================== -->
+<!-- Let us build a sample space on which a random walk with a finite horizon -->
+<!-- $T$ can be constructed. Since the basic building blocks of the random -->
+<!-- walk are its increments, it makes sense to define the elementary outcome -->
+<!-- $\omega$ as a sequence, of size $T$, consisting of $1$s and $-1$s. More -->
+<!-- precisely, we take $$\begin{aligned} -->
+<!-- \Omega &= \sets{ (c_1, \dots, c_T)}{ c_1,\dots, c_T \in -->
+<!-- \set{-1,1}}\ &= -->
+<!-- \underbrace{\set{-1,1} \times \dots \times \set{-1,1}}_{T\text{ times}} = -->
+<!-- \set{-1,1}^T.\end{aligned}$$ What probability would be appropriate here? -->
+<!-- That is easy, too, since the individual coin tosses need to be fair and -->
+<!-- independent. This dictates that any two sequences be equally likely. -->
+<!-- There are $2^T$ possible sequences of length $T$ of $1$s and $-1$, so -->
+<!-- $\PP[\set{\omega}] = 2^{-T}$, for each $\omega$. -->
+<!-- This way, given an $\omega = (c_1,\dots, c_n) \in \Omega$ and -->
+<!-- $n=\ft{1}{T}$, we define -->
+<!-- $$\delta_n (\omega) = c_n  \eand X_n(\omega) = c_1+\dots+c_n,$$ with -->
+<!-- $X_0(\omega)=0$. It is easy to see that $\{X_n\}$ is, indeed, a random -->
+<!-- walk. -->
+<!-- This setup also makes the computation of various probabilities that have -->
+<!-- to do with the random walk easy (at least in theory) - we simply count -->
+<!-- the number of sequences of coin tosses that correspond to the event in -->
+<!-- question, and then divide by $2^T$. -->
+<!-- [\[exa:dist-Xn\]]{#exa:dist-Xn label="exa:dist-Xn"} Let us compute the -->
+<!-- probability that $X_n=k$, for some $n \in \ft{0}{T}$ and $k\in\N$. For -->
+<!-- this, we first need to count the number of $\omega\in\Omega$ for which -->
+<!-- $X_n(\omega) = k$. Using the definition above, this is equivalent to -->
+<!-- counting the number of $n$-tuples $(c_1,\dots, c_T)$ of $1$s and $-1$s -->
+<!-- such that $c_1+c_2+\dots + c_n=k$. -->
+<!-- \medskip -->
+<!-- To solve that problem, we note that, in order for $n$ numbers, each of -->
+<!-- which is either $1$ or $-1$, to add up to $k$, we must have -->
+<!-- $n_1-n_{-1}=k$, where $n_1$ is the number of $1$s and $n_{-1}$ the -->
+<!-- number of $-1$s in the sequence $(c_1,\dots, -->
+<!-- c_n)$. On the other hand, it is always the case that $n_1+n_{-1}=n$, so -->
+<!-- we must have $$n_1 = \tot (n+k) \eand n_{-1} = \tot (n-k).$$ The first -->
+<!-- thing we observe that this is not possible unless $n+k$ (and then also -->
+<!-- $n-k$) is an even number. If you think about it for a second, it makes -->
+<!-- perfect sense. The random walk can only take odd values at odd times and -->
+<!-- even values at even times. Hence, $\PP[ X_n=k]=0$ if $n$ and $k$ have -->
+<!-- different parity (one is odd and the other even). -->
+<!-- \medskip -->
+<!-- Suppose now that $n+k$ is even. Then $n-k$ is also even, and so $n_1$ -->
+<!-- and $n_ -->
+<!-- {-1}$, defined above, are natural numbers. Our question then becomes -->
+<!-- > How many sequences $(c_1,c_2,\dots, c_T)$ with values in $\set{-1,1}$ -->
+<!-- > are there such that there are exactly $n_1$ $1$s among the first $n$ -->
+<!-- > elements? -->
+<!-- We can pick the positions of $n_1$ $1$s among the first $n$ spots in -->
+<!-- $\binom{n} -->
+<!-- {n_1}$ ways, and fill the remaining $n_{-1}$ slots by $-1$s. The values -->
+<!-- at positions between $n+1$ and $T$ do not affect the value of $X_n$, so -->
+<!-- they can be chosen arbitrarily, in $2 -->
+<!-- ^{T-n}$ ways. Therefore, the answer to our question is -->
+<!-- $\binom{n}{n_1} 2^ -->
+<!-- {T-n}$. -->
+<!-- To turn the count into a probability, we need to divide by $2^T$. All in -->
+<!-- all, we get the following result: for $n\in \set{\ft{0}{T}}$ and -->
+<!-- $-n \leq k \leq n$, we have $$\PP[ X_n = k] = \begin{cases} -->
+<!--     \binom{n}{ (n+k)/2} 2^{-n}, &\text{ if $n+k$ is even, and}\ -->
+<!--     0, & \text{ otherwise.} -->
+<!-- \end{cases}$$ Another approach to this questions would be via the fact -->
+<!-- that $$\tot (X_n + n) = \tot(\delta_1+1) + \tot (\delta_2+1) + -->
+<!-- \dots + \tot(\delta_n+1).$$ Since $\delta_m$ takes values $\pm 1$ with -->
+<!-- probability $\tot$, each, $Y_m = -->
+<!-- \tot -->
+<!-- (\delta_m + 1)$ is a Bernoulli random variable, with parameter $p=\tot$. -->
+<!-- They are independent (since $\delta$s are), and, so, $\tot(X_n+n)$ has -->
+<!-- the binomial distribution, with parameters $n$ and $\tot$. It follows -->
+<!-- that for $-n \leq k -->
+<!-- \leq n$ and $n$ and $k$ of the same parity, we have -->
+<!-- $$\PP[ X_n = k] = \PP[ \tot (X_n+n) = \tot (n+k)] = \binom{n}{ (n+k)/2} 2^ -->
+<!-- {-n}.$$ -->
+</div>
+<div id="additional-problems" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Additional problems</h2>
+<p><span id="prb:233A" label="prb:233A"><span class="math display">\[prb:233A\]</span></span> Let <span class="math inline">\(\seqz{X}\)</span> be a simple
+symmetric random walk. The distribution of the product <span class="math inline">\(X_1 X_2\)</span> is</p>
+<p><span class="math inline">\(\ndist{0 &amp; 2}{ \tfrac{1}{2}&amp; \tfrac{1}{2}}\)</span>
+<span class="math inline">\(\ndist{-2 &amp; 0 &amp; 2}{ \oo4 &amp; \tfrac{1}{2}&amp; \oo4}\)</span>
+<span class="math inline">\(\ndist{-2 &amp; -1 &amp; 0 &amp; 1 &amp; 2}{ \oo{5} &amp; \oo{5} &amp; \oo{5} &amp; \oo{5} &amp; \oo{5}}\)</span>
+<span class="math inline">\(\ndist{ -1 &amp; 0 &amp; -1}{ \oo4 &amp; \oo2 &amp; \oo4 }\)</span> none of the above</p>
+<p>Let <span class="math inline">\(\seqz{X}\)</span> be a simple symmetric random walk with the time horizon
+<span class="math inline">\(T=3\)</span>. The probability that <span class="math inline">\(X\)</span> will never hit the level <span class="math inline">\(2\)</span> or the
+level <span class="math inline">\(-2\)</span> is <span class="math inline">\(\oo4\)</span><span class="math inline">\(\oo3\)</span><span class="math inline">\(\oo2\)</span><span class="math inline">\(\tf{3}{8}\)</span>none of the above</p>
+<p>Let <span class="math inline">\(\seqz{X}\)</span> be a simple symmetric random walk. Then</p>
+<p><span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> are independent<span class="math inline">\(X_4-X_2\)</span> is independent of
+<span class="math inline">\(X_3\)</span>.<span class="math inline">\(X_4-X_2\)</span> is independent of <span class="math inline">\(X_6-X_5\)</span> <span class="math inline">\(X_1+X_3\)</span> is independent of
+<span class="math inline">\(X_2+X_4\)</span>none of the above</p>
+<p>Let <span class="math inline">\(\seqz{X}\)</span> be a simple symmetric random walk. Then</p>
+<p><span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> are independent<span class="math inline">\(X_3-X_1\)</span> is independent of
+<span class="math inline">\(X_2\)</span>.<span class="math inline">\({\mathbb{P}}[ X_{32} = 44| X_{12} = 0] = {\mathbb{P}}[ X_{22} = 44| X_2=0,X_1=1]\)</span>
+<span class="math inline">\({\mathbb{P}}[X_ {13}=4] = \binom{13}{4} 2^{-13}\)</span>none of the above</p>
+<p>Let <span class="math inline">\(\seqz{X}\)</span> be a simple symmetric random walk. Which of the following
+processes are simple random walks?</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\seqz{2 X}\)</span> ?</p></li>
+<li><p><span class="math inline">\(\seqz{X^2}\)</span> ?</p></li>
+<li><p><span class="math inline">\(\seqz{-X}\)</span> ?</p></li>
+<li><p><span class="math inline">\(\seqz{ Y}\)</span>, where <span class="math inline">\(Y_n = X_{5+n}-X_5\)</span> ?</p></li>
+</ol>
+<p>How about the case <span class="math inline">\(p\ne \tfrac{1}{2}\)</span>?</p>
+<p>Let <span class="math inline">\(\seqz{X}\)</span> be a biased simple random walk with <span class="math inline">\(p={\mathbb{P}}[ X_1=1]=1/3\)</span>. Compute the following:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\({\mathbb{P}}[ X_2=0]\)</span></p></li>
+<li><p><span class="math inline">\({\mathbb{P}}[ X_7=X_{16}]\)</span></p></li>
+<li><p><span class="math inline">\({\mathbb{P}}[ X_2=X_4=X_8]\)</span>,</p></li>
+<li><p><span class="math inline">\({\mathbb{P}}[ X_n &lt; 10 \eforall 0\leq n \leq 10]\)</span>.</p></li>
+</ol>
+<p>Let <span class="math inline">\(\seqz{X}\)</span> be a symmetric simple random walk. Compute the following</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\({\mathbb{P}}[X_{2n}=0]\)</span>, <span class="math inline">\(n\in{\mathbb{N}}_0\)</span>,</p></li>
+<li><p><span class="math inline">\({\mathbb{P}}[X_{n}=X_{2n}]\)</span>, <span class="math inline">\(n\in{\mathbb{N}}_0\)</span>,</p></li>
+<li><p><span class="math inline">\({\mathbb{P}}[\,\abs{X_1 X_2 X_3}=2]\)</span>,</p></li>
+<li><p><span class="math inline">\({\mathbb{P}}[X_7+X_{12}=X_{1}+X_{16}]\)</span>.</p></li>
+</ol>
+<p>Error at “source” (line 16, column 2):
+unexpected end of input</p>
+<p>^</p>
+<p>Error at “source” (line 16, column 2):
+unexpected end of input</p>
+<p>^</p>
+<p>Let <span class="math inline">\(\seqz{X}\)</span> be a simple random walk with <span class="math inline">\({\mathbb{P}}[X_1=1]=p\in (0,1)\)</span>.
+Define <span class="math display">\[Y_n=\tfrac{1}{n} \sum_{k=1}^n X_k,\text{ for }n\in{\mathbb{N}}.\]</span> Compute
+<span class="math inline">\({\mathbb{E}}[Y_n]\)</span> and <span class="math inline">\(\Var[Y_n]\)</span>, for <span class="math inline">\(n\in{\mathbb{N}}\)</span>.</p>
+<p>You can use the following formulas:
+<span class="math display">\[\sum_{j=1}^n j = \frac{n(n+1)}{2}, \qquad \sum_{j=1}^n
+j^2=\frac{n(n+1)(2n+1)}{6}\]</span> without proof.</p>
+<p>Let <span class="math inline">\(\seqz{X}\)</span> be a simple symmetric random walk. Given <span class="math inline">\(n\in{\mathbb{N}}_0\)</span> and
+<span class="math inline">\(k\in{\mathbb{N}}\)</span>, compute <span class="math inline">\(\Var[X_n]\)</span>, <span class="math inline">\(\Cov[X_n, X_{n+k}]\)</span> and
+<span class="math inline">\(\corr[X_n, X_{n+k}]\)</span>, where <span class="math inline">\(\Cov\)</span> stands for the covariance and
+<span class="math inline">\(\corr\)</span> for the correlation.</p>
+<p>Let <span class="math inline">\(\{X_n\}_{0\leq n \leq 10}\)</span> be a simple symmetric random walk with
+time horizon <span class="math inline">\(T=10\)</span>. What is the probability it will never reach the
+level <span class="math inline">\(5\)</span>?</p>
+<p>Let <span class="math inline">\(\seqz{X}\)</span> be a simple symmetric random walk. Given <span class="math inline">\(n\in{\mathbb{N}}\)</span>, what
+is the probability that <span class="math inline">\(X\)</span> does not visit <span class="math inline">\(0\)</span> during the time interval
+<span class="math inline">\(\ft{1}{n}\)</span>.</p>
+<p>Luke starts a random walk, where each step takes him to the left or to
+the right, with the two alternatives being equally likely and
+independent of the previous steps. <span class="math inline">\(11\)</span> steps to his right is a cookie
+jar, and Luke gets to take a (single) cookie every time he reaches that
+position. He performs exactly <span class="math inline">\(15\)</span> steps, and then stops.</p>
+<ol style="list-style-type: decimal">
+<li><p>What is the probability that Luke will be exactly by the cookie jar
+when he stops?</p></li>
+<li><p>What is the probability that Luke stops with with exactly <span class="math inline">\(3\)</span>
+cookies in his hand?</p></li>
+<li><p>What is the probability that Luke stops with at least one cookie in
+his hand?</p></li>
+<li><p>Suppose now that we place a bowl of broccoli soup one step to the
+right of the cookie jar. It smells so bad that, if reached, Luke
+will throw away all the cookies he is currently carrying (if any)
+and run away pinching his nose. What is the probability that Luke
+will finish his <span class="math inline">\(15\)</span>-step walk without ever encountering the yucky
+bowl of broccoli soup and with at least one cookie in his hand?</p></li>
+</ol>
+<p>A fair coin is tossed repeatedly and the record of the outcomes is kept.
+Tossing stops the moment the total number of heads obtained so far
+exceeds the total number of tails by 3. For example, a possible sequence
+of tosses could look like <em>HHTTTHHTHHTHH</em>. What is the probability that
+the length of such a sequence is at most 10?</p>
+<p>Let <span class="math inline">\(\seqz{X}\)</span> be a simple symmetric random walk. Given <span class="math inline">\(n\in{\mathbb{N}}\)</span>, what
+is the probability that <span class="math inline">\(X\)</span> does not visit <span class="math inline">\(0\)</span> during the time interval
+<span class="math inline">\(\ft{1}{n}\)</span>.</p>
+<p>Luke starts a random walk, where each step takes him to the left or to
+the right, with the two alternatives being equally likely and
+independent of the previous steps. <span class="math inline">\(11\)</span> steps to his right is a cookie
+jar, and Luke gets to take a (single) cookie every time he reaches that
+position. He performs exactly <span class="math inline">\(15\)</span> steps, and then stops.</p>
+<ol style="list-style-type: decimal">
+<li><p>What is the probability that Luke will be exactly by the cookie jar
+when he stops?</p></li>
+<li><p>What is the probability that Luke stops with with exactly <span class="math inline">\(3\)</span>
+cookies in his hand?</p></li>
+<li><p>What is the probability that Luke stops with at least one cookie in
+his hand?</p></li>
+<li><p>Suppose now that we place a bowl of broccoli soup one step to the
+right of the cookie jar. It smells so bad that, if reached, Luke
+will throw away all the cookies he is currently carrying (if any)
+and run away pinching his nose. What is the probability that Luke
+will finish his <span class="math inline">\(15\)</span>-step walk without ever encountering the yucky
+bowl of broccoli soup and with at least one cookie in his hand?</p></li>
+</ol>
+<p>A fair coin is tossed repeatedly and the record of the outcomes is kept.
+Tossing stops the moment the total number of heads obtained so far
+exceeds the total number of tails by 3. For example, a possible sequence
+of tosses could look like <em>HHTTTHHTHHTHH</em>. What is the probability that
+the length of such a sequence is at most 10?</p>
+<p>(*) Let <span class="math inline">\(C_n\)</span> denote the <span class="math inline">\(n\)</span>-th Catalan number (defined in
+<a href="#equ:Catalan" reference-type="eqref" reference="equ:Catalan"><span class="math display">\[equ:Catalan\]</span></a>).</p>
+<ol style="list-style-type: decimal">
+<li><p>Use the reflection principle to show that <span class="math inline">\(C_n\)</span> is the number
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD trajectories <span class="math inline">\((x_0,\dots, x_{2n})\)</span> of a random
+walk with time horizon ======= of trajectories <span class="math inline">\((x_0,\dots, x_{2n})\)</span>
+of a random walk with time horizon &gt;&gt;&gt;&gt;&gt;&gt;&gt;
+91a070cdbeffe01508c739729817437365c084e8 <span class="math inline">\(T=2n\)</span> such that <span class="math inline">\(x_k  \geq 0\)</span>, for all <span class="math inline">\(k\in\set{0,1,\dots, 2n}\)</span> and <span class="math inline">\(x_{2n}=0\)</span>.</p></li>
+<li><p>Prove the <em>Segner’s recurrence formula</em>
+<span class="math inline">\(C_{n+1} = \sum_{i=0}^n C_{i} C_{n-i}\)</span>. .</p></li>
+<li><p>Show that <span class="math inline">\(C_n\)</span> is the number of ways that the vertices of a regular
+<span class="math inline">\(2n\)</span>-gon can be paired so that the line segments joining paired
+vertices do not intersect.</p></li>
+<li><p>Prove that <span class="math display">\[C_n = \binom{2n}{n} - \binom{2n}{n+1},\]</span> both
+algebraically (using the formula for the binomial coefficient) and
+combinatorially (by counting).</p></li>
+</ol>
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="simulation-of-random-variables-and-monte-carlo.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dist.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": false,
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

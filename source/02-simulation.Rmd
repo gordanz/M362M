@@ -1186,70 +1186,109 @@ $$ X+Y \in (1-\eps, 1+\eps) $$ for a small, but positive, $\eps$. In many cases 
 
 ## Additional Problems
 
+<div class="problem">
 
 ```{r child = 'problems/00_R/Sim-Weibull_prb.Rmd'}
 ```
+</div>
+
+<div class="solution">
+
 ```{r child = 'problems/00_R/Sim-Weibull_sol.Rmd'}
 ```
 
+</div>
+
+<div class="problem">
 
 ```{r child="problems/00_R/Sim-trans_prb.Rmd"}
 ```
+
+</div>
+
+<div class="solution">
+
 ```{r child="problems/00_R/Sim-trans_sol.Rmd"}
 ```
 
+</div>
 
+<div class="problem">
 ```{r child="problems/00_R/Sim-FX_prb.Rmd"}
 ```
+</div>
+<div class="solution">
 ```{r child="problems/00_R/Sim-FX_sol.Rmd"}
 ```
+</div>
 
-
+<div class="problemec">
 ```{r child="problems/00_R/Sim-mix_prb.Rmd"}
 ```
+</div>
+<div class="solution">
 ```{r child="problems/00_R/Sim-mix_sol.Rmd"}
 ```
+</div>
 
-
+<div class="problem">
 ```{r child="problems/00_R/Sim-perm_prb.Rmd"}
 ```
+</div>
+<div class="solution">
 ```{r child="problems/00_R/Sim-perm_sol.Rmd"}
 ```
+</div>
 
-
+<div class="problem">
 ```{r child="problems/00_R/Sim-disc_prb.Rmd"}
 ```
+</div>
+<div class="solution">
 ```{r child="problems/00_R/Sim-disc_sol.Rmd"}
 ```
+</div>
 
-
+<div class="problem">
 ```{r child="problems/00_R/Sim-int_prb.Rmd"}
 ```
+</div>
+<div class="solution">
 ```{r child="problems/00_R/Sim-int_sol.Rmd"}
 ```
+</div>
 
-
+<div class="problem">
 ```{r child="problems/00_R/Sim-tricyl_prb.Rmd"}
 ```
+</div>
+<div class="solution">
 ```{r child="problems/00_R/Sim-tricyl_sol.Rmd"}
 ```
+</div>
 
-
+<div class="problemec">
 ```{r child="problems/00_R/Sim-monty_prb.Rmd"}
 ```
+</div>
 
 
-
+<div class="problem">
 ```{r child="problems/00_R/Sim-joint-cond_prb.Rmd"}
 ```
+</div>
 
 
+<div class="problem">
 ```{r child="problems/00_R/Sim-disease_prb.Rmd"}
 ```
+</div>
 
 
+<div class="problem">
 ```{r child="problems/00_R/Sim-cube_prb.Rmd"}
 ```
+</div>
 
 
 ⬇︎ In case you were wondering, the text below belongs to footnotes from somewhere high above.⬇︎

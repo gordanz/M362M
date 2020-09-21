@@ -1,0 +1,59 @@
+
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(gganimate)
+nsim=100000
+L=tibble( x = runif(nsim, -1,1), y = runif(nsim, -1,1)) %>% 
+  mutate( inside = (x^2+y^2)<1 )
+L$omega = 1:nsim
+angle <- seq(-pi, pi, length = 150)
+circle <- data.frame(x = sin(angle), y = cos(angle))
+L %>% 
+  ggplot(aes(x=x, y=y, color=inside)) + 
+  geom_point(aes(color=inside, group = omega)) +
+  coord_fixed() +
+  theme_bw()+
+  theme(legend.position = "none")+
+  theme(panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank())+
+  geom_path(aes(x, y), data = circle, inherit.aes = F) +
+  transition_reveal(omega)
+```
+```{r}
+sum(L$inside)/10000*4
+```
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(gganimate)
+nsim=100000
+L=tibble( x = runif(nsim, -1,1), y = runif(nsim, -1,1)) %>% 
+  mutate( inside = (x^2+y^2)<1 )
+scaler_function <- function(i,nframes,nsim){
+ floor((i/nsim)^(1/3)*nframes)
+}
+L <- L %>% 
+  mutate(omega = 1:n(), frame = scaler_function(omega, 100, n()))
+
+L
+```
+
+```{r}
+angle <- seq(-pi, pi, length = 150)
+circle <- data.frame(x = sin(angle), y = cos(angle))
+anim <- 
+  ggplot(L,aes(x=x, y=y, color=inside)) + 
+  geom_point(aes(color=inside, group = omega)) +
+  coord_fixed() +
+  theme_bw()+
+  theme(legend.position = "none")+
+  theme(panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank())+
+  geom_path(aes(x, y), data = circle, inherit.aes = F) +
+  transition_reveal(frame)
+animate(anim, nframes=100 )
+```
+
