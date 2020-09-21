@@ -1187,68 +1187,68 @@ $$ X+Y \in (1-\eps, 1+\eps) $$ for a small, but positive, $\eps$. In many cases 
 ## Additional Problems
 
 
-```{r child = 'problems/00_R/Sim-Weibull.prb'}
+```{r child = 'problems/00_R/Sim-Weibull_prb.Rmd'}
 ```
-```{r child = 'problems/00_R/Sim-Weibull.sol'}
-```
-
-
-```{r child="problems/00_R/Sim-trans.prb"}
-```
-```{r child="problems/00_R/Sim-trans.sol"}
+```{r child = 'problems/00_R/Sim-Weibull_sol.Rmd'}
 ```
 
 
-```{r child="problems/00_R/Sim-FX.prb"}
+```{r child="problems/00_R/Sim-trans_prb.Rmd"}
 ```
-```{r child="problems/00_R/Sim-FX.sol"}
-```
-
-
-```{r child="problems/00_R/Sim-mix.prb"}
-```
-```{r child="problems/00_R/Sim-mix.sol"}
+```{r child="problems/00_R/Sim-trans_sol.Rmd"}
 ```
 
 
-```{r child="problems/00_R/Sim-perm.prb"}
+```{r child="problems/00_R/Sim-FX_prb.Rmd"}
 ```
-```{r child="problems/00_R/Sim-perm.sol"}
-```
-
-
-```{r child="problems/00_R/Sim-disc.prb"}
-```
-```{r child="problems/00_R/Sim-disc.sol"}
+```{r child="problems/00_R/Sim-FX_sol.Rmd"}
 ```
 
 
-```{r child="problems/00_R/Sim-int.prb"}
+```{r child="problems/00_R/Sim-mix_prb.Rmd"}
 ```
-```{r child="problems/00_R/Sim-int.sol"}
-```
-
-
-```{r child="problems/00_R/Sim-tricyl.prb"}
-```
-```{r child="problems/00_R/Sim-tricyl.sol"}
+```{r child="problems/00_R/Sim-mix_sol.Rmd"}
 ```
 
 
-```{r child="problems/00_R/Sim-monty.prb"}
+```{r child="problems/00_R/Sim-perm_prb.Rmd"}
+```
+```{r child="problems/00_R/Sim-perm_sol.Rmd"}
+```
+
+
+```{r child="problems/00_R/Sim-disc_prb.Rmd"}
+```
+```{r child="problems/00_R/Sim-disc_sol.Rmd"}
+```
+
+
+```{r child="problems/00_R/Sim-int_prb.Rmd"}
+```
+```{r child="problems/00_R/Sim-int_sol.Rmd"}
+```
+
+
+```{r child="problems/00_R/Sim-tricyl_prb.Rmd"}
+```
+```{r child="problems/00_R/Sim-tricyl_sol.Rmd"}
+```
+
+
+```{r child="problems/00_R/Sim-monty_prb.Rmd"}
 ```
 
 
 
-```{r child="problems/00_R/Sim-joint-cond.prb"}
+```{r child="problems/00_R/Sim-joint-cond_prb.Rmd"}
 ```
 
 
-```{r child="problems/00_R/Sim-disease.prb"}
+```{r child="problems/00_R/Sim-disease_prb.Rmd"}
 ```
 
 
-```{r child="problems/00_R/Sim-cube.prb"}
+```{r child="problems/00_R/Sim-cube_prb.Rmd"}
 ```
 
 
