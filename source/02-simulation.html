@@ -1184,72 +1184,89 @@ $$ X+Y \in (1-\eps, 1+\eps) $$ for a small, but positive, $\eps$. In many cases 
 </div>
 
 
-## Additional Problems
+##  Problems
 
-
-```{r child = 'problems/00_R/Sim-Weibull.prb'}
-```
-```{r child = 'problems/00_R/Sim-Weibull.sol'}
+```{r child="problems/00_R/Sim-Weibull.prb}
 ```
 
 
-```{r child="problems/00_R/Sim-trans.prb"}
-```
-```{r child="problems/00_R/Sim-trans.sol"}
+```{r child="problems/00_R/Sim-trans.prb}
 ```
 
 
-```{r child="problems/00_R/Sim-FX.prb"}
-```
-```{r child="problems/00_R/Sim-FX.sol"}
+```{r child="problems/00_R/Sim-FX.prb}
 ```
 
 
-```{r child="problems/00_R/Sim-mix.prb"}
-```
-```{r child="problems/00_R/Sim-mix.sol"}
+```{r child="problems/00_R/Sim-mix.prb}
 ```
 
 
-```{r child="problems/00_R/Sim-perm.prb"}
-```
-```{r child="problems/00_R/Sim-perm.sol"}
+```{r child="problems/00_R/Sim-perm.prb}
 ```
 
 
-```{r child="problems/00_R/Sim-disc.prb"}
-```
-```{r child="problems/00_R/Sim-disc.sol"}
+```{r child="problems/00_R/Sim-disc.prb}
 ```
 
 
-```{r child="problems/00_R/Sim-int.prb"}
-```
-```{r child="problems/00_R/Sim-int.sol"}
+```{r child="problems/00_R/Sim-int.prb}
 ```
 
 
-```{r child="problems/00_R/Sim-tricyl.prb"}
-```
-```{r child="problems/00_R/Sim-tricyl.sol"}
+```{r child="problems/00_R/Sim-tricy.prb}
 ```
 
 
-```{r child="problems/00_R/Sim-monty.prb"}
+```{r child="problems/00_R/Sim-monty.prb}
+```
+
+
+```{r child="problems/00_R/Sim-joint-cond.prb}
+```
+
+
+```{r child="problems/00_R/Sim-disease.prb}
+```
+
+
+```{r child="problems/00_R/Sim-cube.prb}
 ```
 
 
 
-```{r child="problems/00_R/Sim-joint-cond.prb"}
-```
 
 
-```{r child="problems/00_R/Sim-disease.prb"}
-```
 
 
-```{r child="problems/00_R/Sim-cube.prb"}
-```
 
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<div class="problem">
+A point is chosen at random, uniformly in the unit cube 
+$[0,1]\times[0,1]\times [0,1]$. Its distance to the origin $(0,0)$ is measured, and
+turns out to be equal to $1.5$.
+
+Use simulations to estimate the shape of the pdf of the conditional distribution
+of the point's <!--'--> distance to $(1,1,1)$. Compare it to the unconditional
+case, i.e., the case where no information about the distance to $(0,0,0)$ is
+known.
+
+Compute the mean of this (conditional) distribution for a few values of
+the parameter $\eps$ you use to deal with conditioning in 
+the continuous case. Make sure you include values of $\eps$ on both sides 
+of the spectrum - too big, and too small.
+</div>
 
 ⬇︎ In case you were wondering, the text below belongs to footnotes from somewhere high above.⬇︎
