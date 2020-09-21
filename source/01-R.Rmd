@@ -320,21 +320,10 @@ distance_or_zero(2,3)
 
 Here are several simple problems. Their goal is to give you an idea of exactly how much R is required to get started in this course. 
 
-<div class="problem">
-Compute the following (your answer should be a decimal number):
-  
-  a) $1/238746238746$ 
-  b) $2^{45}$
-  c) $3^{28}$ 
-  d) $\sqrt{15}$
-  e) $\cos(\pi/8)$w
-  f) $e^2$
-  g) $\log(2)$ (the base is $e$)
-  h) $\log_{10}(2)$ (the base is $10$)
-  i) $\sqrt[3]{ \frac{1342.16-2.18}{(3 \pi +4.12)^2}}$
-  
-Note: some of the answers will look like this `3.14e+13`. If you do not know what that means, google *E notation*.
-</div>
+```{r child = 'problems/00_R/R-calc.prb'}
+```
+```{r child = 'problems/00_R/R-calc.sol'}
+```
 
 <div class="problem">
 
