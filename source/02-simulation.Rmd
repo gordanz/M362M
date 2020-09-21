@@ -4,6 +4,7 @@
 \newcommand{\EE}{{\mathbb{E}}}
 \newcommand{\ld}{\lambda}
 \newcommand{\eps}{\varepsilon}
+\newcommand{\Var}{\operatorname{Var}}
 \newcommand{\eand}{\text{ and }}
 
 # (PART) Probability and Simulation {-}
@@ -1206,6 +1207,51 @@ Simulate $n=10000$ draws from the Weibull distribution with shape parameter $2$ 
      -  another argument (which you must look up youself) that will set the $y$-axis label to $F(x)$. 
 </div>
 
+<div class="solution">
+  
+<part> 1. </part>
+
+```{r}
+x = rweibull(10000, shape = 2, scale = 3)
+hist(x)
+```
+
+<part> 2. </part>
+
+Let $X$ be a normally distributed random variable, with parameters $\mu_X$ and $\sigma_X$. When we apply a linear transformation $Y = \alpha X + \beta$ to X, the result $Y$ has a normal distribution again, but with different parameters. These parameters, call them $\mu_Y$ and $\sigma_Y$, are easily identified by taking the expected value and the variance:
+
+\begin{align} \mu_Y & = \EE[Y] = \alpha \EE[X] + \beta = \alpha \mu_X + \beta \\
+\sigma_Y^2 & = \Var[Y] = \Var[\alpha X + \beta] = \alpha^2 \Var[X] = \alpha^2 \sigma_X^2 
+\end{align}
+
+In the problem we are given $\mu_X=0$ and $\sigma_X=1$, so we must take $\alpha = 0.5$ and $\beta=1$ to get $\mu_Y=1$ and $\sigma_Y=0.5$ (note that this is
+exactly the opposite of taking $z$-scores, where we transform a general normal into the standard normal). In R
+
+```{r}
+x = rnorm(10000)
+y = 0.5*x+1
+```
+
+Let's check that the parameters of `y` are as as required: 
+
+```{r}
+(mean(y))
+(sd(y))
+```
+
+<part> 3. </part>
+
+```{r fig.align="center"}
+x=seq(-3,3,by=0.1)
+y=pnorm(x)
+plot(x,y,
+     type="l",
+     ylab="F(x)",
+     main="The CDF of the standard normal")
+```
+</div>
+
+
 <div class="problem">
 1. Simulate $n=1000$ draws from the  distribution whose distribution table is given by
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -1248,6 +1294,50 @@ and plot their histogram.
 
 </div>
 
+
+
+<div class="solution">
+
+<part> 1. </part>
+
+```{r}
+x = sample(c(2,4,8,16), size = 10000, prob=c(0.2,0.3,0.1,0.4), replace=TRUE)
+hist(x)
+```
+
+Note: given that we are dealing with a discrete distribution, a contingency table might be a better choice:
+
+```{r echo=FALSE}
+library(kableExtra)
+kable(t(table(x))) %>% 
+   kable_styling(full_width = FALSE)
+```
+
+
+<part> 2. </part>
+
+We apply the function $\sin$ to the simulations. The histogram of the obtained values is going to be a good (graphical) approximation to the pdf of the transformed random variable:
+
+```{r}
+x = rexp(100000)
+y = sin(x)
+hist(y)
+```
+
+<part> 3. </part>
+
+Having learned that histograms look like the pdfs of the underlying distributions, we draw the histogram:
+
+```{r}
+x = rcauchy(10000)
+y = atan(x) * 2/pi
+hist(y)
+```
+
+It looks uniform (if we replace $10,000$ by $100,000$ it will look even more uniform). We conclude that $2/\pi \arctan(X)$ is probably uniformly distributed on $(-1,1)$. Hence,  $Y = \arctan(X)$ is probably uniformly distributed on $(-\pi/2, \pi/2)$. 
+
+</div>
+
 <div class="problem">
 A basic method for obtaining simulations draws from distributions other than the
 uniform is the **transformation method**. The idea is to start with (pseudo)
@@ -1260,8 +1350,59 @@ What is the distribution of $Y=F(X)$? What does that have to do with the transfo
    
 (Hint: if you are having difficulty with this problem, feel free to run some experiments using R. )
 </div>
+
+<div class="solution">
+  
+Let us perform an experiment where $X \sim N(0,1)$. Remembering that the cdf is given by the R function `pnorm`:
+```{r}
+x = rnorm(100000)
+y = pnorm(x)
+hist(y)
+```
+
+This looks like a histogram of a uniform distribution on $(0,1)$. 
+Let's try with some other continuous distributions
+
+```{r}
+x1 = rexp(100000)
+x2 = rcauchy(100000)
+x3 = runif(100000)
+x4 = rgamma(100000, shape=3)
+par(mfrow=c(2,2))
+hist(pexp(x1))
+hist(pcauchy(x2))
+hist(punif(x3))
+hist(pgamma(x4, shape=3))
+```
+
+All of those point to the same conjecture, namely that $F(X)$ is 
+uniformly distributed on $(0,1)$. 
+To prove that, we 
+take $Y=F(X)$ and try to compute that cdf $F_Y$ of $Y$:
+$$F_Y(y) = \PP[ Y \leq y] = \PP[ F(X) \leq y]$$
+Since $F$ is strictly increasing, it admits an inverse $F^{-1}$. 
+Moreover, for any $y \in (0,1)$, 
+the set of all values of $x$ such that $F(x)\leq y$ (the red range) is 
+exactly the interval $(-\infty, F^{-1}(y)]$ (the blue range), as in 
+the picture below:
+
+<center>
+```{r echo=FALSE, out.width= "60%", out.extra='style="padding:10px"'}
+   knitr::include_graphics('pics/cdf_plot.png')
+```
+</center>  
+
+Hence,  $$F_Y(y)=\PP[Y\leq y] = \PP[ F(X) \leq y] = \PP[ X \leq F^{-1}(y) ] = F(F^{-1}(y)) = y, 
+\text{ for } y\in (0,1).$$ The cdf $F_Y$ is, therefore, equal to the cdf 
+of a uniform on $(0,1)$.
+Since the cdf uniquely determines the distribution,  $Y$ must be uniformly 
+distributed on $(0,1)$. 
+
+</div>
+
+
  
-<div class="problemec"> 
+<div class="problem" id="(extra credit)"> 
  
 
 1. Let $f_1$ and $f_2$ be two pdfs. We take a constant $\alpha \in (0,1)$ and define the function $f$ by
@@ -1285,6 +1426,74 @@ is not built into R. How would you produce simulations from the double
 exponential using R?
 </div>
 
+<div class="solution">
+  
+<part> 1. </part>
+
+The idea is that before each draw a biased coin (with $\PP[H]=\alpha$) is tossed. If $H$ is obtained, we draw from the distribution with pdf $f_1$. Otherwise, we draw from the distribution with pdf $f_2$. We write a function which performs one such simulation, and then use the command `replicate` to call it  several times and  store the results in the vector:
+```{r}
+single_draw = function() {
+      coin = sample(c(1,2), prob = c(2/3, 1/3), size=1, replace = TRUE)
+      if  (coin == 1) 
+         return(rnorm(1))
+      else
+         return(rnorm(1,mean=4, sd=1))
+}
+
+nsim=10000
+y = replicate(nsim, single_draw())
+ 
+hist(y)
+```
+
+As you can see, the histogram has two "humps", one centered around $0$ and the other 
+centered around $4$. The first one is taller, which reflects the higher 
+weight ($\alpha=2/3$) that $N(0,1)$ has in this mixture. 
+
+If you wanted to write a more succinct vectorized code (which is not necessarily faster in this case), you could also do something like this
+```{r}
+nsim=10000
+alpha = 2/3
+x1=rnorm(nsim)
+x2=rnorm(nsim, mean=4, sd = 1)
+coin = sample(c(TRUE, FALSE), size = nsim, prob=c(alpha,1-alpha), replace=TRUE)
+y = ifelse(coin, x1,x2)
+```
+The function `ifelse` is a vectorized version of the `if-then` blok and takes three arguments of equal length. The first one is a vector of logical values `c`, and the other two, `x1, x2` only need to be of the same type. The result of is a vector whose value at the position `i` is `x1[i]` if `c[i]==TRUE` and `x2[i]` otherwise. 
+
+<part> 2. </part>
+
+The Laplace distribution can be understood as a mixture, with $\alpha=1/2$ of two distributions. The first one is an exponential, and the second one is the exponential, but with the negative sign. 
+Using our strategy from part 1. above, we could get simulations of it as follows:
+```{r}
+nsim=100000
+alpha = 1/2
+x1=rexp(nsim)
+x2=-rexp(nsim) # note the minus sign in front of rexp
+coin = sample(c(TRUE, FALSE), size = nsim, prob=c(alpha,1-alpha), replace=TRUE)
+y = ifelse(coin, x1,x2)
+hist(y) 
+```
+
+You can do this more efficiently if you realize that every time we toss a coin and choose between 
+`x1` and `x2`, we are really choosing the sign in front of an exponentially distributed random 
+variable. In other words, we can use `coin` as 
+a vector of random signs for a vector or draws from the exponential distribution:
+
+```{r}
+nsim=10000
+alpha=1/2
+x=rexp(nsim)
+coin = sample(c(-1, 1), size = nsim, prob=c(alpha,1-alpha), replace=TRUE)
+y = coin * x
+hist(y)
+```
+
+</div>
+
+
+
+
 <div class="problem">
 Let `x=rnorm(1000)` and `y=rnorm(1000)`. For each of the following pairs, use the permutation test to decide whether they  are independent or not
 
@@ -1297,6 +1506,63 @@ What your conclusions in b. and d. suggest about the geometric properties of the
    
 (Note: do not worry about dividing by $0$ in d. It will  happen with probability $0$.)
    
+</div>
+
+
+
+<div class="solution">
+  
+Let us start by writing a function to save some keystrokes
+
+```{r}
+permutation_test = function (z,w) {
+   par(mfrow= c(2,2))
+   plot(z,w, asp=1)
+   plot(z,sample(w), asp=1)
+   plot(z,sample(w), asp=1)
+   plot(z,sample(w), asp=1)
+}
+
+x = rnorm(1000)
+y = rnorm(1000)
+```
+
+<part> 1. </part>
+
+```{r fig.width = 8, fig.height = 8}
+permutation_test(x^2+y^2, y^2)
+```
+The first plot is very different from the other three. Therefore,the vectors are probably *not* independent. 
+
+<part> 2. </part>
+
+```{r fig.width = 8, fig.height = 8}
+permutation_test((x+y)/sqrt(2), (x-y)/sqrt(2))
+```
+The first plot could easily be confused for one of the other three. Therefore the vectors are probably independent. 
+
+
+<part> 3. </part>
+
+```{r fig.width = 8, fig.height = 8}
+# we have to use rep(1,length(x)) 
+# to get a vector of 1s of the same length as x.
+# R will not recycle it properly if you simply write 1
+permutation_test(x,rep(1,length(x)))
+```
+The plots look very similar. Therefore, the vectors are probably independent. We could have known this without drawing any graphs. Anything is independent of a constant random variable (vector).
+
+<part> 4. </part>
+
+```{r fig.width = 8, fig.height = 8}
+permutation_test(x^2+y^2, atan(y/x) )
+```
+Plots look very similar to each other. Therefore, `z` and `w` are probably independent. 
+
+These plots in b) and d) reveal that the distribution of the random vector $(X,Y)$ consisting of two independent standard normals is probably rotation invariant. In b) we are asked to compare the coordinates of the vector obtained from $(X,Y)$ by a rotation at $45$ degrees around the origin. The fact that independence persisted suggests that  components remain independent even after a (specific) rotation. If you tried  rotations by different angles you would get the same result. The experiment in d) told us that the (squared) distance $X^2+Y^2$ and angle between $(X,Y)$ and the $x$-are independent. This is also something that one would expect from a rotationally-invariant distribution. Indeed, the distribution of the distance to the origin should not depend on the direction. 
+
+It is important to note that none of this proves anything. It is simply numerical evidence for a given conclusion. 
+
 </div>
 
 
@@ -1341,8 +1607,45 @@ Display the contingency table of your results, as well as a table showing the
 probabilities given above) and the obtained relative frequencies in the sample.
 </div>
 
+<div class="solution">
+  
+We are using the procedure from Section 2.2 in the notes. 
+
+```{r tidy=FALSE}
+nsim = 10000
+
+joint_distribution_long = data.frame(
+   x = c(1, 1, 1, 2, 2, 2, 3, 3, 3),
+   y = c(1, 2, 3, 1, 2, 3, 1, 2, 3)
+   )
+probabilities_long =
+   c(0.1, 0.0, 0.3,
+     0.1, 0.1, 0.0,
+     0.0, 0.0, 0.4)
+
+sampled_rows = sample(
+   x = 1:nrow(joint_distribution_long),
+   size = nsim,
+   replace = TRUE,
+   prob = probabilities_long
+)
+
+draws = joint_distribution_long[sampled_rows,]
+
+(freq = table(draws))
+
+(rel_freq = table(draws) / nsim)
+
+(th_freq = matrix(probabilities_long, byrow = TRUE, nrow = 3))
+
+(err = rel_freq - th_freq)
+
+```
+</div>
+
 <div class="problem">
 Estimate the following integrals using Monte Carlo 
+
 a) $\int_0^1 \cos(x)\, dx$
 
 b) $\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}}\frac{e^{-x^2/2}}{1+x^4}\,dx$
@@ -1352,7 +1655,64 @@ c) $\int_0^{\infty} e^{-x^3-x}\, dx$
 d) $\int_{-\infty}^{\infty} \frac{\cos(x^2)}{1+x^2}\, dx$ (extra credit) 
 </div>
 
+<div class="solution">
 
+The idea here is to use the "fundamental theorem of statistics"
+$$ \EE[ g(X) ] = \int g(x)\, f_X(x)\, dx $$
+where $f_X$ is the pdf of $X$ and $g$ is any reasonably well-behaved function. 
+Normally, one would use the integral on the right to compute the expectation
+on the left. We are flipping the logic, and using the expectation 
+(which we can approximate via Monte Carlo) to estimate the integral on the 
+right. 
+
+<part> a) </part>
+
+We pick $g(x) = \cos(x)$ and $X$ a r.v. with a uniform distribution on $(0,1)$, so that $f_X(x) = 1$ for $x\in (0,1)$ and $0$ otherwise:
+
+```{r}
+nsim=10000
+x = runif(nsim)
+y = cos(x)
+mean(y)
+```
+For comparison, the exact value of the integral is $\sin(1) \approx 0.841471$. 
+
+<part> b) </part>
+
+We cannot use the uniform distribution anymore, because the limits of integration are $\pm \infty$. Part of the expression inside the integral can be recognized as a (standard) normal density, so we take $X \sim N(0,1)$ and $g(x) =
+1/(1+x^4)$
+
+```{r}
+nsim=10000
+x = rnorm(nsim)
+y = 1/(1+x^4)
+mean(y)
+```
+The "exact" value (i.e., very precise approximation to this integral obtained using another numerical method) is $0.676763$. 
+
+<part> c) </part>
+
+We integrate $g(x) = \exp(-x^3)$ against the exponential pdf $f_X(x) = \exp(-x)$, for $x>0$: 
+```{r}
+nsim=10000
+x=rexp(nsim)
+y=exp(-x^3)
+mean(y)
+```
+A close approximation of the true value is $0.56889$.
+
+<part> d) </part>
+
+In this case, a possible choice of the distribution for $X$ is the Cauchy distribution (no worries if you never heard about it), whose pdf is $f_X(x) = \frac{1}{\pi(1+x^2)}$, so that $g(x) = \pi \cos(x^2)$:
+```{r}
+nsim=10000
+x=rcauchy(nsim)
+y = pi*cos(x^2)
+mean(y)
+```
+The "exact" value is $1.30561$. 
+
+</div>
 
 
 <div class="problem"> <p>
@@ -1379,6 +1739,25 @@ Use Monte Carlo to estimate the volume of the tricylinder and
 check your estimate against the exact value $8(2-\sqrt{2})$. </p>
 </div>
 
+<div class="solution">
+  By the very construction, it is clear that the entire tricylinder lies within the cube $[-1,1]\times [-1,1] \times [-1,1]$. Therefore, we can compute its volume by simulating random draws from the uniform distribution in that cube, and
+computing the relative frequence of those values that fall inside the tricylinder. The whole point is that it is easy to check, given a point $(x,y,z)$,  whether it lies inside the tricylinder or not. Indeed, the answer is "yes" if and only if all three of the following inequalities are satisfied:
+$$ x^2+y^2 \le 1,\  x^2+z^2\leq 1 \text{ and } y^2+z^2\leq 1.$$
+```{r}
+nsim=10000
+x = runif(nsim, min=-1, max=1)
+y = runif(nsim, min=-1, max=1)
+z = runif(nsim, min=-1, max=1)
+is_in = (x^2+y^2 <= 1) & (x^2+z^2 <= 1) & (y^2+z^2 <= 1)
+(2^3*sum(is_in)/nsim)
+```
+We multiplied by $2^3$ because that is the volume of the cube $[-1,1]\times [-1,1] \times [-1,1]$. Without it, we would get the portion of the cube taken by the tricylinder, and not its volume. 
+
+The true value of $8(2-\sqrt{2})$ is, approximately, $4.6862$.
+</div>
+
+
+
 <div class="problemec"> 
 Read about the **Monty Hall Problem** online (the introduction to its 
 [Wikipedia page](https://en.wikipedia.org/wiki/Monty_Hall_problem) has a nice  description),
@@ -1402,7 +1781,8 @@ df = data.frame(matrix(c(0.1,0.0,0.3,0.1,0.1,0.0,0.0,0.0,0.4),
                        nrow=3, byrow=TRUE))
 colnames(df) = c("1","2","3")
 rownames(df) = c("1","2","3")
-kable(df, striped=TRUE) %>% 
+kable(df, striped=TRUE, row.names=TRUE) %>% 
+   column_spec(1, bold = T) %>%
    kable_styling(full_width=FALSE)
 ```
 
