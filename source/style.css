@@ -70,6 +70,7 @@ h2::before {
 .problem::before { content: "Problem " counter(H1) "." counter(H2) "." counter(nmb);}
 .problemec::before { 
   content: "Problem " counter(H1) "." counter(H2) "." counter(nmb) " (extra credit)";}
+.solution { padding-left: 10px;} 
 .solution::before { content: "Solution:";}
 .comments::before { content: "Comments:"; }
 

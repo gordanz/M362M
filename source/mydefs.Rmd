@@ -13,5 +13,6 @@
 \newcommand{\abs}[1]{|#1|}
 \newcommand{\set}[1]{\{#1\}}
 \newcommand{\tf}[2]{\frac{#1}{#2}}
+\newcommand{\ot}{\frac{1}{2}}
           
           
