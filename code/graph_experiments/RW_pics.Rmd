@@ -1,14 +1,16 @@
 ---
 title: "Random Walks pictures"
 output: html_notebook
--
+---
+
+
 # Random Walks
 
 ```{r}
 library(tidyverse)
 
-T <-  15
-nsim <-3
+T <- 15
+nsim <- 3
 
 single <- function(T) {
   dx = sample(c(-1,1), replace = TRUE, T)
@@ -30,6 +32,7 @@ S = S %>%
 
 ```
 
+
 ```{r}
 
 # put it in long form for plotting
@@ -39,6 +42,7 @@ L$t = as.numeric(L$t) # because columns names become characters
 L$X = L$X + rnorm(length(L$X), sd = 0.1) # jitter
 
 ```
+
 
 ```{r}
 ggplot(L, aes(x=t, y=X, group = omega))+geom_line()+theme_bw()+xlab("")+ylab("")+
