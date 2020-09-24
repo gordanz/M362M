@@ -33,17 +33,23 @@ pre code {
 }
 
 /* numbering headings */
-body { counter-reset: H1; } 	/* Create the counter for H1 */
-h1:before {
-  counter-increment: H1;
-  content: ""; /* Does not work unless there is some content*/
 
+body { 
+  counter-reset: thechapter; 
 }
 
-h1 { counter-reset: H2; }
+h1 { 
+  content: "";
+  counter-reset: h2counter; 
+}
+
+h1::before {
+  content: "";
+  counter-increment: thechapter;s
+}
 
 h2::before {
-  counter-increment: H2;
+  counter-increment: h2counter;
   content: "";
 }
 
@@ -66,10 +72,10 @@ h2::before {
     font-weight: bold; 
     font-size: Large;
 }
-.example::before { content: "Problem " counter(H1) "." counter(H2) "." counter(nmb);}
-.problem::before { content: "Problem " counter(H1) "." counter(H2) "." counter(nmb);}
+.example::before { content: "Problem " counter(thechapter) "." counter(h2counter) "." counter(nmb);}
+.problem::before { content: "Problem " counter(thechapter) "." counter(h2counter) "." counter(nmb);}
 .problemec::before { 
-  content: "Problem " counter(H1) "." counter(H2) "." counter(nmb) " (extra credit)";}
+  content: "Problem " counter(thechapter) "." counter(h2counter) "." counter(nmb) " (extra credit)";}
 .solution { padding-left: 10px;} 
 .solution::before { content: "Solution:";}
 .comments::before { content: "Comments:"; }

@@ -1,15 +1,9 @@
-\newcommand{\PP}{{\mathbb{P}}}
-\newcommand{\N}{{\mathbb{N}}}
-\newcommand{\sS}{{\mathcal{S}}}
-\newcommand{\EE}{{\mathbb{E}}}
-\newcommand{\ld}{\lambda}
-\newcommand{\eps}{\varepsilon}
-\newcommand{\Var}{\operatorname{Var}}
-\newcommand{\eand}{\text{ and }}
-
-# (PART) Probability and Simulation {-}
+```{r child="mydefs.Rmd"}
+```
 
 # Simulation of Random Variables and Monte Carlo
+<div style="counter-reset: thechapter 2;"> </div>
+
 
 In the spirit of "learn by doing", these lecture notes contain many "Problems".
 The green ones come with solutions and usually introduce new concepts and feature a *Comments* section right after the solution. These comments are subdivided into *R* and
@@ -1184,7 +1178,7 @@ $$ X+Y \in (1-\eps, 1+\eps) $$ for a small, but positive, $\eps$. In many cases 
 </div>
 
 
-## Additional Problems
+## Additional Problems for Chapter 2
 
 <div class="problem">
 

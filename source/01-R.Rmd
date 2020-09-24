@@ -75,9 +75,6 @@ R notebooks are R's implementation of  *literate programming*. The idea is that 
 
 Each chapter in these lecture notes is an R notebook!
 
-
-
-
 ### Asking for help
 The most important thing about **learning R** (and many other things, for that matter) is knowing whom (and how) to ask for help. Luckily, R is a well established language, and you can get a lot of information by simply googling your problem. For example, if you google `logarithm in R` the top hit (at the time of writing) gives a nice overview and some examples. 
 
