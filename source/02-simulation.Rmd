@@ -1185,7 +1185,6 @@ $$ X+Y \in (1-\eps, 1+\eps) $$ for a small, but positive, $\eps$. In many cases 
 ```{r child = 'problems/00_R/Sim-Weibull_prb.Rmd'}
 ```
 </div>
-
 <div class="solution">
 
 ```{r child = 'problems/00_R/Sim-Weibull_sol.Rmd'}
@@ -1265,22 +1264,37 @@ $$ X+Y \in (1-\eps, 1+\eps) $$ for a small, but positive, $\eps$. In many cases 
 ```{r child="problems/00_R/Sim-monty_prb.Rmd"}
 ```
 </div>
+<div class="solution">
+```{r child="problems/00_R/Sim-monty_sol.Rmd"}
+```
+</div>
 
 
 <div class="problem">
 ```{r child="problems/00_R/Sim-joint-cond_prb.Rmd"}
 ```
 </div>
-
+<div class="solution">
+```{r child="problems/00_R/Sim-joint-cond_sol.Rmd"}
+```
+</div>
 
 <div class="problem">
 ```{r child="problems/00_R/Sim-disease_prb.Rmd"}
+```
+</div>
+<div class="solution">
+```{r child="problems/00_R/Sim-disease_sol.Rmd"}
 ```
 </div>
 
 
 <div class="problem">
 ```{r child="problems/00_R/Sim-cube_prb.Rmd"}
+```
+</div>
+<div class="solution">
+```{r child="problems/00_R/Sim-cube_sol.Rmd"}
 ```
 </div>
 
