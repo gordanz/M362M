@@ -4,7 +4,7 @@
 
 ## What are stochastic processes?
 
-A **stochastic process** is a sequence - finite or sinfinite - of random
+A **stochastic process** is a sequence - finite or infinite - of random
 variables. We usually write $\{X_n\}_{n\in\N_0}$  or $\{X_n\}_{0\leq n \leq T}$,
 depending on whether we are talking about an infinite or a finite sequence. The
 number $T\in \N_0$ is called the **time horizon**, and we sometimes set
@@ -125,7 +125,7 @@ single_trajectory = function(T, p=0.5) {
 
 Next, we run the same function `nsim` times and record the results. It is a
 lucky break that the default names given to columns are `X1`, `X2`, ... so we
-don't have to rename them. We do have to add the zero-th column $X_0=1$ because, 
+don't have to rename them. We do have to add the zero-th column $X_0=0$ because, 
 formally speaking, the "random variable" $X_0=0$ is a part of the stochastic
 process. This needs to be done before other columns are added to maintain the
 proper order of columns, which is important when you want to plot trajectories.
@@ -392,15 +392,15 @@ Building a path space is not simply an exercise in abstraction. Here is how we c
 understand the distribution of the position of the random walk:
 
 <div class="example">
-Let $X$ be a simple symmetric random walk with time horizon $T=10$. What is the probability that $X_{5}=1$?
+Let $X$ be a simple symmetric random walk with time horizon $T=5$. What is the probability that $X_{5}=1$?
 </div>
 <div class="solution">
-Let $\Omega$ be the path space, i.e., the set of all possible trajectories of length $10$ - there are $2^{5}=32$ of them. The probability that $X_{5}=1$ is the probability that a randomly picked path from $\Omega$ will take the value $1$ at $n=5$. Since all paths are equally likely, we need to *count*
+Let $\Omega$ be the path space, i.e., the set of all possible trajectories of length $5$ - there are $2^{5}=32$ of them. The probability that $X_{5}=1$ is the probability that a randomly picked path from $\Omega$ will take the value $1$ at $n=5$. Since all paths are equally likely, we need to *count*
 the number of paths with value $1$ at $n=5$ and then divide by the total number of paths, i.e., $32$.
 
 So, how many paths are there that take value $1$ at $n=5$? Each path is built out of steps of absolute value $1$. Some of them go up (call them up-steps) and some of them go down (down-steps). A moment's though reveals that the only way to reach $1$ in $5$ steps is if you have exactly $3$ up-steps and $2$ down-steps. Conversely, any path that has $3$ up-steps and $2$ down-steps ends at $1$. 
 
-This realization transforms the problem into the following: how many paths are there with exactly $3$ up-steps (note that we don't have to specify that there are $2$ down-stepsl it will happen automatically). The only difference between different paths with exactly $3$ up-steps is the position of these up-steps. In some of them the up-steps happen right at the start, in some at the very end, and in some they are scattered around. Each path with $3$ up-steps is uniquely determined by the list of positions of those up-steps, i.e., with a size-$3$ subset of $\{1,2,3,4,5\}$. This is not a surprise at all, since each path is build out of increments, and positions of positive increments clearly determine values of all increments.
+This realization transforms the problem into the following: how many paths are there with exactly $3$ up-steps (note that we don't have to specify that there are $2$ down-steps it will happen automatically). The only difference between different paths with exactly $3$ up-steps is the position of these up-steps. In some of them the up-steps happen right at the start, in some at the very end, and in some they are scattered around. Each path with $3$ up-steps is uniquely determined by the list of positions of those up-steps, i.e., with a size-$3$ subset of $\{1,2,3,4,5\}$. This is not a surprise at all, since each path is build out of increments, and positions of positive increments clearly determine values of all increments.
 
 The problem has now become purely mathematical: how many size-$3$ subsets of $\{1,2,3,4,5\}$ are there? The answer comes in the form of a *binomial coefficient* $\binom{5}{3}$ whose value is $10$ - there are exactly ten ways to pick three positions out of five. Therefore,
 $$ \PP[ X_{5} = 1] = 10 \times 2^{-5} = \frac{5}{16}.$$

@@ -50,6 +50,7 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -196,7 +197,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 3</span> Random Walks</h1>
 <div id="what-are-stochastic-processes" class="section level2">
 <h2><span class="header-section-number">3.1</span> What are stochastic processes?</h2>
-<p>A <strong>stochastic process</strong> is a sequence - finite or sinfinite - of random
+<p>A <strong>stochastic process</strong> is a sequence - finite or infinite - of random
 variables. We usually write <span class="math inline">\(\{X_n\}_{n\in{\mathbb{N}}_0}\)</span> or <span class="math inline">\(\{X_n\}_{0\leq n \leq T}\)</span>,
 depending on whether we are talking about an infinite or a finite sequence. The
 number <span class="math inline">\(T\in {\mathbb{N}}_0\)</span> is called the <strong>time horizon</strong>, and we sometimes set
@@ -291,27 +292,27 @@ and not row by row.</p></li>
 </ol>
 <p>Let’s implement this in the case of a simple random walk. Of course, it is
 impossible to simulate a random walk on an infinite horizon (<span class="math inline">\(T=\infty\)</span>)
-so we must restrict to finite-horizon random walks<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. The function <code>cumsum</code> which
+so we must restrict to finite-horizon random walks<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>. The function <code>cumsum</code> which
 produces partial sums of its input comes in very handy.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="random-walks.html#cb1-1"></a>single_trajectory =<span class="st"> </span><span class="cf">function</span>(T, <span class="dt">p =</span> <span class="fl">0.5</span>) {</span>
-<span id="cb1-2"><a href="random-walks.html#cb1-2"></a>    delta =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">size =</span> T, <span class="dt">replace =</span> <span class="ot">TRUE</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>p, p))</span>
-<span id="cb1-3"><a href="random-walks.html#cb1-3"></a>    x =<span class="st"> </span><span class="kw">cumsum</span>(delta)</span>
-<span id="cb1-4"><a href="random-walks.html#cb1-4"></a>    <span class="kw">return</span>(x)</span>
-<span id="cb1-5"><a href="random-walks.html#cb1-5"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="random-walks.html#cb116-1"></a>single_trajectory =<span class="st"> </span><span class="cf">function</span>(T, <span class="dt">p =</span> <span class="fl">0.5</span>) {</span>
+<span id="cb116-2"><a href="random-walks.html#cb116-2"></a>    delta =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">size =</span> T, <span class="dt">replace =</span> <span class="ot">TRUE</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>p, p))</span>
+<span id="cb116-3"><a href="random-walks.html#cb116-3"></a>    x =<span class="st"> </span><span class="kw">cumsum</span>(delta)</span>
+<span id="cb116-4"><a href="random-walks.html#cb116-4"></a>    <span class="kw">return</span>(x)</span>
+<span id="cb116-5"><a href="random-walks.html#cb116-5"></a>}</span></code></pre></div>
 <p>Next, we run the same function <code>nsim</code> times and record the results. It is a
 lucky break that the default names given to columns are <code>X1</code>, <code>X2</code>, … so we
-don’t have to rename them. We do have to add the zero-th column <span class="math inline">\(X_0=1\)</span> because,
+don’t have to rename them. We do have to add the zero-th column <span class="math inline">\(X_0=0\)</span> because,
 formally speaking, the “random variable” <span class="math inline">\(X_0=0\)</span> is a part of the stochastic
 process. This needs to be done before other columns are added to maintain the
 proper order of columns, which is important when you want to plot trajectories.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="random-walks.html#cb2-1"></a>simulate_walk =<span class="st"> </span><span class="cf">function</span>(nsim, T, <span class="dt">p =</span> <span class="fl">0.5</span>) {</span>
-<span id="cb2-2"><a href="random-walks.html#cb2-2"></a>  <span class="kw">return</span>(</span>
-<span id="cb2-3"><a href="random-walks.html#cb2-3"></a>    <span class="kw">data.frame</span>(</span>
-<span id="cb2-4"><a href="random-walks.html#cb2-4"></a>      <span class="dt">X0 =</span> <span class="dv">0</span>,</span>
-<span id="cb2-5"><a href="random-walks.html#cb2-5"></a>      <span class="kw">t</span>(<span class="kw">replicate</span>(nsim, <span class="kw">single_trajectory</span>(T, p)))</span>
-<span id="cb2-6"><a href="random-walks.html#cb2-6"></a>    ))</span>
-<span id="cb2-7"><a href="random-walks.html#cb2-7"></a>}</span>
-<span id="cb2-8"><a href="random-walks.html#cb2-8"></a>walk =<span class="st"> </span><span class="kw">simulate_walk</span>(<span class="dt">nsim =</span> <span class="dv">10000</span>, <span class="dt">T =</span> <span class="dv">500</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="random-walks.html#cb117-1"></a>simulate_walk =<span class="st"> </span><span class="cf">function</span>(nsim, T, <span class="dt">p =</span> <span class="fl">0.5</span>) {</span>
+<span id="cb117-2"><a href="random-walks.html#cb117-2"></a>  <span class="kw">return</span>(</span>
+<span id="cb117-3"><a href="random-walks.html#cb117-3"></a>    <span class="kw">data.frame</span>(</span>
+<span id="cb117-4"><a href="random-walks.html#cb117-4"></a>      <span class="dt">X0 =</span> <span class="dv">0</span>,</span>
+<span id="cb117-5"><a href="random-walks.html#cb117-5"></a>      <span class="kw">t</span>(<span class="kw">replicate</span>(nsim, <span class="kw">single_trajectory</span>(T, p)))</span>
+<span id="cb117-6"><a href="random-walks.html#cb117-6"></a>    ))</span>
+<span id="cb117-7"><a href="random-walks.html#cb117-7"></a>}</span>
+<span id="cb117-8"><a href="random-walks.html#cb117-8"></a>walk =<span class="st"> </span><span class="kw">simulate_walk</span>(<span class="dt">nsim =</span> <span class="dv">10000</span>, <span class="dt">T =</span> <span class="dv">500</span>)</span></code></pre></div>
 </div>
 <div id="two-ways-of-looking-at-a-stochastic-proceses" class="section level2">
 <h2><span class="header-section-number">3.4</span> Two ways of looking at a stochastic proceses</h2>
@@ -320,11 +321,11 @@ proper order of columns, which is important when you want to plot trajectories.<
 <h3><span class="header-section-number">3.4.1</span> Column-wise (distributionally)</h3>
 <p>Here we focus on individual random variables (column) or pairs, triplets, etc. of random variables and study their (joint) distributions. For example, we can plot histograms of the random variables <span class="math inline">\(X_5, X_8, X_{30}\)</span> or <span class="math inline">\(X_{500}\)</span>:</p>
 <center>
-<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-140-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </center>
 <p>We can also use various (graphical or not) devices to understand joint distributions of pairs of random variables:</p>
 <center>
-<img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-141-1.png" width="672" style="display: block; margin: auto;" />
 </center>
 </div>
 <div id="row-wise-trajectorially-or-path-wise" class="section level3">
@@ -335,12 +336,12 @@ state of the world <span class="math inline">\(\omega\)</span> (represented by a
 realization of our process, but
 varying the time parameter. A typical picture associated to a trajectory
 of a random walk is the following</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-142-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>You can try to combine the two approaches (if you must) and plot several trajectories on the same plot.
 While this produces pretty pictures (and has one or two genuine applications), it usually leads to a
 sensory overload. Note that the trajectories below are jittered a bit. That means that the positions of the points are randomly shifted by a small amount. This allows us to see features of the plot that would otherwise be hidden because of the overlap.</p>
 <center>
-<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-143-1.png" width="672" style="display: block; margin: auto;" /></p>
 </center>
 </div>
 </div>
@@ -367,7 +368,7 @@ for each <span class="math inline">\(k\)</span>. For example, when <span class="
 \end{align}\]</span>
 When you (mentally) picture them, think of their graphs:</p>
 <center>
-<img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-144-1.png" width="672" style="display: block; margin: auto;" />
 </center>
 <p>Each trajectory corresponds to a particular combinations of the values of the
 increments <span class="math inline">\((\delta_1,\dots, \delta_T)\)</span>, each such combination happens with probability <span class="math inline">\(2^{-T}\)</span>.
@@ -377,31 +378,31 @@ implement our simulation procedure in R; let us write the function <code>single_
 approach and use it to simulate a few trajectories. We assume that a function <code>all_paths(T)</code> which returns
 a list of all possible paths with horizon <span class="math inline">\(T\)</span> has already been implemented (more info about a possible
 implementation in R is given in a problem below):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="random-walks.html#cb3-1"></a>T=<span class="dv">5</span></span>
-<span id="cb3-2"><a href="random-walks.html#cb3-2"></a>Omega =<span class="st"> </span><span class="kw">all_paths</span>(T)</span>
-<span id="cb3-3"><a href="random-walks.html#cb3-3"></a>single_trajectory =<span class="st"> </span><span class="cf">function</span>() {</span>
-<span id="cb3-4"><a href="random-walks.html#cb3-4"></a>  <span class="kw">return</span>(<span class="kw">unlist</span>(<span class="kw">sample</span>(<span class="dt">size=</span><span class="dv">1</span>,Omega)))</span>
-<span id="cb3-5"><a href="random-walks.html#cb3-5"></a>}</span>
-<span id="cb3-6"><a href="random-walks.html#cb3-6"></a></span>
-<span id="cb3-7"><a href="random-walks.html#cb3-7"></a>simulate_walk =<span class="st"> </span><span class="cf">function</span>(nsim, <span class="dt">p=</span><span class="fl">0.5</span>) {</span>
-<span id="cb3-8"><a href="random-walks.html#cb3-8"></a>   <span class="kw">return</span>(<span class="kw">data.frame</span>(</span>
-<span id="cb3-9"><a href="random-walks.html#cb3-9"></a>            <span class="dt">X0=</span><span class="dv">0</span>, </span>
-<span id="cb3-10"><a href="random-walks.html#cb3-10"></a>            <span class="kw">t</span>(<span class="kw">replicate</span>(nsim, <span class="kw">single_trajectory</span>()))</span>
-<span id="cb3-11"><a href="random-walks.html#cb3-11"></a>        ))</span>
-<span id="cb3-12"><a href="random-walks.html#cb3-12"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="random-walks.html#cb118-1"></a>T=<span class="dv">5</span></span>
+<span id="cb118-2"><a href="random-walks.html#cb118-2"></a>Omega =<span class="st"> </span><span class="kw">all_paths</span>(T)</span>
+<span id="cb118-3"><a href="random-walks.html#cb118-3"></a>single_trajectory =<span class="st"> </span><span class="cf">function</span>() {</span>
+<span id="cb118-4"><a href="random-walks.html#cb118-4"></a>  <span class="kw">return</span>(<span class="kw">unlist</span>(<span class="kw">sample</span>(<span class="dt">size=</span><span class="dv">1</span>,Omega)))</span>
+<span id="cb118-5"><a href="random-walks.html#cb118-5"></a>}</span>
+<span id="cb118-6"><a href="random-walks.html#cb118-6"></a></span>
+<span id="cb118-7"><a href="random-walks.html#cb118-7"></a>simulate_walk =<span class="st"> </span><span class="cf">function</span>(nsim, <span class="dt">p=</span><span class="fl">0.5</span>) {</span>
+<span id="cb118-8"><a href="random-walks.html#cb118-8"></a>   <span class="kw">return</span>(<span class="kw">data.frame</span>(</span>
+<span id="cb118-9"><a href="random-walks.html#cb118-9"></a>            <span class="dt">X0=</span><span class="dv">0</span>, </span>
+<span id="cb118-10"><a href="random-walks.html#cb118-10"></a>            <span class="kw">t</span>(<span class="kw">replicate</span>(nsim, <span class="kw">single_trajectory</span>()))</span>
+<span id="cb118-11"><a href="random-walks.html#cb118-11"></a>        ))</span>
+<span id="cb118-12"><a href="random-walks.html#cb118-12"></a>}</span></code></pre></div>
 </div>
 <div id="the-distribution-of-x_n" class="section level2">
 <h2><span class="header-section-number">3.6</span> The distribution of <span class="math inline">\(X_n\)</span></h2>
 <p>Building a path space is not simply an exercise in abstraction. Here is how we can use is to
 understand the distribution of the position of the random walk:</p>
 <div class="example">
-<p>Let <span class="math inline">\(X\)</span> be a simple symmetric random walk with time horizon <span class="math inline">\(T=10\)</span>. What is the probability that <span class="math inline">\(X_{5}=1\)</span>?</p>
+<p>Let <span class="math inline">\(X\)</span> be a simple symmetric random walk with time horizon <span class="math inline">\(T=5\)</span>. What is the probability that <span class="math inline">\(X_{5}=1\)</span>?</p>
 </div>
 <div class="solution">
-<p>Let <span class="math inline">\(\Omega\)</span> be the path space, i.e., the set of all possible trajectories of length <span class="math inline">\(10\)</span> - there are <span class="math inline">\(2^{5}=32\)</span> of them. The probability that <span class="math inline">\(X_{5}=1\)</span> is the probability that a randomly picked path from <span class="math inline">\(\Omega\)</span> will take the value <span class="math inline">\(1\)</span> at <span class="math inline">\(n=5\)</span>. Since all paths are equally likely, we need to <em>count</em>
+<p>Let <span class="math inline">\(\Omega\)</span> be the path space, i.e., the set of all possible trajectories of length <span class="math inline">\(5\)</span> - there are <span class="math inline">\(2^{5}=32\)</span> of them. The probability that <span class="math inline">\(X_{5}=1\)</span> is the probability that a randomly picked path from <span class="math inline">\(\Omega\)</span> will take the value <span class="math inline">\(1\)</span> at <span class="math inline">\(n=5\)</span>. Since all paths are equally likely, we need to <em>count</em>
 the number of paths with value <span class="math inline">\(1\)</span> at <span class="math inline">\(n=5\)</span> and then divide by the total number of paths, i.e., <span class="math inline">\(32\)</span>.</p>
 <p>So, how many paths are there that take value <span class="math inline">\(1\)</span> at <span class="math inline">\(n=5\)</span>? Each path is built out of steps of absolute value <span class="math inline">\(1\)</span>. Some of them go up (call them up-steps) and some of them go down (down-steps). A moment’s though reveals that the only way to reach <span class="math inline">\(1\)</span> in <span class="math inline">\(5\)</span> steps is if you have exactly <span class="math inline">\(3\)</span> up-steps and <span class="math inline">\(2\)</span> down-steps. Conversely, any path that has <span class="math inline">\(3\)</span> up-steps and <span class="math inline">\(2\)</span> down-steps ends at <span class="math inline">\(1\)</span>.</p>
-<p>This realization transforms the problem into the following: how many paths are there with exactly <span class="math inline">\(3\)</span> up-steps (note that we don’t have to specify that there are <span class="math inline">\(2\)</span> down-stepsl it will happen automatically). The only difference between different paths with exactly <span class="math inline">\(3\)</span> up-steps is the position of these up-steps. In some of them the up-steps happen right at the start, in some at the very end, and in some they are scattered around. Each path with <span class="math inline">\(3\)</span> up-steps is uniquely determined by the list of positions of those up-steps, i.e., with a size-<span class="math inline">\(3\)</span> subset of <span class="math inline">\(\{1,2,3,4,5\}\)</span>. This is not a surprise at all, since each path is build out of increments, and positions of positive increments clearly determine values of all increments.</p>
+<p>This realization transforms the problem into the following: how many paths are there with exactly <span class="math inline">\(3\)</span> up-steps (note that we don’t have to specify that there are <span class="math inline">\(2\)</span> down-steps it will happen automatically). The only difference between different paths with exactly <span class="math inline">\(3\)</span> up-steps is the position of these up-steps. In some of them the up-steps happen right at the start, in some at the very end, and in some they are scattered around. Each path with <span class="math inline">\(3\)</span> up-steps is uniquely determined by the list of positions of those up-steps, i.e., with a size-<span class="math inline">\(3\)</span> subset of <span class="math inline">\(\{1,2,3,4,5\}\)</span>. This is not a surprise at all, since each path is build out of increments, and positions of positive increments clearly determine values of all increments.</p>
 <p>The problem has now become purely mathematical: how many size-<span class="math inline">\(3\)</span> subsets of <span class="math inline">\(\{1,2,3,4,5\}\)</span> are there? The answer comes in the form of a <em>binomial coefficient</em> <span class="math inline">\(\binom{5}{3}\)</span> whose value is <span class="math inline">\(10\)</span> - there are exactly ten ways to pick three positions out of five. Therefore,
 <span class="math display">\[ {\mathbb{P}}[ X_{5} = 1] = 10 \times 2^{-5} = \frac{5}{16}.\]</span></p>
 </div>
@@ -520,7 +521,7 @@ seizure-inducing graph with multiple paths for good, and adjust the each path
 according to its probability; some jitter has been added to deal with overlap.
 The lighter-colored paths are less likely to happen then the darker-colored paths.</p>
 <center>
-<p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-146-1.png" width="672" style="display: block; margin: auto;" /></p>
 </center>
 </div>
 <div id="the-reflection-principle" class="section level2">
@@ -787,7 +788,7 @@ processes are simple random walks?</p>
 <!-- ``` -->
 <!-- </div> -->
 <div class="problemec">
-<p>Write an R function (call it <code>all_paths</code>) which takes in an integer argument <code>T</code> and returns a list of all possible paths of a random walk with time horizon <span class="math inline">\(T\)</span>.
+<p>Write an R function (call it <code>all_paths</code>) which takes an integer argument <code>T</code> and returns a list of all possible paths of a random walk with time horizon <span class="math inline">\(T\)</span>.
 (Note: Since vectors cannot have other vectors as elements, you will need to use a data structure called <code>list</code> for this. It behaves very much like a vector, so it should not be a problem.)</p>
 </div>
 <!-- <div class="solution"> -->
@@ -811,6 +812,7 @@ processes are simple random walks?</p>
 <!-- ``` -->
 <!-- </div> -->
 
+
 </div>
 </div>
 
@@ -818,9 +820,9 @@ processes are simple random walks?</p>
 
 <div class="footnotes">
 <hr />
-<ol start="1">
-<li id="fn1"><p>It is somewhat unfortunate that the standard notation for the time horizon, namely <span class="math inline">\(T\)</span>, coincides with a
-shortcut <code>T</code> for <code>TRUE</code> in R. Our example still works fine because this shortcut is used only if there is no variable named <code>T</code>.<a href="random-walks.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<ol start="6">
+<li id="fn6"><p>It is somewhat unfortunate that the standard notation for the time horizon, namely <span class="math inline">\(T\)</span>, coincides with a
+shortcut <code>T</code> for <code>TRUE</code> in R. Our example still works fine because this shortcut is used only if there is no variable named <code>T</code>.<a href="random-walks.html#fnref6" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
