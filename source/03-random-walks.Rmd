@@ -623,46 +623,13 @@ What makes the computation of $\PP[M_n \geq l]$ a bit easier than that
 of $\PP[ M_n = l]$ is the following equivalence
 
 $$M_n\geq l \text{ if and only if } X_k=l \text{ for some } k.$$
-```{r echo=FALSE}
-flip_after = function (omega, l) {
-  if (l==0) {
-    return(-omega)
-  } else {
-    T = length(omega)
-    k = match(l, omega, nomatch=length(omega)+1)
-    if ( k > T) {
-      return(omega)
-    } else {
-      increments = diff(omega)
-      increments[ k:(T-1)] = - increments [k:(T-1)]
-      return(c(0,cumsum(increments)))
-    }
-  }
-}
-
-omega = as.vector(simulate_walk(1,T=12))
-fomega = flip_after(omega, 3)
-
-df = data.frame(omega, fomega) %>% pivot_long(name="x")
-
-ggplot(walk_jittered, aes(x=t, y=X, group = omega, color=weight))+geom_line(size=1)+theme_bw()+xlab("")+ylab("")+
-  theme(axis.line=element_blank(),axis.text.x=element_blank(),
-          axis.text.y=element_blank(),axis.ticks=element_blank(),
-          axis.title.x=element_blank(),
-          axis.title.y=element_blank(),legend.position="none",
-          panel.background=element_blank(),panel.border=element_blank(),panel.grid.major=element_blank(),
-          panel.grid.minor=element_blank(),plot.background=element_blank())+
-          coord_fixed()+scale_color_brewer(palette="Blues")
-
-```
-
-
-
 
 In words, the set of trajectories whose maximum is at least $l$ is
 exactly the same as the set of trajectories that hit the level $l$ at
 some time. Let us denote the set of trajectories $\omega$ with this property by
 $A_l$, so that $\PP[ M_n \geq l] = \PP[A_l]$.
+
+TO BE CONTINUED ...
 
 We can further split $A_l$ into three disjoint events $A_l^{>}$, $A_l^
 {=}$ and $A_l^{<}$, depending on whether $X_n<l$, $X_n=l$ and $X_n>l$.
