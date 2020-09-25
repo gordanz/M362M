@@ -1,0 +1,3 @@
+# Solutions - M362M, Fall 2020
+
+All solutions are now in [lecture notes](https://gordanz.github.io/M362M/)
