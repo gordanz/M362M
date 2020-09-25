@@ -590,6 +590,7 @@ walk = simulate_walk(nsim=100000, T=12, p=0.5)
 M = apply(walk, 1, max)
 hist(M, breaks=seq(-0.5, 12.5, 1), probability = TRUE)
 ```
+
 The overall shape of the distribution is as we expected; the support is $\{0,1,2,\dots, 12\}$ and the 
 probabilities tend to decrease as $k$ gets larger. The unexpected feature is that $\PP[ M_{12} = 1]$ seems
 to be the same as $\PP[ M_{12} = 2]$. It drops after that for $k=3$, but it looks like 

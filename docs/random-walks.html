@@ -557,8 +557,8 @@ An easy numerical solution to this problem can given by simulation. We reuse the
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="random-walks.html#cb4-1" aria-hidden="true"></a>walk =<span class="st"> </span><span class="kw">simulate_walk</span>(<span class="dt">nsim =</span> <span class="fl">1e+05</span>, <span class="dt">T =</span> <span class="dv">12</span>, <span class="dt">p =</span> <span class="fl">0.5</span>)</span>
 <span id="cb4-2"><a href="random-walks.html#cb4-2" aria-hidden="true"></a>M =<span class="st"> </span><span class="kw">apply</span>(walk, <span class="dv">1</span>, max)</span>
 <span id="cb4-3"><a href="random-walks.html#cb4-3" aria-hidden="true"></a><span class="kw">hist</span>(M, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">12.5</span>, <span class="dv">1</span>), <span class="dt">probability =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" />
-The overall shape of the distribution is as we expected; the support is <span class="math inline">\(\{0,1,2,\dots, 12\}\)</span> and the
+<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The overall shape of the distribution is as we expected; the support is <span class="math inline">\(\{0,1,2,\dots, 12\}\)</span> and the
 probabilities tend to decrease as <span class="math inline">\(k\)</span> gets larger. The unexpected feature is that <span class="math inline">\({\mathbb{P}}[ M_{12} = 1]\)</span> seems
 to be the same as <span class="math inline">\({\mathbb{P}}[ M_{12} = 2]\)</span>. It drops after that for <span class="math inline">\(k=3\)</span>, but it looks like
 <span class="math inline">\({\mathbb{P}}[ M_{12} = 3] = {\mathbb{P}}[ M_{12}=4]\)</span> again. Somehow the probability does not seem to change at
