@@ -50,7 +50,6 @@
 
 
 
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -302,27 +301,27 @@ and not row by row.</p></li>
 </ol>
 <p>Let’s implement this in the case of a simple random walk. Of course, it is
 impossible to simulate a random walk on an infinite horizon (<span class="math inline">\(T=\infty\)</span>)
-so we must restrict to finite-horizon random walks<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>. The function <code>cumsum</code> which
+so we must restrict to finite-horizon random walks<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. The function <code>cumsum</code> which
 produces partial sums of its input comes in very handy.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="random-walks.html#cb125-1" aria-hidden="true"></a>single_trajectory =<span class="st"> </span><span class="cf">function</span>(T, <span class="dt">p =</span> <span class="fl">0.5</span>) {</span>
-<span id="cb125-2"><a href="random-walks.html#cb125-2" aria-hidden="true"></a>    delta =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">size =</span> T, <span class="dt">replace =</span> <span class="ot">TRUE</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>p, p))</span>
-<span id="cb125-3"><a href="random-walks.html#cb125-3" aria-hidden="true"></a>    x =<span class="st"> </span><span class="kw">cumsum</span>(delta)</span>
-<span id="cb125-4"><a href="random-walks.html#cb125-4" aria-hidden="true"></a>    <span class="kw">return</span>(x)</span>
-<span id="cb125-5"><a href="random-walks.html#cb125-5" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="random-walks.html#cb1-1" aria-hidden="true"></a>single_trajectory =<span class="st"> </span><span class="cf">function</span>(T, <span class="dt">p =</span> <span class="fl">0.5</span>) {</span>
+<span id="cb1-2"><a href="random-walks.html#cb1-2" aria-hidden="true"></a>    delta =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">size =</span> T, <span class="dt">replace =</span> <span class="ot">TRUE</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>p, p))</span>
+<span id="cb1-3"><a href="random-walks.html#cb1-3" aria-hidden="true"></a>    x =<span class="st"> </span><span class="kw">cumsum</span>(delta)</span>
+<span id="cb1-4"><a href="random-walks.html#cb1-4" aria-hidden="true"></a>    <span class="kw">return</span>(x)</span>
+<span id="cb1-5"><a href="random-walks.html#cb1-5" aria-hidden="true"></a>}</span></code></pre></div>
 <p>Next, we run the same function <code>nsim</code> times and record the results. It is a
 lucky break that the default names given to columns are <code>X1</code>, <code>X2</code>, … so we
 don’t have to rename them. We do have to add the zero-th column <span class="math inline">\(X_0=0\)</span> because,
 formally speaking, the “random variable” <span class="math inline">\(X_0=0\)</span> is a part of the stochastic
 process. This needs to be done before other columns are added to maintain the
 proper order of columns, which is important when you want to plot trajectories.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="random-walks.html#cb126-1" aria-hidden="true"></a>simulate_walk =<span class="st"> </span><span class="cf">function</span>(nsim, T, <span class="dt">p =</span> <span class="fl">0.5</span>) {</span>
-<span id="cb126-2"><a href="random-walks.html#cb126-2" aria-hidden="true"></a>  <span class="kw">return</span>(</span>
-<span id="cb126-3"><a href="random-walks.html#cb126-3" aria-hidden="true"></a>    <span class="kw">data.frame</span>(</span>
-<span id="cb126-4"><a href="random-walks.html#cb126-4" aria-hidden="true"></a>      <span class="dt">X0 =</span> <span class="dv">0</span>,</span>
-<span id="cb126-5"><a href="random-walks.html#cb126-5" aria-hidden="true"></a>      <span class="kw">t</span>(<span class="kw">replicate</span>(nsim, <span class="kw">single_trajectory</span>(T, p)))</span>
-<span id="cb126-6"><a href="random-walks.html#cb126-6" aria-hidden="true"></a>    ))</span>
-<span id="cb126-7"><a href="random-walks.html#cb126-7" aria-hidden="true"></a>}</span>
-<span id="cb126-8"><a href="random-walks.html#cb126-8" aria-hidden="true"></a>walk =<span class="st"> </span><span class="kw">simulate_walk</span>(<span class="dt">nsim =</span> <span class="dv">10000</span>, <span class="dt">T =</span> <span class="dv">500</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="random-walks.html#cb2-1" aria-hidden="true"></a>simulate_walk =<span class="st"> </span><span class="cf">function</span>(nsim, T, <span class="dt">p =</span> <span class="fl">0.5</span>) {</span>
+<span id="cb2-2"><a href="random-walks.html#cb2-2" aria-hidden="true"></a>  <span class="kw">return</span>(</span>
+<span id="cb2-3"><a href="random-walks.html#cb2-3" aria-hidden="true"></a>    <span class="kw">data.frame</span>(</span>
+<span id="cb2-4"><a href="random-walks.html#cb2-4" aria-hidden="true"></a>      <span class="dt">X0 =</span> <span class="dv">0</span>,</span>
+<span id="cb2-5"><a href="random-walks.html#cb2-5" aria-hidden="true"></a>      <span class="kw">t</span>(<span class="kw">replicate</span>(nsim, <span class="kw">single_trajectory</span>(T, p)))</span>
+<span id="cb2-6"><a href="random-walks.html#cb2-6" aria-hidden="true"></a>    ))</span>
+<span id="cb2-7"><a href="random-walks.html#cb2-7" aria-hidden="true"></a>}</span>
+<span id="cb2-8"><a href="random-walks.html#cb2-8" aria-hidden="true"></a>walk =<span class="st"> </span><span class="kw">simulate_walk</span>(<span class="dt">nsim =</span> <span class="dv">10000</span>, <span class="dt">T =</span> <span class="dv">500</span>)</span></code></pre></div>
 </div>
 <div id="two-ways-of-looking-at-a-stochastic-proceses" class="section level2" number="3.4">
 <h2><span class="header-section-number">3.4</span> Two ways of looking at a stochastic proceses</h2>
@@ -331,11 +330,11 @@ proper order of columns, which is important when you want to plot trajectories.<
 <h3><span class="header-section-number">3.4.1</span> Column-wise (distributionally)</h3>
 <p>Here we focus on individual random variables (column) or pairs, triplets, etc. of random variables and study their (joint) distributions. For example, we can plot histograms of the random variables <span class="math inline">\(X_5, X_8, X_{30}\)</span> or <span class="math inline">\(X_{500}\)</span>:</p>
 <center>
-<p><img src="_main_files/figure-html/unnamed-chunk-144-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </center>
 <p>We can also use various (graphical or not) devices to understand joint distributions of pairs of random variables:</p>
 <center>
-<img src="_main_files/figure-html/unnamed-chunk-145-1.png" width="672" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" />
 </center>
 </div>
 <div id="row-wise-trajectorially-or-path-wise" class="section level3" number="3.4.2">
@@ -346,12 +345,12 @@ state of the world <span class="math inline">\(\omega\)</span> (represented by a
 realization of our process, but
 varying the time parameter. A typical picture associated to a trajectory
 of a random walk is the following</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-146-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>You can try to combine the two approaches (if you must) and plot several trajectories on the same plot.
 While this produces pretty pictures (and has one or two genuine applications), it usually leads to a
 sensory overload. Note that the trajectories below are jittered a bit. That means that the positions of the points are randomly shifted by a small amount. This allows us to see features of the plot that would otherwise be hidden because of the overlap.</p>
 <center>
-<p><img src="_main_files/figure-html/unnamed-chunk-147-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 </center>
 </div>
 </div>
@@ -378,7 +377,7 @@ for each <span class="math inline">\(k\)</span>. For example, when <span class="
 \end{align}\]</span>
 When you (mentally) picture them, think of their graphs:</p>
 <center>
-<img src="_main_files/figure-html/unnamed-chunk-148-1.png" width="672" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" />
 </center>
 <p>Each trajectory corresponds to a particular combinations of the values of the
 increments <span class="math inline">\((\delta_1,\dots, \delta_T)\)</span>, each such combination happens with probability <span class="math inline">\(2^{-T}\)</span>.
@@ -388,18 +387,18 @@ implement our simulation procedure in R; let us write the function <code>single_
 approach and use it to simulate a few trajectories. We assume that a function <code>all_paths(T)</code> which returns
 a list of all possible paths with horizon <span class="math inline">\(T\)</span> has already been implemented (more info about a possible
 implementation in R is given in a problem below):</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="random-walks.html#cb127-1" aria-hidden="true"></a>T=<span class="dv">5</span></span>
-<span id="cb127-2"><a href="random-walks.html#cb127-2" aria-hidden="true"></a>Omega =<span class="st"> </span><span class="kw">all_paths</span>(T)</span>
-<span id="cb127-3"><a href="random-walks.html#cb127-3" aria-hidden="true"></a>single_trajectory =<span class="st"> </span><span class="cf">function</span>() {</span>
-<span id="cb127-4"><a href="random-walks.html#cb127-4" aria-hidden="true"></a>  <span class="kw">return</span>(<span class="kw">unlist</span>(<span class="kw">sample</span>(<span class="dt">size=</span><span class="dv">1</span>,Omega)))</span>
-<span id="cb127-5"><a href="random-walks.html#cb127-5" aria-hidden="true"></a>}</span>
-<span id="cb127-6"><a href="random-walks.html#cb127-6" aria-hidden="true"></a></span>
-<span id="cb127-7"><a href="random-walks.html#cb127-7" aria-hidden="true"></a>simulate_walk =<span class="st"> </span><span class="cf">function</span>(nsim, <span class="dt">p=</span><span class="fl">0.5</span>) {</span>
-<span id="cb127-8"><a href="random-walks.html#cb127-8" aria-hidden="true"></a>   <span class="kw">return</span>(<span class="kw">data.frame</span>(</span>
-<span id="cb127-9"><a href="random-walks.html#cb127-9" aria-hidden="true"></a>            <span class="dt">X0=</span><span class="dv">0</span>, </span>
-<span id="cb127-10"><a href="random-walks.html#cb127-10" aria-hidden="true"></a>            <span class="kw">t</span>(<span class="kw">replicate</span>(nsim, <span class="kw">single_trajectory</span>()))</span>
-<span id="cb127-11"><a href="random-walks.html#cb127-11" aria-hidden="true"></a>        ))</span>
-<span id="cb127-12"><a href="random-walks.html#cb127-12" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="random-walks.html#cb3-1" aria-hidden="true"></a>T=<span class="dv">5</span></span>
+<span id="cb3-2"><a href="random-walks.html#cb3-2" aria-hidden="true"></a>Omega =<span class="st"> </span><span class="kw">all_paths</span>(T)</span>
+<span id="cb3-3"><a href="random-walks.html#cb3-3" aria-hidden="true"></a>single_trajectory =<span class="st"> </span><span class="cf">function</span>() {</span>
+<span id="cb3-4"><a href="random-walks.html#cb3-4" aria-hidden="true"></a>  <span class="kw">return</span>(<span class="kw">unlist</span>(<span class="kw">sample</span>(<span class="dt">size=</span><span class="dv">1</span>,Omega)))</span>
+<span id="cb3-5"><a href="random-walks.html#cb3-5" aria-hidden="true"></a>}</span>
+<span id="cb3-6"><a href="random-walks.html#cb3-6" aria-hidden="true"></a></span>
+<span id="cb3-7"><a href="random-walks.html#cb3-7" aria-hidden="true"></a>simulate_walk =<span class="st"> </span><span class="cf">function</span>(nsim, <span class="dt">p=</span><span class="fl">0.5</span>) {</span>
+<span id="cb3-8"><a href="random-walks.html#cb3-8" aria-hidden="true"></a>   <span class="kw">return</span>(<span class="kw">data.frame</span>(</span>
+<span id="cb3-9"><a href="random-walks.html#cb3-9" aria-hidden="true"></a>            <span class="dt">X0=</span><span class="dv">0</span>, </span>
+<span id="cb3-10"><a href="random-walks.html#cb3-10" aria-hidden="true"></a>            <span class="kw">t</span>(<span class="kw">replicate</span>(nsim, <span class="kw">single_trajectory</span>()))</span>
+<span id="cb3-11"><a href="random-walks.html#cb3-11" aria-hidden="true"></a>        ))</span>
+<span id="cb3-12"><a href="random-walks.html#cb3-12" aria-hidden="true"></a>}</span></code></pre></div>
 </div>
 <div id="the-distribution-of-x_n" class="section level2" number="3.6">
 <h2><span class="header-section-number">3.6</span> The distribution of <span class="math inline">\(X_n\)</span></h2>
@@ -531,7 +530,7 @@ seizure-inducing graph with multiple paths for good, and adjust the each path
 according to its probability; some jitter has been added to deal with overlap.
 The lighter-colored paths are less likely to happen then the darker-colored paths.</p>
 <center>
-<p><img src="_main_files/figure-html/unnamed-chunk-150-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
 </center>
 </div>
 <div id="the-reflection-principle" class="section level2" number="3.8">
@@ -540,21 +539,32 @@ The lighter-colored paths are less likely to happen then the darker-colored path
 as the following example shows. It also reveals a potential
 weakness of the combinatorial approach: it works best when all <span class="math inline">\(\omega\)</span>
 are equally likely (i.e., when <span class="math inline">\(p=\tfrac{1}{2}\)</span> in the case of the random walk).</p>
-<p>To BE CONTINUED …</p>
-<!-- We start by asking a simple question; what is the typical record value -->
-<!-- of the random walk, i.e., how far "up" does it typically get? Clearly, -->
-<!-- the largest value it can attain is $T$ at time $T$, provided that all -->
-<!-- coin tosses came up $+1$. This is, however, extremely unlikely - it -->
-<!-- happens with probability $2^ -->
-<!-- {-T}$. On the other hand, this maximal value is at last $0$, since -->
-<!-- $X_0=0$, already. A bit of thought reveals that any value between those -->
-<!-- two extremes is possible, but it is not at all easy to compute their -->
-<!-- probabilities. -->
-<!-- More precisely, if $\{X_n\}$ is a simple random walk with time horizon -->
-<!-- $T$. We define the $\seqz{M}$ by -->
-<!-- $$M_n=\max(X_0,\dots, X_n),\ \efor 0 \leq n \leq T.$$ It turns out that -->
-<!-- a nice counting trick - known as the - can help us compute the -->
-<!-- distribution of $M_n$ for each $n$. -->
+<p>We start by asking a simple question; what is the typical record value
+of the random walk, i.e., how far “up” (or “right” depending on your point of view)
+does it typically get? Clearly,
+the largest value it can attain is <span class="math inline">\(T\)</span> at time <span class="math inline">\(T\)</span>, provided that all
+coin tosses came up <span class="math inline">\(+1\)</span>. This is, however, extremely unlikely - it
+happens with probability <span class="math inline">\(2^{-T}\)</span>. On the other hand, this maximal value is at last <span class="math inline">\(0\)</span>, since
+<span class="math inline">\(X_0=0\)</span>, already. A bit of thought reveals that any value between those
+two extremes is possible, but it is not at all easy to compute their
+probabilities.</p>
+<p>More precisely, if <span class="math inline">\(\{X_n\}\)</span> is a simple random walk with time horizon
+<span class="math inline">\(T\)</span>. We define the <span class="math inline">\(\{M_n\}_{n\in {\mathbb{N}}_0}\)</span> by
+<span class="math display">\[M_n=\max(X_0,\dots, X_n),\ \text{ for }0 \leq n \leq T,\]</span>
+and ask what the probabilities <span class="math inline">\({\mathbb{P}}[M_n = k]\)</span> for <span class="math inline">\(k=0,\dots, n\)</span> are?
+An easy numerical solution to this problem can given by simulation. We reuse the function
+<code>simulate_walk</code> defined at the beginning of the chapter, but also employ a new function, called <code>apply</code>. What is does is apply a function to each row (or column) of a data frame or a matrix. It seems to be tailor-made for our purpose<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> because we want to compute the maximum of each row of the simulation matrix (remember - the row means keep the realization fixed, but vary the time-index <span class="math inline">\(n\)</span>). The syntax of <code>apply</code> is simple - it needs the data frame, the margin (rows are coded as 1 and columns as 2) and the function to be applied (<code>max</code> in our case). The output is a vector of size <code>nsim</code> with all row-wise maxima:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="random-walks.html#cb4-1" aria-hidden="true"></a>walk =<span class="st"> </span><span class="kw">simulate_walk</span>(<span class="dt">nsim =</span> <span class="fl">1e+05</span>, <span class="dt">T =</span> <span class="dv">12</span>, <span class="dt">p =</span> <span class="fl">0.5</span>)</span>
+<span id="cb4-2"><a href="random-walks.html#cb4-2" aria-hidden="true"></a>M =<span class="st"> </span><span class="kw">apply</span>(walk, <span class="dv">1</span>, max)</span>
+<span id="cb4-3"><a href="random-walks.html#cb4-3" aria-hidden="true"></a><span class="kw">hist</span>(M, <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">12.5</span>, <span class="dv">1</span>), <span class="dt">probability =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" />
+The overall shape of the distribution is as we expected; the support is <span class="math inline">\(\{0,1,2,\dots, 12\}\)</span> and the
+probabilities tend to decrease as <span class="math inline">\(k\)</span> gets larger. The unexpected feature is that <span class="math inline">\({\mathbb{P}}[ M_{12} = 1]\)</span> seems
+to be the same as <span class="math inline">\({\mathbb{P}}[ M_{12} = 2]\)</span>. It drops after that for <span class="math inline">\(k=3\)</span>, but it looks like
+<span class="math inline">\({\mathbb{P}}[ M_{12} = 3] = {\mathbb{P}}[ M_{12}=4]\)</span> again. Somehow the probability does not seem to change at
+all from <span class="math inline">\(2i-1\)</span> to <span class="math inline">\(2i\)</span>.</p>
+<p>Fortunately, there is an explicit formula for the distribution of <span class="math inline">\(M_n\)</span> and we can derive it
+by a nice counting trick known as <strong>the reflection principle</strong>.</p>
 <!-- Let -->
 <!-- $\{X_n\}_{0\leq n \leq T}$ be a simple symmetric random walk. For -->
 <!-- $1 \leq n \leq T$, the support of the random variable -->
@@ -566,181 +576,174 @@ are equally likely (i.e., when <span class="math inline">\(p=\tfrac{1}{2}\)</spa
 <!--    k=\ft{0}{n}, -->
 <!--  \end{split}$$ where $\lfloor x \rfloor$ denotes the largest integer -->
 <!-- smaller than or equal to $x$. -->
-<!-- As usual, we may assume without loss of generality that $n=T$ since the -->
-<!-- values of $\delta_{n+1}, \dots, \delta_T$ do not affect $M_n$ at all. -->
-<!-- We start by picking a level $l\in\set{0,1,\dots, n}$ and first compute -->
-<!-- the probability $\PP[M_n\geq l]$. The symmetry assumption ensures that -->
-<!-- all trajectories are equally likely, so we can do this by counting the -->
-<!-- number of trajectories whose maximal level reached is at least $l$, and -->
-<!-- then multiply by $2^{-n}$. -->
-<!-- What makes the computation of $\PP[M_n \geq l]$ a bit easier than that -->
-<!-- of $\PP[ M_n = l]$ is the following equivalence -->
-<!-- $M_n\geq l$ if and only if $X_k=l$ for some $k$. -->
-<!-- In words, the set of trajectories whose maximum is at least $l$ is -->
-<!-- exactly the same as the set of trajectories that hit the level $l$ at -->
-<!-- some time. Let us denote the set of $\omega$ with this property by -->
-<!-- $A_l$, so that $\PP[ M_n \geq l] = \PP[A_l]$. -->
-<!-- We can further split $A_l$ into three disjoint events $A_l^{>}$, $A_l^ -->
-<!-- {=}$ and $A_l^{<}$, depending on whether $X_n<l$, $X_n=l$ and $X_n>l$. -->
-<!-- The idea behind the reflection principle is that $A_l^{>}$ and $A_l^ -->
-<!-- {<}$ have exactly the same number of elements. To see that that is, -->
-<!-- indeed, true, we is take an $\omega\in A_l^{>}$ and denote by -->
-<!-- $F(\omega)$ the *first time* the corresponding trajectory visits the -->
-<!-- level $l$. After that, we flip the portion the trajectory between -->
-<!-- $F(\omega)+1$ and $n$ around the level $l$. In terms of $\omega$, this -->
-<!-- amounts to flipping the signs of its last $n-F(\omega)+1$ entries (see -->
-<!-- Figure [\[fig:reflect\]]{reference-type="ref" -->
-<!-- reference="fig:reflect"} below). It is easy to see that this establishes -->
-<!-- a bijection between the sets $A_l^{>}$ and $A_l^{<}$, making these two -->
-<!-- sets equal in size. -->
-<!-- The punchline is that the trajectories in $A_l^{>}$ as well as in -->
-<!-- $A_l^{=}$ are easy to count. For them, the requirement that the level -->
-<!-- $l$ is hit at a certain point is redundant; if you are at or above $l$ -->
-<!-- at the very end, you must have hit $l$ at a certain point (if nothing -->
-<!-- else, at time $n$). Therefore, $A_l^{>}$ is simply the family of those -->
-<!-- $\omega$ whose final positions are somewhere strictly above $l$, and, -->
-<!-- therefore, $$\begin{aligned} -->
-<!--      \PP[A_l^{>}] &= \PP[ X_n=l+1 \text{ or } X_n = l+2 \text{ or \dots or } -->
-<!--      X_n=n] = \sum_{k=l+1}^n \PP[X_n = k],\end{aligned}$$ and, -->
-<!-- therefore, by the reflection principle, $$\begin{aligned} -->
-<!--     \PP[ A_l^{<}] = \PP[A_l^{>}] = \sum_{k=l+1}^n \PP[X_n=k].\end{aligned}$$ -->
-<!-- We still need to account for $A_l^{=}$, i.e., for the trajectories that -->
-<!-- end up exactly at the level $l$. Just like above, $$\begin{aligned} -->
-<!--      \PP[ A_l^{=}] = \PP[X_n=l].\end{aligned}$$ Putting all of this -->
-<!-- together, we get $$\begin{aligned} -->
-<!--     \PP[ A_l ] = \PP[ X_n=l] + 2 \sum_{k=l+1}^n \PP[X_n=k],\end{aligned}$$ -->
-<!-- so that $$\begin{aligned} -->
-<!--     \PP[ M_n = l ] &= \PP[ M_n \geq l] - \PP[ M_n \geq l+1] = \PP -->
-<!--     [A_l] - \PP -->
-<!--     [A_{l+1}]\\ & = \PP[X_n=l] + \PP[X_n=l+1]. \qedhere -->
-<!--     \end{aligned}$$ -->
-<!-- To show the versatility of the reflection principle, let us use it to -->
-<!-- solve a classical problem in combinatorics. -->
-<!-- [\[exa:ballot\]]{#exa:ballot label="exa:ballot"} Suppose that two -->
-<!-- candidates, Daisy and Oscar, are running for office, and $T \in\N$ -->
-<!-- voters cast their ballots. Votes are counted the old-fashioned way, -->
-<!-- namely by the same official, one by one, until all $T$ of them have been -->
-<!-- processed. After each ballot is opened, the official records the number -->
-<!-- of votes each candidate has received so far. At the end, the official -->
-<!-- announces that Daisy has won by a margin of $k>0$ votes, i.e., that -->
-<!-- Daisy got $(T+k)/2$ votes and Oscar the remaining $(T-k)/2$ votes. What -->
-<!-- is the probability that at no time during the counting has Oscar been in -->
-<!-- the lead? -->
-<!-- \bigskip -->
-<!-- We assume that the order in which the official counts the votes is -->
-<!-- completely independent of the actual votes, and that each voter chooses -->
-<!-- Daisy with probability $p\in (0,1)$ and Oscar with probability $q=1-p$. -->
-<!-- For $0 \leq n \leq T$, let $X_n$ be the number of votes received by -->
-<!-- Daisy *minus* the number of votes received by Oscar in the first $n$ -->
-<!-- ballots. When the $n+1$-st vote is counted, $X_n$ either increases by -->
-<!-- $1$ (if the vote was for Daisy), or decreases by 1 otherwise. The votes -->
-<!-- are independent of each other and $X_0=0$, so $X_n$, $0\leq n \leq T$ is -->
-<!-- a simple random walk with the time horizon $T$. The probability of an -->
-<!-- up-step is $p\in (0,1)$, so this random walk is not necessarily -->
-<!-- symmetric. The ballot problem can now be restated as follows: -->
-<!-- *For a simple random walk $\set{X_n}_{0\leq n \leq T}$, what is the -->
-<!-- probability that $X_n\geq 0$ for all $n\in\set{\ft{0}{T}}$, given that -->
-<!-- $X_T=k$?* -->
-<!-- The first step towards understanding the solution is the realization -->
-<!-- that the exact value of $p$ does not matter. Indeed, we are interested -->
-<!-- in the conditional probability $\PP[ F|G]=\PP[F\cap G]/\PP[G]$, where -->
-<!-- $F$ denotes the set of $\omega$ whose corresponding trajectories always -->
-<!-- stay non-negative, while the trajectories corresponding to $\omega\in G$ -->
-<!-- reach $k$ at time $n$. Each $\omega \in G$ consists of exactly $(T+k)/2$ -->
-<!-- up-steps ($1$s) and $(T-k)/2$ down steps ($-1$s), so its probability -->
-<!-- weight is equal to $p^{ (T+k)/2} q^{(T-k)/2}$. Therefore, with $\# A$ -->
-<!-- denoting the number of elements in the set $A$, we get $$\begin{aligned} -->
-<!--  \PP[ F|G]=\frac{\PP[F\cap G]}{\PP[G]}=\frac{\# (F\cap G) \ p^{ -->
-<!--     (T+k)/2} q^{(T-k)/2}}{ \# G \ p^{ (T+k)/2} -->
-<!--   q^{(T-k)/2}}=\frac{\#(F\cap G)}{\# G}.\end{aligned}$$ This is quite -->
-<!-- amazing in and of itself. This conditional probability does not depend -->
-<!-- on $p$ at all! -->
-<!-- \medskip -->
-<!-- Since we already know how to count the number of elements in $G$ (there -->
-<!-- are $\binom{T}{(T+k)/2}$), "all" that remains to be done is to count the -->
-<!-- number of elements in $G\cap F$. The elements in $G \cap F$ form a -->
-<!-- portion of all the elements in $G$ whose trajectories don't hit the -->
-<!-- level $l=-1$; this way, $\#(G\cap F)=\#G-\#H$, where $H$ is the set of -->
-<!-- all paths which finish at $k$, but cross (or, at least, touch) the level -->
-<!-- $l=-1$ in the process. Can we use the reflection principle to find -->
-<!-- $\# H$? Yes, we can. In fact, you can convince yourself that the -->
-<!-- reflection of any trajectory corresponding to $\omega \in H$ around the -->
-<!-- level $l=-1$ after its last hitting time of that level produces a -->
-<!-- trajectory that starts at $0$ and ends at $-k-2$, and vice versa. The -->
-<!-- number of paths from $0$ to $-k-2$ is easy to count - it is equal to -->
-<!-- $\binom{T}{(T+k)/2+1}$. Putting everything together, we get -->
-<!-- $$\PP[ F|G]=\frac{\binom{T}{n_1}-\binom{T}{n_1+1}} -->
-<!-- {\binom{T}{n_1}}=\frac{k+1}{n_1+1},\text{ where }n_1=\frac{T+k}{2}.$$ -->
-<!-- The last equality follows from the definition of binomial coefficients -->
-<!-- $\binom{T}{i}=\frac{T!}{i!(T-i)!}$. -->
-<!-- The Ballot problem has a long history (going back to at least 1887) and -->
-<!-- has spurred a lot of research in combinatorics and probability. In fact, -->
-<!-- people still write research papers on some of its generalizations. When -->
-<!-- posed outside the context of probability, it is often phrased as "*in -->
-<!-- how many ways can the counting be performed ...*" (the difference being -->
-<!-- only in the normalizing factor $\binom{T}{n_1}$ appearing in Example -->
-<!-- [\[exa:ballot\]](#exa:ballot){reference-type="ref" -->
-<!-- reference="exa:ballot"} above). A special case $k=0$ seems to be even -->
-<!-- more popular - the number of $2n$-step paths from $0$ to $0$ never going -->
-<!-- below zero is called the and equals to $$\label{equ:Catalan} -->
-<!--  \begin{split} -->
-<!--    C_n=\frac{1}{n+1} \binom{2n}{n}. -->
-<!--  \end{split}$$ -->
-<!-- \bigskip -->
-<!-- Here is another nice consequence of the reflection principle, i.e., its -->
-<!-- application to the running maximum. Our formula for the distribution of -->
-<!-- the maximum of the random walk on $\set{0,\dots, T}$ can be used to -->
-<!-- answer the following question: -->
-<!-- *What is the probability that the random walk will reach the level $l$ -->
-<!-- in $T$ steps (or fewer)?* -->
-<!-- Indeed, $\seq{X}$ will reach $l$ during the first $T$ steps if and only -->
-<!-- if $M_T\geq l$. Therefore the answer to the above question is -->
-<!-- $\PP[ M_T \geq l] = \PP[X_T\geq l] + \PP[ X_T \geq l+1]$. A special case -->
-<!-- is the following: -->
-<!-- *What is the probability that $X$ will stay at or below $0$ throughout -->
-<!-- the interval $\set{0,\dots, T}$?* -->
-<!-- Clearly, $\seq{X}$ will stay non-positive if it never hits the level -->
-<!-- $1$. The probability of that is $\PP[M_T = 0] = \PP[X_T=0]+\PP[X_T=1]$. -->
-<!-- What happens to this expression as $T$ get larger and larger. In other -->
-<!-- words, if I give my walk enough time, can I guarantee that it will reach -->
-<!-- the level $1$? Let us compute. For simplicity, let us consider only even -->
-<!-- time horizons $T=2N$, so that $\PP[M_T=0] = \PP[X_{2N}=0]$. Using the -->
-<!-- formula for the distribution of $X_{2N}$, we get $$\begin{aligned} -->
-<!--      \PP[ X_{2N}=0] = \binom{2N}{N} 2^{-2N}, -->
-<!--  \end{aligned}$$ so our problem reduces to the investigation of the -->
-<!-- behavior of $\binom{2N}{N} 2^{-2N}$, as $N$ gets larger and larger, -->
-<!-- i.e., $$\begin{aligned} -->
-<!--  \label{equ:Sti} -->
-<!--     \lim_{N\to\infty} \binom{2N}{N} 2^{-2N}. -->
-<!--  \end{aligned}$$ To evaluate this limit, we need to know about the -->
-<!-- precise asymptotics of $N!$, as $N\to\infty$: -->
-<!-- We have $$\begin{aligned} -->
-<!-- N! \sim \sqrt{2 \pi N} \left( \tf{N}{e} \right)^N,\end{aligned}$$ where -->
-<!-- $A_N \sim B_N$ means $\lim_{N\to\infty} \tf{A_N}{B_N}=1$. -->
-<!-- Let us use Stirling's formula in -->
-<!-- [\[equ:Sti\]](#equ:Sti){reference-type="eqref" reference="equ:Sti"}: -->
-<!-- $$\begin{aligned} -->
-<!--  \binom{2N}{N} 2^{-2N} & = -->
-<!--  \frac{ (2N)!}{N! N!} 2^{-2N} \sim -->
-<!--  \frac{ -->
-<!--      \sqrt{2\pi 2N} (2N/e)^{2N} -->
-<!--  }{ -->
-<!--  \sqrt{2\pi N} (N/e)^{N} \sqrt{2\pi N} (N/e)^{N} -->
-<!--  } 2^{-2N} \\ -->
-<!--  &= \oo{\sqrt{\pi N}} -->
-<!--  \end{aligned}$$ Therefore, $$\begin{aligned} -->
-<!--     \lim_{N\to\infty} \binom{2N}{N} 2^{-2N}  = 0, -->
-<!--  \end{aligned}$$ and it follows that the answer to our question is -->
-<!-- positive: -->
-<!-- *Yes, the simple symmetric random walk will reach the level $1$, with -->
-<!-- certainty, given enough time.* -->
-<!-- By symmetry, the level $1$ can be replaced by $-1$. Also, once we hit -->
-<!-- $1$, the random walk "renews itself" (this property is called the Strong -->
-<!-- Markov Property and we will talk about it later), so it will eventually -->
-<!-- hit the level $2$, as well. Continuing the same way, we get the -->
-<!-- following remarkable result -->
-<!-- The symple symmetric random walk will visit any point in -->
-<!-- $\Z = \set{ \dots, -2, -1, 0, 1, 2, \dots}$, eventually. -->
+<p>As usual, we may assume without loss of generality that <span class="math inline">\(n=T\)</span> since the
+values of <span class="math inline">\(\delta_{n+1}, \dots, \delta_T\)</span> do not affect <span class="math inline">\(M_n\)</span> at all.
+We start by picking a level <span class="math inline">\(l\in\{0,1,\dots, n\}\)</span> and first compute
+the probability <span class="math inline">\({\mathbb{P}}[M_n\geq l]\)</span>. The symmetry assumption ensures that
+all trajectories are equally likely, so we can do this by counting the
+number of trajectories whose maximal level reached is at least <span class="math inline">\(l\)</span>, and
+then multiply by <span class="math inline">\(2^{-n}\)</span>.</p>
+<p>What makes the computation of <span class="math inline">\({\mathbb{P}}[M_n \geq l]\)</span> a bit easier than that
+of <span class="math inline">\({\mathbb{P}}[ M_n = l]\)</span> is the following equivalence</p>
+<p><span class="math display">\[M_n\geq l \text{ if and only if } X_k=l \text{ for some } k.\]</span></p>
+<p>In words, the set of trajectories whose maximum is at least <span class="math inline">\(l\)</span> is
+exactly the same as the set of trajectories that hit the level <span class="math inline">\(l\)</span> at
+some time. Let us denote the set of trajectories <span class="math inline">\(\omega\)</span> with this property by
+<span class="math inline">\(A_l\)</span>, so that <span class="math inline">\({\mathbb{P}}[ M_n \geq l] = {\mathbb{P}}[A_l]\)</span>.</p>
+<p>We can further split <span class="math inline">\(A_l\)</span> into three disjoint events <span class="math inline">\(A_l^{&gt;}\)</span>, <span class="math inline">\(A_l^ {=}\)</span> and <span class="math inline">\(A_l^{&lt;}\)</span>, depending on whether <span class="math inline">\(X_n&lt;l\)</span>, <span class="math inline">\(X_n=l\)</span> and <span class="math inline">\(X_n&gt;l\)</span>.
+The idea behind the reflection principle is that <span class="math inline">\(A_l^{&gt;}\)</span> and <span class="math inline">\(A_l^ {&lt;}\)</span> have exactly the same number of elements. To see that that is,
+indeed, true, we is take an <span class="math inline">\(\omega\in A_l^{&gt;}\)</span> and denote by
+<span class="math inline">\(F(\omega)\)</span> the <em>first time</em> the corresponding trajectory visits the
+level <span class="math inline">\(l\)</span>. After that, we flip the portion the trajectory between
+<span class="math inline">\(F(\omega)+1\)</span> and <span class="math inline">\(n\)</span> around the level <span class="math inline">\(l\)</span>. In terms of <span class="math inline">\(\omega\)</span>, this
+amounts to flipping the signs of its last <span class="math inline">\(n-F(\omega)+1\)</span> entries (see
+Figure <a href="#fig:reflect" reference-type="ref" reference="fig:reflect"><span class="math display">\[fig:reflect\]</span></a> below). It is easy to see that this establishes
+a bijection between the sets <span class="math inline">\(A_l^{&gt;}\)</span> and <span class="math inline">\(A_l^{&lt;}\)</span>, making these two
+sets equal in size.</p>
+<p>The punchline is that the trajectories in <span class="math inline">\(A_l^{&gt;}\)</span> as well as in
+<span class="math inline">\(A_l^{=}\)</span> are easy to count. For them, the requirement that the level
+<span class="math inline">\(l\)</span> is hit at a certain point is redundant; if you are at or above <span class="math inline">\(l\)</span>
+at the very end, you must have hit <span class="math inline">\(l\)</span> at a certain point (if nothing
+else, at time <span class="math inline">\(n\)</span>). Therefore, <span class="math inline">\(A_l^{&gt;}\)</span> is simply the family of those
+<span class="math inline">\(\omega\)</span> whose final positions are somewhere strictly above <span class="math inline">\(l\)</span>, and,
+therefore, <span class="math display">\[\begin{aligned}
+     {\mathbb{P}}[A_l^{&gt;}] &amp;= {\mathbb{P}}[ X_n=l+1 \text{ or } X_n = l+2 \text{ or \dots or }
+     X_n=n] = \sum_{k=l+1}^n {\mathbb{P}}[X_n = k],\end{aligned}\]</span> and,
+therefore, by the reflection principle, <span class="math display">\[\begin{aligned}
+    {\mathbb{P}}[ A_l^{&lt;}] = {\mathbb{P}}[A_l^{&gt;}] = \sum_{k=l+1}^n {\mathbb{P}}[X_n=k].\end{aligned}\]</span>
+We still need to account for <span class="math inline">\(A_l^{=}\)</span>, i.e., for the trajectories that
+end up exactly at the level <span class="math inline">\(l\)</span>. Just like above, <span class="math display">\[\begin{aligned}
+     {\mathbb{P}}[ A_l^{=}] = {\mathbb{P}}[X_n=l].\end{aligned}\]</span> Putting all of this
+together, we get <span class="math display">\[\begin{aligned}
+    {\mathbb{P}}[ A_l ] = {\mathbb{P}}[ X_n=l] + 2 \sum_{k=l+1}^n {\mathbb{P}}[X_n=k],\end{aligned}\]</span>
+so that <span class="math display">\[\begin{aligned}
+    {\mathbb{P}}[ M_n = l ] &amp;= {\mathbb{P}}[ M_n \geq l] - {\mathbb{P}}[ M_n \geq l+1] = {\mathbb{P}}
+    [A_l] - {\mathbb{P}}
+    [A_{l+1}]\\ &amp; = {\mathbb{P}}[X_n=l] + {\mathbb{P}}[X_n=l+1]. \qedhere
+    \end{aligned}\]</span></p>
+<p>To show the versatility of the reflection principle, let us use it to
+solve a classical problem in combinatorics.</p>
+<p><span id="exa:ballot" label="exa:ballot"><span class="math display">\[exa:ballot\]</span></span> Suppose that two
+candidates, Daisy and Oscar, are running for office, and <span class="math inline">\(T \in{\mathbb{N}}\)</span>
+voters cast their ballots. Votes are counted the old-fashioned way,
+namely by the same official, one by one, until all <span class="math inline">\(T\)</span> of them have been
+processed. After each ballot is opened, the official records the number
+of votes each candidate has received so far. At the end, the official
+announces that Daisy has won by a margin of <span class="math inline">\(k&gt;0\)</span> votes, i.e., that
+Daisy got <span class="math inline">\((T+k)/2\)</span> votes and Oscar the remaining <span class="math inline">\((T-k)/2\)</span> votes. What
+is the probability that at no time during the counting has Oscar been in
+the lead?</p>
+<p>We assume that the order in which the official counts the votes is
+completely independent of the actual votes, and that each voter chooses
+Daisy with probability <span class="math inline">\(p\in (0,1)\)</span> and Oscar with probability <span class="math inline">\(q=1-p\)</span>.
+For <span class="math inline">\(0 \leq n \leq T\)</span>, let <span class="math inline">\(X_n\)</span> be the number of votes received by
+Daisy <em>minus</em> the number of votes received by Oscar in the first <span class="math inline">\(n\)</span>
+ballots. When the <span class="math inline">\(n+1\)</span>-st vote is counted, <span class="math inline">\(X_n\)</span> either increases by
+<span class="math inline">\(1\)</span> (if the vote was for Daisy), or decreases by 1 otherwise. The votes
+are independent of each other and <span class="math inline">\(X_0=0\)</span>, so <span class="math inline">\(X_n\)</span>, <span class="math inline">\(0\leq n \leq T\)</span> is
+a simple random walk with the time horizon <span class="math inline">\(T\)</span>. The probability of an
+up-step is <span class="math inline">\(p\in (0,1)\)</span>, so this random walk is not necessarily
+symmetric. The ballot problem can now be restated as follows:</p>
+<p><em>For a simple random walk <span class="math inline">\(\{X_n\}_{0\leq n \leq T}\)</span>, what is the
+probability that <span class="math inline">\(X_n\geq 0\)</span> for all <span class="math inline">\(n\in\{\ft{0}{T}\}\)</span>, given that
+<span class="math inline">\(X_T=k\)</span>?</em></p>
+<p>The first step towards understanding the solution is the realization
+that the exact value of <span class="math inline">\(p\)</span> does not matter. Indeed, we are interested
+in the conditional probability <span class="math inline">\({\mathbb{P}}[ F|G]={\mathbb{P}}[F\cap G]/{\mathbb{P}}[G]\)</span>, where
+<span class="math inline">\(F\)</span> denotes the set of <span class="math inline">\(\omega\)</span> whose corresponding trajectories always
+stay non-negative, while the trajectories corresponding to <span class="math inline">\(\omega\in G\)</span>
+reach <span class="math inline">\(k\)</span> at time <span class="math inline">\(n\)</span>. Each <span class="math inline">\(\omega \in G\)</span> consists of exactly <span class="math inline">\((T+k)/2\)</span>
+up-steps (<span class="math inline">\(1\)</span>s) and <span class="math inline">\((T-k)/2\)</span> down steps (<span class="math inline">\(-1\)</span>s), so its probability
+weight is equal to <span class="math inline">\(p^{ (T+k)/2} q^{(T-k)/2}\)</span>. Therefore, with <span class="math inline">\(\# A\)</span>
+denoting the number of elements in the set <span class="math inline">\(A\)</span>, we get <span class="math display">\[\begin{aligned}
+ {\mathbb{P}}[ F|G]=\frac{{\mathbb{P}}[F\cap G]}{{\mathbb{P}}[G]}=\frac{\# (F\cap G) \ p^{
+    (T+k)/2} q^{(T-k)/2}}{ \# G \ p^{ (T+k)/2}
+  q^{(T-k)/2}}=\frac{\#(F\cap G)}{\# G}.\end{aligned}\]</span> This is quite
+amazing in and of itself. This conditional probability does not depend
+on <span class="math inline">\(p\)</span> at all!</p>
+<p>Since we already know how to count the number of elements in <span class="math inline">\(G\)</span> (there
+are <span class="math inline">\(\binom{T}{(T+k)/2}\)</span>), “all” that remains to be done is to count the
+number of elements in <span class="math inline">\(G\cap F\)</span>. The elements in <span class="math inline">\(G \cap F\)</span> form a
+portion of all the elements in <span class="math inline">\(G\)</span> whose trajectories don’t hit the
+level <span class="math inline">\(l=-1\)</span>; this way, <span class="math inline">\(\#(G\cap F)=\#G-\#H\)</span>, where <span class="math inline">\(H\)</span> is the set of
+all paths which finish at <span class="math inline">\(k\)</span>, but cross (or, at least, touch) the level
+<span class="math inline">\(l=-1\)</span> in the process. Can we use the reflection principle to find
+<span class="math inline">\(\# H\)</span>? Yes, we can. In fact, you can convince yourself that the
+reflection of any trajectory corresponding to <span class="math inline">\(\omega \in H\)</span> around the
+level <span class="math inline">\(l=-1\)</span> after its last hitting time of that level produces a
+trajectory that starts at <span class="math inline">\(0\)</span> and ends at <span class="math inline">\(-k-2\)</span>, and vice versa. The
+number of paths from <span class="math inline">\(0\)</span> to <span class="math inline">\(-k-2\)</span> is easy to count - it is equal to
+<span class="math inline">\(\binom{T}{(T+k)/2+1}\)</span>. Putting everything together, we get
+<span class="math display">\[{\mathbb{P}}[ F|G]=\frac{\binom{T}{n_1}-\binom{T}{n_1+1}}
+{\binom{T}{n_1}}=\frac{k+1}{n_1+1},\text{ where }n_1=\frac{T+k}{2}.\]</span>
+The last equality follows from the definition of binomial coefficients
+<span class="math inline">\(\binom{T}{i}=\frac{T!}{i!(T-i)!}\)</span>.</p>
+<p>The Ballot problem has a long history (going back to at least 1887) and
+has spurred a lot of research in combinatorics and probability. In fact,
+people still write research papers on some of its generalizations. When
+posed outside the context of probability, it is often phrased as “<em>in
+how many ways can the counting be performed …</em>” (the difference being
+only in the normalizing factor <span class="math inline">\(\binom{T}{n_1}\)</span> appearing in Example
+<a href="random-walks.html#exa:ballot" reference-type="ref" reference="exa:ballot"><span class="math display">\[exa:ballot\]</span></a> above). A special case <span class="math inline">\(k=0\)</span> seems to be even
+more popular - the number of <span class="math inline">\(2n\)</span>-step paths from <span class="math inline">\(0\)</span> to <span class="math inline">\(0\)</span> never going
+below zero is called the and equals to <span class="math display">\[\label{equ:Catalan}
+ \begin{split}
+   C_n=\frac{1}{n+1} \binom{2n}{n}.
+ \end{split}\]</span></p>
+<p>Here is another nice consequence of the reflection principle, i.e., its
+application to the running maximum. Our formula for the distribution of
+the maximum of the random walk on <span class="math inline">\(\{0,\dots, T\}\)</span> can be used to
+answer the following question:</p>
+<p><em>What is the probability that the random walk will reach the level <span class="math inline">\(l\)</span>
+in <span class="math inline">\(T\)</span> steps (or fewer)?</em></p>
+<p>Indeed, <span class="math inline">\(\seq{X}\)</span> will reach <span class="math inline">\(l\)</span> during the first <span class="math inline">\(T\)</span> steps if and only
+if <span class="math inline">\(M_T\geq l\)</span>. Therefore the answer to the above question is
+<span class="math inline">\({\mathbb{P}}[ M_T \geq l] = {\mathbb{P}}[X_T\geq l] + {\mathbb{P}}[ X_T \geq l+1]\)</span>. A special case
+is the following:</p>
+<p><em>What is the probability that <span class="math inline">\(X\)</span> will stay at or below <span class="math inline">\(0\)</span> throughout
+the interval <span class="math inline">\(\{0,\dots, T\}\)</span>?</em></p>
+<p>Clearly, <span class="math inline">\(\seq{X}\)</span> will stay non-positive if it never hits the level
+<span class="math inline">\(1\)</span>. The probability of that is <span class="math inline">\({\mathbb{P}}[M_T = 0] = {\mathbb{P}}[X_T=0]+{\mathbb{P}}[X_T=1]\)</span>.
+What happens to this expression as <span class="math inline">\(T\)</span> get larger and larger. In other
+words, if I give my walk enough time, can I guarantee that it will reach
+the level <span class="math inline">\(1\)</span>? Let us compute. For simplicity, let us consider only even
+time horizons <span class="math inline">\(T=2N\)</span>, so that <span class="math inline">\({\mathbb{P}}[M_T=0] = {\mathbb{P}}[X_{2N}=0]\)</span>. Using the
+formula for the distribution of <span class="math inline">\(X_{2N}\)</span>, we get <span class="math display">\[\begin{aligned}
+     {\mathbb{P}}[ X_{2N}=0] = \binom{2N}{N} 2^{-2N},
+ \end{aligned}\]</span> so our problem reduces to the investigation of the
+behavior of <span class="math inline">\(\binom{2N}{N} 2^{-2N}\)</span>, as <span class="math inline">\(N\)</span> gets larger and larger,
+i.e., <span class="math display">\[\begin{aligned}
+ \label{equ:Sti}
+    \lim_{N\to\infty} \binom{2N}{N} 2^{-2N}.
+ \end{aligned}\]</span> To evaluate this limit, we need to know about the
+precise asymptotics of <span class="math inline">\(N!\)</span>, as <span class="math inline">\(N\to\infty\)</span>:</p>
+<p>We have <span class="math display">\[\begin{aligned}
+N! \sim \sqrt{2 \pi N} \left( \frac{N}{e} \right)^N,\end{aligned}\]</span> where
+<span class="math inline">\(A_N \sim B_N\)</span> means <span class="math inline">\(\lim_{N\to\infty} \frac{A_N}{B_N}=1\)</span>.</p>
+<p>Let us use Stirling’s formula in
+<a href="#equ:Sti" reference-type="eqref" reference="equ:Sti"><span class="math display">\[equ:Sti\]</span></a>:
+<span class="math display">\[\begin{aligned}
+ \binom{2N}{N} 2^{-2N} &amp; =
+ \frac{ (2N)!}{N! N!} 2^{-2N} \sim
+ \frac{
+     \sqrt{2\pi 2N} (2N/e)^{2N}
+ }{
+ \sqrt{2\pi N} (N/e)^{N} \sqrt{2\pi N} (N/e)^{N}
+ } 2^{-2N} \\
+ &amp;= \oo{\sqrt{\pi N}}
+ \end{aligned}\]</span> Therefore, <span class="math display">\[\begin{aligned}
+    \lim_{N\to\infty} \binom{2N}{N} 2^{-2N}  = 0,
+ \end{aligned}\]</span> and it follows that the answer to our question is
+positive:</p>
+<p><em>Yes, the simple symmetric random walk will reach the level <span class="math inline">\(1\)</span>, with
+certainty, given enough time.</em></p>
+<p>By symmetry, the level <span class="math inline">\(1\)</span> can be replaced by <span class="math inline">\(-1\)</span>. Also, once we hit
+<span class="math inline">\(1\)</span>, the random walk “renews itself” (this property is called the Strong
+Markov Property and we will talk about it later), so it will eventually
+hit the level <span class="math inline">\(2\)</span>, as well. Continuing the same way, we get the
+following remarkable result</p>
+<p>The symple symmetric random walk will visit any point in
+<span class="math inline">\(\Z = \{ \dots, -2, -1, 0, 1, 2, \dots\}\)</span>, eventually.</p>
 </div>
 <div id="additional-problems-for-chapter-3" class="section level2" number="3.9">
 <h2><span class="header-section-number">3.9</span> Additional problems for Chapter 3</h2>
@@ -829,9 +832,10 @@ processes are simple random walks?</p>
 
 <div class="footnotes">
 <hr />
-<ol start="6">
-<li id="fn6"><p>It is somewhat unfortunate that the standard notation for the time horizon, namely <span class="math inline">\(T\)</span>, coincides with a
-shortcut <code>T</code> for <code>TRUE</code> in R. Our example still works fine because this shortcut is used only if there is no variable named <code>T</code>.<a href="random-walks.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<ol start="1">
+<li id="fn1"><p>It is somewhat unfortunate that the standard notation for the time horizon, namely <span class="math inline">\(T\)</span>, coincides with a
+shortcut <code>T</code> for <code>TRUE</code> in R. Our example still works fine because this shortcut is used only if there is no variable named <code>T</code>.<a href="random-walks.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>the function <code>apply</code> is often used as a substitute for a <code>for</code> loop because it has several advantages over it. First, the code is much easier to read and understand. Second, <code>apply</code> can easily be parallelized. Third, while this is not such a big issue anymore, <code>for</code> loops used to be orders of magnitude slower than the corresponding <code>apply</code> in the past. R’s <code>for</code> loops got much better recently, but they still lag behind <code>apply</code> in some cases. To be fair, <code>apply</code> is know to use more <em>memory</em> than <code>for</code>.<a href="random-walks.html#fnref2" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
