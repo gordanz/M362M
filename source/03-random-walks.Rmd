@@ -1,3 +1,5 @@
+
+
 ```{r child="mydefs.Rmd"}
 ```
 # Random Walks
@@ -35,9 +37,7 @@ A stochastic process $\{X\}_{n\in\N_0}$ is said to be a
 $\delta_2 = X_2 - X_1$, ..., called the **steps** of the random walk, are independent
 
 3.  each $\delta_n$ has a **coin-toss distribution**, i.e., its distribution 
-is given by
-    $$\PP[ \delta_n = 1] = \PP[ \delta_n=-1] = \tfrac{1}{2} \text{ for each } n.$$
-
+is given by $$\PP[ \delta_n = 1] = \PP[ \delta_n=-1] = \tfrac{1}{2} \text{ for each } n.$$
 
 Some comments:
 
@@ -238,7 +238,7 @@ of a random walk is the following
 
 
 
-```{r warning=FALSE, echo=FALSE, message=FALSE}
+```{r warning=FALSE, echo=FALSE, message=FALSE, fig.align="center"}
 library(tidyverse)
 library(gridExtra)
 
@@ -402,7 +402,7 @@ the number of paths with value $1$ at $n=5$ and then divide by the total number 
 
 So, how many paths are there that take value $1$ at $n=5$? Each path is built out of steps of absolute value $1$. Some of them go up (call them up-steps) and some of them go down (down-steps). A moment's though reveals that the only way to reach $1$ in $5$ steps is if you have exactly $3$ up-steps and $2$ down-steps. Conversely, any path that has $3$ up-steps and $2$ down-steps ends at $1$. 
 
-This realization transforms the problem into the following: how many paths are there with exactly $3$ up-steps (note that we don't have to specify that there are $2$ down-steps it will happen automatically). The only difference between different paths with exactly $3$ up-steps is the position of these up-steps. In some of them the up-steps happen right at the start, in some at the very end, and in some they are scattered around. Each path with $3$ up-steps is uniquely determined by the list of positions of those up-steps, i.e., with a size-$3$ subset of $\{1,2,3,4,5\}$. This is not a surprise at all, since each path is build out of increments, and positions of positive increments clearly determine values of all increments.
+This realization transforms the problem into the following: how many paths are there with exactly $3$ up-steps (note that we don't have to specify that there are $2$ down-steps - it will happen automatically). The only difference between different paths with exactly $3$ up-steps is the position of these up-steps. In some of them the up-steps happen right at the start, in some at the very end, and in some they are scattered around. Each path with $3$ up-steps is uniquely determined by the list of positions of those up-steps, i.e., with a size-$3$ subset of $\{1,2,3,4,5\}$. This is not a surprise at all, since each path is build out of increments, and positions of positive increments clearly determine values of all increments.
 
 The problem has now become purely mathematical: how many size-$3$ subsets of $\{1,2,3,4,5\}$ are there? The answer comes in the form of a *binomial coefficient* $\binom{5}{3}$ whose value is $10$ - there are exactly ten ways to pick three positions out of five. Therefore,
 $$ \PP[ X_{5} = 1] = 10 \times 2^{-5} = \frac{5}{16}.$$
@@ -558,7 +558,7 @@ ggplot(walk_jittered, aes(x=t, y=X, group = omega, color=weight))+geom_line(size
 
 </center>
 
-
+<!--
 ## The reflection principle
 
 
@@ -600,22 +600,13 @@ all from $2i-1$ to $2i$.
 Fortunately, there is an explicit formula for the distribution of $M_n$ and we can derive it
 by a nice counting trick known as **the reflection principle**. 
 
-<!-- Let -->
-<!-- $\{X_n\}_{0\leq n \leq T}$ be a simple symmetric random walk. For -->
-<!-- $1 \leq n \leq T$, the support of the random variable -->
-<!-- $M_n = \max(X_0,\dots, X_n)$ is $\{0,1,\dots, n\}$ and its probability -->
-<!-- mass function is given by $$\label{equ:1D3A} -->
-<!--  \begin{split} -->
-<!--     \PP[M_n=k]&=\PP[X_n=k]+\PP[X_n=k+1] \\ &= -->
-<!--    \binom{n}{ \lfloor{\frac{n+k+1}{2}}\rfloor } 2^{-n},\  \efor -->
-<!--    k=\ft{0}{n}, -->
-<!--  \end{split}$$ where $\lfloor x \rfloor$ denotes the largest integer -->
-<!-- smaller than or equal to $x$. -->
+
 
 As usual, we may assume without loss of generality that $n=T$ since the
 values of $\delta_{n+1}, \dots, \delta_T$ do not affect $M_n$ at all.
-We start by picking a level $l\in\set{0,1,\dots, n}$ and first compute
-the probability $\PP[M_n\geq l]$. The symmetry assumption ensures that
+We start by picking a level $l\in\set{1,\dots, n}$ and first compute
+the probability $\PP[M_n\geq l]$ - it will turn out to be easier than
+attacking $\PP[ M_n=l]$ directly. The symmetry assumption ensures that
 all trajectories are equally likely, so we can do this by counting the
 number of trajectories whose maximal level reached is at least $l$, and
 then multiply by $2^{-n}$.
@@ -628,190 +619,275 @@ $$M_n\geq l \text{ if and only if } X_k=l \text{ for some } k.$$
 In words, the set of trajectories whose maximum is at least $l$ is
 exactly the same as the set of trajectories that hit the level $l$ at
 some time. Let us denote the set of trajectories $\omega$ with this property by
-$A_l$, so that $\PP[ M_n \geq l] = \PP[A_l]$.
+$A_l$, so that $\PP[ M_n \geq l] = \PP[A_l]$. 
+We can further split $A_l$ into three disjoint events $A_l^{>}$, 
+$A_l^{=}$ and $A_l^{<}$, depending on whether $X_n<l$, $X_n=l$ or $X_n>l$.
+In the picture below, the red trajectory is in $A_l^{>}$, the green trajectory in $A_l^=$ 
+ the orange one in $A_l^{<}$, while the blue one is not in $A_l$ at all. 
+<center>
+```{r echo=FALSE, out.width="80%"}
+library(ggplot2)
 
-TO BE CONTINUED ...
+omegaequal = c(0,-1,0,1,2,3,4,5,4,5,4,3)
+omegagreater = c(0,1,2,3,4,5,6,5,4,3,4,5)
+omegaless = c( 0,1,0,1,0,1,2,3,2,1,0,-1)
+omeganot = c(0,1,2,1,0,1,0,-1,0,1,2,1)
 
-<!-- We can further split $A_l$ into three disjoint events $A_l^{>}$, $A_l^ -->
-<!-- {=}$ and $A_l^{<}$, depending on whether $X_n<l$, $X_n=l$ and $X_n>l$. -->
-<!-- The idea behind the reflection principle is that $A_l^{>}$ and $A_l^ -->
-<!-- {<}$ have exactly the same number of elements. To see that that is, -->
-<!-- indeed, true, we is take an $\omega\in A_l^{>}$ and denote by -->
-<!-- $F(\omega)$ the *first time* the corresponding trajectory visits the -->
-<!-- level $l$. After that, we flip the portion the trajectory between -->
-<!-- $F(\omega)+1$ and $n$ around the level $l$. In terms of $\omega$, this -->
-<!-- amounts to flipping the signs of its last $n-F(\omega)+1$ entries (see -->
-<!-- Figure [\[fig:reflect\]](#fig:reflect){reference-type="ref" -->
-<!-- reference="fig:reflect"} below). It is easy to see that this establishes -->
-<!-- a bijection between the sets $A_l^{>}$ and $A_l^{<}$, making these two -->
-<!-- sets equal in size. -->
+ggplot()+
+  geom_line(aes(x=0:11,y=omegaequal), color="darkgreen", size=1, alpha=0.6) +
+  geom_point(aes(x=0:11,y=omegaequal), color="black") +
+  geom_line(aes(x=0:11,y=omegaless), color="orange3", size=1, alpha=0.6) +
+  geom_point(aes(x=0:11,y=omegaless), color="black") +
+  geom_line(aes(x=0:11,y=omegagreater), color="darkred", size=1, alpha=0.6) +
+  geom_point(aes(x=0:11,y=omegagreater), color="black") +
+  geom_line(aes(x=0:11,y=omeganot), color="darkblue", size=1, alpha=0.6) +
+  geom_point(aes(x=0:11,y=omeganot), color="black") +
+  geom_line(aes(x=c(-0, 11),y=3), color="Brown", linetype="dashed") +
+  geom_text(aes(x = 11.5, y=5, label="X[n]>l"),family="serif", parse=TRUE)+
+  geom_text(aes(x = 11.5, y=3, label=paste("X[n] == l")),family="serif", parse=TRUE)+
+  geom_text(aes(x = 11.5, y=-1, label="X[n]<l"),family="serif", parse=TRUE)+
+  xlab("time")+ylab("")+
+  theme_bw()+scale_x_continuous(breaks=0:11)+scale_y_continuous(breaks=-1:6)
+
+```
+</center>
+
+With the set of all trajectories $\Omega$ partitioned into four disjoint classes, namely $A^>_l, A^=_l, A^<_l$ and $(A_l)^c$, we are ready to reveal the main idea behind the reflection principle:
+
+<center style="margin-bottom: 20px;">
+$A_l^<$ and $A_l^>$ have exactly the same number of elements, i.e., $\# A^>_l = \# A_l^<$.
+</center>
 
 
-<!-- The punchline is that the trajectories in $A_l^{>}$ as well as in -->
-<!-- $A_l^{=}$ are easy to count. For them, the requirement that the level -->
-<!-- $l$ is hit at a certain point is redundant; if you are at or above $l$ -->
-<!-- at the very end, you must have hit $l$ at a certain point (if nothing -->
-<!-- else, at time $n$). Therefore, $A_l^{>}$ is simply the family of those -->
-<!-- $\omega$ whose final positions are somewhere strictly above $l$, and, -->
-<!-- therefore, $$\begin{aligned} -->
-<!--      \PP[A_l^{>}] &= \PP[ X_n=l+1 \text{ or } X_n = l+2 \text{ or \dots or } -->
-<!--      X_n=n] = \sum_{k=l+1}^n \PP[X_n = k],\end{aligned}$$ and, -->
-<!-- therefore, by the reflection principle, $$\begin{aligned} -->
-<!--     \PP[ A_l^{<}] = \PP[A_l^{>}] = \sum_{k=l+1}^n \PP[X_n=k].\end{aligned}$$ -->
-<!-- We still need to account for $A_l^{=}$, i.e., for the trajectories that -->
-<!-- end up exactly at the level $l$. Just like above, $$\begin{aligned} -->
-<!--      \PP[ A_l^{=}] = \PP[X_n=l].\end{aligned}$$ Putting all of this -->
-<!-- together, we get $$\begin{aligned} -->
-<!--     \PP[ A_l ] = \PP[ X_n=l] + 2 \sum_{k=l+1}^n \PP[X_n=k],\end{aligned}$$ -->
-<!-- so that $$\begin{aligned} -->
-<!--     \PP[ M_n = l ] &= \PP[ M_n \geq l] - \PP[ M_n \geq l+1] = \PP -->
-<!--     [A_l] - \PP -->
-<!--     [A_{l+1}]\\ & = \PP[X_n=l] + \PP[X_n=l+1]. \qedhere -->
-<!--     \end{aligned}$$ -->
+To see why that is true, start by taking a trajectory $\omega\in A_l^{>}$ and denoting by
+$\tau_l(\omega)$ the *first time* $\omega$ visits the
+level $l$. Since $\omega \in A^>$ such a time clearly exists. 
+Then we associate to $\omega$ another trajectory, call it $\bar{\omega}$, obtained from $\omega$
+in the following way; follow $\omega$ until time $\tau_l(\omega)$. After that, $\bar{\omega}$ is the reflection of $\omega$ around the level $l$. In other words, the increments of $\omega$ and $\bar{\omega}$ are exactly the same up to time $\tau(\omega)$, and exactly the opposite afterwards. It will all be clear once you see the picture below - the orange trajectory is $\omega$ and the green trajectory is its 
+"reflection" $\bar{\omega}$; note that they overlap until time $5$:
+<center>
+```{r echo=FALSE, out.width = "80%"}
+library(ggplot2)
+library(latex2exp)
 
-<!-- To show the versatility of the reflection principle, let us use it to -->
-<!-- solve a classical problem in combinatorics. -->
+omegagreen = c(0,1,2,1,2,3,4,5,4,3,2,1)
+omegaorange = c(0,1,2,1,2,3,2,1,2,3,4,5)
 
-<!-- [\[exa:ballot\]]{#exa:ballot label="exa:ballot"} Suppose that two -->
-<!-- candidates, Daisy and Oscar, are running for office, and $T \in\N$ -->
-<!-- voters cast their ballots. Votes are counted the old-fashioned way, -->
-<!-- namely by the same official, one by one, until all $T$ of them have been -->
-<!-- processed. After each ballot is opened, the official records the number -->
-<!-- of votes each candidate has received so far. At the end, the official -->
-<!-- announces that Daisy has won by a margin of $k>0$ votes, i.e., that -->
-<!-- Daisy got $(T+k)/2$ votes and Oscar the remaining $(T-k)/2$ votes. What -->
-<!-- is the probability that at no time during the counting has Oscar been in -->
-<!-- the lead? -->
+ggplot()+
+  geom_line(aes(x=0:11,y=omegagreen), color="darkgreen", size=1, alpha=0.6) +
+  geom_point(aes(x=0:11,y=omegagreen), color="black") +
+  geom_line(aes(x=0:11,y=omegaorange), color="orange3", size=1, alpha=0.6) +
+  geom_point(aes(x=0:11,y=omegaorange), color="black") +
+  geom_line(aes(x=c(-0, 11),y=3), color="Brown", linetype="dashed") +
+  geom_line(aes(x=c(5, 5),y=c(0.25,3)), color="gray", linetype="dotdash") +
+  geom_text( aes(x = 5, y=0, label=paste(TeX("$\\tau_l(\\omega)")) ),family="serif", parse=TRUE)+
+  geom_text(aes(x = 11.5, y=5, label=paste("omega")),size = 5, family="serif", parse=TRUE)+
+  geom_text(aes(x = 11.5, y=1, label=paste("bar(omega)")),size = 5, family="serif", parse=TRUE)+
+  xlab("time")+ylab("")+
+  theme_bw()+scale_x_continuous(breaks=0:11)+scale_y_continuous(breaks=0:6)
 
-<!-- \bigskip -->
-<!-- We assume that the order in which the official counts the votes is -->
-<!-- completely independent of the actual votes, and that each voter chooses -->
-<!-- Daisy with probability $p\in (0,1)$ and Oscar with probability $q=1-p$. -->
-<!-- For $0 \leq n \leq T$, let $X_n$ be the number of votes received by -->
-<!-- Daisy *minus* the number of votes received by Oscar in the first $n$ -->
-<!-- ballots. When the $n+1$-st vote is counted, $X_n$ either increases by -->
-<!-- $1$ (if the vote was for Daisy), or decreases by 1 otherwise. The votes -->
-<!-- are independent of each other and $X_0=0$, so $X_n$, $0\leq n \leq T$ is -->
-<!-- a simple random walk with the time horizon $T$. The probability of an -->
-<!-- up-step is $p\in (0,1)$, so this random walk is not necessarily -->
-<!-- symmetric. The ballot problem can now be restated as follows: -->
+```
+</center>
 
-<!-- *For a simple random walk $\set{X_n}_{0\leq n \leq T}$, what is the -->
-<!-- probability that $X_n\geq 0$ for all $n\in\set{\ft{0}{T}}$, given that -->
-<!-- $X_T=k$?* -->
+Convince yourself that this procedure establishes
+a bijection between the sets $A_l^{>}$ and $A_l^{<}$, making these two
+sets equal in size. 
 
-<!-- The first step towards understanding the solution is the realization -->
-<!-- that the exact value of $p$ does not matter. Indeed, we are interested -->
-<!-- in the conditional probability $\PP[ F|G]=\PP[F\cap G]/\PP[G]$, where -->
-<!-- $F$ denotes the set of $\omega$ whose corresponding trajectories always -->
-<!-- stay non-negative, while the trajectories corresponding to $\omega\in G$ -->
-<!-- reach $k$ at time $n$. Each $\omega \in G$ consists of exactly $(T+k)/2$ -->
-<!-- up-steps ($1$s) and $(T-k)/2$ down steps ($-1$s), so its probability -->
-<!-- weight is equal to $p^{ (T+k)/2} q^{(T-k)/2}$. Therefore, with $\# A$ -->
-<!-- denoting the number of elements in the set $A$, we get $$\begin{aligned} -->
-<!--  \PP[ F|G]=\frac{\PP[F\cap G]}{\PP[G]}=\frac{\# (F\cap G) \ p^{ -->
-<!--     (T+k)/2} q^{(T-k)/2}}{ \# G \ p^{ (T+k)/2} -->
-<!--   q^{(T-k)/2}}=\frac{\#(F\cap G)}{\# G}.\end{aligned}$$ This is quite -->
-<!-- amazing in and of itself. This conditional probability does not depend -->
-<!-- on $p$ at all! -->
+So why is it important to know that $\# A_l^> = \# A_l^<$? Because the trajectories in 
+$A_l^>$ (as well as in $A_l^=$) are easy to count. 
+For them, the requirement that the level 
+$l$ is hit at a certain point is redundant; if you are at or above $l$
+at the very end, you must have hit $l$ at a certain point.  
+Therefore, $A_l^{>}$ is simply the family of those trajectories 
+$\omega$ whose final positions $X_n(\omega)$ are somewhere strictly above $l$. Hence,
+$$\begin{aligned}
+     \PP[A_l^{>}] &= \PP[ X_n=l+1 \text{ or } X_n = l+2 \text{ or } \dots \text{ or }
+     X_n=n] = \sum_{k=l+1}^n \PP[X_n = k],\end{aligned}.$$ 
+Similarly,      $$\begin{aligned}
+     \PP[ A_l^{=}] = \PP[X_n=l].\end{aligned}$$ 
+Finally, by the reflection principle, 
+$$\begin{aligned}
+    \PP[ A_l^{<}] = \PP[A_l^{>}] = \sum_{k=l+1}^n \PP[X_n=k].\end{aligned}$$
 
-<!-- \medskip -->
-<!-- Since we already know how to count the number of elements in $G$ (there -->
-<!-- are $\binom{T}{(T+k)/2}$), "all" that remains to be done is to count the -->
-<!-- number of elements in $G\cap F$. The elements in $G \cap F$ form a -->
-<!-- portion of all the elements in $G$ whose trajectories don't hit the -->
-<!-- level $l=-1$; this way, $\#(G\cap F)=\#G-\#H$, where $H$ is the set of -->
-<!-- all paths which finish at $k$, but cross (or, at least, touch) the level -->
-<!-- $l=-1$ in the process. Can we use the reflection principle to find -->
-<!-- $\# H$? Yes, we can. In fact, you can convince yourself that the -->
-<!-- reflection of any trajectory corresponding to $\omega \in H$ around the -->
-<!-- level $l=-1$ after its last hitting time of that level produces a -->
-<!-- trajectory that starts at $0$ and ends at $-k-2$, and vice versa. The -->
-<!-- number of paths from $0$ to $-k-2$ is easy to count - it is equal to -->
-<!-- $\binom{T}{(T+k)/2+1}$. Putting everything together, we get -->
-<!-- $$\PP[ F|G]=\frac{\binom{T}{n_1}-\binom{T}{n_1+1}} -->
-<!-- {\binom{T}{n_1}}=\frac{k+1}{n_1+1},\text{ where }n_1=\frac{T+k}{2}.$$ -->
-<!-- The last equality follows from the definition of binomial coefficients -->
-<!-- $\binom{T}{i}=\frac{T!}{i!(T-i)!}$. -->
+Putting all of this
+together, we get $$\begin{aligned}
+    \PP[ A_l ] = \PP[ X_n=l] + 2 \sum_{k=l+1}^n \PP[X_n=k],\end{aligned}$$
+so that $$\begin{aligned}
+    \PP[ M_n = l ] &= \PP[ M_n \geq l] - \PP[ M_n \geq l+1]\\ & = \PP
+    [A_l] - \PP
+    [A_{l+1}]\\ & =
+    \PP[ X_n = l] + 2 \PP[X_n = l+1] + 2\PP[X_n = l+2]+ \dots + 2\PP[ X_n=n] -\\
+    & \qquad \qquad  \quad \  -
+    \PP[ X_n = l+1] - 2 \PP[X_n = l+2] - \dots - 2\PP[ X_n=n]\\
+    &= \PP[ X_n=l] + \PP[X_n=l+1]
+    \end{aligned}$$
+    
+Now that we have the explicit expression
+$$ \PP[ M_n = l ] = \PP[ X_n=l] + \PP[X_n = l+1] \text{ for } l=0,1,\dots, n,$$
+we can shed some light on the fact on the shape of the histogram for $M_n$ we plotted above. 
+Since $\PP[X_n=l]$ is $0$ if $n$ and $l$ don't have the same parity, it is clear that only
+one of the probabilities $\PP[X_n=l]$ and $\PP[X_n=l+1]$ can be positive. It follows that, for
+$n$ even, we have
+\begin{align}
+\PP[ M_n =0] &= \PP[X_n=0] + \PP[X_n=1] = \PP[X_n=0]\\
+\PP[M_n=1] &= \PP[ X_n=1] + \PP[X_n=2] = \PP[X_n=2]\\
+\PP[M_n=2] &= \PP[ X_n=2] + \PP[X_n=3] = \PP[X_n=2]\\
+\PP[M_n=3] &= \PP[ X_n=3] + \PP[X_n=4] = \PP[X_n=4]\\
+\PP[M_n=4] &= \PP[ X_n=4] + \PP[X_n=5] = \PP[X_n=4] \text{ etc.}
+\end{align}
+In a similar way, for $n$ odd, we have
+\begin{align}
+\PP[ M_n =0] &= \PP[X_n=0] + \PP[X_n=1] = \PP[X_n=1]\\
+\PP[M_n=1] &= \PP[ X_n=1] + \PP[X_n=2] = \PP[X_n=1]\\
+\PP[M_n=2] &= \PP[ X_n=2] + \PP[X_n=3] = \PP[X_n=3]\\
+\PP[M_n=3] &= \PP[ X_n=3] + \PP[X_n=4] = \PP[X_n=3]\\
+\PP[M_n=4] &= \PP[ X_n=4] + \PP[X_n=5] = \PP[X_n=5] \text{ etc.}
+\end{align}
 
-<!-- The Ballot problem has a long history (going back to at least 1887) and -->
-<!-- has spurred a lot of research in combinatorics and probability. In fact, -->
-<!-- people still write research papers on some of its generalizations. When -->
-<!-- posed outside the context of probability, it is often phrased as "*in -->
-<!-- how many ways can the counting be performed ...*" (the difference being -->
-<!-- only in the normalizing factor $\binom{T}{n_1}$ appearing in Example -->
-<!-- [\[exa:ballot\]](#exa:ballot){reference-type="ref" -->
-<!-- reference="exa:ballot"} above). A special case $k=0$ seems to be even -->
-<!-- more popular - the number of $2n$-step paths from $0$ to $0$ never going -->
-<!-- below zero is called the and equals to $$\label{equ:Catalan} -->
-<!--  \begin{split} -->
-<!--    C_n=\frac{1}{n+1} \binom{2n}{n}. -->
-<!--  \end{split}$$ -->
+Here is a example of a typical problem where the reflection principle (i.e., the formula for $\PP[M_n=k]$) is used:
 
-<!-- \bigskip -->
-<!-- Here is another nice consequence of the reflection principle, i.e., its -->
-<!-- application to the running maximum. Our formula for the distribution of -->
-<!-- the maximum of the random walk on $\set{0,\dots, T}$ can be used to -->
-<!-- answer the following question: -->
+<div class="problem">
+Let $X$ be a simple symmetric random walk. 
+  What is the probability that $X_n\leq 0$ for all $0\leq n \leq T$? 
+</div>
 
-<!-- *What is the probability that the random walk will reach the level $l$ -->
-<!-- in $T$ steps (or fewer)?* -->
+<div class="solution">
 
-<!-- Indeed, $\seq{X}$ will reach $l$ during the first $T$ steps if and only -->
-<!-- if $M_T\geq l$. Therefore the answer to the above question is -->
-<!-- $\PP[ M_T \geq l] = \PP[X_T\geq l] + \PP[ X_T \geq l+1]$. A special case -->
-<!-- is the following: -->
+  This is really a question about the maximum, but in disguise.  The walk will stay negative or $0$ if and only if its
+  its running maximum $M_T$ at time $T$ takes the value $0$. By our formula for $\PP[M_n=l]$ we have
+  $$ \PP[M_T=0] = \PP[X_T=0] + \PP[X_T = 1].$$
+When $T=2N$ is even this evaluates to $\binom{2N}{N} 2^{-2N}$, and when $T=2N-1$ to
+$\binom{2N-1}{N} 2^{-(2N-1)}$. 
+</div>
 
-<!-- *What is the probability that $X$ will stay at or below $0$ throughout -->
-<!-- the interval $\set{0,\dots, T}$?* -->
+<div class="problem">
+  What is the probability that a simple symmetric random walk will reach the level $l=1$ in $T$ steps or fewer?
+  What happens when $T\to\infty$?
+</div>
 
-<!-- Clearly, $\seq{X}$ will stay non-positive if it never hits the level -->
-<!-- $1$. The probability of that is $\PP[M_T = 0] = \PP[X_T=0]+\PP[X_T=1]$. -->
-<!-- What happens to this expression as $T$ get larger and larger. In other -->
-<!-- words, if I give my walk enough time, can I guarantee that it will reach -->
-<!-- the level $1$? Let us compute. For simplicity, let us consider only even -->
-<!-- time horizons $T=2N$, so that $\PP[M_T=0] = \PP[X_{2N}=0]$. Using the -->
-<!-- formula for the distribution of $X_{2N}$, we get $$\begin{aligned} -->
-<!--      \PP[ X_{2N}=0] = \binom{2N}{N} 2^{-2N}, -->
-<!--  \end{aligned}$$ so our problem reduces to the investigation of the -->
-<!-- behavior of $\binom{2N}{N} 2^{-2N}$, as $N$ gets larger and larger, -->
-<!-- i.e., $$\begin{aligned} -->
-<!--  \label{equ:Sti} -->
-<!--     \lim_{N\to\infty} \binom{2N}{N} 2^{-2N}. -->
-<!--  \end{aligned}$$ To evaluate this limit, we need to know about the -->
-<!-- precise asymptotics of $N!$, as $N\to\infty$: -->
+<p class="solution">The first question is exactly the opposite of the question in our previous example, so the answer is
+  $$ 1 - \PP[M_T=0] = 1- \PP[X_T=0] - \PP[X_T=1].$$
+  As above, this evaluates to $\binom{2N}{N} 2^{-2N}$ when $T=2N$ is even (we skip the case of odd $T$ because it is very similar). 
+  When $N\to\infty$, we expect $\binom{2N}{N}$ to go to $+\infty$ and $2^{-2N}$ to go to 
+  $0$, so it is not immediately clear which term will win. 
+  One way to make a guess is to think about it probabilistically: we are looking at the 
+  probability $\PP[X_{2N}=0]$ that the random walk takes the 
+  value $0$ after exactly $2N$ steps. Even though no single other value is more 
+  likely to happen, there are so many other values $X_{2N}$ could take (anything 
+  from $-2N$ to $2N$ except for $0$) that we conjecture that
+  its probability converges to $0$. A  formal mathematical argument which proves that
+  our conjecture is, indeed correct, involves **Stirling's formula**:
+  
+  > We have $N! \sim \sqrt{2 \pi N} \left( \tf{N}{e} \right)^N$ where
+  > $A_N \sim B_N$ means $\lim_{N\to\infty} \tf{A_N}{B_N}=1$.
+  
+  We write $\binom{2N}{N} = \tfrac{(2N)!}{N! N!}$ and apply Stirling's formula to each factorial (let's skip the details)
+  to conclude that 
+  $$ \lim_{N\to\infty} \binom{2N}{N} 2^{-2n} = \lim_{N\to\infty} \frac{1}{\sqrt{N \pi}} = 0 $$</p>
 
-<!-- We have $$\begin{aligned} -->
-<!-- N! \sim \sqrt{2 \pi N} \left( \tf{N}{e} \right)^N,\end{aligned}$$ where -->
-<!-- $A_N \sim B_N$ means $\lim_{N\to\infty} \tf{A_N}{B_N}=1$. -->
+What we just computed is more than just an exercise. It proves an important fact:
 
-<!-- Let us use Stirling's formula in -->
-<!-- [\[equ:Sti\]](#equ:Sti){reference-type="eqref" reference="equ:Sti"}: -->
-<!-- $$\begin{aligned} -->
-<!--  \binom{2N}{N} 2^{-2N} & = -->
-<!--  \frac{ (2N)!}{N! N!} 2^{-2N} \sim -->
-<!--  \frac{ -->
-<!--      \sqrt{2\pi 2N} (2N/e)^{2N} -->
-<!--  }{ -->
-<!--  \sqrt{2\pi N} (N/e)^{N} \sqrt{2\pi N} (N/e)^{N} -->
-<!--  } 2^{-2N} \\ -->
-<!--  &= \oo{\sqrt{\pi N}} -->
-<!--  \end{aligned}$$ Therefore, $$\begin{aligned} -->
-<!--     \lim_{N\to\infty} \binom{2N}{N} 2^{-2N}  = 0, -->
-<!--  \end{aligned}$$ and it follows that the answer to our question is -->
-<!-- positive: -->
+> The simple symmetric random walk will reach the level $1$, 
+> with certainty, given enough time.
 
-<!-- *Yes, the simple symmetric random walk will reach the level $1$, with -->
-<!-- certainty, given enough time.* -->
+Indeed, we just proved that the probability of this not happening during the first $T$ steps
+shrinks down to $0$ as $T\to\infty$.
 
-<!-- By symmetry, the level $1$ can be replaced by $-1$. Also, once we hit -->
-<!-- $1$, the random walk "renews itself" (this property is called the Strong -->
-<!-- Markov Property and we will talk about it later), so it will eventually -->
-<!-- hit the level $2$, as well. Continuing the same way, we get the -->
-<!-- following remarkable result -->
+But wait, there is more! By symmetry, the level $1$ can be replaced by $-1$. Also, once we hit
+$1$, the random walk "renews itself" (this property is called the Strong
+Markov Property and we will talk about it later), so it will eventually
+hit the level $2$, as well. Continuing the same way, we get the
+following remarkable result
 
-<!-- The symple symmetric random walk will visit any point in -->
-<!-- $\Z = \set{ \dots, -2, -1, 0, 1, 2, \dots}$, eventually. -->
+> **Sooner or later, the symple symmetric random walk will visit any level.** 
+
+
+We close this chapter with an application of the reflection principle
+to a classical problem in probability and combinatorics. Feel free to skip it
+if you want to. 
+
+<div class="problemec">
+Suppose that two
+candidates, Daisy and Oscar, are running for office, and $T \in\N$
+voters cast their ballots. Votes are counted the old-fashioned way,
+namely by the same official, one by one, until all $T$ of them have been
+processed. After each ballot is opened, the official records the number
+of votes each candidate has received so far. At the end, the official
+announces that Daisy has won by a margin of $k>0$ votes, i.e., that
+Daisy got $(T+k)/2$ votes and Oscar the remaining $(T-k)/2$ votes. What
+is the probability that at no time during the counting has Oscar been in
+the lead?
+</div>
+
+<div class="solution">
+We assume that the order in which the official counts the votes is
+completely independent of the actual votes, and that each voter chooses
+Daisy with probability $p\in (0,1)$ and Oscar with probability $q=1-p$.
+We don't know a-priori what $p$ is, and, as it turns out, we don't need to!
+
+For $0 \leq n \leq T$, let $X_n$ be the number of votes received by
+Daisy *minus* the number of votes received by Oscar in the first $n$
+ballots. When the $n+1$-st vote is counted, $X_n$ either increases by
+$1$ (if the vote was for Daisy), or decreases by 1 otherwise. The votes
+are independent of each other and $X_0=0$, so $X_n$, $0\leq n \leq T$ is
+a simple random walk with the time horizon $T$. The probability of an
+up-step is $p\in (0,1)$, so this random walk is not necessarily
+symmetric. The ballot problem can now be restated as follows:
+
+*For a simple random walk $\set{X_n}_{0\leq n \leq T}$, what is the
+probability that $X_n\geq 0$ **for all** $n$ with $0\leq n \leq T$, given that
+$X_T=k$?*
+
+The first step towards understanding the solution is the realization
+that the exact value of $p$ does not matter. Indeed, we are interested
+in the conditional probability $\PP[ F|G]=\PP[F\cap G]/\PP[G]$, where
+$F$ denotes the set of $\omega$ whose corresponding trajectories always
+stay non-negative, while the trajectories corresponding to $\omega\in G$
+reach $k$ at time $n$. Each $\omega \in G$ consists of exactly $(T+k)/2$
+up-steps ($1$s) and $(T-k)/2$ down steps ($-1$s), so its probability
+weight is equal to $p^{ (T+k)/2} q^{(T-k)/2}$. Therefore, with $\# A$
+denoting the number of elements in the set $A$, we get $$\begin{aligned}
+ \PP[ F|G]=\frac{\PP[F\cap G]}{\PP[G]}=\frac{\# (F\cap G) \ p^{
+    (T+k)/2} q^{(T-k)/2}}{ \# G \ p^{ (T+k)/2}
+  q^{(T-k)/2}}=\frac{\#(F\cap G)}{\# G}.\end{aligned}$$ This is quite
+amazing in and of itself. This conditional probability does not depend
+on $p$ at all!
+
+\medskip
+Since we already know how to count the number of elements in $G$ (there
+are $\binom{T}{(T+k)/2}$), "all" that remains to be done is to count the
+number of elements in $G\cap F$. The elements in $G \cap F$ form a
+portion of all the elements in $G$ whose trajectories don't hit the
+level $l=-1$; this way, $\#(G\cap F)=\#G-\#H$, where $H$ is the set of
+all paths which finish at $k$, but cross (or, at least, touch) the level
+$l=-1$ in the process. Can we use the reflection principle to find
+$\# H$? Yes, we can. In fact, you can convince yourself that the
+reflection of any trajectory corresponding to $\omega \in H$ around the
+level $l=-1$ after its last hitting time of that level produces a
+trajectory that starts at $0$ and ends at $-k-2$, and vice versa. The
+number of paths from $0$ to $-k-2$ is easy to count - it is equal to
+$\binom{T}{(T+k)/2+1}$. Putting everything together, we get
+$$\PP[ F|G]=\frac{\binom{T}{n_1}-\binom{T}{n_1+1}}
+{\binom{T}{n_1}}=\frac{k+1}{n_1+1},\text{ where }n_1=\frac{T+k}{2}.$$
+The last equality follows from the definition of binomial coefficients
+$\binom{T}{i}=\frac{T!}{i!(T-i)!}$.
+
+The Ballot problem has a long history (going back to at least 1887) and
+has spurred a lot of research in combinatorics and probability. In fact,
+people still write research papers on some of its generalizations. When
+posed outside the context of probability, it is often phrased as "*in
+how many ways can the counting be performed ...*" (the difference being
+only in the normalizing factor $\binom{T}{n_1}$ appearing in Example
+above). A special case $k=0$ seems to be even
+more popular - the number of $2n$-step paths from $0$ to $0$ never going
+below zero is called the **$n$-th Catalan number** and equals 
+ \begin{align}
+   C_n=\frac{1}{n+1} \binom{2n}{n}.
+ \end{align}
+</div>
+
+-->
+
 
 ## Additional problems for Chapter 3
 
@@ -819,74 +895,159 @@ TO BE CONTINUED ...
 ```{r child="problems/01_Random_Walks/walk6_prb.Rmd"}
 ```
 </div>
-
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/01_Random_Walks/walk6_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/01_Random_Walks/walk6_sol.Rmd"}
+```
+</div>
 
 
 <div class="problem">
 ```{r child="problems/01_Random_Walks/simple-1_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/01_Random_Walks/simple-1_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/01_Random_Walks/simple-1_sol.Rmd"}
+```
+</div>
 
 <div class="problem">
 ```{r child="problems/01_Random_Walks/simple-1b_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/01_Random_Walks/simple-1b_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
-
-
-
-
-
-
-<div class="problem">
-```{r child="problems/01_Random_Walks/rw-mc-exam-6_prb.Rmd"}
+<div class="solution">
+```{r child="problems/01_Random_Walks/simple-1b_sol.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/01_Random_Walks/rw-mc-exam-6_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
 
+
+<!--
+  same_value_three_points
+-->
+<div class="problem">
+```{r child="problems/01_Random_Walks/same_value_three_points_prb.Rmd"}
+```
+</div>
+<div class="solution">
+```{r child="problems/01_Random_Walks/same_value_three_points_sol.Rmd"}
+```
+</div>
+
+<!--
+  R-impl-all paths
+-->
 <div class="problemec">
 ```{r child="problems/01_Random_Walks/R-impl-all-paths_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/01_Random_Walks/R-impl-all-paths_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/01_Random_Walks/R-impl-all-paths_sol.Rmd"}
+```
+</div>
 
 
-
+<!--
+  var_cov_corr
+  ------------------------------------------------
+-->
 <!-- <div class="problem"> -->
-<!-- ```{r child="problems/01_Random_Walks/walk7_prb.Rmd"} -->
+<!-- ```{r child="problems/01_Random_Walks/var_cov_corr_prb.Rmd"} -->
 <!-- ``` -->
 <!-- </div> -->
-
 <!-- <div class="solution"> -->
-<!-- ```{r child="problems/01_Random_Walks/walk7_sol.Rmd"} -->
+<!-- ```{r child="problems/01_Random_Walks/var_cov_corr_sol.Rmd"} -->
 <!-- ``` -->
 <!-- </div> -->
 
+<!--
+  area_under_walk
+  ------------------------------
+-->
 <!-- <div class="problem"> -->
-<!-- ```{r child="problems/01_Random_Walks/walk8_prb.Rmd"} -->
+<!-- ```{r child="problems/01_Random_Walks/area_under_walk_prb.Rmd"} -->
 <!-- ``` -->
 <!-- </div> -->
 <!-- <div class="solution"> -->
-<!-- ```{r child="problems/01_Random_Walks/walk8_sol.Rmd"} -->
+<!-- ```{r child="problems/01_Random_Walks/area_under_walk_sol.Rmd"} -->
 <!-- ``` -->
 <!-- </div> -->
 
 
+<!--
+  never-reach-5
+  ------------------------------------------------
+-->
+<!-- <div class="problem"> -->
+<!-- ```{r child="problems/01_Random_Walks/never-reach-5_prb.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/01_Random_Walks/never-reach-5_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+
+<!--
+  dollar-if-match
+  ------------------------------------------------
+-->
+<!-- <div class="problem"> -->
+<!-- ```{r child="problems/01_Random_Walks/dollar-if-match_prb.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/01_Random_Walks/dollar-if-match_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+
+<!--
+  H-exceed-T-by-3
+  ------------------------------------------------
+-->
+<!-- <div class="problem"> -->
+<!-- ```{r child="problems/01_Random_Walks/H-exceed-T-by-3_prb.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/01_Random_Walks/H-exceed-T-by-3_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+
+<!-- 
+  Luke_cookies
+  -------------------------------
+-->
+<!-- <div class="problem"> -->
+<!-- ```{r child="problems/01_Random_Walks/Luke_cookies_prb.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/01_Random_Walks/Luke_cookies_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+
+<!--
+  time_until_hit
+  ------------------------------------------------
+-->
+<!-- <div class="problem"> -->
+<!-- ```{r child="problems/01_Random_Walks/time_until_hit_prb.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/01_Random_Walks/time_until_hit_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+
+
+<!--
+  catalan
+  ------------------------------------------------
+-->
+<!-- <div class="problemec"> -->
+<!-- ```{r child="problems/01_Random_Walks/catalan_prb.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/01_Random_Walks/catalan_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
 
