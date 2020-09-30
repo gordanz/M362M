@@ -294,27 +294,27 @@ and not row by row.</p></li>
 </ol>
 <p>Let’s implement this in the case of a simple random walk. Of course, it is
 impossible to simulate a random walk on an infinite horizon (<span class="math inline">\(T=\infty\)</span>)
-so we must restrict to finite-horizon random walks<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. The function <code>cumsum</code> which
+so we must restrict to finite-horizon random walks<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>. The function <code>cumsum</code> which
 produces partial sums of its input comes in very handy.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="random-walks.html#cb1-1"></a>single_trajectory =<span class="st"> </span><span class="cf">function</span>(T, <span class="dt">p =</span> <span class="fl">0.5</span>) {</span>
-<span id="cb1-2"><a href="random-walks.html#cb1-2"></a>    delta =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">size =</span> T, <span class="dt">replace =</span> <span class="ot">TRUE</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>p, p))</span>
-<span id="cb1-3"><a href="random-walks.html#cb1-3"></a>    x =<span class="st"> </span><span class="kw">cumsum</span>(delta)</span>
-<span id="cb1-4"><a href="random-walks.html#cb1-4"></a>    <span class="kw">return</span>(x)</span>
-<span id="cb1-5"><a href="random-walks.html#cb1-5"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="random-walks.html#cb125-1"></a>single_trajectory =<span class="st"> </span><span class="cf">function</span>(T, <span class="dt">p =</span> <span class="fl">0.5</span>) {</span>
+<span id="cb125-2"><a href="random-walks.html#cb125-2"></a>    delta =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">size =</span> T, <span class="dt">replace =</span> <span class="ot">TRUE</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>p, p))</span>
+<span id="cb125-3"><a href="random-walks.html#cb125-3"></a>    x =<span class="st"> </span><span class="kw">cumsum</span>(delta)</span>
+<span id="cb125-4"><a href="random-walks.html#cb125-4"></a>    <span class="kw">return</span>(x)</span>
+<span id="cb125-5"><a href="random-walks.html#cb125-5"></a>}</span></code></pre></div>
 <p>Next, we run the same function <code>nsim</code> times and record the results. It is a
 lucky break that the default names given to columns are <code>X1</code>, <code>X2</code>, … so we
 don’t have to rename them. We do have to add the zero-th column <span class="math inline">\(X_0=0\)</span> because,
 formally speaking, the “random variable” <span class="math inline">\(X_0=0\)</span> is a part of the stochastic
 process. This needs to be done before other columns are added to maintain the
 proper order of columns, which is important when you want to plot trajectories.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="random-walks.html#cb2-1"></a>simulate_walk =<span class="st"> </span><span class="cf">function</span>(nsim, T, <span class="dt">p =</span> <span class="fl">0.5</span>) {</span>
-<span id="cb2-2"><a href="random-walks.html#cb2-2"></a>  <span class="kw">return</span>(</span>
-<span id="cb2-3"><a href="random-walks.html#cb2-3"></a>    <span class="kw">data.frame</span>(</span>
-<span id="cb2-4"><a href="random-walks.html#cb2-4"></a>      <span class="dt">X0 =</span> <span class="dv">0</span>,</span>
-<span id="cb2-5"><a href="random-walks.html#cb2-5"></a>      <span class="kw">t</span>(<span class="kw">replicate</span>(nsim, <span class="kw">single_trajectory</span>(T, p)))</span>
-<span id="cb2-6"><a href="random-walks.html#cb2-6"></a>    ))</span>
-<span id="cb2-7"><a href="random-walks.html#cb2-7"></a>}</span>
-<span id="cb2-8"><a href="random-walks.html#cb2-8"></a>walk =<span class="st"> </span><span class="kw">simulate_walk</span>(<span class="dt">nsim =</span> <span class="dv">10000</span>, <span class="dt">T =</span> <span class="dv">500</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="random-walks.html#cb126-1"></a>simulate_walk =<span class="st"> </span><span class="cf">function</span>(nsim, T, <span class="dt">p =</span> <span class="fl">0.5</span>) {</span>
+<span id="cb126-2"><a href="random-walks.html#cb126-2"></a>  <span class="kw">return</span>(</span>
+<span id="cb126-3"><a href="random-walks.html#cb126-3"></a>    <span class="kw">data.frame</span>(</span>
+<span id="cb126-4"><a href="random-walks.html#cb126-4"></a>      <span class="dt">X0 =</span> <span class="dv">0</span>,</span>
+<span id="cb126-5"><a href="random-walks.html#cb126-5"></a>      <span class="kw">t</span>(<span class="kw">replicate</span>(nsim, <span class="kw">single_trajectory</span>(T, p)))</span>
+<span id="cb126-6"><a href="random-walks.html#cb126-6"></a>    ))</span>
+<span id="cb126-7"><a href="random-walks.html#cb126-7"></a>}</span>
+<span id="cb126-8"><a href="random-walks.html#cb126-8"></a>walk =<span class="st"> </span><span class="kw">simulate_walk</span>(<span class="dt">nsim =</span> <span class="dv">10000</span>, <span class="dt">T =</span> <span class="dv">500</span>)</span></code></pre></div>
 </div>
 <div id="two-ways-of-looking-at-a-stochastic-proceses" class="section level2">
 <h2><span class="header-section-number">3.4</span> Two ways of looking at a stochastic proceses</h2>
@@ -323,11 +323,11 @@ proper order of columns, which is important when you want to plot trajectories.<
 <h3><span class="header-section-number">3.4.1</span> Column-wise (distributionally)</h3>
 <p>Here we focus on individual random variables (column) or pairs, triplets, etc. of random variables and study their (joint) distributions. For example, we can plot histograms of the random variables <span class="math inline">\(X_5, X_8, X_{30}\)</span> or <span class="math inline">\(X_{500}\)</span>:</p>
 <center>
-<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-144-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </center>
 <p>We can also use various (graphical or not) devices to understand joint distributions of pairs of random variables:</p>
 <center>
-<img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-145-1.png" width="672" style="display: block; margin: auto;" />
 </center>
 </div>
 <div id="row-wise-trajectorially-or-path-wise" class="section level3">
@@ -338,12 +338,12 @@ state of the world <span class="math inline">\(\omega\)</span> (represented by a
 realization of our process, but
 varying the time parameter. A typical picture associated to a trajectory
 of a random walk is the following</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-146-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>You can try to combine the two approaches (if you must) and plot several trajectories on the same plot.
 While this produces pretty pictures (and has one or two genuine applications), it usually leads to a
 sensory overload. Note that the trajectories below are jittered a bit. That means that the positions of the points are randomly shifted by a small amount. This allows us to see features of the plot that would otherwise be hidden because of the overlap.</p>
 <center>
-<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-147-1.png" width="672" style="display: block; margin: auto;" /></p>
 </center>
 </div>
 </div>
@@ -370,7 +370,7 @@ for each <span class="math inline">\(k\)</span>. For example, when <span class="
 \end{align}\]</span>
 When you (mentally) picture them, think of their graphs:</p>
 <center>
-<img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-148-1.png" width="672" style="display: block; margin: auto;" />
 </center>
 <p>Each trajectory corresponds to a particular combinations of the values of the
 increments <span class="math inline">\((\delta_1,\dots, \delta_T)\)</span>, each such combination happens with probability <span class="math inline">\(2^{-T}\)</span>.
@@ -380,18 +380,18 @@ implement our simulation procedure in R; let us write the function <code>single_
 approach and use it to simulate a few trajectories. We assume that a function <code>all_paths(T)</code> which returns
 a list of all possible paths with horizon <span class="math inline">\(T\)</span> has already been implemented (more info about a possible
 implementation in R is given in a problem below):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="random-walks.html#cb3-1"></a>T=<span class="dv">5</span></span>
-<span id="cb3-2"><a href="random-walks.html#cb3-2"></a>Omega =<span class="st"> </span><span class="kw">all_paths</span>(T)</span>
-<span id="cb3-3"><a href="random-walks.html#cb3-3"></a>single_trajectory =<span class="st"> </span><span class="cf">function</span>() {</span>
-<span id="cb3-4"><a href="random-walks.html#cb3-4"></a>  <span class="kw">return</span>(<span class="kw">unlist</span>(<span class="kw">sample</span>(<span class="dt">size=</span><span class="dv">1</span>,Omega)))</span>
-<span id="cb3-5"><a href="random-walks.html#cb3-5"></a>}</span>
-<span id="cb3-6"><a href="random-walks.html#cb3-6"></a></span>
-<span id="cb3-7"><a href="random-walks.html#cb3-7"></a>simulate_walk =<span class="st"> </span><span class="cf">function</span>(nsim, <span class="dt">p=</span><span class="fl">0.5</span>) {</span>
-<span id="cb3-8"><a href="random-walks.html#cb3-8"></a>   <span class="kw">return</span>(<span class="kw">data.frame</span>(</span>
-<span id="cb3-9"><a href="random-walks.html#cb3-9"></a>            <span class="dt">X0=</span><span class="dv">0</span>, </span>
-<span id="cb3-10"><a href="random-walks.html#cb3-10"></a>            <span class="kw">t</span>(<span class="kw">replicate</span>(nsim, <span class="kw">single_trajectory</span>()))</span>
-<span id="cb3-11"><a href="random-walks.html#cb3-11"></a>        ))</span>
-<span id="cb3-12"><a href="random-walks.html#cb3-12"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="random-walks.html#cb127-1"></a>T=<span class="dv">5</span></span>
+<span id="cb127-2"><a href="random-walks.html#cb127-2"></a>Omega =<span class="st"> </span><span class="kw">all_paths</span>(T)</span>
+<span id="cb127-3"><a href="random-walks.html#cb127-3"></a>single_trajectory =<span class="st"> </span><span class="cf">function</span>() {</span>
+<span id="cb127-4"><a href="random-walks.html#cb127-4"></a>  <span class="kw">return</span>(<span class="kw">unlist</span>(<span class="kw">sample</span>(<span class="dt">size=</span><span class="dv">1</span>,Omega)))</span>
+<span id="cb127-5"><a href="random-walks.html#cb127-5"></a>}</span>
+<span id="cb127-6"><a href="random-walks.html#cb127-6"></a></span>
+<span id="cb127-7"><a href="random-walks.html#cb127-7"></a>simulate_walk =<span class="st"> </span><span class="cf">function</span>(nsim, <span class="dt">p=</span><span class="fl">0.5</span>) {</span>
+<span id="cb127-8"><a href="random-walks.html#cb127-8"></a>   <span class="kw">return</span>(<span class="kw">data.frame</span>(</span>
+<span id="cb127-9"><a href="random-walks.html#cb127-9"></a>            <span class="dt">X0=</span><span class="dv">0</span>, </span>
+<span id="cb127-10"><a href="random-walks.html#cb127-10"></a>            <span class="kw">t</span>(<span class="kw">replicate</span>(nsim, <span class="kw">single_trajectory</span>()))</span>
+<span id="cb127-11"><a href="random-walks.html#cb127-11"></a>        ))</span>
+<span id="cb127-12"><a href="random-walks.html#cb127-12"></a>}</span></code></pre></div>
 </div>
 <div id="the-distribution-of-x_n" class="section level2">
 <h2><span class="header-section-number">3.6</span> The distribution of <span class="math inline">\(X_n\)</span></h2>
@@ -523,7 +523,7 @@ seizure-inducing graph with multiple paths for good, and adjust the each path
 according to its probability; some jitter has been added to deal with overlap.
 The lighter-colored paths are less likely to happen then the darker-colored paths.</p>
 <center>
-<p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-150-1.png" width="672" style="display: block; margin: auto;" /></p>
 </center>
 <!--
 ## The reflection principle
@@ -558,7 +558,7 @@ M = apply(walk, 1, max)
 hist(M, breaks = seq(-0.5, 12.5, 1), probability = TRUE)
 ```
 
-<img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-151-1.png" width="672" style="display: block; margin: auto;" />
 
 The overall shape of the distribution is as we expected; the support is $\{0,1,2,\dots, 12\}$ and the 
 probabilities tend to decrease as $k$ gets larger. The unexpected feature is that $\PP[ M_{12} = 1]$ seems
@@ -594,7 +594,7 @@ $A_l^{=}$ and $A_l^{<}$, depending on whether $X_n<l$, $X_n=l$ or $X_n>l$.
 In the picture below, the red trajectory is in $A_l^{>}$, the green trajectory in $A_l^=$ 
  the orange one in $A_l^{<}$, while the blue one is not in $A_l$ at all. 
 <center>
-<img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="80%" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-152-1.png" width="80%" style="display: block; margin: auto;" />
 </center>
 
 With the set of all trajectories $\Omega$ partitioned into four disjoint classes, namely $A^>_l, A^=_l, A^<_l$ and $(A_l)^c$, we are ready to reveal the main idea behind the reflection principle:
@@ -611,7 +611,7 @@ Then we associate to $\omega$ another trajectory, call it $\bar{\omega}$, obtain
 in the following way; follow $\omega$ until time $\tau_l(\omega)$. After that, $\bar{\omega}$ is the reflection of $\omega$ around the level $l$. In other words, the increments of $\omega$ and $\bar{\omega}$ are exactly the same up to time $\tau(\omega)$, and exactly the opposite afterwards. It will all be clear once you see the picture below - the orange trajectory is $\omega$ and the green trajectory is its 
 "reflection" $\bar{\omega}$; note that they overlap until time $5$:
 <center>
-<img src="_main_files/figure-html/unnamed-chunk-14-1.png" width="80%" style="display: block; margin: auto;" />
+<img src="_main_files/figure-html/unnamed-chunk-153-1.png" width="80%" style="display: block; margin: auto;" />
 </center>
 
 Convince yourself that this procedure establishes
@@ -855,11 +855,11 @@ probability <span class="math inline">\(1-p\)</span> of an up-step, and not <spa
 <div class="solution">
 
 <p><part> 1. </part></p>
-The possible paths when the time horizon is
+<p>The possible paths when the time horizon is
 <span class="math inline">\(T=2\)</span> are <span class="math display">\[(0,1,2), (0,1,0), (0,-1,-2) \text{ and } (0,-1,0)\]</span>
 The values of the product <span class="math inline">\(X_1 X_2\)</span> on those paths
 are <span class="math inline">\(2, 0, 2\)</span>, and <span class="math inline">\(0\)</span>, respectively. Each happens with probability
-<span class="math inline">\(0.25\)</span>. Therefore <span class="math inline">\({\mathbb{P}}[ X_1 X_2 = 0] = {\mathbb{P}}[ X_1 X_2 = 2] = \tfrac{1}{2}\)</span>, i.e., its distribution is given by
+<span class="math inline">\(0.25\)</span>. Therefore <span class="math inline">\({\mathbb{P}}[ X_1 X_2 = 0] = {\mathbb{P}}[ X_1 X_2 = 2] = \tfrac{1}{2}\)</span>, i.e., its distribution is given by</p>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -890,9 +890,15 @@ Each of those paths has probability <span class="math inline">\(1/8\)</span> of 
 <p>The only chance for <span class="math inline">\(X\)</span> to hit <span class="math inline">\(2\)</span> or <span class="math inline">\(−2\)</span> before or at T = 3 is at
 time <span class="math inline">\(n = 2\)</span>. Since <span class="math inline">\(X_2 \in \{ -2, 0, 2\}\)</span>, this happens with probability
 <span class="math inline">\({\mathbb{P}}[ X_2 \in \{-2,2\}] = 1 - {\mathbb{P}}[X_2 = 0] = 0.5\)</span>.</p>
-<p><part> 3. </part></p>
-The only independent pair is <span class="math inline">\(X_4 - X_2\)</span> and <span class="math inline">\(X_6 - X_5\)</span> because
-they are build out of different increments: <span class="math inline">\(X_4 - X_2 = \delta_3+\delta_4\)</span> while <span class="math inline">\(X_6-X_5 = \delta_6\)</span>. The others are not independent. For example, if we are told that <span class="math inline">\(X_1+X_3 = 4\)</span>, it necessarily follows that <span class="math inline">\(\delta_1= \delta_2=\delta_3=1\)</span>. Hence, <span class="math inline">\(X_2+X_4 = 2\delta_1+2\delta_2+\delta_3+\delta_4 = 5+\delta_4\)</span> which cannot be less than <span class="math inline">\(4\)</span>. On the other hand, without any information, <span class="math inline">\(X_2+X_4\)</span> can easily be negative.
+<p><part> 4. </part></p>
+<p>The only independent pair is <span class="math inline">\(X_4 - X_2\)</span> and <span class="math inline">\(X_6 - X_5\)</span> because
+the two random variables are build out of
+completely different increments: <span class="math inline">\(X_4 - X_2 = \delta_3+\delta_4\)</span> while <span class="math inline">\(X_6-X_5 = \delta_6\)</span>.</p>
+<p>The others are not independent. For example, if we are told that <span class="math inline">\(X_1+X_3 = 4\)</span>, it necessarily
+follows that <span class="math inline">\(\delta_1= \delta_2=\delta_3=1\)</span>.
+Hence, <span class="math inline">\(X_2+X_4 = 2\delta_1+2\delta_2+\delta_3+\delta_4 = 5+\delta_4\)</span> which
+cannot be less than <span class="math inline">\(4\)</span>. On the other hand, without any information, <span class="math inline">\(X_2+X_4\)</span> can easily
+be negative.</p>
 </div>
 <div class="problem">
 <p>Let <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> be a simple random walk.</p>
@@ -953,25 +959,25 @@ the positions of its up-steps, we need to loop through all numbers <span class="
 to <span class="math inline">\(T\)</span> and then list all subsets of the size <span class="math inline">\(i\)</span>. The next step is to turn a set
 of positions to a path of a random walk. This can be done in many ways; one is
 implemented implemented in <code>choice_to_path</code> using vector indexing.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="random-walks.html#cb4-1"></a>choice_to_path =<span class="st"> </span><span class="cf">function</span>(comb, T) {</span>
-<span id="cb4-2"><a href="random-walks.html#cb4-2"></a>    increments =<span class="st"> </span><span class="kw">rep</span>(<span class="op">-</span><span class="dv">1</span>, T)</span>
-<span id="cb4-3"><a href="random-walks.html#cb4-3"></a>    increments[comb] =<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb4-4"><a href="random-walks.html#cb4-4"></a>    path =<span class="st"> </span><span class="kw">cumsum</span>(increments)</span>
-<span id="cb4-5"><a href="random-walks.html#cb4-5"></a>    <span class="kw">return</span>(path)</span>
-<span id="cb4-6"><a href="random-walks.html#cb4-6"></a>}</span>
-<span id="cb4-7"><a href="random-walks.html#cb4-7"></a></span>
-<span id="cb4-8"><a href="random-walks.html#cb4-8"></a>all_paths =<span class="st"> </span><span class="cf">function</span>(T) {</span>
-<span id="cb4-9"><a href="random-walks.html#cb4-9"></a>    Omega =<span class="st"> </span><span class="kw">list</span>(<span class="dv">2</span><span class="op">^</span>T)</span>
-<span id="cb4-10"><a href="random-walks.html#cb4-10"></a>    index =<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb4-11"><a href="random-walks.html#cb4-11"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">0</span><span class="op">:</span>T) {</span>
-<span id="cb4-12"><a href="random-walks.html#cb4-12"></a>        choices =<span class="st"> </span><span class="kw">combn</span>(T, i, <span class="dt">simplify =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb4-13"><a href="random-walks.html#cb4-13"></a>        <span class="cf">for</span> (choice <span class="cf">in</span> choices) {</span>
-<span id="cb4-14"><a href="random-walks.html#cb4-14"></a>            Omega[[index]] =<span class="st"> </span><span class="kw">choice_to_path</span>(choice, T)</span>
-<span id="cb4-15"><a href="random-walks.html#cb4-15"></a>            index =<span class="st"> </span>index <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb4-16"><a href="random-walks.html#cb4-16"></a>        }</span>
-<span id="cb4-17"><a href="random-walks.html#cb4-17"></a>    }</span>
-<span id="cb4-18"><a href="random-walks.html#cb4-18"></a>    <span class="kw">return</span>(Omega)</span>
-<span id="cb4-19"><a href="random-walks.html#cb4-19"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="random-walks.html#cb128-1"></a>choice_to_path =<span class="st"> </span><span class="cf">function</span>(comb, T) {</span>
+<span id="cb128-2"><a href="random-walks.html#cb128-2"></a>    increments =<span class="st"> </span><span class="kw">rep</span>(<span class="op">-</span><span class="dv">1</span>, T)</span>
+<span id="cb128-3"><a href="random-walks.html#cb128-3"></a>    increments[comb] =<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb128-4"><a href="random-walks.html#cb128-4"></a>    path =<span class="st"> </span><span class="kw">cumsum</span>(increments)</span>
+<span id="cb128-5"><a href="random-walks.html#cb128-5"></a>    <span class="kw">return</span>(path)</span>
+<span id="cb128-6"><a href="random-walks.html#cb128-6"></a>}</span>
+<span id="cb128-7"><a href="random-walks.html#cb128-7"></a></span>
+<span id="cb128-8"><a href="random-walks.html#cb128-8"></a>all_paths =<span class="st"> </span><span class="cf">function</span>(T) {</span>
+<span id="cb128-9"><a href="random-walks.html#cb128-9"></a>    Omega =<span class="st"> </span><span class="kw">list</span>(<span class="dv">2</span><span class="op">^</span>T)</span>
+<span id="cb128-10"><a href="random-walks.html#cb128-10"></a>    index =<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb128-11"><a href="random-walks.html#cb128-11"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">0</span><span class="op">:</span>T) {</span>
+<span id="cb128-12"><a href="random-walks.html#cb128-12"></a>        choices =<span class="st"> </span><span class="kw">combn</span>(T, i, <span class="dt">simplify =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb128-13"><a href="random-walks.html#cb128-13"></a>        <span class="cf">for</span> (choice <span class="cf">in</span> choices) {</span>
+<span id="cb128-14"><a href="random-walks.html#cb128-14"></a>            Omega[[index]] =<span class="st"> </span><span class="kw">choice_to_path</span>(choice, T)</span>
+<span id="cb128-15"><a href="random-walks.html#cb128-15"></a>            index =<span class="st"> </span>index <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb128-16"><a href="random-walks.html#cb128-16"></a>        }</span>
+<span id="cb128-17"><a href="random-walks.html#cb128-17"></a>    }</span>
+<span id="cb128-18"><a href="random-walks.html#cb128-18"></a>    <span class="kw">return</span>(Omega)</span>
+<span id="cb128-19"><a href="random-walks.html#cb128-19"></a>}</span></code></pre></div>
 </div>
 <!--
   var_cov_corr
@@ -1069,6 +1075,8 @@ implemented implemented in <code>choice_to_path</code> using vector indexing.</p
 <!-- ```{r child="problems/01_Random_Walks/catalan_sol.Rmd"} -->
 <!-- ``` -->
 <!-- </div> -->
+<p>⬇︎ In case you were wondering, the text below belongs to footnotes from somewhere high above.⬇︎</p>
+
 
 </div>
 </div>
@@ -1077,9 +1085,9 @@ implemented implemented in <code>choice_to_path</code> using vector indexing.</p
 
 <div class="footnotes">
 <hr />
-<ol start="1">
-<li id="fn1"><p>It is somewhat unfortunate that the standard notation for the time horizon, namely <span class="math inline">\(T\)</span>, coincides with a
-shortcut <code>T</code> for <code>TRUE</code> in R. Our example still works fine because this shortcut is used only if there is no variable named <code>T</code>.<a href="random-walks.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<ol start="6">
+<li id="fn6"><p>It is somewhat unfortunate that the standard notation for the time horizon, namely <span class="math inline">\(T\)</span>, coincides with a
+shortcut <code>T</code> for <code>TRUE</code> in R. Our example still works fine because this shortcut is used only if there is no variable named <code>T</code>.<a href="random-walks.html#fnref6" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

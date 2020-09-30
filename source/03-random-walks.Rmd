@@ -1051,3 +1051,5 @@ below zero is called the **$n$-th Catalan number** and equals
 <!-- ``` -->
 <!-- </div> -->
 
+
+⬇︎ In case you were wondering, the text below belongs to footnotes from somewhere high above.⬇︎
