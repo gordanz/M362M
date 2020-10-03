@@ -625,7 +625,9 @@ We can further split $A_l$ into three disjoint events $A_l^{>}$,
 $A_l^{=}$ and $A_l^{<}$, depending on whether $X_n<l$, $X_n=l$ or $X_n>l$.
 In the picture below, the red trajectory is in $A_l^{>}$, the green trajectory in $A_l^=$ 
  the orange one in $A_l^{<}$, while the blue one is not in $A_l$ at all. 
+
 <center>
+
 ```{r echo=FALSE, out.width="80%"}
 library(ggplot2)
 
@@ -651,6 +653,7 @@ ggplot()+
   theme_bw()+scale_x_continuous(breaks=0:11)+scale_y_continuous(breaks=-1:6)
 
 ```
+
 </center>
 
 With the set of all trajectories $\Omega$ partitioned into four disjoint classes, namely $A^>_l, A^=_l, A^<_l$ and $(A_l)^c$, we are ready to reveal the main idea behind the reflection principle:
@@ -671,7 +674,9 @@ in the following way:
 
 Equivalently the increments of $\omega$ and $\bar{\omega}$ are exactly the same up to time $\tau(\omega)$, and exactly the opposite afterwards. In the picture below - the orange trajectory is $\omega$ and the green trajectory is its 
 "reflection" $\bar{\omega}$; note that they overlap until time $5$:
+
 <center>
+
 ```{r echo=FALSE, out.width = "80%"}
 library(ggplot2)
 library(latex2exp)
@@ -693,6 +698,7 @@ ggplot()+
   theme_bw()+scale_x_continuous(breaks=0:11)+scale_y_continuous(breaks=0:6)
 
 ```
+
 </center>
 
 Convince yourself that this procedure establishes
