@@ -1,6 +1,5 @@
 
-
-```{r child="mydefs.Rmd"}
+```{r child="~/.ms/mydefs.Rmd"}
 ```
 # Random Walks
 <div style="counter-reset: thechapter 3;"> </div>
@@ -482,7 +481,9 @@ with writing $\ot(n+X_n)$ as a sum of Bernoulli random variables still works.
 We just have to remember 
 that $p$ is not $\ot$ anymore to conclude that $\tot (X_n + n)$ has the binomial 
 distribution with parameters $n$ and $p$; if we put $u = (n+k)/2$ we get
-$$ \PP[ X_n = k] = \PP[ \tot (X_n+n) = u] = \binom{n}{u} p^u q^{n-u} = \binom{n}{\ot (n+k)} p^{\ot (n+k)} q^{\ot (n-k)}. $$
+\begin{align}
+\PP[ X_n = k] &= \PP[ \tot (X_n+n) = u] = \binom{n}{u} p^u q^{n-u}\\ & = \binom{n}{\ot (n+k)} p^{\ot (n+k)} q^{\ot (n-k)}. 
+\end{align}
 Note that be binomial coefficient stays the same as in the symmetric case, 
 but the factor $2^{-n} = (1/2)^{\ot (n+k)} (1/2)^{\ot(n-k)}$ becomes 
 $p^{\ot (n+k)} q^{\ot (n-k)}$.
@@ -558,31 +559,31 @@ ggplot(walk_jittered, aes(x=t, y=X, group = omega, color=weight))+geom_line(size
 
 </center>
 
-<!--
+
 ## The reflection principle
 
 
 Counting trajectories in order to compute probabilities is a powerful method, 
-as the following example shows. It also reveals a potential
+as our next  example shows. It also reveals a potential
 weakness of the combinatorial approach: it works best when all $\omega$
 are equally likely (i.e., when $p=\tot$ in the case of the random walk).
 
 We start by asking a simple question; what is the typical record value
 of the random walk, i.e., how far "up" (or "right" depending on your point of view) 
 does it typically get? Clearly,
-the largest value it can attain is $T$ at time $T$, provided that all
-coin tosses came up $+1$. This is, however, extremely unlikely - it
-happens with probability $2^{-T}$. On the other hand, this maximal value is at last $0$, since
+the largest value it can attain is $T$. This happens only when 
+all coin tosses came up $+1$, an extremely unlikely event - 
+its probability is $2^{-T}$. On the other hand, this maximal value is at least $0$, since
 $X_0=0$, already. A bit of thought reveals that any value between those
 two extremes is possible, but it is not at all easy to compute their
 probabilities.
 
 More precisely, if $\{X_n\}$ is a simple random walk with time horizon
-$T$. We define the $\seqz{M}$ by
+$T$. We define its **running-maximum process** $\seqz{M}$ by
 $$M_n=\max(X_0,\dots, X_n),\ \efor 0 \leq n \leq T,$$ 
 and ask what the probabilities $\PP[M_n = k]$ for $k=0,\dots, n$ are? 
 An easy numerical solution to this problem can given by simulation. We reuse the function 
-`simulate_walk` defined at the beginning of the chapter, but also employ a new function, called `apply`. What is does is apply a function to each row (or column) of a data frame or a matrix. It seems to be tailor-made for our purpose^[the function `apply` is often used as a substitute for a `for` loop because it has  several advantages over it. First, the code is much easier to read and understand. Second, `apply` can easily be parallelized. Third, while this is not such a big issue anymore, `for` loops used to be orders of magnitude slower than the corresponding `apply` in the past. R's `for` loops got much better recently, but they still lag behind `apply` in some cases. To be fair, `apply` is know to use more *memory* than `for`.] because we want to compute the maximum of each row of the simulation matrix (remember - the row means  keep the realization fixed, but vary the time-index $n$). The syntax of `apply` is simple - it needs the data frame, the margin (rows are coded as 1 and columns as 2) and the function to be applied (`max` in our case). The output is a vector of size `nsim` with all row-wise maxima:
+`simulate_walk` defined at the beginning of the chapter, but also employ a new function, called `apply` which "applies" a function to each row (or column) of a data frame or a matrix. It seems to be tailor-made for our purpose^[the function `apply` is often used as a substitute for a `for` loop because it has  several advantages over it. First, the code is much easier to read and understand. Second, `apply` can easily be parallelized. Third, while this is not such a big issue anymore, `for` loops used to be orders of magnitude slower than the corresponding `apply` in the past. R's `for` loops got much better recently, but they still lag behind `apply` in some cases. To be fair, `apply` is know to use more *memory* than `for` in certain cases.] because we want to compute the maximum of each row of the simulation matrix (remember - the row means  keep the realization fixed, but vary the time-index $n$). The syntax of `apply` is simple - it needs the data frame, the margin (rows are coded as 1 and columns as 2) and the function to be applied (`max` in our case). The output is a vector of size `nsim` with all row-wise maxima:
 
 ```{r echo=-1}
 set.seed(1232)
@@ -606,7 +607,7 @@ As usual, we may assume without loss of generality that $n=T$ since the
 values of $\delta_{n+1}, \dots, \delta_T$ do not affect $M_n$ at all.
 We start by picking a level $l\in\set{1,\dots, n}$ and first compute
 the probability $\PP[M_n\geq l]$ - it will turn out to be easier than
-attacking $\PP[ M_n=l]$ directly. The symmetry assumption ensures that
+attacking $\PP[ M_n=l]$ directly. The symmetry assumption $p=1/2$ ensures that
 all trajectories are equally likely, so we can do this by counting the
 number of trajectories whose maximal level reached is at least $l$, and
 then multiply by $2^{-n}$.
@@ -659,11 +660,16 @@ $A_l^<$ and $A_l^>$ have exactly the same number of elements, i.e., $\# A^>_l = 
 </center>
 
 
-To see why that is true, start by taking a trajectory $\omega\in A_l^{>}$ and denoting by
+To see why that is true, start by choosing a trajectory $\omega\in A_l^{>}$ and denoting by
 $\tau_l(\omega)$ the *first time* $\omega$ visits the
 level $l$. Since $\omega \in A^>$ such a time clearly exists. 
 Then we associate to $\omega$ another trajectory, call it $\bar{\omega}$, obtained from $\omega$
-in the following way; follow $\omega$ until time $\tau_l(\omega)$. After that, $\bar{\omega}$ is the reflection of $\omega$ around the level $l$. In other words, the increments of $\omega$ and $\bar{\omega}$ are exactly the same up to time $\tau(\omega)$, and exactly the opposite afterwards. It will all be clear once you see the picture below - the orange trajectory is $\omega$ and the green trajectory is its 
+in the following way:
+
+1. $\bar{\omega}$ and $\omega$ are the same until the time $\tau_l(\omega)$. 
+2. After that, $\bar{\omega}$ is the reflection of $\omega$ around the level $l$. 
+
+Equivalently the increments of $\omega$ and $\bar{\omega}$ are exactly the same up to time $\tau(\omega)$, and exactly the opposite afterwards. In the picture below - the orange trajectory is $\omega$ and the green trajectory is its 
 "reflection" $\bar{\omega}$; note that they overlap until time $5$:
 <center>
 ```{r echo=FALSE, out.width = "80%"}
@@ -700,9 +706,11 @@ $l$ is hit at a certain point is redundant; if you are at or above $l$
 at the very end, you must have hit $l$ at a certain point.  
 Therefore, $A_l^{>}$ is simply the family of those trajectories 
 $\omega$ whose final positions $X_n(\omega)$ are somewhere strictly above $l$. Hence,
-$$\begin{aligned}
-     \PP[A_l^{>}] &= \PP[ X_n=l+1 \text{ or } X_n = l+2 \text{ or } \dots \text{ or }
-     X_n=n] = \sum_{k=l+1}^n \PP[X_n = k],\end{aligned}.$$ 
+\begin{align}
+       \PP[A_l^{>}] &= \PP[ X_n=l+1 \text{ or } X_n = l+2 \text{ or } \dots \text{ or }
+     X_n=n]\\ & = \sum_{k=l+1}^n \PP[X_n = k]
+\end{align}
+
 Similarly,      $$\begin{aligned}
      \PP[ A_l^{=}] = \PP[X_n=l].\end{aligned}$$ 
 Finally, by the reflection principle, 
@@ -765,27 +773,32 @@ $\binom{2N-1}{N} 2^{-(2N-1)}$.
   What happens when $T\to\infty$?
 </div>
 
-<p class="solution">The first question is exactly the opposite of the question in our previous example, so the answer is
+<div class="solution">The first question is exactly the opposite of the question in our previous example, so the answer is
   $$ 1 - \PP[M_T=0] = 1- \PP[X_T=0] - \PP[X_T=1].$$
   As above, this evaluates to $\binom{2N}{N} 2^{-2N}$ when $T=2N$ is even (we skip the case of odd $T$ because it is very similar). 
   When $N\to\infty$, we expect $\binom{2N}{N}$ to go to $+\infty$ and $2^{-2N}$ to go to 
   $0$, so it is not immediately clear which term will win. 
   One way to make a guess is to think about it probabilistically: we are looking at the 
   probability $\PP[X_{2N}=0]$ that the random walk takes the 
-  value $0$ after exactly $2N$ steps. Even though no single other value is more 
+  value $0$ after exactly $2N$ steps. Even though no  other (single) value is more 
   likely to happen, there are so many other values $X_{2N}$ could take (anything 
   from $-2N$ to $2N$ except for $0$) that we conjecture that
   its probability converges to $0$. A  formal mathematical argument which proves that
   our conjecture is, indeed correct, involves **Stirling's formula**:
   
-  > We have $N! \sim \sqrt{2 \pi N} \left( \tf{N}{e} \right)^N$ where
-  > $A_N \sim B_N$ means $\lim_{N\to\infty} \tf{A_N}{B_N}=1$.
+  $$ N! \sim \sqrt{2 \pi N} \left( \tf{N}{e} \right)^N \text{ where }
+   A_N \sim B_N \text{ means that } \lim_{N\to\infty} \tf{A_N}{B_N}=1. $$
   
   We write $\binom{2N}{N} = \tfrac{(2N)!}{N! N!}$ and apply Stirling's formula to each factorial (let's skip the details)
   to conclude that 
-  $$ \lim_{N\to\infty} \binom{2N}{N} 2^{-2n} = \lim_{N\to\infty} \frac{1}{\sqrt{N \pi}} = 0 $$</p>
+  $$ 
+  \binom{2N}{N} 2^{-2n}\sim \frac{1}{\sqrt{N \pi}} 
+  \text{ so that }  \lim_{N\to\infty}
+  \binom{2N}{N} 2^{-2n}
+  = 0 $$
+</div>
 
-What we just computed is more than just an exercise. It proves an important fact:
+The result of the previous problem implies the following important fact:
 
 > The simple symmetric random walk will reach the level $1$, 
 > with certainty, given enough time.
@@ -886,7 +899,6 @@ below zero is called the **$n$-th Catalan number** and equals
  \end{align}
 </div>
 
--->
 
 
 ## Additional problems for Chapter 3
@@ -949,103 +961,80 @@ below zero is called the **$n$-th Catalan number** and equals
   var_cov_corr
   ------------------------------------------------
 -->
-<!-- <div class="problem"> -->
-<!-- ```{r child="problems/01_Random_Walks/var_cov_corr_prb.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/01_Random_Walks/var_cov_corr_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="problem">
+```{r child="problems/01_Random_Walks/var_cov_corr_prb.Rmd"}
+```
+</div>
+<div class="solution">
+```{r child="problems/01_Random_Walks/var_cov_corr_sol.Rmd"}
+```
+</div>
 
 <!--
   area_under_walk
   ------------------------------
 -->
-<!-- <div class="problem"> -->
-<!-- ```{r child="problems/01_Random_Walks/area_under_walk_prb.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/01_Random_Walks/area_under_walk_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
-
-
-<!--
-  never-reach-5
-  ------------------------------------------------
--->
-<!-- <div class="problem"> -->
-<!-- ```{r child="problems/01_Random_Walks/never-reach-5_prb.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/01_Random_Walks/never-reach-5_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="problem">
+```{r child="problems/01_Random_Walks/area_under_walk_prb.Rmd"}
+```
+</div>
+<div class="solution">
+```{r child="problems/01_Random_Walks/area_under_walk_sol.Rmd"}
+```
+</div>
 
 <!--
-  dollar-if-match
+  3-max-problems
   ------------------------------------------------
 -->
-<!-- <div class="problem"> -->
-<!-- ```{r child="problems/01_Random_Walks/dollar-if-match_prb.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="problem">
+```{r child="problems/01_Random_Walks/3-max-problems_prb.Rmd"}
+```
+</div>
 <!-- <div class="solution"> -->
-<!-- ```{r child="problems/01_Random_Walks/dollar-if-match_sol.Rmd"} -->
+<!-- ```{r child="problems/01_Random_Walks/3-max-problems_sol.Rmd"} -->
 <!-- ``` -->
 <!-- </div> -->
 
-<!--
-  H-exceed-T-by-3
-  ------------------------------------------------
--->
-<!-- <div class="problem"> -->
-<!-- ```{r child="problems/01_Random_Walks/H-exceed-T-by-3_prb.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/01_Random_Walks/H-exceed-T-by-3_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
-
-<!-- 
-  Luke_cookies
-  -------------------------------
--->
-<!-- <div class="problem"> -->
-<!-- ```{r child="problems/01_Random_Walks/Luke_cookies_prb.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/01_Random_Walks/Luke_cookies_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
 
 <!--
   time_until_hit
   ------------------------------------------------
 -->
-<!-- <div class="problem"> -->
-<!-- ```{r child="problems/01_Random_Walks/time_until_hit_prb.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="problem">
+```{r child="problems/01_Random_Walks/time_until_hit_prb.Rmd"}
+```
+</div>
 <!-- <div class="solution"> -->
 <!-- ```{r child="problems/01_Random_Walks/time_until_hit_sol.Rmd"} -->
 <!-- ``` -->
 <!-- </div> -->
 
 
+
+<!-- 
+  Luke_cookies
+  -------------------------------
+-->
+<div class="problem">
+```{r child="problems/01_Random_Walks/Luke_cookies_prb.Rmd"}
+```
+</div>
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/01_Random_Walks/Luke_cookies_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+
+
+
 <!--
   catalan
   ------------------------------------------------
 -->
-<!-- <div class="problemec"> -->
-<!-- ```{r child="problems/01_Random_Walks/catalan_prb.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="problemec">
+```{r child="problems/01_Random_Walks/catalan_prb.Rmd"}
+```
+</div>
 <!-- <div class="solution"> -->
 <!-- ```{r child="problems/01_Random_Walks/catalan_sol.Rmd"} -->
 <!-- ``` -->
