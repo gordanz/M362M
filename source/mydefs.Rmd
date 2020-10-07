@@ -1,5 +1,7 @@
+\usepackage{mydefs_long}
 \newcommand{\PP}{{\mathbb{P}}}
 \newcommand{\N}{{\mathbb{N}}}
+\newcommand{\R}{{\mathbb{R}}}
 \newcommand{\sS}{{\mathcal{S}}}
 \newcommand{\EE}{{\mathbb{E}}}
 \newcommand{\Var}{\operatorname{Var}}
@@ -15,5 +17,8 @@
 \newcommand{\tf}[2]{\frac{#1}{#2}}
 \newcommand{\ot}{\frac{1}{2}}
 \newcommand{\eps}{\varepsilon}
+\newcommand{\inds}[1]{\mathbf{1}_{\{#1\}}}
+\newcommand{\sets}[2]{ \{ #1\, : \, #2\}}
+
           
           
