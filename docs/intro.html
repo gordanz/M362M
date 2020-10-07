@@ -32,7 +32,6 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="simulation-of-random-variables-and-monte-carlo.html"/>
-<script src="libs/header-attrs-2.4/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -58,17 +57,18 @@
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -88,7 +88,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {  background-color: #f8f8f8; }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -137,16 +137,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> An intro to R and RStudio</a>
-<ul>
-<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#setting-up-an-r-environment-on-your-computer"><i class="fa fa-check"></i><b>1.1</b> Setting up an R environment on your computer</a>
-<ul>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> An intro to R and RStudio</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#setting-up-an-r-environment-on-your-computer"><i class="fa fa-check"></i><b>1.1</b> Setting up an R environment on your computer</a><ul>
 <li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#installing-r"><i class="fa fa-check"></i><b>1.1.1</b> Installing R</a></li>
 <li class="chapter" data-level="1.1.2" data-path="intro.html"><a href="intro.html#installing-rstudio"><i class="fa fa-check"></i><b>1.1.2</b> Installing RStudio</a></li>
 <li class="chapter" data-level="1.1.3" data-path="intro.html"><a href="intro.html#installing-basic-packages"><i class="fa fa-check"></i><b>1.1.3</b> Installing basic packages</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#learning-the-basics-of-r"><i class="fa fa-check"></i><b>1.2</b> Learning the basics of R</a>
-<ul>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#learning-the-basics-of-r"><i class="fa fa-check"></i><b>1.2</b> Learning the basics of R</a><ul>
 <li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#the-console-scripts-and-r-notebooks"><i class="fa fa-check"></i><b>1.2.1</b> The console, Scripts and R Notebooks</a></li>
 <li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#asking-for-help"><i class="fa fa-check"></i><b>1.2.2</b> Asking for help</a></li>
 <li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#vectors"><i class="fa fa-check"></i><b>1.2.3</b> Vectors</a></li>
@@ -156,33 +153,34 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#problems"><i class="fa fa-check"></i><b>1.3</b> Problems</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html"><i class="fa fa-check"></i><b>2</b> Simulation of Random Variables and Monte Carlo</a>
-<ul>
+<li class="chapter" data-level="2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html"><i class="fa fa-check"></i><b>2</b> Simulation of Random Variables and Monte Carlo</a><ul>
 <li class="chapter" data-level="2.1" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#simulation-of-some-common-probability-distributions"><i class="fa fa-check"></i><b>2.1</b> Simulation of some common probability distributions</a></li>
 <li class="chapter" data-level="2.2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#multivariate-distributions"><i class="fa fa-check"></i><b>2.2</b> Multivariate Distributions</a></li>
 <li class="chapter" data-level="2.3" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#monte-carlo"><i class="fa fa-check"></i><b>2.3</b> Monte Carlo</a></li>
 <li class="chapter" data-level="2.4" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#conditional-distributions"><i class="fa fa-check"></i><b>2.4</b> Conditional distributions</a></li>
 <li class="chapter" data-level="2.5" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#additional-problems-for-chapter-2"><i class="fa fa-check"></i><b>2.5</b> Additional Problems for Chapter 2</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="random-walks.html"><a href="random-walks.html"><i class="fa fa-check"></i><b>3</b> Random Walks</a>
-<ul>
+<li class="chapter" data-level="3" data-path="random-walks.html"><a href="random-walks.html"><i class="fa fa-check"></i><b>3</b> Random Walks</a><ul>
 <li class="chapter" data-level="3.1" data-path="random-walks.html"><a href="random-walks.html#what-are-stochastic-processes"><i class="fa fa-check"></i><b>3.1</b> What are stochastic processes?</a></li>
 <li class="chapter" data-level="3.2" data-path="random-walks.html"><a href="random-walks.html#the-simple-symmetric-random-walk"><i class="fa fa-check"></i><b>3.2</b> The Simple Symmetric Random Walk</a></li>
 <li class="chapter" data-level="3.3" data-path="random-walks.html"><a href="random-walks.html#how-to-simulate-random-walks"><i class="fa fa-check"></i><b>3.3</b> How to simulate random walks</a></li>
-<li class="chapter" data-level="3.4" data-path="random-walks.html"><a href="random-walks.html#two-ways-of-looking-at-a-stochastic-proceses"><i class="fa fa-check"></i><b>3.4</b> Two ways of looking at a stochastic proceses</a>
-<ul>
+<li class="chapter" data-level="3.4" data-path="random-walks.html"><a href="random-walks.html#two-ways-of-looking-at-a-stochastic-proceses"><i class="fa fa-check"></i><b>3.4</b> Two ways of looking at a stochastic proceses</a><ul>
 <li class="chapter" data-level="3.4.1" data-path="random-walks.html"><a href="random-walks.html#column-wise-distributionally"><i class="fa fa-check"></i><b>3.4.1</b> Column-wise (distributionally)</a></li>
 <li class="chapter" data-level="3.4.2" data-path="random-walks.html"><a href="random-walks.html#row-wise-trajectorially-or-path-wise"><i class="fa fa-check"></i><b>3.4.2</b> Row-wise (trajectorially or path-wise)</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="random-walks.html"><a href="random-walks.html#the-path-space"><i class="fa fa-check"></i><b>3.5</b> The path space</a></li>
 <li class="chapter" data-level="3.6" data-path="random-walks.html"><a href="random-walks.html#the-distribution-of-x_n"><i class="fa fa-check"></i><b>3.6</b> The distribution of <span class="math inline">\(X_n\)</span></a></li>
 <li class="chapter" data-level="3.7" data-path="random-walks.html"><a href="random-walks.html#biased-random-walks"><i class="fa fa-check"></i><b>3.7</b> Biased random walks</a></li>
-<li class="chapter" data-level="3.8" data-path="random-walks.html"><a href="random-walks.html#the-reflection-principle"><i class="fa fa-check"></i><b>3.8</b> The reflection principle</a></li>
-<li class="chapter" data-level="3.9" data-path="random-walks.html"><a href="random-walks.html#additional-problems-for-chapter-3"><i class="fa fa-check"></i><b>3.9</b> Additional problems for Chapter 3</a></li>
+<li class="chapter" data-level="3.8" data-path="random-walks.html"><a href="random-walks.html#additional-problems-for-chapter-3"><i class="fa fa-check"></i><b>3.8</b> Additional problems for Chapter 3</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html"><i class="fa fa-check"></i><b>4</b> More about Random Walks</a><ul>
+<li class="chapter" data-level="4.1" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html#the-reflection-principle"><i class="fa fa-check"></i><b>4.1</b> The reflection principle</a></li>
+<li class="chapter" data-level="4.2" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html#stopping-times"><i class="fa fa-check"></i><b>4.2</b> Stopping times</a></li>
+<li class="chapter" data-level="4.3" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html#walds-formula-and-gamblers-ruin"><i class="fa fa-check"></i><b>4.3</b> Wald’s formula and Gambler’s ruin</a></li>
+<li class="chapter" data-level="4.4" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html#additional-problems-for-chapter-4"><i class="fa fa-check"></i><b>4.4</b> Additional problems for Chapter 4</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>A</b> Probability Distributions</a>
-<ul>
+<li class="chapter" data-level="A" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>A</b> Probability Distributions</a><ul>
 <li class="chapter" data-level="A.1" data-path="dist.html"><a href="dist.html#discrete-distributions"><i class="fa fa-check"></i><b>A.1</b> Discrete distributions:</a></li>
 <li class="chapter" data-level="A.2" data-path="dist.html"><a href="dist.html#continuous-distributions"><i class="fa fa-check"></i><b>A.2</b> Continuous distributions:</a></li>
 </ul></li>
@@ -203,17 +201,17 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="intro" class="section level1" number="1">
+<div id="intro" class="section level1">
 <h1><span class="header-section-number">Chapter 1</span> An intro to R and RStudio</h1>
-<div id="setting-up-an-r-environment-on-your-computer" class="section level2" number="1.1">
+<div id="setting-up-an-r-environment-on-your-computer" class="section level2">
 <h2><span class="header-section-number">1.1</span> Setting up an R environment on your computer</h2>
-<div id="installing-r" class="section level3" number="1.1.1">
+<div id="installing-r" class="section level3">
 <h3><span class="header-section-number">1.1.1</span> Installing R</h3>
 <p>Learning basic R is an important part of this course, and the first order of business is to download and install an R distribution on your personal computer. We will be using RStudio as an IDE (integrated development environment). Like R itself, it is free and readily available for all major platforms. To download R to your computer, go to
 <a href="https://cloud.r-project.org">https://cloud.r-project.org</a> and
 download the version of R for your operating system (Windows, Mac or Linux). If you are on a Mac, you want the “Latest release” which, at the time of writing, is 4.0.2. On Windows, follow the link “install R for the first time”. We are not going to do any cutting edge stuff in this class, so an older release should be fine, too, if you happen to have it already installed on your system. Once you download the installation file (.pkg on a Mac or .exe on Windows), run it and follow instructions. If you are running Linux, you don’t need me to tell you what to do. Once it is successfully installed, <strong>don’t run the installed app</strong>. We will use RStudio for that.</p>
 </div>
-<div id="installing-rstudio" class="section level3" number="1.1.2">
+<div id="installing-rstudio" class="section level3">
 <h3><span class="header-section-number">1.1.2</span> Installing RStudio</h3>
 <p>To install RStudio, go to <a href="https://rstudio.com/products/rstudio/download/">https://rstudio.com/products/rstudio/download/</a>. There are several versions to choose from - the one you are looking for is “RStudio desktop - Free”. After you download and install it, you are ready to run it. When it opens, you will see something like this</p>
 <p><img src="pics/RStudio_IDE.png" width="100%" style="padding:10px" style="display: block; margin: auto;" /></p>
@@ -222,7 +220,7 @@ download the version of R for your operating system (Windows, Mac or Linux). If 
 <p>This way, R will not pollute your environment with values you defined two weeks ago and completely forgot about. These settings are really an atavism and serve no purpose (for users like us) other than to introduce hard-to-track bugs.</p>
 <p>There are many other settings you can play with in RStudio, but the two I mentioned above are the only ones that I really recommend setting as soon as you install it.</p>
 </div>
-<div id="installing-basic-packages" class="section level3" number="1.1.3">
+<div id="installing-basic-packages" class="section level3">
 <h3><span class="header-section-number">1.1.3</span> Installing basic packages</h3>
 <p>Finally, we need to install several R packages we will be using (mostly implicitly) during the class. First, run the following command in your console</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb1-1"><a href="intro.html#cb1-1"></a>install.packages( &quot;tidyverse&quot;)</span></code></pre></div>
@@ -234,11 +232,11 @@ You only have to do it once, though. Skip both steps involving <code>tinytex</co
 <p>Note that if you go to the top right corner of each of the code blocks (gray boxes) containing instructions above, an icon will appear. If you click on it, it will copy the content of the box into your clipboard, and you can simply paste it into RStudio. You can do that with any code block in these notes.</p>
 </div>
 </div>
-<div id="learning-the-basics-of-r" class="section level2" number="1.2">
+<div id="learning-the-basics-of-r" class="section level2">
 <h2><span class="header-section-number">1.2</span> Learning the basics of R</h2>
 <p>Once R and RStudio are on your computer, it is time to get acquainted with the basics of R. This class is not about the finer points of R itself, and I will try to make your R experience as smooth as possible. After all, R is a tool that will help us explore and understand stochastic processes. Having said that, it is important to realize that R is a powerful programming language specifically created for statistical and probabilistic applications. Some knowledge of R is a valuable skill to have in today’s job market, and you should take this opportunity to learn it. The best way, of course, is by using it, but before you start, you need to know the very basics. Don’t worry, R is very user friendly and easy to get started in. In addition, it has been around for a long time (its predecessor S appeared in 1976) and is extremely well documented - google <em>introduction to R</em> or a similar phrase, and you will get lots of useful hits.</p>
 <p>My plan is to give you a bare minimum in the next few paragraphs, and then to explain additional R concepts as we need them. This way, you will not be overwhelmed right from the start, and you will get a bit of a mathematical context as you learn more. Conversely, learning R commands will help with the math, too.</p>
-<div id="the-console-scripts-and-r-notebooks" class="section level3" number="1.2.1">
+<div id="the-console-scripts-and-r-notebooks" class="section level3">
 <h3><span class="header-section-number">1.2.1</span> The console, Scripts and R Notebooks</h3>
 <p>There at least three different ways of inputting commands into R - through console, scripts and R-notebooks.</p>
 <p><strong>The console</strong>, as I already mentioned, is a window in RStudio where you can enter your R commands one by one. As a command is entered (and enter pressed) R will run it and display the result below. A typical console session looks like this
@@ -253,12 +251,12 @@ An R notebook is nothing other than a specially formatted text file which contai
 R notebooks are R’s implementation of <em>literate programming</em>. The idea is that documentation should be written at the same time as the program itself. As far as this course if concerned, R notebooks are just the right medium for homework and exam submission. You can run code and provide the interpretation of its output in a single document. See <a href="other/Homework-instructions.html">here</a> for more information.</p>
 <p>Each chapter in these lecture notes is an R notebook!</p>
 </div>
-<div id="asking-for-help" class="section level3" number="1.2.2">
+<div id="asking-for-help" class="section level3">
 <h3><span class="header-section-number">1.2.2</span> Asking for help</h3>
 <p>The most important thing about <strong>learning R</strong> (and many other things, for that matter) is knowing whom (and how) to ask for help. Luckily, R is a well established language, and you can get a lot of information by simply googling your problem. For example, if you google <code>logarithm in R</code> the top hit (at the time of writing) gives a nice overview and some examples.</p>
 <p>Another way to get information about a command or a concept in R is to use the command <code>help</code>. For example, if you input <code>help("log")</code> or <code>?log</code> in your console, the right hand of your screen will display information on the function <code>log</code> and some of its cousins. Almost every help entry has examples at the bottom, and that is where I always go first.</p>
 </div>
-<div id="vectors" class="section level3" number="1.2.3">
+<div id="vectors" class="section level3">
 <h3><span class="header-section-number">1.2.3</span> Vectors</h3>
 <p>Objects we will be manipulating in this class are almost exclusively vectors and matrices. The simplest vectors are those that have a single component, in other words, numbers. In R, you can assign a number to a variable using two different notations. Both</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="intro.html#cb4-1"></a>a &lt;-<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
@@ -368,7 +366,7 @@ When we index <code>x</code> using it, only the values of <code>x</code> on posi
 <span id="cb24-3"><a href="intro.html#cb24-3"></a>x</span>
 <span id="cb24-4"><a href="intro.html#cb24-4"></a><span class="co">## [1]  7  7 30 40  7</span></span></code></pre></div>
 </div>
-<div id="matrices" class="section level3" number="1.2.4">
+<div id="matrices" class="section level3">
 <h3><span class="header-section-number">1.2.4</span> Matrices</h3>
 <p>A matrix in R can be created using the command <code>matrix</code>. The unusual part is that the input is a vector and R populates the components of the matrix by filling it in column by column or row by row. As always, an example will make this clear</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="intro.html#cb25-1"></a>x =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
@@ -423,7 +421,7 @@ When we index <code>x</code> using it, only the values of <code>x</code> on posi
 <span id="cb30-3"><a href="intro.html#cb30-3"></a><span class="co">## [1,]    3    1</span></span>
 <span id="cb30-4"><a href="intro.html#cb30-4"></a><span class="co">## [2,]   11    2</span></span></code></pre></div>
 </div>
-<div id="functions" class="section level3" number="1.2.5">
+<div id="functions" class="section level3">
 <h3><span class="header-section-number">1.2.5</span> Functions</h3>
 <p>The following syntax is used to define functions in R:</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="intro.html#cb31-1"></a>my_function =<span class="st"> </span><span class="cf">function</span>(x, y, z) {</span>
@@ -441,7 +439,7 @@ When we index <code>x</code> using it, only the values of <code>x</code> on posi
 <span id="cb33-6"><a href="intro.html#cb33-6"></a><span class="co">## [1] 4 5</span></span></code></pre></div>
 <p>Note how we used several things we learned above in this function. First, we defined the logical vector which indicates where <code>x</code> is larger than <code>y</code>. Then, we used logical indexing to return only certain components of <code>x</code>.</p>
 </div>
-<div id="if-else-statements" class="section level3" number="1.2.6">
+<div id="if-else-statements" class="section level3">
 <h3><span class="header-section-number">1.2.6</span> If-else statements</h3>
 <p>Our final element of R is its <code>if-else</code> statement. The syntax of the <code>if</code> statement is</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="intro.html#cb34-1"></a><span class="cf">if</span> (condition) {</span>
@@ -560,7 +558,7 @@ TRUE
 <span id="cb36-12"><a href="intro.html#cb36-12"></a><span class="co">## [1] 0</span></span></code></pre></div>
 </div>
 </div>
-<div id="problems" class="section level2" number="1.3">
+<div id="problems" class="section level2">
 <h2><span class="header-section-number">1.3</span> Problems</h2>
 <p>Here are several simple problems. Their goal is to give you an idea of exactly how much R is required to get started in this course.</p>
 <div class="problem">
@@ -716,6 +714,7 @@ TRUE
 <span id="cb46-29"><a href="intro.html#cb46-29"></a><span class="co">## [1] 90</span></span></code></pre></div>
 </div>
 <p>⬇︎ In case you were wondering, the text below belongs to footnotes from somewhere high above.⬇︎</p>
+
 
 </div>
 </div>
