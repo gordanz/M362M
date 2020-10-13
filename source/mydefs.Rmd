@@ -1,6 +1,7 @@
 \usepackage{mydefs_long}
 \newcommand{\PP}{{\mathbb{P}}}
 \newcommand{\N}{{\mathbb{N}}}
+\newcommand{\bZ}{{\mathbb{Z}}}
 \newcommand{\R}{{\mathbb{R}}}
 \newcommand{\sS}{{\mathcal{S}}}
 \newcommand{\EE}{{\mathbb{E}}}
@@ -22,5 +23,21 @@
 \newcommand{\sets}[2]{ \{ #1\, : \, #2\}}
 \newcommand{\ft}[2]{#1,\dots, #2}
 \newcommand{\seq}[1]{\{#1_n\}_{n\in\N}}
-          
+\newcommand{\ewhere}{\text{ where }}
+
+\renewcommand{\Pr}{{\mathbf P}}
+\newcommand{\aaa}[1]{{\mathbf a}^{(#1)}}
+\renewcommand{\aa}[1]{{a}^{(#1)}}
+\newcommand{\aaz}{\aaa{0}}
+\newcommand{\az}{\aa{0}}
+\renewcommand{\SS}{\sS}
+\renewcommand{\Pr}{{\mathbf P}}
+\newcommand{\pnp}[1]{p^{(#1)}}
+\newcommand{\pn}{\pnp{n}}
+\newcommand{\tpnp}[1]{\tilde{p}^{(#1)}}
+\newcommand{\tpn}{\tpnp{n}}
+\newcommand{\fnf}[1]{f^{(#1)}}
+\newcommand{\fn}{\fnf{n}}
+\newcommand{\tofro}{\leftrightarrow}
+\newcommand{\Vn}{V^{(n)}}
           
