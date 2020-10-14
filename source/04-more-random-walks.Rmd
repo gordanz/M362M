@@ -888,18 +888,6 @@ $\tau$ needs to be a stopping time, and not just any old random time. There are 
 <!-- ``` -->
 <!-- </div> -->
 
-<!--
-  no_return_to_zero
-  ------------------------------------------------
--->
-<div class="problem">
-```{r child="problems/01_Random_Walks/no_return_to_zero_prb.Rmd"}
-```
-</div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/01_Random_Walks/no_return_to_zero_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
 
 <!--
   time_until_hit
@@ -942,6 +930,20 @@ $\tau$ needs to be a stopping time, and not just any old random time. There are 
 <!-- ```{r child="problems/01_Random_Walks/catalan_sol.Rmd"} -->
 <!-- ``` -->
 <!-- </div> -->
+
+<!--
+  no_return_to_zero
+  ------------------------------------------------
+-->
+<div class="problem">
+```{r child="problems/01_Random_Walks/no_return_to_zero_prb.Rmd"}
+```
+</div>
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/01_Random_Walks/no_return_to_zero_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+
 
 <!--
   hit_times_1
