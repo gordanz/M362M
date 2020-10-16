@@ -26,7 +26,7 @@
 \newcommand{\ewhere}{\text{ where }}
 
 \renewcommand{\Pr}{{\mathbf P}}
-\newcommand{\aaa}[1]{{\mathbf a}^{(#1)}}
+\newcommand{\aaa}[1]{{a}^{(#1)}}
 \renewcommand{\aa}[1]{{a}^{(#1)}}
 \newcommand{\aaz}{\aaa{0}}
 \newcommand{\az}{\aa{0}}
