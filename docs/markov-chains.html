@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Markov Chains | Lecture notes for &quot;Introduction to Stochastic Processes&quot;</title>
+  <meta name="description" content="A set of lecture notes for M362M: Introduction to Stochastic Processes" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Markov Chains | Lecture notes for &quot;Introduction to Stochastic Processes&quot;" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A set of lecture notes for M362M: Introduction to Stochastic Processes" />
+  <meta name="github-repo" content="gordanz/M362M" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Markov Chains | Lecture notes for &quot;Introduction to Stochastic Processes&quot;" />
+  
+  <meta name="twitter:description" content="A set of lecture notes for M362M: Introduction to Stochastic Processes" />
+  
+
+<meta name="author" content="Gordan Zitkovic" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="more-about-random-walks.html"/>
+<link rel="next" href="dist.html"/>
+<script src="libs/header-attrs-2.4/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">M362M Lecture notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> An intro to R and RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#setting-up-an-r-environment-on-your-computer"><i class="fa fa-check"></i><b>1.1</b> Setting up an R environment on your computer</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#installing-r"><i class="fa fa-check"></i><b>1.1.1</b> Installing R</a></li>
+<li class="chapter" data-level="1.1.2" data-path="intro.html"><a href="intro.html#installing-rstudio"><i class="fa fa-check"></i><b>1.1.2</b> Installing RStudio</a></li>
+<li class="chapter" data-level="1.1.3" data-path="intro.html"><a href="intro.html#installing-basic-packages"><i class="fa fa-check"></i><b>1.1.3</b> Installing basic packages</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#learning-the-basics-of-r"><i class="fa fa-check"></i><b>1.2</b> Learning the basics of R</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#the-console-scripts-and-r-notebooks"><i class="fa fa-check"></i><b>1.2.1</b> The console, Scripts and R Notebooks</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#asking-for-help"><i class="fa fa-check"></i><b>1.2.2</b> Asking for help</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#vectors"><i class="fa fa-check"></i><b>1.2.3</b> Vectors</a></li>
+<li class="chapter" data-level="1.2.4" data-path="intro.html"><a href="intro.html#matrices"><i class="fa fa-check"></i><b>1.2.4</b> Matrices</a></li>
+<li class="chapter" data-level="1.2.5" data-path="intro.html"><a href="intro.html#functions"><i class="fa fa-check"></i><b>1.2.5</b> Functions</a></li>
+<li class="chapter" data-level="1.2.6" data-path="intro.html"><a href="intro.html#if-else-statements"><i class="fa fa-check"></i><b>1.2.6</b> If-else statements</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#problems"><i class="fa fa-check"></i><b>1.3</b> Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html"><i class="fa fa-check"></i><b>2</b> Simulation of Random Variables and Monte Carlo</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#simulation-of-some-common-probability-distributions"><i class="fa fa-check"></i><b>2.1</b> Simulation of some common probability distributions</a></li>
+<li class="chapter" data-level="2.2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#multivariate-distributions"><i class="fa fa-check"></i><b>2.2</b> Multivariate Distributions</a></li>
+<li class="chapter" data-level="2.3" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#monte-carlo"><i class="fa fa-check"></i><b>2.3</b> Monte Carlo</a></li>
+<li class="chapter" data-level="2.4" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#conditional-distributions"><i class="fa fa-check"></i><b>2.4</b> Conditional distributions</a></li>
+<li class="chapter" data-level="2.5" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#additional-problems-for-chapter-2"><i class="fa fa-check"></i><b>2.5</b> Additional Problems for Chapter 2</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="random-walks.html"><a href="random-walks.html"><i class="fa fa-check"></i><b>3</b> Random Walks</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="random-walks.html"><a href="random-walks.html#what-are-stochastic-processes"><i class="fa fa-check"></i><b>3.1</b> What are stochastic processes?</a></li>
+<li class="chapter" data-level="3.2" data-path="random-walks.html"><a href="random-walks.html#the-simple-symmetric-random-walk"><i class="fa fa-check"></i><b>3.2</b> The Simple Symmetric Random Walk</a></li>
+<li class="chapter" data-level="3.3" data-path="random-walks.html"><a href="random-walks.html#how-to-simulate-random-walks"><i class="fa fa-check"></i><b>3.3</b> How to simulate random walks</a></li>
+<li class="chapter" data-level="3.4" data-path="random-walks.html"><a href="random-walks.html#two-ways-of-looking-at-a-stochastic-proceses"><i class="fa fa-check"></i><b>3.4</b> Two ways of looking at a stochastic proceses</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="random-walks.html"><a href="random-walks.html#column-wise-distributionally"><i class="fa fa-check"></i><b>3.4.1</b> Column-wise (distributionally)</a></li>
+<li class="chapter" data-level="3.4.2" data-path="random-walks.html"><a href="random-walks.html#row-wise-trajectorially-or-path-wise"><i class="fa fa-check"></i><b>3.4.2</b> Row-wise (trajectorially or path-wise)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="random-walks.html"><a href="random-walks.html#the-path-space"><i class="fa fa-check"></i><b>3.5</b> The path space</a></li>
+<li class="chapter" data-level="3.6" data-path="random-walks.html"><a href="random-walks.html#the-distribution-of-x_n"><i class="fa fa-check"></i><b>3.6</b> The distribution of <span class="math inline">\(X_n\)</span></a></li>
+<li class="chapter" data-level="3.7" data-path="random-walks.html"><a href="random-walks.html#biased-random-walks"><i class="fa fa-check"></i><b>3.7</b> Biased random walks</a></li>
+<li class="chapter" data-level="3.8" data-path="random-walks.html"><a href="random-walks.html#additional-problems-for-chapter-3"><i class="fa fa-check"></i><b>3.8</b> Additional problems for Chapter 3</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html"><i class="fa fa-check"></i><b>4</b> More about Random Walks</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html#the-reflection-principle"><i class="fa fa-check"></i><b>4.1</b> The reflection principle</a></li>
+<li class="chapter" data-level="4.2" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html#stopping-times"><i class="fa fa-check"></i><b>4.2</b> Stopping times</a></li>
+<li class="chapter" data-level="4.3" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html#walds-identity-and-gamblers-ruin"><i class="fa fa-check"></i><b>4.3</b> Wald’s identity and Gambler’s ruin</a></li>
+<li class="chapter" data-level="4.4" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html#additional-problems-for-chapter-4"><i class="fa fa-check"></i><b>4.4</b> Additional problems for Chapter 4</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="markov-chains.html"><a href="markov-chains.html"><i class="fa fa-check"></i><b>5</b> Markov Chains</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="markov-chains.html"><a href="markov-chains.html#the-markov-property"><i class="fa fa-check"></i><b>5.1</b> The Markov property</a></li>
+<li class="chapter" data-level="5.2" data-path="markov-chains.html"><a href="markov-chains.html#first-examples"><i class="fa fa-check"></i><b>5.2</b> First Examples</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="random-walks.html"><a href="random-walks.html#random-walks"><i class="fa fa-check"></i><b>5.2.1</b> Random walks</a></li>
+<li class="chapter" data-level="5.2.2" data-path="markov-chains.html"><a href="markov-chains.html#gamblers-ruin"><i class="fa fa-check"></i><b>5.2.2</b> Gambler’s ruin</a></li>
+<li class="chapter" data-level="5.2.3" data-path="markov-chains.html"><a href="markov-chains.html#regime-switching"><i class="fa fa-check"></i><b>5.2.3</b> Regime Switching</a></li>
+<li class="chapter" data-level="5.2.4" data-path="markov-chains.html"><a href="markov-chains.html#deterministically-monotone-markov-chain"><i class="fa fa-check"></i><b>5.2.4</b> Deterministically monotone Markov chain</a></li>
+<li class="chapter" data-level="5.2.5" data-path="markov-chains.html"><a href="markov-chains.html#not-a-markov-chain"><i class="fa fa-check"></i><b>5.2.5</b> Not a Markov chain</a></li>
+<li class="chapter" data-level="5.2.6" data-path="markov-chains.html"><a href="markov-chains.html#turning-a-non-markov-chain-into-a-markov-chain"><i class="fa fa-check"></i><b>5.2.6</b> Turning a non-Markov chain into a Markov chain</a></li>
+<li class="chapter" data-level="5.2.7" data-path="markov-chains.html"><a href="markov-chains.html#deterministic-functions-of-markov-chains-do-not-need-to-be-markov-chains"><i class="fa fa-check"></i><b>5.2.7</b> Deterministic functions of Markov chains do not need to be Markov chains</a></li>
+<li class="chapter" data-level="5.2.8" data-path="markov-chains.html"><a href="markov-chains.html#a-game-of-tennis"><i class="fa fa-check"></i><b>5.2.8</b> A game of tennis</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="markov-chains.html"><a href="markov-chains.html#chapman-kolmogorov-equations"><i class="fa fa-check"></i><b>5.3</b> Chapman-Kolmogorov equations</a></li>
+<li class="chapter" data-level="5.4" data-path="markov-chains.html"><a href="markov-chains.html#how-to-simulate-markov-chains"><i class="fa fa-check"></i><b>5.4</b> How to simulate Markov chains</a></li>
+<li class="chapter" data-level="5.5" data-path="markov-chains.html"><a href="markov-chains.html#additional-problems-for-chapter-5"><i class="fa fa-check"></i><b>5.5</b> Additional problems for Chapter 5</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>A</b> Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="dist.html"><a href="dist.html#discrete-distributions"><i class="fa fa-check"></i><b>A.1</b> Discrete distributions:</a></li>
+<li class="chapter" data-level="A.2" data-path="dist.html"><a href="dist.html#continuous-distributions"><i class="fa fa-check"></i><b>A.2</b> Continuous distributions:</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lecture notes for "Introduction to Stochastic Processes"</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="markov-chains" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Markov Chains</h1>
+<div style="counter-reset: thechapter 5;">
+
+</div>
+<div id="the-markov-property" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> The Markov property</h2>
+<p>Simply put, a stochastic process has the <strong>Markov property</strong> if probabilities governing its
+future evolution depend only on its current position, and not on how it
+got there. Here is a more precise, mathematical, definition. It will be
+assumed throughout this course that any stochastic process <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span>
+takes values in a countable set <span class="math inline">\(S\)</span> called the <strong>state space</strong>. <span class="math inline">\(S\)</span> will always be either
+finite, or countable, and a generic element of <span class="math inline">\(S\)</span> will be denoted by
+<span class="math inline">\(i\)</span> or <span class="math inline">\(j\)</span>.</p>
+<p>A stochastic process <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> taking values in a countable state space
+<span class="math inline">\(S\)</span> is called a <strong>Markov chain</strong> if
+<span class="math display" id="eq:markov">\[\begin{equation}
+ {\mathbb{P}}[ X_{n+1}=j|X_n=i, X_{n-1}=i_{n-1},\dots, X_1=i_1, X_0=i_0]=
+ {\mathbb{P}}[
+X_{n+1}=j|X_n=i],
+\tag{5.1}
+\end{equation}\]</span>
+for all times <span class="math inline">\(n\in{\mathbb{N}}_0\)</span>, all states
+<span class="math inline">\(i,j,i_0, i_1, \dots, i_{n-1} \in S\)</span>, whenever the two conditional
+probabilities are well-defined, i.e., when
+<span class="math display" id="eq:markov-well-defined">\[\begin{equation}
+{\mathbb{P}}[ X_n=i, \dots, X_1=i_1, X_0=i_0]&gt;0.
+\tag{5.2}
+\end{equation}\]</span></p>
+<p>The Markov property is typically checked in the following way: one
+computes the left-hand side of <a href="markov-chains.html#eq:markov">(5.1)</a>
+and shows that its value does not
+depend on <span class="math inline">\(i_{n-1},i_{n-2}, \dots, i_1, i_0\)</span> (why is that enough?). The
+condition <a href="markov-chains.html#eq:markov-well-defined">(5.2)</a>
+will be assumed (without explicit mention) every time we write a conditional
+expression like to one in <a href="markov-chains.html#eq:markov">(5.1)</a>.</p>
+<p>All chains in this course will be **homogeneous* *, i.e., the conditional
+probabilities <span class="math inline">\({\mathbb{P}}[X_{n+1}=j|X_{n}=i]\)</span> will not depend on the current
+time <span class="math inline">\(n\in{\mathbb{N}}_0\)</span>, i.e., <span class="math inline">\({\mathbb{P}}[X_{n+1}=j|X_{n}=i]={\mathbb{P}}[X_{m+1}=j|X_{m}=i]\)</span>,
+for <span class="math inline">\(m,n\in{\mathbb{N}}_0\)</span>.</p>
+<p>Markov chains are (relatively) easy to work with because the Markov
+property allows us to compute all the probabilities, expectations,
+etc. we might be interested in by using only two ingredients.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Initial distribution</strong> <span class="math inline">\({a}^{(0)}= \{ {a}^{(0)}_i\, : \, i\in S\}\)</span>,
+<span class="math inline">\({a}^{(0)}_i={\mathbb{P}}[X_0=i]\)</span> - the initial probability distribution of the
+process, and</p></li>
+<li><p><strong>Transition probabilities</strong> <span class="math inline">\(p_{ij}={\mathbb{P}}[X_{n+1}=j|X_n=i]\)</span> - the
+mechanism that the process uses to jump around.</p></li>
+</ol>
+<p>Indeed, if you know <span class="math inline">\({a}^{(0)}_i\)</span> and <span class="math inline">\(p_{ij}\)</span> for all <span class="math inline">\(i,j\in S\)</span> and want to compute
+a joint distribution <span class="math inline">\({\mathbb{P}}[X_n=i_n, X_{n-1}=i_{n-1}, \dots, X_0=i_0]\)</span>, you can use the definition of conditional probability
+and the Markov property several times (the <em>multiplication theorem</em> from
+your elementary probability course) as follows:
+<span class="math display">\[\begin{align}
+    {\mathbb{P}}[X_n=i_n, \dots, X_0=i_0] 
+       &amp;= {\mathbb{P}}[X_n=i_n| X_{n-1}=i_{n-1}, \dots,X_0=i_0] \cdot {\mathbb{P}}[X_{n-1}=i_{n-1},
+     \dots,X_0=i_0] \\ &amp; 
+       = {\mathbb{P}}[X_n=i_n| X_{n-1}=i_{n-1}] \cdot {\mathbb{P}}[X_{n-1}=i_{n-1}, \dots,X_0=i_0]\\
+       &amp;= p_{i_{n-1} i_{n}} {\mathbb{P}}[X_{n-1}=i_{n-1}, \dots,X_0=i_0]
+\end{align}\]</span>
+If we repeat the same procedure <span class="math inline">\(n-2\)</span> more times (and flip the order of factors), we get
+<span class="math display">\[\begin{align}
+{\mathbb{P}}[X_n=i_n, \dots, X _0=i_0] &amp;= {a}^{(0)}_{i_0} \cdot p_{i_0 i_1} \cdot p_{i_1 i_2}\cdot  \ldots \cdot p_{i_{n-1} i_{n}}
+\end{align}\]</span>
+Think of it this way: the probability of the process taking the trajectory <span class="math inline">\((i_0, i_1, \dots, i_n)\)</span> is:</p>
+<ol style="list-style-type: decimal">
+<li>the probability of starting at <span class="math inline">\(i_0\)</span> (which is <span class="math inline">\({a}^{(0)}_{i_0}\)</span>),</li>
+<li>multiplied by the probability of transitioning from <span class="math inline">\(i_0\)</span> to <span class="math inline">\(i_1\)</span> (which is <span class="math inline">\(p_{i_0 i_1}\)</span>),</li>
+<li>multiplied by the probability of transitioning from <span class="math inline">\(i_1\)</span> to <span class="math inline">\(i_2\)</span> (which is <span class="math inline">\(p_{i_1 i_2}\)</span>),</li>
+<li>etc.</li>
+</ol>
+<p>When <span class="math inline">\(S\)</span> is finite, there is no loss of generality in
+assuming that <span class="math inline">\(S=\{1,2,\dots, n\}\)</span>, and then we usually organize the
+entries of <span class="math inline">\({a}^{(0)}\)</span> into a <em>row vector</em> <span class="math display">\[{a}^{(0)}=({a}^{(0)}_1,{a}^{(0)}_2,\dots, {a}^{(0)}_n),\]</span>
+and the transition probabilities <span class="math inline">\(p_{ij}\)</span> into a <em>square matrix</em> <span class="math inline">\({\mathbf P}\)</span>,
+where <span class="math display">\[{\mathbf P}=\begin{bmatrix}
+  p_{11} &amp; p_{12} &amp; \dots &amp; p_{1n} \\
+  p_{21} &amp; p_{22} &amp; \dots &amp; p_{2n} \\
+  \vdots  &amp; \vdots  &amp; \ddots &amp; \vdots \\
+  p_{n1} &amp; p_{n2} &amp; \dots &amp; p_{nn} \\
+\end{bmatrix}\]</span> In the general case (<span class="math inline">\(S\)</span> possibly infinite), one can
+still use the vector and matrix notation as before, but it becomes quite
+clumsy in the general case. For example, if <span class="math inline">\(S={\mathbb{Z}}\)</span>, then <span class="math inline">\({\mathbf P}\)</span> is an
+infinite matrix <span class="math display">\[{\mathbf P}=\begin{bmatrix}
+  \ddots &amp; \vdots &amp; \vdots &amp; \vdots &amp;   \\
+  \dots &amp; p_{-1\, -1} &amp; p_{-1\, 0} &amp; p_{-1\, 1} &amp; \dots \\
+  \dots &amp; p_{0\, -1} &amp; p_{0\, 0} &amp; p_{0\, 1} &amp; \dots \\
+  \dots &amp; p_{1\, -1} &amp; p_{1\, 0} &amp; p_{1\, 1} &amp; \dots \\
+    &amp; \vdots &amp; \vdots &amp; \vdots &amp; \ddots \\
+\end{bmatrix}\]</span></p>
+</div>
+<div id="first-examples" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> First Examples</h2>
+<p>Here are some examples of Markov chains - you will see many more in problems and later chapters.</p>
+<div id="random-walks" class="section level3" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Random walks</h3>
+<p>Let <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> be a simple (possibly biased) random walk. Let us show
+that it indeed has the Markov property <a href="markov-chains.html#eq:markov">(5.1)</a>.
+Remember, first, that
+<span class="math display">\[X_n=\sum_{k=1}^n \delta_k \text{ where }\delta_k \text{ are independent
+(possibly biased) coin-tosses.}\]</span> For a choice of
+<span class="math inline">\(i_0, \dots, i_n, j=i_{n+1}\)</span> (such that <span class="math inline">\(i_0=0\)</span> and
+<span class="math inline">\(i_{k+1}-i_{k}=\pm 1\)</span>) we have
+<span class="math display">\[%\label{equ:}
+    \nonumber 
+   \begin{split}
+  {\mathbb{P}}[ X_{n+1}=i_{n+1}&amp;|X_n=i_n, X_{n-1}=i_{n-1},\dots, X_1=i_1, X_0=i_0]\\ = &amp;
+  {\mathbb{P}}[ X_{n+1}-X_{n}=i_{n+1}-i_{n}|X_n=i_n, X_{n-1}=i_{n-1},\dots, X_1=i_1, X_0=i_0] \\ = &amp;
+  {\mathbb{P}}[ \delta_{n+1}=i_{n+1}-i_{n}|X_n=i_n, X_{n-1}=i_{n-1},\dots, X_1=i_1, X_0=i_0] \\= &amp;
+  {\mathbb{P}}[ \delta_{n+1}=i_{n+1}-i_n],
+   \end{split}\]</span></p>
+<p>where the last equality follows from the fact that the
+increment <span class="math inline">\(\delta_{n+1}\)</span> is independent of the previous increments, and,
+therefore, also of the values of <span class="math inline">\(X_1,X_2, \dots, X_n\)</span>. The last line
+above does not depend on <span class="math inline">\(i_{n-1}, \dots, i_1, i_0\)</span>, so <span class="math inline">\(X\)</span> indeed has
+the Markov property.</p>
+<p>The state space <span class="math inline">\(S\)</span> of <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> is the set <span class="math inline">\({\mathbb{Z}}\)</span> of all integers, and
+the initial distribution <span class="math inline">\({a}^{(0)}\)</span> is very simple: we start at <span class="math inline">\(0\)</span> with
+probability <span class="math inline">\(1\)</span> (so that <span class="math inline">\({a}^{(0)}_0=1\)</span> and <span class="math inline">\({a}^{(0)}_i=0\)</span>, for <span class="math inline">\(i\not= 0\)</span>.). The
+transition probabilities are simple to write down
+<span class="math display">\[p_{ij}= \begin{cases} p, &amp; j=i+1 \\ q, &amp; j=i-1 \\ 0, &amp; \text{otherwise.}
+\end{cases}\]</span> If you insist, these can be written down in an infinite matrix,
+<span class="math display">\[{\mathbf P}=\begin{bmatrix}
+  \ddots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp;  \\
+  \dots  &amp; 0 &amp; p  &amp; 0 &amp; 0 &amp; 0 &amp; \dots \\
+  \dots  &amp; q &amp; 0  &amp; p &amp; 0 &amp; 0 &amp; \dots \\
+  \dots  &amp;0  &amp;q   &amp; 0  &amp; p  &amp; 0  &amp; \dots \\
+  \dots  &amp;0  &amp;0  &amp; q&amp; 0 &amp; p&amp; \dots \\
+  \dots  &amp;0  &amp; 0 &amp;0 &amp; q&amp; 0&amp; \dots \\
+  \dots  &amp;0  &amp; 0 &amp;0 &amp; 0&amp; q&amp; \dots \\
+   &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \ddots \\
+\end{bmatrix}\]</span> but this representation is typically not as useful as in the finite case.</p>
+</div>
+<div id="gamblers-ruin" class="section level3" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Gambler’s ruin</h3>
+<p>In Gambler’s ruin, a gambler starts with <span class="math inline">\(\$x\)</span>, where
+<span class="math inline">\(0\leq x \leq a\in{\mathbb{N}}\)</span> and in each play wins a dollar (with probability
+<span class="math inline">\(p\in (0,1)\)</span>) and loses a dollar (with probability <span class="math inline">\(q=1-p\)</span>). When the
+gambler reaches either <span class="math inline">\(0\)</span> or <span class="math inline">\(a\)</span>, the game stops. For mathematical
+convenience, it is usually a good idea to keep the chain defined, even
+after the modeled phenomenon stops. This is usually accomplished by . We
+simply assume that the process “stays alive” but remains “frozen”
+instead of disappearing. In our case, once our gambler reaches either of
+the states <span class="math inline">\(0\)</span> and <span class="math inline">\(a\)</span>, he/she simply stays there forever.</p>
+<p>Therefore, the transition probabilities are similar to those of a random
+walk, but differ from them at the boundaries <span class="math inline">\(0\)</span> and <span class="math inline">\(a\)</span>. The state
+space is finite <span class="math inline">\(S=\{0,1,\dots, a\}\)</span> and the matrix <span class="math inline">\({\mathbf P}\)</span> is given by
+<span class="math display">\[{\mathbf P}=\begin{bmatrix}
+  1 &amp; 0 &amp; 0 &amp; 0 &amp; \dots &amp; 0 &amp; 0 &amp; 0 \\
+  q &amp; 0 &amp; p &amp; 0 &amp; \dots &amp; 0 &amp; 0 &amp; 0 \\
+  0 &amp; q &amp; 0 &amp; p &amp; \dots &amp; 0 &amp; 0 &amp; 0 \\
+  0 &amp; 0 &amp; q &amp; 0 &amp; \dots &amp; 0 &amp; 0 &amp; 0 \\
+  \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots &amp; \vdots \\
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; \dots &amp; 0 &amp; p &amp; 0 \\
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; \dots &amp; q &amp; 0 &amp; p \\
+  0 &amp; 0 &amp; 0 &amp; 0 &amp; \dots &amp; 0 &amp; 0 &amp; 1 \\
+\end{bmatrix}\]</span> The initial distribution is deterministic: <span class="math display">\[{a}^{(0)}_i=
+\begin{cases}
+  1,&amp; i=x,\\ 0,&amp; i\not= x.
+\end{cases}\]</span></p>
+</div>
+<div id="regime-switching" class="section level3" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> Regime Switching</h3>
+<p>Consider a system with two different states; think about a simple
+weather forceast (rain/no rain), high/low water level in a reservoire,
+high/low volatility regime in a financial market, high/low level of
+economic growth, the political party in power, etc. Suppose that the
+states are called <span class="math inline">\(1\)</span> and <span class="math inline">\(2\)</span> and the probabilities <span class="math inline">\(p_{12}\)</span> and
+<span class="math inline">\(p_{21}\)</span> of switching states are given. The probabilities
+<span class="math inline">\(p_{11}=1-p_{12}\)</span> and <span class="math inline">\(p_{22}=1-p_{21}\)</span> correspond to the system staying
+in the same state. The transition matrix for this Markov with
+<span class="math inline">\(S=\{1,2\}\)</span> is <span class="math display">\[{\mathbf P}=
+\begin{bmatrix}
+  p_{11} &amp; p_{12} \\ p_{21} &amp; p_{22}.
+\end{bmatrix}\]</span> When <span class="math inline">\(p_{12}\)</span> and <span class="math inline">\(p_{21}\)</span> are large (close to <span class="math inline">\(1\)</span>) the
+system nervously jumps between the two states. When they are small,
+there are long periods of stability (staying in the same state).</p>
+<p>One of the assumptions behind regime-switching models is that the
+transitions (switches) can only happen in regular intervals (once a
+minute, once a day, once a year, etc.). This is a feature of all
+<em>discrete-time</em> Markov chains. One would need to use a <em>continuous-time</em>
+model to allow for the transitions between states at any point in time.</p>
+</div>
+<div id="deterministically-monotone-markov-chain" class="section level3" number="5.2.4">
+<h3><span class="header-section-number">5.2.4</span> Deterministically monotone Markov chain</h3>
+<p>A stochastic process <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> with state space <span class="math inline">\(S={\mathbb{N}}_0\)</span> such that
+<span class="math inline">\(X_n=n\)</span> for <span class="math inline">\(n\in{\mathbb{N}}_0\)</span> (no randomness here) is called Deterministically
+monotone Markov chain (DMMC). The transition matrix looks like this
+<span class="math display">\[{\mathbf P}=
+\begin{bmatrix}
+  0 &amp; 1 &amp; 0 &amp; 0 &amp; \dots \\
+  0 &amp; 0 &amp; 1 &amp; 0 &amp; \dots \\
+  0 &amp; 0 &amp; 0 &amp; 1 &amp; \dots \\
+  \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \ddots 
+\end{bmatrix}\]</span> It is a pretty boring chain; it main use is as a
+counterexample.</p>
+</div>
+<div id="not-a-markov-chain" class="section level3" number="5.2.5">
+<h3><span class="header-section-number">5.2.5</span> Not a Markov chain</h3>
+<p>Consider a frog jumping from a lily pad to a lily pad in a small forest
+pond. Suppose that there are <span class="math inline">\(N\)</span> lily pads so that the state space can
+be described as <span class="math inline">\(S=\{1,2,\dots, N\}\)</span>. The frog starts on lily pad 1 at
+time <span class="math inline">\(n=0\)</span>, and jumps around in the following fashion: at time <span class="math inline">\(0\)</span> it
+chooses any lily pad except for the one it is currently sitting on (with
+equal probability) and then jumps to it. At time <span class="math inline">\(n&gt;0\)</span>, it chooses any
+lily pad other than the one it is sitting on <em>and the one it visited
+immediately before</em> (with equal probability) and jumps to it. The
+position <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> of the frog is not a Markov chain. Indeed, we have
+<span class="math display">\[{\mathbb{P}}[X_3=1|X_2=2, X_1=3]= \frac{1}{N-2},\]</span> while
+<span class="math display">\[{\mathbb{P}}[X_3=1|X_2=2, X_1=1]=0.\]</span></p>
+<p>A more dramatic version of this example would be the one where the frog
+remembers all the lily pads it had visited before, and only chooses
+among the remaining ones for the next jump.</p>
+</div>
+<div id="turning-a-non-markov-chain-into-a-markov-chain" class="section level3" number="5.2.6">
+<h3><span class="header-section-number">5.2.6</span> Turning a non-Markov chain into a Markov chain</h3>
+<p>How can we turn the process of Example 6. into a Markov chain.
+Obviously, the problem is that the frog has to remember the number of
+the lily pad it came from in order to decide where to jump next. The way
+out is to make this information a part of the state. In other words, we
+need to change the state space. Instead of just <span class="math inline">\(S=\{1,2,\dots, N\}\)</span>,
+we set <span class="math inline">\(S= \{ (i_1,  i_2)\, : \, i_1,j_2 \in\{1,2,\dots N\}\}\)</span>. In words, the state of the
+process will now contain not only the number of the current lily pad
+(i.e., <span class="math inline">\(i_1\)</span>) but also the number of the lily pad we came from (i.e.,
+<span class="math inline">\(i_2\)</span>). This way, the frog will be in the state <span class="math inline">\((i_1,i_2)\)</span> if it is
+currently on the lily pad number <span class="math inline">\(i_2\)</span>, and it arrived here from <span class="math inline">\(i_1\)</span>.
+There is a bit of freedom with the initial state, but we simply assume
+that we start from <span class="math inline">\((1,1)\)</span>. Starting from the state <span class="math inline">\((i_1,i_2)\)</span>, the
+frog can jump to any state of the form <span class="math inline">\((i_2, i_3)\)</span>, <span class="math inline">\(i_3\not= i_1,i_2\)</span>
+(with equal probabilities). Note that some states will never be visited
+(like <span class="math inline">\((i,i)\)</span> for <span class="math inline">\(i\not = 1\)</span>), so we could have reduced the state space
+a little bit right from the start.</p>
+<p>It is important to stress that the passage to the new state space defines
+a whole new stochastic process. It is therefore, not quite accurate, as the title suggests,
+to say that we
+“turned” a non-Markov process into a Markov process. Rather, we replaced a non-Markovian
+<em>model</em> of a given situation by a different, Markovian, one.</p>
+</div>
+<div id="deterministic-functions-of-markov-chains-do-not-need-to-be-markov-chains" class="section level3" number="5.2.7">
+<h3><span class="header-section-number">5.2.7</span> Deterministic functions of Markov chains do not need to be Markov chains</h3>
+<p>Let <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> be a Markov chain on the state space <span class="math inline">\(S\)</span>, and let
+<span class="math inline">\(f:S\to T\)</span> be a function. The stochastic process <span class="math inline">\(Y_n= f(X_n)\)</span> takes
+values in <span class="math inline">\(T\)</span>; is it necessarily a Markov chain?</p>
+<p>We will see in this
+example that the answer is <em>no</em>. Let <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span>
+be a simple symmetric random walk, with the usual state space <span class="math inline">\(S = {\mathbb{Z}}\)</span>. With
+<span class="math inline">\(r(m) = m\  (\text{mod } 3)\)</span>
+denoting the remainder after the division by <span class="math inline">\(3\)</span>, we first define the process <span class="math inline">\(R_n = r(X_n)\)</span> so that
+<span class="math display">\[R_n=\begin{cases} 
+0, &amp; \text{ if $X_n$ is divisible by 3,}\\
+1, &amp; \text{ if $X_n-1$ is divisible by 3,}\\
+2, &amp; \text{ if $X_n-2$ is divisible by 3.}
+\end{cases}\]</span>
+Using <span class="math inline">\(R_n\)</span> we define <span class="math inline">\(Y_n = (X_n-R_n)/3\)</span> to be the corresponding quotient, so that <span class="math inline">\(Y_n\in{\mathbb{Z}}\)</span> and
+<span class="math display">\[3 Y_n \leq X_n &lt;3 (Y_n+1).\]</span>
+The process <span class="math inline">\(Y\)</span> is of the form <span class="math inline">\(Y_n = f(X_n)\)</span>, where <span class="math inline">\(f(i)= \lfloor i/3 \rfloor\)</span>, and <span class="math inline">\(\lfloor x \rfloor\)</span> is the largest integer not exceeding
+<span class="math inline">\(x\)</span>.</p>
+<p>To show that <span class="math inline">\(Y\)</span> is not a Markov chain, let us consider the the event
+<span class="math inline">\(A=\{Y_2=0, Y_1=0\}\)</span>. The only way for this to happen is if <span class="math inline">\(X_1=1\)</span>
+and <span class="math inline">\(X_2=2\)</span> or <span class="math inline">\(X_1=1\)</span> and <span class="math inline">\(X_2=0\)</span>, so that <span class="math inline">\(A=\{X_1=1\}\)</span>. Also
+<span class="math inline">\(Y_3=1\)</span> if and only if <span class="math inline">\(X_3=3\)</span>. Therefore
+<span class="math display">\[{\mathbb{P}}[ Y_3=1|Y_2=0, Y_1=0]={\mathbb{P}}[ X_3=3| X_1=1]= 1/4.\]</span> On the other hand,
+<span class="math inline">\(Y_2=0\)</span> if and only if <span class="math inline">\(X_2=0\)</span> or <span class="math inline">\(X_2=2\)</span>, so <span class="math inline">\({\mathbb{P}}[Y_2=0]= 3/4\)</span>.
+Finally, <span class="math inline">\(Y_3=1\)</span> and <span class="math inline">\(Y_2=0\)</span> if and only if <span class="math inline">\(X_3=3\)</span> and so
+<span class="math inline">\({\mathbb{P}}[Y_3=1, Y_2=0]= 1/8\)</span>. Hence,
+<span class="math display">\[{\mathbb{P}}[ Y_3=1|Y_2=0]={\mathbb{P}}[Y_3=1, Y_2=0]/{\mathbb{P}}[Y_2=0]= \frac{1/8}{3/4}=
+\frac{1}{6}.\]</span> Therefore, <span class="math inline">\(Y\)</span> is not a Markov chain. If you want a more dramatic
+example, try to modify this
+example so that one of the probabilities above is positive, but the
+other is zero.</p>
+<p>The important property of the function <span class="math inline">\(f\)</span> we applied to <span class="math inline">\(X\)</span> is that it is <em>not one-to-one</em>. In other words,
+<span class="math inline">\(f\)</span> collapses several states of <span class="math inline">\(X\)</span> into a single state of <span class="math inline">\(Y\)</span>. This way, the “present” may end up containing
+so little information that the past suddenly becomes relevant for the dynamics of the future evolution.</p>
+</div>
+<div id="a-game-of-tennis" class="section level3" number="5.2.8">
+<h3><span class="header-section-number">5.2.8</span> A game of tennis</h3>
+<p>In a game of tennis, the scoring system is as follows: both players start with the score of <span class="math inline">\(0\)</span>. Each time
+player 1 wins a point (a.k.a. <em>a rally</em>), her score moves a step up in the
+following hierarchy <span class="math display">\[0 \mapsto 15 \mapsto 30 \mapsto 40.\]</span> Once she
+reaches <span class="math inline">\(40\)</span> and scores a point, three things can happen:</p>
+<ol style="list-style-type: decimal">
+<li><p>if the score of player 2 is <span class="math inline">\(30\)</span> or less, player 1 wins the game.</p></li>
+<li><p>if the score of player 2 <span class="math inline">\(40\)</span>, the score of player 1 moves up to “advantage”,
+and</p></li>
+<li><p>if the score of player 2 is “advantage”, nothing happens to the score of player 1
+but the score of player 2 falls back to <span class="math inline">\(40\)</span>.</p></li>
+</ol>
+<p>Finally, if the score of player 1 is “advantage” and she wins a point, she
+wins the game. The situation is entirely symmetric for player 2. We suppose
+that the probability that player 1 wins each point is <span class="math inline">\(p\in (0,1)\)</span>,
+independently of the current score. A situation like this is a typical
+example of a Markov chain in an applied setting. What are the states of
+the process? We obviously need to know both players’ scores and we also
+need to know if one of the players has won the game. Therefore, a
+possible state space is the following:</p>
+<p><span class="math display">\[\begin{align}
+      S=
+      \Big\{ &amp;(0,0), (0,15), (0,30), (0,40), (15,0), (15,15), (15,30), (15,40), (30,0),
+      (30,15),\\ &amp;  (30,30),  (30,40), (40,0), (40,15), (40,30), (40,40), (40,A), (A,40), W_1, W_2 \Big\}
+\end{align}\]</span></p>
+<p>where <span class="math inline">\(A\)</span> stands for <em>“advantage”</em> and <span class="math inline">\(W_1\)</span>
+(<span class="math inline">\(W_2\)</span>) denotes the state where player 1 (player 2) wins. It is not hard
+to assign probabilities to transitions between states. Once we reach
+either <span class="math inline">\(W_1\)</span> or <span class="math inline">\(W_2\)</span> the game stops. We can assume that the
+chain remains in that state forever, i.e., the state is absorbing. The
+initial distribution is quite simple - we always start from the same
+state <span class="math inline">\((0,0)\)</span>, so that <span class="math inline">\({a}^{(0)}_{(0,0)}=1\)</span> and
+<span class="math inline">\({a}^{(0)}_i=0\)</span> for all <span class="math inline">\(i\in S\setminus\{(0,0)\}\)</span>.</p>
+<p>How about the transition matrix? When the number of states is big
+(<span class="math inline">\(\# S=20\)</span> in this case), transition matrices are useful in computer
+memory, but not so much on paper. Just for the fun of it, here is the
+transition matrix for our game-of-tennis chain (I am going to leave it up to you
+to figure out how rows/columns of the matrix match to states) <span class="math display">\[\tiny
+{\mathbf P}=
+\left[
+\begin{array}{llllllllllllllllllll}
+ 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; q &amp; 0 &amp; 0 &amp; p &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; q &amp; 0 &amp; 0 &amp; p &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; q &amp; 0 &amp; 0 &amp; p &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; q &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; p &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; q &amp; 0 &amp; 0 &amp; p &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; q &amp; 0 &amp; 0 &amp; p &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; q &amp; 0 &amp; 0 &amp; p &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; q &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; p &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; q &amp; 0 &amp; 0 &amp; p &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; q &amp; 0 &amp; 0 &amp; p &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; q &amp; 0 &amp; 0 &amp; p &amp; 0 &amp; 0 &amp; 0 \\
+ 0 &amp; q &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; p &amp; 0 &amp; 0 \\
+ p &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; q &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+ p &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; q &amp; 0 &amp; 0 &amp; 0 \\
+ p &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; q &amp; 0 &amp; 0 \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; q &amp; p \\
+ 0 &amp; q &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; p &amp; 0 &amp; 0 \\
+ p &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; q &amp; 0 &amp; 0
+\end{array}
+\right]\]</span></p>
+<p>Does the structure of a game of tennis make is easier or harder for the better
+player to win? In other words, if you had to play against the best tennis player
+in the world (I am rudely assuming that he or she is better than you), would you
+have a better chance of winning if you only played a point (rally), or if you
+played the whole game? We will give a precise answer to this question in a little while. In the
+meantime, try to guess.</p>
+</div>
+</div>
+<div id="chapman-kolmogorov-equations" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Chapman-Kolmogorov equations</h2>
+<p>The transition probabilities <span class="math inline">\(p_{ij}\)</span>, <span class="math inline">\(i,j\in S\)</span> tell us how a Markov
+chain jumps from one state to another in a single step. Think of it as a description of
+the <em>local</em> behavior of the chain. This is the information one can usually obtain from observations and modeling assumptions. On the other hand, it is the <em>global</em> (long-time) behavior of the model that
+provides the most interesting insights. In that spirit, we turn our attention
+to probabilities like this:
+<span class="math display">\[{\mathbb{P}}[X_{k+n}=j|X_k=i] \text{ for } n = 1,2,\dots.\]</span>
+Since we are assuming that all of our
+chains are homogeneous (transition probabilities do not change with
+time), this probability does not depend on the time <span class="math inline">\(k\)</span>, so we can define the <strong>multi-step transition probabilities</strong> <span class="math inline">\(p^{(n)}_{ij}\)</span> as follows:
+<span class="math display">\[p^{(n)}_{ij}={\mathbb{P}}[X_{k+n}=j|X_{k}=i]={\mathbb{P}}[ X_{n}=j|X_0=i].\]</span> We allow <span class="math inline">\(n=0\)</span> under
+the useful convention that
+<span class="math display">\[p^{(0)}_{ij}=\begin{cases} 1, &amp; i=j,\\ 0,&amp;
+  i\not = j.
+\end{cases}\]</span>
+We note right away that the numbers <span class="math inline">\(p^{(n)}_{ij}\)</span>, <span class="math inline">\(i,j\in S\)</span> naturally fit into an <span class="math inline">\(N\times N\)</span>-matrix which we denote by <span class="math inline">\({\mathbf P}^{(n)}\)</span>. We note right away that
+<span class="math display" id="eq:Przo">\[\begin{equation}
+  {\mathbf P}^{(0)}= \operatorname{Id}\text{ and } {\mathbf P}^{(1)}= {\mathbf P},
+\tag{5.3}
+\end{equation}\]</span>
+where <span class="math inline">\(\operatorname{Id}\)</span> denotes the <span class="math inline">\(N\times N\)</span> identity matrix.</p>
+<p>The central result of this section is the following sequence of equalities connecting <span class="math inline">\({\mathbf P}^{(n)}\)</span> for different values of <span class="math inline">\(n\)</span>, know as the <strong>Chapman-Kolmogorov equations</strong>:
+<span class="math display" id="eq:CK">\[\begin{equation}
+  {\mathbf P}^{(m+n)} = {\mathbf P}^{(m)} {\mathbf P}^{(n)}, \text{ for all } m,n \in {\mathbb{N}}_0.
+\tag{5.4}
+\end{equation}\]</span>
+To see why this is true we start by computing
+<span class="math inline">\({\mathbb{P}}[ X_{n+m} = j, X_0=i]\)</span>. Since each trajectory from <span class="math inline">\(i\)</span> to <span class="math inline">\(j\)</span> in <span class="math inline">\(n+m\)</span> steps has be somewhere at time <span class="math inline">\(n\)</span>, we can write
+<span class="math display" id="eq:one-CK">\[\begin{equation}
+  {\mathbb{P}}[ X_{n+m}= j, X_0 = i] = \sum_{k\in S} {\mathbb{P}}[X_{n+m} = j, X_{n} = k, X_0 = i].
+\tag{5.5}
+\end{equation}\]</span>
+By the multiplication rule, we have
+<span class="math display" id="eq:two-CK">\[\begin{multline}
+{\mathbb{P}}[X_{n+m} = j, X_{n} = k, X_0 = i] = \\ = {\mathbb{P}}[ X_{n+m} = j | X_{n}=k, X_{0}=i] {\mathbb{P}}[X_{n}=k, X_0 = i],
+\tag{5.6}
+\end{multline}\]</span>
+and then, by the Markov property:
+<span class="math display" id="eq:three-CK">\[\begin{equation}
+  {\mathbb{P}}[ X_{n+m} = j | X_{n}=k, X_{0}=i] = {\mathbb{P}}[ X_{n+m} = j | X_n = k].
+\tag{5.7}
+\end{equation}\]</span>
+Combining <a href="markov-chains.html#eq:one-CK">(5.5)</a>, <a href="markov-chains.html#eq:two-CK">(5.6)</a> and <a href="markov-chains.html#eq:three-CK">(5.7)</a> we obtain the following
+equality:
+<span class="math display">\[\begin{equation}
+  {\mathbb{P}}[ X_{n+m}= j, X_0 = i] = \sum_{k\in S} {\mathbb{P}}[ X_{n+m} = j | X_n = k] {\mathbb{P}}[X_{n}=k, X_0 = i].
+\end{equation}\]</span>
+which is nothing but <a href="markov-chains.html#eq:CK">(5.4)</a>; to see that, just remember how matrices are multiplied.</p>
+<p>The punchline is that <a href="markov-chains.html#eq:CK">(5.4)</a>, together with <a href="markov-chains.html#eq:Przo">(5.3)</a> imply that
+<span class="math display" id="eq:Prn-Pn">\[\begin{equation}
+  {\mathbf P}^{(n)}= {\mathbf P}^n,
+\tag{5.8}
+\end{equation}\]</span>
+where the left-hand side is the matrix composed of the <span class="math inline">\(n\)</span>-step transition
+probabilities, and the right hand side is the <span class="math inline">\(n\)</span>-th (matrix) power of the
+(<span class="math inline">\(1\)</span>-step) transition matrix <span class="math inline">\({\mathbf P}\)</span>. Using <a href="markov-chains.html#eq:Prn-Pn">(5.8)</a> allows us to
+write a simple expression for the
+distribution of the random variable <span class="math inline">\(X_n\)</span>, for <span class="math inline">\(n\in{\mathbb{N}}_0\)</span>. Remember that
+the initial distribution (the distribution of <span class="math inline">\(X_0\)</span>) is denoted by
+<span class="math inline">\({a}^{(0)}=({a}^{(0)}_i)_{i\in S}\)</span>. Analogously, we define the vector
+<span class="math inline">\({a}^{(n)}=({a}^{(n)}_i)_{i\in S}\)</span> by <span class="math display">\[{a}^{(n)}_i={\mathbb{P}}[X_n=i],\ i\in S.\]</span> Using
+the law of total probability, we have
+<span class="math display">\[{a}^{(n)}_i={\mathbb{P}}[X_n=i]=\sum_{k\in S} {\mathbb{P}}[ X_0=k] {\mathbb{P}}[ X_n=i|X_0=k]=
+\sum_{k\in S} {a}^{(0)}_k p^{(n)}_{ki}.\]</span> We usually interpret <span class="math inline">\({a}^{(0)}\)</span> as a (row)
+vector, so the above relationship can be expressed using vector-matrix
+multiplication <span class="math display">\[{a}^{(n)}={a}^{(0)}{\mathbf P}^n.\]</span></p>
+<div class="problem">
+<p>Find an explicit expression fr <span class="math inline">\({\mathbf P}^{(n)}\)</span> in the case of the regime-switching
+chain introduced above. Feel free to assume that <span class="math inline">\(p_{ij}&gt;0\)</span> for all <span class="math inline">\(i,j\)</span>.</p>
+</div>
+<div class="solution">
+<p>It is often difficult to compute <span class="math inline">\({\mathbf P}^n\)</span> for a general transition
+matrix <span class="math inline">\({\mathbf P}\)</span> and a large <span class="math inline">\(n\)</span>. We will see later that it will be easier
+to find the limiting values <span class="math inline">\(\lim_{n\to\infty}p^{(n)}_{ij}\)</span>. The regime-switching
+chain is on of the few examples where everything can be done by hand.</p>
+<p>By <a href="markov-chains.html#eq:Prn-Pn">(5.8)</a>, we need to compute the <span class="math inline">\(n\)</span>-th matrix power of the transition
+matrix <span class="math inline">\({\mathbf P}\)</span>. To make the notation a bit nicer, let us write <span class="math inline">\(a\)</span> for <span class="math inline">\(p_{12}\)</span> and
+<span class="math inline">\(b\)</span> for <span class="math inline">\(p_{21}\)</span>, so that we can write
+<span class="math display">\[{\mathbf P}=
+\begin{bmatrix}
+  1-a &amp; a \\ b &amp; 1-b
+\end{bmatrix}\]</span></p>
+<p>The winning idea is to use diagonalization, and for that we start by writing down the
+characteristic equation <span class="math inline">\(\det (\lambda I-{\mathbf P})=0\)</span> of the
+matrix <span class="math inline">\({\mathbf P}\)</span> is <span class="math display">\[\label{equ:}
+    \nonumber 
+   \begin{split}
+ 0&amp;=\det(\lambda I-{\mathbf P})=
+\begin{vmatrix}
+\lambda-1+a &amp; -a \\ -b &amp; \lambda-1+b
+\end{vmatrix}\\ &amp;
+=((\lambda-1)+a)((\lambda-1)+b)-ab
+=(\lambda-1)(\lambda-(1-a-b)). 
+   \end{split}\]</span> The eigenvalues are, therefore, <span class="math inline">\(\lambda_1=1\)</span> and
+<span class="math inline">\(\lambda_2=1-a-b\)</span>, and the corresponding eigenvectors are <span class="math inline">\(v_1=\binom{1}{1}\)</span> and
+<span class="math inline">\(v_2=\binom{a}{-b}\)</span>. Therefore,
+if we define <span class="math display">\[V=
+\begin{bmatrix}
+1 &amp; a \\ 1 &amp; -b
+\end{bmatrix} 
+\text{ and }D=
+\begin{bmatrix}
+  \lambda_1 &amp; 0 \\ 0 &amp; \lambda_2
+\end{bmatrix}=
+\begin{bmatrix}
+  1 &amp; 0 \\ 0 &amp; (1-a-b)
+\end{bmatrix}\]</span> we have <span class="math display">\[{\mathbf P}V =
+V D,\text{ i.e., } {\mathbf P}= V D V^{-1}.\]</span> This representation is very useful
+for taking (matrix) powers: <span class="math display">\[\label{equ:60C4}
+ \begin{split}
+    {\mathbf P}^n &amp;= (V D V^{-1})( V D V^{-1}) \dots (V D V^{-1})= V D^n V^{-1}
+  \\ &amp; =
+   V
+   \begin{bmatrix}
+     1  &amp; 0 \\ 0 &amp; (1-a-b)^n
+   \end{bmatrix} V^{-1}
+ \end{split}\]</span> We assumed that all <span class="math inline">\(p_{ij}\)</span> are positive which means, in particular,that <span class="math inline">\(a+b&gt;0\)</span> and
+<span class="math display">\[V^{-1} = \tfrac{1}{a+b}
+\begin{bmatrix}
+  b &amp; a \\ 1 &amp; -1
+\end{bmatrix},\]</span> and so
+<span class="math display">\[\begin{align}
+ {\mathbf P}^n &amp;= V D^n V^{-1}= 
+\begin{bmatrix}
+1 &amp; a \\ 1 &amp; -b
+\end{bmatrix}
+\ 
+\begin{bmatrix}
+1 &amp; 0 \\ 0 &amp; (1-a-b)^n
+\end{bmatrix}
+\ 
+\tfrac{1}{a+b}
+\begin{bmatrix}
+  b &amp; a \\ 1 &amp; -1
+\end{bmatrix}\\
+&amp;=
+ \frac{1}{a+b} 
+  \begin{bmatrix}
+   b &amp; a \\ b &amp; a 
+  \end{bmatrix}
++
+ \frac{(1-a-b)^n}{a+b} 
+  \begin{bmatrix}
+    a &amp; -a \\ b &amp; -b
+  \end{bmatrix}\\
+&amp;=
+\begin{bmatrix}
+  \frac{b}{a+b}+(1-a-b)^n \frac{a}{a+b} &amp;   \frac{a}{a+b}-(1-a-b)^n \frac{a}{a+b}\\
+  \frac{b}{a+b}+(1-a-b)^n \frac{b}{a+b} &amp;   \frac{a}{a+b}-(1-a-b)^n \frac{b}{a+b}
+\end{bmatrix}
+\end{align}\]</span></p>
+<p>The expression for <span class="math inline">\({\mathbf P}^n\)</span> above tells us a lot about the structure of
+the multi-step probabilities <span class="math inline">\(p^{(n)}_{ij}\)</span> for large <span class="math inline">\(n\)</span>. Note that the
+second matrix on the right-hand side above comes multiplied by
+<span class="math inline">\((1-a-b)^n\)</span> which tends to <span class="math inline">\(0\)</span> as <span class="math inline">\(n\to\infty\)</span> (under our assumptions that <span class="math inline">\(p_{ij}&gt;0\)</span>.)
+We can, therefore, write
+<span class="math display">\[{\mathbf P}^n\sim \frac{1}{a+b}
+\begin{bmatrix}
+  a &amp; b \\ a &amp; b
+\end{bmatrix}
+\text{ for large } n.\]</span> The fact that the rows of the right-hand side
+above are equal points to the fact that, for large <span class="math inline">\(n\)</span>, <span class="math inline">\(p^{(n)}_{ij}\)</span> does
+not depend (much) on the initial state <span class="math inline">\(i\)</span>. In other words, this Markov
+chain forgets its initial condition after a long period of time. This is
+a rule more than an exception, and we will study such phenomena in the
+following lectures.</p>
+</div>
+</div>
+<div id="how-to-simulate-markov-chains" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> How to simulate Markov chains</h2>
+<p>COMING SOON</p>
+</div>
+<div id="additional-problems-for-chapter-5" class="section level2" number="5.5">
+<h2><span class="header-section-number">5.5</span> Additional problems for Chapter 5</h2>
+<!--
+  max-roll-so-far
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>Let <span class="math inline">\(\{Y_n\}_{n\in {\mathbb{N}}_0}\)</span> be a sequence
+of die-rolls, i.e., a sequence of independent random variables which take values <span class="math inline">\(1,2,\dots, 6\)</span>, each with probability <span class="math inline">\(1/6\)</span>. Let <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> be a stochastic process defined by
+<span class="math display">\[X_n=\max (Y_0,Y_1,
+\dots, Y_n), \ n\in{\mathbb{N}}_0.\]</span> In words, <span class="math inline">\(X_n\)</span> is the maximal value rolled
+so far. Is <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> a Markov chain? If it is, find its
+transition matrix and the initial distribution. If it is not, give an example
+of how the Markov property is violated.</p>
+</div>
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/02_Basic_Chains/max-roll-so-far_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+<!--
+  Y-Z-Markov-chains
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>Let <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> be a simple symmetric random walk. For <span class="math inline">\(n\in{\mathbb{N}}_0\)</span>, define
+<span class="math inline">\(Y_n = 2X_n+1\)</span>, and let <span class="math inline">\(Z_n\)</span> be the amount of time <span class="math inline">\(X_n\)</span> spent
+strictly above <span class="math inline">\(0\)</span> up to (and including) time <span class="math inline">\(n\)</span>, i.e.
+<span class="math display">\[Z_0=0, Z_{n+1} - Z_n = \begin{cases} 1, &amp; X_{n+1}&gt;0 \\ 0, &amp; X_
+    {n+1}\leq 0 \end{cases} , \text{ for }n\in{\mathbb{N}}_0.\]</span>
+Is <span class="math inline">\(Y\)</span> a Markov chain? Is <span class="math inline">\(Z\)</span>?</p>
+</div>
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/02_Basic_Chains/Y-Z-Markov-chains_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+<!--
+  number-of-consecutives
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>Let <span class="math inline">\(\{\delta_n\}_{n\in{\mathbb{N}}}\)</span> be a sequence of independent coin tosses (i.e., random
+variables with values <span class="math inline">\(T\)</span> or <span class="math inline">\(H\)</span> with equal probabilities). Let <span class="math inline">\(X_0=0\)</span>,
+and, for <span class="math inline">\(n\in{\mathbb{N}}\)</span>, let <span class="math inline">\(X_n\)</span> be the number of times two consecutive
+<span class="math inline">\(\delta\)</span>s take the same value in the first <span class="math inline">\(n+1\)</span> tosses. For example, if
+the outcome of the coin tosses is TTHHTTTH …, we have <span class="math inline">\(X_0=0\)</span>,
+<span class="math inline">\(X_1=1\)</span>, <span class="math inline">\(X_2=1\)</span>, <span class="math inline">\(X_3=2\)</span>, <span class="math inline">\(X_4=2\)</span>, <span class="math inline">\(X_5=3\)</span>, <span class="math inline">\(X_6=4\)</span>, <span class="math inline">\(X_7=4\)</span>, …</p>
+<p>Is <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> a Markov chain? If it is,
+describe its state space, the transition probabilities and the initial
+distribution. If it is not, show exactly how the Markov property is
+violated.</p>
+</div>
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/02_Basic_Chains/number-of-consecutives_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+<!--
+  lazy-chain
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>Let <span class="math inline">\(X\)</span> be a Markov chain on <span class="math inline">\(N\)</span> states, with the <span class="math inline">\(N\times N\)</span> transition
+matrix <span class="math inline">\(P\)</span>. We construct a new Markov chain <span class="math inline">\(Y\)</span> from the transition mechanism of <span class="math inline">\(X\)</span> as
+follows: at
+each point in time, we toss a biased coin (probability of <em>heads</em>
+<span class="math inline">\(p\in (0,1)\)</span>), independently of everything else.
+If it shows <em>heads</em> we move according to the transition matrix of <span class="math inline">\(X\)</span>. If it shows <em>tails</em>, we remain in the same state. What is the transition matrix of <span class="math inline">\(Y\)</span>?</p>
+</div>
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/02_Basic_Chains/lazy-chain_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+<!--
+  blue-red-100
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>The red container has 100 red balls, and
+the blue container has 100 blue balls. In each step</p>
+<p>- a container is selected (with equal probabilities),</p>
+<p>- a ball is selected from it (all balls in the container are equally
+likely to be selected), and</p>
+<p>- the selected ball is placed in the other container. If the
+selected container is empty, no ball is transferred.</p>
+<p>Once there are 100 blue balls in the red container and 100 red balls in
+the blue container, the game stops.</p>
+<p>We decide to model the situation as a Markov chain.</p>
+<ol style="list-style-type: decimal">
+<li><p>What is the state space <span class="math inline">\(S\)</span> we can use? How large is it?</p></li>
+<li><p>What is the initial distribution?</p></li>
+<li><p>What are the transition probabilities between states? Don’t write
+the matrix, it is way too large; just write a general expression for
+<span class="math inline">\(p_{ij}\)</span>, <span class="math inline">\(i,j\in S\)</span>.</p></li>
+</ol>
+<p>(Note: this is a version of the famous Ehrenfest Chain from statistical physics.)</p>
+</div>
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/02_Basic_Chains/blue-red-100_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+<!--
+  deck-2-2
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>A “deck” of cards starts with 2 red and 2 black cards. A “move” consists
+of the following:</p>
+<p>- pick a random card from the deck (if the deck is empty, do nothing),</p>
+<p>- if the card is black <em>and</em> the card drawn on the previous move was also black, return it back to the deck,</p>
+<p>- otherwise, throw the card away (this, in particular, applies to any card drawn on the first move, since there is no “previous” move at that time).</p>
+<ol style="list-style-type: decimal">
+<li><p>Model the situation using a Markov chain: find an appropriate state
+space, and sketch the transition graph with transition
+probabilities. How small can you make the state space?</p></li>
+<li><p>What is the probability that the deck will be empty after exactly
+<span class="math inline">\(4\)</span> moves? What is the probability that the deck will be empty
+eventually?</p></li>
+</ol>
+</div>
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/02_Basic_Chains/deck-2-2_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+<!--
+  train-m-cities
+  ------------------------------------------------
+-->
+<div class="problemec">
+<p>A country has <span class="math inline">\(m+1\)</span> cities (<span class="math inline">\(m\in{\mathbb{N}}\)</span>), one of which is the capital.
+There is a direct railway connection between each city and the capital,
+but there are no tracks between any two “non-capital” cities. A traveler
+starts in the capital and takes a train to a randomly chosen non-capital
+city (all cities are equally likely to be chosen), spends a night there
+and returns the next morning and immediately boards the train to the
+next city according to the same rule, spends the night there, …, etc.
+We assume that her choice of the city is independent of the cities
+visited in the past. Let <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> be the number of visited non-capital
+cities up to (and including) day <span class="math inline">\(n\)</span>, so that <span class="math inline">\(X_0=1\)</span>, but <span class="math inline">\(X_1\)</span> could
+be either <span class="math inline">\(1\)</span> or <span class="math inline">\(2\)</span>, etc.</p>
+<ol style="list-style-type: decimal">
+<li><p>Explain why <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> is a Markov chain on the appropriate state
+space <span class="math inline">\({\mathcal{S}}\)</span> and the find the transition probabilities of <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span>,
+i.e., write an expression for
+<span class="math display">\[{\mathbb{P}}[X_{n+1}=j|X_n=i], \text{ for $i,j\in S$.}\]</span></p></li>
+<li><p>Let <span class="math inline">\(\tau_m\)</span> be the first time the traveler has visited all <span class="math inline">\(m\)</span>
+non-capital cities, i.e. <span class="math display">\[\tau_m=\min \{ n\in{\mathbb{N}}_0\, : \, X_n=m\}.\]</span> What
+is the distribution of <span class="math inline">\(\tau_m\)</span>, for <span class="math inline">\(m=1\)</span> and <span class="math inline">\(m=2\)</span>.</p></li>
+<li><p>Compute <span class="math inline">\({\mathbb{E}}[\tau_m]\)</span> for general <span class="math inline">\(m\in{\mathbb{N}}\)</span>. What is the
+asymptotic behavior of <span class="math inline">\({\mathbb{E}}[\tau_m]\)</span> as <span class="math inline">\(m\to\infty\)</span>? More
+precisely, find a simple function <span class="math inline">\(f(m)\)</span> of <span class="math inline">\(m\)</span> (like <span class="math inline">\(m^2\)</span> or
+<span class="math inline">\(\log(m)\)</span>) such that <span class="math inline">\({\mathbb{E}}[\tau_m] \sim f(m)\)</span>, i.e.,
+<span class="math inline">\(\lim_{m\to\infty} \frac{{\mathbb{E}}[\tau_m]}{f(m)} = 1\)</span>.</p></li>
+</ol>
+</div>
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/02_Basic_Chains/train-m-cities_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+<!-- multi-step -->
+<!--
+  glass-milk
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>We start with two cups, call them <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>. Cup <span class="math inline">\(A\)</span> contains <span class="math inline">\(12\)</span> oz of milk, and cup <span class="math inline">\(B\)</span> <span class="math inline">\(12\)</span> oz of water. The
+following procedure is then performed <em>twice</em>: first, half of the
+content of the glass <span class="math inline">\(A\)</span> is transferred into class <span class="math inline">\(B\)</span>. Then, the
+contents of glass <span class="math inline">\(B\)</span> are thoroughly mixed, and a third of its entire
+content transferred back to <span class="math inline">\(A\)</span>. Finally, the contents of the glass <span class="math inline">\(A\)</span>
+are thoroughly mixed. What is the final amount of milk in glass A? What
+does this have to do with Markov chains?</p>
+</div>
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/02_Basic_Chains/glass-milk_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+<!--
+  manual-multi-step
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>The state space of a Markov chain is <span class="math inline">\(S = \{1,2,3,4,5\}\)</span>, and the
+non-zero transition probabilities are given by <span class="math inline">\(p_{11} = 1/2\)</span>,
+<span class="math inline">\(p_{12}=1/2\)</span>, <span class="math inline">\(p_{23}=p_{34}=p_{45}=p_{51}=1\)</span>. Compute
+<span class="math inline">\(p^{(6)}_{12}\)</span> without using software.</p>
+</div>
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/02_Basic_Chains/manual-multi-step_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+<!--
+  gambler-multi-step
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>In a <em>Gambler’s ruin</em> problem with the state space <span class="math inline">\(S=\{0,1,2,3,4\}\)</span>
+and the probability <span class="math inline">\(p=1/3\)</span> of winning in a single game, compute the <span class="math inline">\(4\)</span>-step
+transition probabilities
+<span class="math display">\[p^{(4)}_{2 2} = {\mathbb{P}}[ X_{n+4}=2| X_n =2] \text{ and } p^{(4)}_{2 4} = {\mathbb{P}}[ X_{n+4}=4| X_n =2].\]</span></p>
+</div>
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/02_Basic_Chains/gambler-multi-step_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+<!--
+  car-insurance
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>A car-insurance company classifies drivers in three categories: <em>bad</em>,
+<em>neutral</em> and <em>good</em>. The reclassification is done in January of each
+year and the probabilities for transitions between different categories
+is given by
+<span class="math display">\[P= \begin{bmatrix} 1/2 &amp; 1/2 &amp; 0 \\ 1/5 &amp; 2/5 &amp; 2/5 \\ 1/5 &amp; 1/5 &amp; 3/5\end{bmatrix},\]</span> where
+the first row/column corresponds to the <em>bad</em> category, the second to
+<em>neutral</em> and the third to <em>good</em>. The company started in January 1990
+with 1400 drivers in each category. Estimate the number of drivers in
+each category in 2090. Assume that the total number of drivers does not
+change in time and use R for your computations.</p>
+</div>
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/02_Basic_Chains/car-insurance_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="more-about-random-walks.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dist.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": false,
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+},
+"search": true,
+"toc_depth": null
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

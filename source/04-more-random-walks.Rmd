@@ -883,10 +883,10 @@ $\tau$ needs to be a stopping time, and not just any old random time. There are 
 ```{r child="problems/01_Random_Walks/3-max-problems_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/01_Random_Walks/3-max-problems_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/01_Random_Walks/3-max-problems_sol.Rmd"}
+```
+</div>
 
 
 <!--
@@ -897,10 +897,10 @@ $\tau$ needs to be a stopping time, and not just any old random time. There are 
 ```{r child="problems/01_Random_Walks/time_until_hit_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/01_Random_Walks/time_until_hit_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/01_Random_Walks/time_until_hit_sol.Rmd"}
+```
+</div>
 
 
 
@@ -912,10 +912,10 @@ $\tau$ needs to be a stopping time, and not just any old random time. There are 
 ```{r child="problems/01_Random_Walks/Luke_cookies_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/01_Random_Walks/Luke_cookies_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/01_Random_Walks/Luke_cookies_sol.Rmd"}
+```
+</div>
  
 
 <!--
@@ -939,10 +939,10 @@ $\tau$ needs to be a stopping time, and not just any old random time. There are 
 ```{r child="problems/01_Random_Walks/no_return_to_zero_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/01_Random_Walks/no_return_to_zero_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/01_Random_Walks/no_return_to_zero_sol.Rmd"}
+```
+</div>
 
 
 <!--
@@ -953,10 +953,10 @@ $\tau$ needs to be a stopping time, and not just any old random time. There are 
 ```{r child="problems/01b_Advanced_Random_Walks/hit_times_1_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/01b_Advanced_Random_Walks/hit_times_1_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/01b_Advanced_Random_Walks/hit_times_1_sol.Rmd"}
+```
+</div>
 
 <!--
   min_stopping_times
@@ -966,10 +966,10 @@ $\tau$ needs to be a stopping time, and not just any old random time. There are 
 ```{r child="problems/01b_Advanced_Random_Walks/min_stopping_times_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/01b_Advanced_Random_Walks/min_stopping_times_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/01b_Advanced_Random_Walks/min_stopping_times_sol.Rmd"}
+```
+</div>
 
 <!--
   stopping_times_2
