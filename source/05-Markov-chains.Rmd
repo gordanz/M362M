@@ -39,7 +39,8 @@ condition \@ref(eq:markov-well-defined)
 will  be assumed (without explicit mention) every time we write a conditional
 expression like to one in \@ref(eq:markov).
 
-All chains in this course will be **homogeneous* *, i.e., the conditional
+All chains in this course will be 
+**homogeneous**, i.e., the conditional
 probabilities $\PP[X_{n+1}=j|X_{n}=i]$ will not depend on the current
 time $n\in\N_0$, i.e., $\PP[X_{n+1}=j|X_{n}=i]=\PP[X_{m+1}=j|X_{m}=i]$,
 for $m,n\in\N_0$.
@@ -49,11 +50,11 @@ Markov chains are (relatively) easy to work with because the Markov
 property allows us to compute all the probabilities, expectations,
 etc. we might be interested in by using only two ingredients.
 
-1.  **Initial distribution** $\aaz=\sets{\az_i}{i\in S}$,
+1.  The **initial distribution**: $\aaz=\sets{\az_i}{i\in S}$,
     $\az_i=\PP[X_0=i]$ - the initial probability distribution of the
     process, and
 
-2.  **Transition probabilities** $p_{ij}=\PP[X_{n+1}=j|X_n=i]$ - the
+2.  **Transition probabilities**: $p_{ij}=\PP[X_{n+1}=j|X_n=i]$ - the
     mechanism that the process uses to jump around.
 
 Indeed, if you know $\az_i$ and $p_{ij}$ for all $i,j\in S$ and want to compute
@@ -90,7 +91,7 @@ where $$\Pr =\begin{bmatrix}
   p_{n1} & p_{n2} & \dots & p_{nn} \\
 \end{bmatrix}$$ In the general case ($S$ possibly infinite), one can
 still use the vector and matrix notation as before, but it becomes quite
-clumsy in the general case. For example, if $S=\bZ$, then $\Pr$ is an
+clumsy. For example, if $S=\bZ$, then $\Pr$ is an
 infinite matrix $$\Pr=\begin{bmatrix}
   \ddots & \vdots & \vdots & \vdots &   \\
   \dots & p_{-1\, -1} & p_{-1\, 0} & p_{-1\, 1} & \dots \\
@@ -101,7 +102,8 @@ infinite matrix $$\Pr=\begin{bmatrix}
 
 ## First Examples
 
-Here are some examples of Markov chains - you will see many more in problems and later chapters. 
+Here are some examples of Markov chains - you will see many 
+more in problems and later chapters. 
 
 
 ### Random walks
@@ -153,9 +155,9 @@ $0\leq x \leq a\in\N$ and in each play wins a dollar (with probability
 $p\in (0,1)$) and loses a dollar (with probability $q=1-p$). When the
 gambler reaches either $0$ or $a$, the game stops. For mathematical
 convenience, it is usually a good idea to keep the chain defined, even
-after the modeled phenomenon stops. This is usually accomplished by . We
-simply assume that the process "stays alive" but remains "frozen"
-instead of disappearing. In our case, once our gambler reaches either of
+after the modeled phenomenon stops. This is usually accomplished by 
+simply assuming that the process "stays alive" but remains "frozen in place"
+instead of disappearing. In our case, once the gambler reaches either of
 the states $0$ and $a$, he/she simply stays there forever.
 
 Therefore, the transition probabilities are similar to those of a random
@@ -178,13 +180,13 @@ $$\Pr=\begin{bmatrix}
 ### Regime Switching
 
 Consider a system with two different states; think about a simple
-weather forceast (rain/no rain), high/low water level in a reservoire,
+weather forecast (rain/no rain), high/low water level in a reservoir,
 high/low volatility regime in a financial market, high/low level of
 economic growth, the political party in power, etc. Suppose that the
 states are called $1$ and $2$ and the probabilities $p_{12}$ and
 $p_{21}$ of switching states are given. The probabilities
 $p_{11}=1-p_{12}$ and $p_{22}=1-p_{21}$ correspond to the system staying
-in the same state. The transition matrix for this Markov with
+in the same state. The transition matrix for this Markov chain with
 $S=\set{1,2}$ is $$\Pr=
 \begin{bmatrix}
   p_{11} & p_{12} \\ p_{21} & p_{22}.
@@ -210,8 +212,7 @@ $$\Pr=
   0 & 0 & 1 & 0 & \dots \\
   0 & 0 & 0 & 1 & \dots \\
   \vdots & \vdots & \vdots & \vdots & \ddots 
-\end{bmatrix}$$ It is a pretty boring chain; it main use is as a
-counterexample.
+\end{bmatrix}$$ It is a pretty boring chain; its main use is as a counterexample.
 
 ### Not a Markov chain
 
@@ -233,16 +234,16 @@ among the remaining ones for the next jump.
 
 ### Turning a non-Markov chain into a Markov chain
 
-How can we turn the process of Example 6. into a Markov chain.
+How can we turn the process the previous example into a Markov chain.
 Obviously, the problem is that the frog has to remember the number of
 the lily pad it came from in order to decide where to jump next. The way
 out is to make this information a part of the state. In other words, we
 need to change the state space. Instead of just $S=\set{1,2,\dots, N}$,
 we set $S=\sets{(i_1,
-  i_2)}{i_1,j_2 \in\set{1,2,\dots N}}$. In words, the state of the
+  i_2)}{i_1,i_2 \in\set{1,2,\dots N}}$. In words, the state of the
 process will now contain not only the number of the current lily pad
-(i.e., $i_1$) but also the number of the lily pad we came from (i.e.,
-$i_2$). This way, the frog will be in the state $(i_1,i_2)$ if it is
+(i.e., $i_2$) but also the number of the lily pad we came from (i.e.,
+$i_1$). This way, the frog will be in the state $(i_1,i_2)$ if it is
 currently on the lily pad number $i_2$, and it arrived here from $i_1$.
 There is a bit of freedom with the initial state, but we simply assume
 that we start from $(1,1)$. Starting from the state $(i_1,i_2)$, the
@@ -329,7 +330,7 @@ possible state space is the following:
 \end{align}
 
 where $A$ stands for *"advantage"* and $W_1$
-($W_2$) denotes the state where player 1 (player 2) wins. It is not hard
+(resp., $W_2$) denotes the state where player 1 (resp., player 2) wins. It is not hard
 to assign probabilities to transitions between states. Once we reach
 either $W_1$ or $W_2$ the game stops. We can assume that the
 chain remains in that state forever, i.e., the state is absorbing. The
@@ -343,8 +344,7 @@ memory, but not so much on paper. Just for the fun of it, here is the
 transition matrix for our game-of-tennis chain (I am going to leave it up to you 
 to figure out how rows/columns of the matrix match to states) $$\tiny
 \Pr=
-\left[
-\begin{array}{llllllllllllllllllll}
+\mat{
  1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
  0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
  0 & 0 & 0 & q & 0 & 0 & p & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
@@ -364,9 +364,8 @@ to figure out how rows/columns of the matrix match to states) $$\tiny
  p & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & q & 0 & 0 \\
  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & q & p \\
  0 & q & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & p & 0 & 0 \\
- p & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & q & 0 & 0
-\end{array}
-\right]$$
+ p & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & q & 0 & 0 \\
+} $$
 
 Does the structure of a game of tennis make is easier or harder for the better
 player to win? In other words, if you had to play against the best tennis player
@@ -411,7 +410,7 @@ $\PP[ X_{n+m} = j, X_0=i]$. Since each trajectory from $i$ to $j$ in $n+m$ steps
 \end{equation}
  By the multiplication rule, we have
 \begin{multline}
-\PP[X_{n+m} = j, X_{n} = k, X_0 = i] = \\ = \PP[ X_{n+m} = j | X_{n}=k, X_{0}=i] \PP[X_{n}=k, X_0 = i],
+\PP[X_{n+m} = j, X_{n} = k, X_0 = i] = \PP[ X_{n+m} = j | X_{n}=k, X_{0}=i] \PP[X_{n}=k, X_0 = i],
 (\#eq:two-CK)
 \end{multline}
 and then, by the Markov property:
@@ -446,14 +445,14 @@ vector, so the above relationship can be expressed using vector-matrix
 multiplication $$\aaa{n}=\aaz \Pr^n.$$
 
 <div class="problem">
-  Find an explicit expression fr $\Prn$ in the case of the regime-switching 
+  Find an explicit expression for $\Prn$ in the case of the regime-switching 
   chain introduced above. Feel free to assume that $p_{ij}>0$ for all $i,j$.
 </div>
 <div class="solution">
 It is often difficult to compute $\Pr^n$ for a general transition
 matrix $\Pr$ and a large $n$. We will see later that it will be easier
 to find the limiting values $\lim_{n\to\infty}\pn_{ij}$. The regime-switching
-chain is on of the few examples where everything can be done by hand. 
+chain is one of the few examples where everything can be done by hand. 
 
 By \@ref(eq:Prn-Pn), we need to compute the $n$-th matrix power of the transition
 matrix $\Pr$. To make the notation a bit nicer, let us write $a$ for $p_{12}$ and
@@ -465,7 +464,8 @@ $$\Pr=
 
 The winning idea is to use  diagonalization, and for that we start by writing down the
 characteristic equation $\det (\ld I-\Pr)=0$ of the
-matrix $\Pr$ is $$\label{equ:}
+matrix $\Pr$:
+$$\label{equ:}
     \nonumber 
    \begin{split}
  0&=\det(\ld I-\Pr)=
@@ -497,7 +497,7 @@ for taking (matrix) powers: $$\label{equ:60C4}
    \begin{bmatrix}
      1  & 0 \\ 0 & (1-a-b)^n
    \end{bmatrix} V^{-1}
- \end{split}$$ We assumed that all $p_{ij}$ are positive which means, in particular,that  $a+b>0$ and 
+ \end{split}$$ We assumed that all $p_{ij}$ are positive which means, in particular, that $a+b>0$ and 
  $$V^{-1} = \tfrac{1}{a+b}
 \begin{bmatrix}
   b & a \\ 1 & -1
@@ -553,6 +553,7 @@ following lectures.
 ## How to simulate Markov chains
 
 COMING SOON
+
 
 ## Additional problems for Chapter 5
 
