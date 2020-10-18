@@ -3,11 +3,14 @@
 \newcommand{\N}{{\mathbb{N}}}
 \newcommand{\bZ}{{\mathbb{Z}}}
 \newcommand{\R}{{\mathbb{R}}}
+
 \newcommand{\sS}{{\mathcal{S}}}
 \newcommand{\EE}{{\mathbb{E}}}
 \newcommand{\Var}{\operatorname{Var}}
 \newcommand{\Cov}{\operatorname{Cov}}
 \newcommand{\corr}{\operatorname{corr}}
+\newcommand{\Id}{\operatorname{Id}}
+
 \newcommand{\ld}{\lambda}
 \newcommand{\eand}{\text{ and }}
 \newcommand{\efor}{\text{ for }}
@@ -26,12 +29,16 @@
 \newcommand{\ewhere}{\text{ where }}
 
 \renewcommand{\Pr}{{\mathbf P}}
+\newcommand{\upn}[2]{#1^{(#2)}}
+\newcommand{\Prup}[1]{\upn{\Pr}{#1}}
+\newcommand{\Prz}{\Prup{0}}
+\newcommand{\Pro}{\Prup{1}}
+\newcommand{\Prn}{\Prup{n}}
 \newcommand{\aaa}[1]{{a}^{(#1)}}
 \renewcommand{\aa}[1]{{a}^{(#1)}}
 \newcommand{\aaz}{\aaa{0}}
 \newcommand{\az}{\aa{0}}
 \renewcommand{\SS}{\sS}
-\renewcommand{\Pr}{{\mathbf P}}
 \newcommand{\pnp}[1]{p^{(#1)}}
 \newcommand{\pn}{\pnp{n}}
 \newcommand{\tpnp}[1]{\tilde{p}^{(#1)}}
