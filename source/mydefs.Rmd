@@ -47,4 +47,6 @@
 \newcommand{\fn}{\fnf{n}}
 \newcommand{\tofro}{\leftrightarrow}
 \newcommand{\Vn}{V^{(n)}}
+
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
           
