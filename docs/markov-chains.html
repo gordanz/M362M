@@ -32,7 +32,7 @@
   
 <link rel="prev" href="more-about-random-walks.html"/>
 <link rel="next" href="dist.html"/>
-<script src="libs/header-attrs-2.4/header-attrs.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 
@@ -798,10 +800,63 @@ probabilities. How small can you make the state space?</p></li>
 eventually?</p></li>
 </ol>
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/02_Basic_Chains/deck-2-2_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+<p><part> 1. </part></p>
+<p>We need to keep track of the number of remaining cards of each color
+in the deck, as well as the color of the last card we picked (except
+at the beginning or when the deck is empty, when it does not
+matter). Therefore, the initial state will be <span class="math inline">\((2,2)\)</span>, the
+empty-deck state will be <span class="math inline">\((0,0)\)</span> and the other states will be
+triplets of the form <span class="math inline">\((\#r, \#b, c)\)</span>, where <span class="math inline">\(\#r\)</span> and <span class="math inline">\(\#b\)</span> denote
+the number of cards (red and black) in the deck, and <span class="math inline">\(c\)</span> is the
+color, <span class="math inline">\(R\)</span> or <span class="math inline">\(B\)</span>, of the last card we picked. This way, the initial
+guess for the state space would be <span class="math display">\[\begin{aligned}
+        S_0  = \{&amp;(2,2), (0,0),\\
+            &amp; (2,1,B), (2,1,R), (1,2,B), (1,2,R),\\
+            &amp; (1,1,B), (1,1,R), 
+            (0,2,B), (2,0,R), (2,0,B), (0,2,R),\\
+            &amp; (0,1,B), (0,1,R), (1,0,B), (1,0,R) 
+          \}
+      \end{aligned}\]</span></p>
+<p>In order to decrease the size of the state space, we start the chain at
+<span class="math inline">\((2,2)\)</span> and consider all trajectories it is possible to take from there.
+It turns out that states <span class="math inline">\((2,1,R), (1,2,B), (0,2,B), (2,0,R),  (2,0,B)\)</span> and <span class="math inline">\((1,0,R)\)</span> can never be reached from <span class="math inline">\((2,2)\)</span>, so
+we might as well leave them out of the state space. That reduces the
+initial guess <span class="math inline">\(S_0\)</span> to a smaller <span class="math inline">\(10\)</span>-state, version
+\begin{equation
+S = {(2,2), (0,0),
+(2,1,B), (1,2,R),
+(1,1,B), (1,1,R),
+(0,2,R),
+(0,1,B), (0,1,R), (1,0,B)<br />
+}
+\end{equation}
+with the following transition graph:</p>
+<p>You could further reduce the number of states to <span class="math inline">\(9\)</span> by removing the initial state <span class="math inline">\((2,2)\)</span>
+and choosing a non-deterministic distribution over the states that
+can be reached from them. There is something unsatisfying about that, though.</p>
+<p><part> 2. </part></p>
+<p>To get from <span class="math inline">\((2,2)\)</span> to <span class="math inline">\((0,0)\)</span> in exactly four steps, we need to
+follow one of the following three paths: <span class="math display">\[\begin{aligned}
+                &amp; (2,2) \to (2,1,B) \to (1,1,R) \to (1,0,B) \to (0,0), \\
+                &amp; (2,2) \to (2,1,B) \to (1,1,R) \to (0,1,R) \to (0,0), \text{
+                or }\\
+                &amp; (2,2) \to (1,2,R) \to (1,1,B) \to (0,1,R) \to (0,0). \\
+             \end{aligned}\]</span>
+Their respective probabilities happen to be
+the same, namely
+<span class="math inline">\(\tfrac{1}{2}\times \tfrac{2}{3} \times \tfrac{1}{2}\times 1 = \frac{1}{6}\)</span>, so the
+probability of hitting <span class="math inline">\((0,0)\)</span> in exactly <span class="math inline">\(4\)</span> steps is
+<span class="math inline">\(3 \times \frac{1}{6} = \tfrac{1}{2}\)</span>.</p>
+<p>To compute the probability of hitting <span class="math inline">\((0,0)\)</span> eventually, we note
+that this is guaranteed to happen sooner or later (see the graph
+above) if the first card we draw is black. It is also guaranteed to
+happen is the first card we draw is red, but the second one is
+black. In fact, the only way for this not to happen is to draw two
+red cards on the first two draws. This happens with probability
+<span class="math inline">\(\tfrac{1}{2}\times \frac{1}{3} = \frac{1}{6}\)</span>, so the required probability of ending up with an
+empty deck is <span class="math inline">\(1 - \frac{1}{6} = \frac{5}{6}\)</span>.</p>
+</div>
 <!--
   train-m-cities
   ------------------------------------------------
@@ -851,10 +906,20 @@ content transferred back to <span class="math inline">\(A\)</span>. Finally, the
 are thoroughly mixed. What is the final amount of milk in glass A? What
 does this have to do with Markov chains?</p>
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/02_Basic_Chains/glass-milk_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+<p>If there are <span class="math inline">\(a\)</span> oz of milk and <span class="math inline">\(b\)</span> oz of water in the glass <span class="math inline">\(A\)</span> at time
+<span class="math inline">\(n\)</span> (with <span class="math inline">\(a+b=12\)</span>), then there are <span class="math inline">\(b\)</span> oz of milk and <span class="math inline">\(a\)</span> oz of water
+in the glass <span class="math inline">\(B\)</span>. After half of the content of glass <span class="math inline">\(A\)</span> is moved to
+<span class="math inline">\(B\)</span>, it will contain <span class="math inline">\(b+\tfrac{1}{2}a\)</span> oz of milk and <span class="math inline">\(a+\tfrac{1}{2}b\)</span> oz of water.
+Transferring a third of that back to <span class="math inline">\(a\)</span> leaves <span class="math inline">\(B\)</span> with
+<span class="math inline">\((2/3 b + 1/3 a)\)</span> oz of milk and <span class="math inline">\((2/3 a + 1/3 b)\)</span> oz of water.
+Equivalently, <span class="math inline">\(A\)</span> contains <span class="math inline">\((2/3 a + 1/3 b)\)</span> oz of milk and
+<span class="math inline">\((1/3 a + 2/3 b)\)</span> oz of water. This corresponds to the action of a
+Markov chain with the transition matrix
+<span class="math inline">\(P = \begin{bmatrix} 2/3 &amp; 1/3 \\ 1/3 &amp; 2/3 \end{bmatrix}\)</span>. We get the required amounts by
+computing <span class="math display">\[\begin{aligned}
+    (12,0) P^2 = (12,0) \begin{bmatrix} 5/9 &amp; 4/9 \\ 4/9 &amp; 5/9\end{bmatrix} = (20/3, 16/3).\end{aligned}\]</span></p>
+</div>
 <!--
   manual-multi-step
   ------------------------------------------------

@@ -633,10 +633,10 @@ COMING SOON
 ```{r child="problems/02_Basic_Chains/deck-2-2_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/02_Basic_Chains/deck-2-2_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/02_Basic_Chains/deck-2-2_sol.Rmd"}
+```
+</div>
 
 <!--
   train-m-cities
@@ -662,10 +662,10 @@ COMING SOON
 ```{r child="problems/02_Basic_Chains/glass-milk_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/02_Basic_Chains/glass-milk_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/02_Basic_Chains/glass-milk_sol.Rmd"}
+```
+</div>
 
 <!--
   manual-multi-step
