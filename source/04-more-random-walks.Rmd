@@ -979,10 +979,10 @@ $\tau$ needs to be a stopping time, and not just any old random time. There are 
 ```{r child="problems/01b_Advanced_Random_Walks/stopping_times_2_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/01b_Advanced_Random_Walks/stopping_times_2_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/01b_Advanced_Random_Walks/stopping_times_2_sol.Rmd"}
+```
+</div>
 
 <!--
   stopping_times_3
@@ -992,10 +992,10 @@ $\tau$ needs to be a stopping time, and not just any old random time. There are 
 ```{r child="problems/01b_Advanced_Random_Walks/stopping_times_3_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/01b_Advanced_Random_Walks/stopping_times_3_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/01b_Advanced_Random_Walks/stopping_times_3_sol.Rmd"}
+```
+</div>
 
 
 

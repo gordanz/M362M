@@ -4,6 +4,7 @@
 # Markov Chains
 <div style="counter-reset: thechapter 5;"> </div>
 
+
 ## The Markov property
 
 Simply put, a stochastic process has the **Markov property** if probabilities governing its
@@ -102,8 +103,16 @@ infinite matrix $$\Pr=\begin{bmatrix}
 
 ## First Examples
 
-Here are some examples of Markov chains - you will see many 
-more in problems and later chapters. 
+Here are some examples of Markov chains - you will see many more in problems and
+later chapters. Markov chains with a small number of states are often depicted
+as *weighted directed graphs*, whose nodes are the chain's states, and the
+weight of the directed edge between $i$ and $j$ is $p_{ij}$. Such graphs are
+called *transition graphs* and are an excellent way to visualize a number of
+important properties of the chain. A transition graph is included for most of
+the examples below. Edges are color-coded according to the probability assigned
+to them. Black is always $1$, while other colors are uniquely assigned to
+different probabilities (edges carrying the same probability get the same
+color). 
 
 
 ### Random walks
@@ -147,8 +156,18 @@ $$\Pr=\begin{bmatrix}
    & \vdots & \vdots & \vdots & \vdots & \vdots & \ddots \\
 \end{bmatrix}$$ but this representation is typically not as useful as in the finite case.
 
+Here is a (portion of) a transition graph for a simple random walk. Instead of writing probabilities 
+on top of the edges, we color code them as follows: green is $p$ and orange is $1-p$. 
 
-###  Gambler's ruin
+<center>
+```{r, echo=FALSE, fig.align = "center", dev.args = list(bg = 'transparent'), out.extra='style="margin-top:-20%; margin-bottom: -20%"'}
+m = random_walk(T=3,with_dots=TRUE, p=0.4)
+plot(m)
+```
+</center>
+
+
+###  Gambler's ruin {#gambler}
 
 In Gambler's ruin, a gambler starts with $\$x$, where
 $0\leq x \leq a\in\N$ and in each play wins a dollar (with probability
@@ -172,7 +191,18 @@ $$\Pr=\begin{bmatrix}
   0 & 0 & 0 & 0 & \dots & 0 & p & 0 \\
   0 & 0 & 0 & 0 & \dots & q & 0 & p \\
   0 & 0 & 0 & 0 & \dots & 0 & 0 & 1 \\
-\end{bmatrix}$$ The initial distribution is deterministic: $$\az_i=
+\end{bmatrix}$$ 
+
+In the picture below, green denotes the probability $p$ and orange probability $1-p$. As always, black is $1$. 
+
+<center>
+```{r, echo=FALSE, fig.width = 7.5, fig.align = "center", dev.args = list(bg = 'transparent'), out.extra='style="margin-top:-20%; margin-bottom: -20%"'}
+m = gamblers_ruin()
+plot(m)
+```
+</center>
+
+The initial distribution is deterministic: $$\az_i=
 \begin{cases}
   1,& i=x,\\ 0,& i\not= x.
 \end{cases}$$
@@ -194,7 +224,12 @@ $S=\set{1,2}$ is $$\Pr=
 system nervously jumps between the two states. When they are small,
 there are long periods of stability (staying in the same state).
 
-
+<center>
+```{r, echo=FALSE, fig.width = 7.5, fig.align = "center", dev.args = list(bg = 'transparent'), out.extra='style="margin-top:-20%; margin-bottom: -20%"'}
+m = regime_switching()
+plot(m)
+```
+</center>
 One of the assumptions behind regime-switching models is that the
 transitions (switches) can only happen in regular intervals (once a
 minute, once a day, once a year, etc.). This is a feature of all
@@ -212,7 +247,16 @@ $$\Pr=
   0 & 0 & 1 & 0 & \dots \\
   0 & 0 & 0 & 1 & \dots \\
   \vdots & \vdots & \vdots & \vdots & \ddots 
-\end{bmatrix}$$ It is a pretty boring chain; its main use is as a counterexample.
+\end{bmatrix}$$ 
+
+<center>
+```{r, echo=FALSE, fig.width = 7.5, fig.align = "center", dev.args = list(bg = 'transparent'), out.extra='style="margin-top:-20%; margin-bottom: -20%"'}
+m = deterministically_monotone()
+plot(m)
+```
+</center>
+
+It is a pretty boring chain; its main use is as a counterexample.
 
 ### Not a Markov chain
 
@@ -333,7 +377,18 @@ where $A$ stands for *"advantage"* and $W_1$
 (resp., $W_2$) denotes the state where player 1 (resp., player 2) wins. It is not hard
 to assign probabilities to transitions between states. Once we reach
 either $W_1$ or $W_2$ the game stops. We can assume that the
-chain remains in that state forever, i.e., the state is absorbing. The
+chain remains in that state forever, i.e., the state is absorbing. 
+
+<center>
+```{r, echo=FALSE, fig.width = 6, fig.height=6, fig.align = "center", dev.args = list(bg = 'transparent'), out.extra='style="margin-top:-10%; margin-bottom: -10%"'}
+m = tennis()
+m$layout = m$layout * 0.55
+m$layout[,1] = m$layout[,1]+0.115
+plot(m,vertex.size = 20, vertex.label.cex=0.8)
+```
+</center>
+
+The
 initial distribution is quite simple - we always start from the same
 state $(0,0)$, so that $\az_{(0,0)}=1$ and
 $\az_i=0$ for all $i\in S\setminus\set{(0,0)}$.
@@ -540,7 +595,7 @@ $(1-a-b)^n$ which tends to $0$ as $n\to\infty$ (under our assumptions that $p_{i
 We can, therefore, write
 $$\Pr^n\sim \frac{1}{a+b}
 \begin{bmatrix}
-  a & b \\ a & b
+  b & a \\ b & a
 \end{bmatrix}
 \text{ for large } n.$$ The fact that the rows of the right-hand side
 above are equal points to the fact that, for large $n$, $\pn_{ij}$ does
@@ -552,7 +607,64 @@ following lectures.
 
 ## How to simulate Markov chains
 
-COMING SOON
+One of the (many) reasons Markov chains are a popular modeling tool is the ease with which they can be simulated. When we simulated a random walk, we started at $0$ and built the process by adding independent coin-toss-distributed increments. We obtained the value of the next position of the walk by *adding* the present position and the value of an independent random variable. For general Markov chain, this procedure works almost verbatim, except that the function that combines the present position 
+and a value of an independent random variable may be something other than addition. 
+In general, we collapse the two parts of the process - a simulation of an independent random variable and its combination with the present position - into one. Given our position, we pick the row of the transition matrix that corresponds to it and then use its elements as the probabilities that govern our position tomorrow. It will all be clear once you read through the solution of the following problem.
+
+<div class="problem">
+  Simulate $1000$ trajectories of a gambler's ruin Markov chain with $a=3$, $p=2/3$ and $x=1$ (see subsection \@ref(gambler) above for the meaning of these constants). Use the Monte Carlo method to estimate the probability that the gambler will leave the casino with $\$3$ in her pocket in at most $T=100$ time periods.
+</div>
+<div class="solution">
+```{r tidy=F}
+# state space
+S = c(0, 1, 2, 3)
+
+# transition matrix
+P = matrix(c(1,   0,   0,   0,
+             1/3, 0,   2/3, 0,
+             0,   1/3, 0,   2/3,
+             0,   0,   0,   1), 
+           byrow=T, ncol=4)
+
+T = 100 # number of time periods
+nsim = 1000 # number of simulations
+
+# simulate the next position of the chain
+draw_next = function(s) {
+  i = match(s, S) # the row number of the state s
+  sample(S, prob = P[i, ], size = 1)
+}
+
+# simulate a single trajectory of length T
+# from the initial state
+single_trajectory = function(initial_state) {
+  path = numeric(T)
+  last = initial_state
+  for (n in 1:T) {
+    path[n] = draw_next(last)
+    last = path[n]
+  }
+  return(path)
+}
+
+# simulate the entire chain
+simulate_chain = function(initial_state) {
+  data.frame(X0 = initial_state,
+             t(replicate(
+               nsim, single_trajectory(initial_state)
+             )))
+}
+
+df = simulate_chain(1)
+(p = mean(df$X100 == 3))
+
+```
+
+*R.* The function `draw_next` is at the heart of the simulation. Given the current state `s`, it looks up the row of the transition matrix `P` which corresponds to `s`. This is where the function `match` comes in handy - `match(s,S)` gives you the position of th element `s` in the vector `S`. Of course, if $S = \{ 1,2,3, \dots, n\}$ then we don't need to use `match`, as each state is "its own position". In our case, `S` is a bit different, namely $S=\{0,1,2,3\}$, and so `match(s,S)` is nothing by `s+1`. This is clearly an overkill in this case, but we still do it for didactical purposes. 
+
+Once the row corresponding to the state `s` is identified, we use its elements as the probabilities to be fed into the command `sample`, which, in turn, returns our next state and we repeat the procedure over and over (in this case $T=100$ times). 
+</div>
+
 
 
 ## Additional problems for Chapter 5
@@ -566,10 +678,11 @@ COMING SOON
 ```{r child="problems/02_Basic_Chains/max-roll-so-far_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/02_Basic_Chains/max-roll-so-far_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/02_Basic_Chains/max-roll-so-far_sol.Rmd"}
+```
+</div>
+
 <!-- 
   Y-Z-Markov-chains
   ------------------------------------------------
@@ -578,10 +691,10 @@ COMING SOON
 ```{r child="problems/02_Basic_Chains/Y-Z-Markov-chains_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/02_Basic_Chains/Y-Z-Markov-chains_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/02_Basic_Chains/Y-Z-Markov-chains_sol.Rmd"}
+```
+</div>
 
 <!--
   number-of-consecutives
@@ -591,10 +704,10 @@ COMING SOON
 ```{r child="problems/02_Basic_Chains/number-of-consecutives_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/02_Basic_Chains/number-of-consecutives_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/02_Basic_Chains/number-of-consecutives_sol.Rmd"}
+```
+</div>
 
 
 <!--
@@ -605,10 +718,11 @@ COMING SOON
 ```{r child="problems/02_Basic_Chains/lazy-chain_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/02_Basic_Chains/lazy-chain_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/02_Basic_Chains/lazy-chain_sol.Rmd"}
+```
+</div>
+
 <!--
   blue-red-100
   ------------------------------------------------
@@ -617,10 +731,10 @@ COMING SOON
 ```{r child="problems/02_Basic_Chains/blue-red-100_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/02_Basic_Chains/blue-red-100_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/02_Basic_Chains/blue-red-100_sol.Rmd"}
+```
+</div>
 
 
 
@@ -646,10 +760,10 @@ COMING SOON
 ```{r child="problems/02_Basic_Chains/train-m-cities_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/02_Basic_Chains/train-m-cities_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/02_Basic_Chains/train-m-cities_sol.Rmd"}
+```
+</div>
 
 
 <!-- multi-step -->
@@ -675,10 +789,10 @@ COMING SOON
 ```{r child="problems/02_Basic_Chains/manual-multi-step_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/02_Basic_Chains/manual-multi-step_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/02_Basic_Chains/manual-multi-step_sol.Rmd"}
+```
+</div>
 
 
 
@@ -690,10 +804,10 @@ COMING SOON
 ```{r child="problems/02_Basic_Chains/gambler-multi-step_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/02_Basic_Chains/gambler-multi-step_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/02_Basic_Chains/gambler-multi-step_sol.Rmd"}
+```
+</div>
 
 
 <!--
@@ -704,10 +818,10 @@ COMING SOON
 ```{r child="problems/02_Basic_Chains/car-insurance_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/02_Basic_Chains/car-insurance_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/02_Basic_Chains/car-insurance_sol.Rmd"}
+```
+</div>
 
 
 
