@@ -642,6 +642,176 @@ COMING SOON
 ## Additional problems for Chapter 6
 
 
+qqq cl-stat-09
+<!--
+  cl-stat-09
+  ------------------------------------------------
+-->
+<div class="problem">
+```{r child="problems/03_Classification_of_States/cl-stat-09_prb.Rmd"}
+```
+</div>
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/03_Classification_of_States/cl-stat-09_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+
+
+
+<!--
+  cl-stat-02
+  ------------------------------------------------
+-->
+<div class="problem">
+```{r child="problems/03_Classification_of_States/cl-stat-02_prb.Rmd"}
+```
+</div>
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/03_Classification_of_States/cl-stat-02_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+
+
+<!--
+  cl-stat-04
+  ------------------------------------------------
+-->
+<div class="problem">
+```{r child="problems/03_Classification_of_States/cl-stat-04_prb.Rmd"}
+```
+</div>
+<div class="solution">
+```{r child="problems/03_Classification_of_States/cl-stat-04_sol.Rmd"}
+```
+</div>
+
+
+<!--
+  cl-stat-06
+  ------------------------------------------------
+-->
+<div class="problem">
+```{r child="problems/03_Classification_of_States/cl-stat-06_prb.Rmd"}
+```
+</div>
+<div class="solution">
+```{r child="problems/03_Classification_of_States/cl-stat-06_sol.Rmd"}
+```
+</div>
+
+qqq cl-stat-07
+<!--
+  cl-stat-07
+  ------------------------------------------------
+-->
+<div class="problem">
+```{r child="problems/03_Classification_of_States/cl-stat-07_prb.Rmd"}
+```
+</div>
+<div class="solution">
+```{r child="problems/03_Classification_of_States/cl-stat-07_sol.Rmd"}
+```
+</div>
+
+qqq cl-stat-08
+<!--
+  cl-stat-08
+  ------------------------------------------------
+-->
+<div class="problem">
+```{r child="problems/03_Classification_of_States/cl-stat-08_prb.Rmd"}
+```
+</div>
+<div class="solution">
+```{r child="problems/03_Classification_of_States/cl-stat-08_sol.Rmd"}
+```
+</div>
+
+
+qqq cl-stat-10
+<!--
+  cl-stat-10
+  ------------------------------------------------
+-->
+<div class="problem">
+```{r child="problems/03_Classification_of_States/cl-stat-10_prb.Rmd"}
+```
+</div>
+<div class="solution">
+```{r child="problems/03_Classification_of_States/cl-stat-10_sol.Rmd"}
+```
+</div>
+
+
+ <!--
+  cl-stat-11
+  ------------------------------------------------
+-->
+<div class="problem">
+```{r child="problems/03_Classification_of_States/cl-stat-11_prb.Rmd"}
+```
+</div>
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/03_Classification_of_States/cl-stat-11_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+
+qqq cl-stat-12
+<!--
+  cl-stat-12
+  ------------------------------------------------
+-->
+<div class="problem">
+```{r child="problems/03_Classification_of_States/cl-stat-12_prb.Rmd"}
+```
+</div>
+<div class="solution">
+```{r child="problems/03_Classification_of_States/cl-stat-12_sol.Rmd"}
+```
+</div>
+
+qqq cl-stat-13
+<!--
+  cl-stat-13
+  ------------------------------------------------
+-->
+<div class="problem">
+```{r child="problems/03_Classification_of_States/cl-stat-13_prb.Rmd"}
+```
+</div>
+<div class="solution">
+```{r child="problems/03_Classification_of_States/cl-stat-13_sol.Rmd"}
+```
+</div>
+
+qqq cl-stat-14
+<!--
+  cl-stat-14
+  ------------------------------------------------
+-->
+<div class="problem">
+```{r child="problems/03_Classification_of_States/cl-stat-14_prb.Rmd"}
+```
+</div>
+<div class="solution">
+```{r child="problems/03_Classification_of_States/cl-stat-14_sol.Rmd"}
+```
+</div>
+
+<!--
+  four-stmts
+  ------------------------------------------------
+-->
+<div class="problem">
+```{r child="problems/03_Classification_of_States/four-stmts_prb.Rmd"}
+```
+</div>
+<div class="solution">
+```{r child="problems/03_Classification_of_States/four-stmts_sol.Rmd"}
+```
+</div>
+
+
 
 
 ⬇︎ In case you were wondering, the text below belongs to footnotes from somewhere high above.⬇︎
