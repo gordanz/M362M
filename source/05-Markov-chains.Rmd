@@ -605,7 +605,7 @@ a rule more than an exception, and we will study such phenomena in the
 following lectures.
 </div>
 
-## How to simulate Markov chains
+## How to simulate Markov chains {#mc-sim}
 
 One of the (many) reasons Markov chains are a popular modeling tool is the ease with which they can be simulated. When we simulated a random walk, we started at $0$ and built the process by adding independent coin-toss-distributed increments. We obtained the value of the next position of the walk by *adding* the present position and the value of an independent random variable. For general Markov chain, this procedure works almost verbatim, except that the function that combines the present position 
 and a value of an independent random variable may be something other than addition. 

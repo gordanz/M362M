@@ -1160,6 +1160,14 @@ non-zero transition probabilities are given by <span class="math inline">\(p_{11
 </div>
 <div class="solution">
 <p>As you can see from the transition graph below</p>
+<pre><code>## 
+## Attaching package: &#39;magrittr&#39;
+## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     set_names
+## The following object is masked from &#39;package:tidyr&#39;:
+## 
+##     extract</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>You can go from <span class="math inline">\(1\)</span> to <span class="math inline">\(2\)</span> in <span class="math inline">\(6\)</span> steps in
 exactly two ways: <span class="math display">\[1 \to 2 \to 3 \to 4 \to 5 \to 1 \to 2\]</span> and
@@ -1220,22 +1228,22 @@ distribution of drivers in 2090 is given by the distribution
 <span class="math inline">\(a^{(100)}\)</span> of <span class="math inline">\(X_{100}\)</span> which is, in turn, given by
 <span class="math display">\[a^{(100)}= a^{(0)} P^{100}.\]</span> Finally, we need to compute the <em>number</em> of drivers in
 each category, so we multiply the result by the total number of drivers, i.e., <span class="math inline">\(3 \times 1400 = 4200\)</span>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>P =<span class="st"> </span><span class="kw">matrix</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>  <span class="kw">c</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span> , <span class="dv">1</span><span class="op">/</span><span class="dv">2</span> , <span class="dv">0</span>,  </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>    <span class="dv">1</span><span class="op">/</span><span class="dv">5</span> , <span class="dv">2</span><span class="op">/</span><span class="dv">5</span> , <span class="dv">2</span><span class="op">/</span><span class="dv">5</span> , </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>    <span class="dv">1</span><span class="op">/</span><span class="dv">5</span> , <span class="dv">1</span><span class="op">/</span><span class="dv">5</span> , <span class="dv">3</span><span class="op">/</span><span class="dv">5</span>), </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>  <span class="dt">byrow=</span>T, <span class="dt">ncol=</span><span class="dv">3</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co"># a0 needs to be a row matrix </span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>a0 =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>), <span class="dt">nrow=</span><span class="dv">1</span>) </span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>P100 =<span class="st"> </span><span class="kw">diag</span>(<span class="dv">3</span>) <span class="co"># the 3x3 identity matrix</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>  P100 =<span class="st"> </span>P100 <span class="op">%*%</span><span class="st"> </span>P</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>(a0 <span class="op">%*%</span><span class="st"> </span>P100) <span class="op">*</span><span class="st"> </span><span class="dv">4200</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="co">##      [,1] [,2] [,3]</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a><span class="co">## [1,] 1200 1500 1500</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>P =<span class="st"> </span><span class="kw">matrix</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>  <span class="kw">c</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span> , <span class="dv">1</span><span class="op">/</span><span class="dv">2</span> , <span class="dv">0</span>,  </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>    <span class="dv">1</span><span class="op">/</span><span class="dv">5</span> , <span class="dv">2</span><span class="op">/</span><span class="dv">5</span> , <span class="dv">2</span><span class="op">/</span><span class="dv">5</span> , </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>    <span class="dv">1</span><span class="op">/</span><span class="dv">5</span> , <span class="dv">1</span><span class="op">/</span><span class="dv">5</span> , <span class="dv">3</span><span class="op">/</span><span class="dv">5</span>), </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>  <span class="dt">byrow=</span>T, <span class="dt">ncol=</span><span class="dv">3</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="co"># a0 needs to be a row matrix </span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>a0 =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, <span class="dv">1</span><span class="op">/</span><span class="dv">3</span>), <span class="dt">nrow=</span><span class="dv">1</span>) </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>P100 =<span class="st"> </span><span class="kw">diag</span>(<span class="dv">3</span>) <span class="co"># the 3x3 identity matrix</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>  P100 =<span class="st"> </span>P100 <span class="op">%*%</span><span class="st"> </span>P</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>(a0 <span class="op">%*%</span><span class="st"> </span>P100) <span class="op">*</span><span class="st"> </span><span class="dv">4200</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a><span class="co">##      [,1] [,2] [,3]</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a><span class="co">## [1,] 1200 1500 1500</span></span></code></pre></div>
 <p>Note: if you think that computing matrix powers using for loops is in poor taste, there are several R packages you can use. Have a look at <a href="https://stats.stackexchange.com/questions/4320/compute-the-power-of-a-matrix-in-r/187477">this post</a> if you are curious.</p>
 </div>
 qqq basil
@@ -1247,7 +1255,7 @@ qqq basil
 <p>A zoologist, Dr. Gurkensaft,
 claims to have trained Basil the Rat so that it can avoid being shocked
 and find food, even in highly confusing situations. Another scientist,
-Dr.Hasenpfeffer does not agree. She says that Basil is stupid and
+Dr. Hasenpfeffer does not agree. She says that Basil is stupid and
 cannot tell the difference between food and an electrical shocker until
 it gets very close to either of them.</p>
 <p>The two decide to see who is right by performing the following
@@ -1256,20 +1264,58 @@ like this:</p>
 <center>
 <p><img src="pics/basil-the-rat.png" width="40%" style="display: block; margin: auto;" /></p>
 </center>
-<p>Dr. Gurkensaft’s
-hypothsis is that, once in a compartment with <span class="math inline">\(k\)</span> exits, Basil will
-prefer the exits that lead him closer to the food. Dr. Hasenpfeffer’s
-claim is that every time there are <span class="math inline">\(k\)</span> exits from a compartment, Basil
-chooses each one with probability <span class="math inline">\(1/k\)</span>.</p>
-<p>After repeating the experiment 100 times, Basil got shocked before
-getting to food <span class="math inline">\(52\)</span> times and he reached food before being shocked <span class="math inline">\(48\)</span>
-times. Compute the theoretical probabilities of being shocked before
-getting to food, under the assumption that Basil is stupid (all exits
-are equally likely). Compare those to the observed data. Whose side is
-the evidence on (no need for any statistical analysis; simply state what
-you think) ?</p>
+<p>Dr. Gurkensaft’s hypothesis is that, once in a compartment with <span class="math inline">\(k\)</span> exits, Basil
+will prefer the exits that lead him closer to the food. Dr. Hasenpfeffer’s claim
+is that every time there are <span class="math inline">\(k\)</span> exits from a compartment, Basil chooses each
+one with probability <span class="math inline">\(1/k\)</span>.</p>
+<p>After repeating the experiment 100 times, Basil got shocked before getting to
+food <span class="math inline">\(52\)</span> times and he reached food before being shocked <span class="math inline">\(48\)</span> times.</p>
+<ol style="list-style-type: decimal">
+<li><p>Create an Markov chain that models this situation (draw a transition graph and mark the edges with their probabilities).</p></li>
+<li><p>Use Monte Carlo to estimate the probability of being
+shocked before
+getting to food, under the assumption that Basil is stupid
+(all exits are equally likely).</p></li>
+</ol>
+<p>Btw, who do you think is right? Whose side is the evidence (48 vs. 52) on? If you know how to perform an appropriate statistical test here, do it. If you don’t simply state what you think.</p>
 </div>
 <div class="solution">
+<p>`Basil’s behavior can be modeled by a Markov Chain with states
+corresponding to compartments, and transitions to their adjacency.
+The graph of such a chain, on the state space <span class="math inline">\(S=\{1,2,3,4,5,F,S\}\)</span>
+would look like this (with black = <span class="math inline">\(1\)</span>, orange = <span class="math inline">\(1/2\)</span> and green=<span class="math inline">\(1/3\)</span>)</p>
+<center>
+<img src="_main_files/figure-html/unnamed-chunk-38-1.png" width="672" style="margin-top:-10%; margin-bottom: -15%" style="display: block; margin: auto;" />
+</center>
+<p><part> 2. </part>
+To be able to do Monte Carlo, we need to construct its transition
+matrix. Since there are far fewer transitions than pairs of states, it is a good idea to start with a matrix of <span class="math inline">\(0\)</span>s and then fill in the non-zero values. We also decide that <span class="math inline">\(F\)</span> and <span class="math inline">\(S\)</span> will be given the last two rows/columns:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>P =<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dt">nrow =</span> <span class="dv">7</span>, <span class="dt">ncol =</span> <span class="dv">8</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>P[<span class="dv">1</span>, <span class="dv">2</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>P[<span class="dv">1</span>, <span class="dv">3</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>P[<span class="dv">2</span>, <span class="dv">1</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">3</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>P[<span class="dv">2</span>, <span class="dv">4</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">3</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>P[<span class="dv">2</span>, <span class="dv">6</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">3</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>P[<span class="dv">3</span>, <span class="dv">1</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">3</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>P[<span class="dv">3</span>, <span class="dv">4</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">3</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>P[<span class="dv">3</span>, <span class="dv">7</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">3</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a>P[<span class="dv">4</span>, <span class="dv">2</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">3</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>P[<span class="dv">4</span>, <span class="dv">3</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">3</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a>P[<span class="dv">4</span>, <span class="dv">5</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">3</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>P[<span class="dv">5</span>, <span class="dv">4</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a>P[<span class="dv">5</span>, <span class="dv">6</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>P[<span class="dv">6</span>, <span class="dv">6</span>] =<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a>P[<span class="dv">7</span>, <span class="dv">7</span>] =<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a>P</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a><span class="co">##           [,1]      [,2]      [,3]      [,4]      [,5]      [,6]      [,7] [,8]</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a><span class="co">## [1,] 0.0000000 0.5000000 0.5000000 0.0000000 0.0000000 0.0000000 0.0000000    0</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a><span class="co">## [2,] 0.3333333 0.0000000 0.0000000 0.3333333 0.0000000 0.3333333 0.0000000    0</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a><span class="co">## [3,] 0.3333333 0.0000000 0.0000000 0.3333333 0.0000000 0.0000000 0.3333333    0</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a><span class="co">## [4,] 0.0000000 0.3333333 0.3333333 0.0000000 0.3333333 0.0000000 0.0000000    0</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true"></a><span class="co">## [5,] 0.0000000 0.0000000 0.0000000 0.5000000 0.0000000 0.5000000 0.0000000    0</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true"></a><span class="co">## [6,] 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 1.0000000 0.0000000    0</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true"></a><span class="co">## [7,] 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 1.0000000    0</span></span></code></pre></div>
+<p>We continue by simulating <code>nsim = 1000</code> trajectories of this chain, starting from the state</p>
 <p>The task here is to calculate the absorption probability for a Markov
 chain which represents a stupid (random) rat, and compare it to the
 observed probabilities. We use Python and the <code>markov362m</code> package to
@@ -1285,7 +1331,8 @@ continuation of the code above):
 stupid rat will get shocked before reaching food in about <span class="math inline">\(58.3\%\)</span> of
 the cases. This is somewhat higher than Basil’s observed shock rate of
 <span class="math inline">\(52\%\)</span>, but it is not clear just from those numbers are not due to
-simple lack of the draw, and not Basil’s alleged intelligence.</p>
+simple lack of the draw, and not Basil’s alleged intelligence.
+`</p>
 </div>
 qqq professor
 <!--
