@@ -14,8 +14,8 @@ rmd_files: [
    # "02-simulation.Rmd",
    # "03-random-walks.Rmd",
    # "04-more-random-walks.Rmd",
-   # "05-Markov-chains.Rmd",
-   "06-Classification.Rmd",
+   "05-Markov-chains.Rmd",
+   # "06-Classification.Rmd",
    # "pipeline.Rmd",
    # "distributions.Rmd"
     ]
