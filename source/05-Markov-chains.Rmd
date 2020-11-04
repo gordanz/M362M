@@ -250,7 +250,7 @@ $$\Pr=
 \end{bmatrix}$$ 
 
 <center>
-```{r, echo=FALSE, fig.width = 7.5, fig.align = "center", dev.args = list(bg = 'transparent'), out.extra='style="margin-top:-20%; margin-bottom: -20%"'}
+```{r, echo=FALSE, fig.width = 18, fig.height = 10, fig.align = "center", dev.args = list(bg = 'transparent'), out.extra='style="margin-top:-20%; margin-bottom: -20%"'}
 m = deterministically_monotone()
 plot(m)
 ```
@@ -380,11 +380,10 @@ either $W_1$ or $W_2$ the game stops. We can assume that the
 chain remains in that state forever, i.e., the state is absorbing. 
 
 <center>
-```{r, echo=FALSE, fig.width = 6, fig.height=6, fig.align = "center", dev.args = list(bg = 'transparent'), out.extra='style="margin-top:-10%; margin-bottom: -10%"'}
+```{r, echo=FALSE, fig.width = 18, fig.height= 11, fig.align = "center", dev.args = list(bg = 'transparent'), out.extra='style="margin-top:0%; margin-bottom: 0%"'}
+library(lanci)
 m = tennis()
-m$layout = m$layout * 0.55
-m$layout[,1] = m$layout[,1]+0.115
-plot(m,vertex.size = 20, vertex.label.cex=0.8)
+plot(m, vertex.size = 40)
 ```
 </center>
 
