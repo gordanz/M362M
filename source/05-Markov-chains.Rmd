@@ -19,8 +19,7 @@ A stochastic process $\seqz{X}$ taking values in a countable state space
 $S$ is called a **Markov chain** if
 \begin{equation}
  \PP[ X_{n+1}=j|X_n=i, X_{n-1}=i_{n-1},\dots, X_1=i_1, X_0=i_0]=
- \PP[
-X_{n+1}=j|X_n=i],
+ \PP[ X_{n+1}=j|X_n=i],
 (\#eq:markov)
 \end{equation}
 for all times $n\in\N_0$, all states
@@ -159,12 +158,11 @@ $$\Pr=\begin{bmatrix}
 Here is a (portion of) a transition graph for a simple random walk. Instead of writing probabilities 
 on top of the edges, we color code them as follows: green is $p$ and orange is $1-p$. 
 
-<center>
-```{r, echo=FALSE, fig.width=7.5, fig.heigth = 5, fig.align = "center", dev.args = list(bg = 'transparent'), out.extra='style="margin-top:-25%; margin-bottom: -30%"'}
-m = random_walk(T=3,with_dots=TRUE, p=0.4)
-plot(m)
+
+```{r echo=FALSE, fig.align="center"}
+knitr::include_graphics('pics/random_walk_chain.png')
 ```
-</center>
+
 
 
 ###  Gambler's ruin {#gambler}
@@ -195,12 +193,9 @@ $$\Pr=\begin{bmatrix}
 
 In the picture below, green denotes the probability $p$ and orange  $1-p$. As always, black is $1$. 
 
-<center>
-```{r, echo=FALSE, fig.width = 8, fig.height = 6, fig.align = "center", dev.args = list(bg = 'transparent'), out.extra='style="margin-top:-30%; margin-bottom: -30%"'}
-m = gamblers_ruin()
-plot(m)
+```{r echo=FALSE, fig.align="center"}
+knitr::include_graphics('pics/gamblers_ruin_chain.png')
 ```
-</center>
 
 The initial distribution is deterministic: $$\az_i=
 \begin{cases}
@@ -224,12 +219,10 @@ $S=\set{1,2}$ is $$\Pr=
 system nervously jumps between the two states. When they are small,
 there are long periods of stability (staying in the same state).
 
-<center>
-```{r, echo=FALSE, fig.width = 7.5, fig.align = "center", dev.args = list(bg = 'transparent'), out.extra='style="margin-top:-25%; margin-bottom: -25%"'}
-m = regime_switching()
-plot(m)
+```{r echo=FALSE, fig.align="center"}
+knitr::include_graphics('pics/regime_switching_chain.png')
 ```
-</center>
+
 One of the assumptions behind regime-switching models is that the
 transitions (switches) can only happen in regular intervals (once a
 minute, once a day, once a year, etc.). This is a feature of all
@@ -251,12 +244,9 @@ $$\Pr=
 
 and the transition graph like this: 
 
-<center>
-```{r, echo=FALSE, fig.width = 7.5, fig.align = "center", dev.args = list(bg = 'transparent'), out.extra='style="margin-top:-25%; margin-bottom: -25%"'}
-m = deterministically_monotone()
-plot(m)
+```{r echo=FALSE, fig.align="center"}
+knitr::include_graphics('pics/deterministically_monotone_chain.png')
 ```
-</center>
 
 It is a pretty boring chain; its main use is as a counterexample.
 
@@ -381,12 +371,9 @@ to assign probabilities to transitions between states. Once we reach
 either $W_1$ or $W_2$ the game stops. We can assume that the
 chain remains in that state forever, i.e., the state is absorbing. 
 
-<center>
-```{r, echo=FALSE, fig.width = 8, fig.height= 6, fig.align = "center", dev.args = list(bg = 'transparent'), out.extra='style="margin-top:0%; margin-bottom: 0%"'}
-m = tennis()
-plot(m)
+```{r echo=FALSE, fig.align="center"}
+knitr::include_graphics('pics/tennis_chain.png')
 ```
-</center>
 
 The
 initial distribution is quite simple - we always start from the same
