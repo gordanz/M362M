@@ -160,7 +160,7 @@ Here is a (portion of) a transition graph for a simple random walk. Instead of w
 on top of the edges, we color code them as follows: green is $p$ and orange is $1-p$. 
 
 <center>
-```{r, echo=FALSE, fig.align = "center", dev.args = list(bg = 'transparent'), out.extra='style="margin-top:-20%; margin-bottom: -20%"'}
+```{r, echo=FALSE, fig.width=7.5, fig.heigth = 5, fig.align = "center", dev.args = list(bg = 'transparent'), out.extra='style="margin-top:-25%; margin-bottom: -30%"'}
 m = random_walk(T=3,with_dots=TRUE, p=0.4)
 plot(m)
 ```
@@ -193,10 +193,10 @@ $$\Pr=\begin{bmatrix}
   0 & 0 & 0 & 0 & \dots & 0 & 0 & 1 \\
 \end{bmatrix}$$ 
 
-In the picture below, green denotes the probability $p$ and orange probability $1-p$. As always, black is $1$. 
+In the picture below, green denotes the probability $p$ and orange  $1-p$. As always, black is $1$. 
 
 <center>
-```{r, echo=FALSE, fig.width = 7.5, fig.align = "center", dev.args = list(bg = 'transparent'), out.extra='style="margin-top:-20%; margin-bottom: -20%"'}
+```{r, echo=FALSE, fig.width = 8, fig.height = 6, fig.align = "center", dev.args = list(bg = 'transparent'), out.extra='style="margin-top:-30%; margin-bottom: -30%"'}
 m = gamblers_ruin()
 plot(m)
 ```
@@ -225,7 +225,7 @@ system nervously jumps between the two states. When they are small,
 there are long periods of stability (staying in the same state).
 
 <center>
-```{r, echo=FALSE, fig.width = 7.5, fig.align = "center", dev.args = list(bg = 'transparent'), out.extra='style="margin-top:-20%; margin-bottom: -20%"'}
+```{r, echo=FALSE, fig.width = 7.5, fig.align = "center", dev.args = list(bg = 'transparent'), out.extra='style="margin-top:-25%; margin-bottom: -25%"'}
 m = regime_switching()
 plot(m)
 ```
@@ -249,8 +249,10 @@ $$\Pr=
   \vdots & \vdots & \vdots & \vdots & \ddots 
 \end{bmatrix}$$ 
 
+and the transition graph like this: 
+
 <center>
-```{r, echo=FALSE, fig.width = 18, fig.height = 10, fig.align = "center", dev.args = list(bg = 'transparent'), out.extra='style="margin-top:-20%; margin-bottom: -20%"'}
+```{r, echo=FALSE, fig.width = 7.5, fig.align = "center", dev.args = list(bg = 'transparent'), out.extra='style="margin-top:-25%; margin-bottom: -25%"'}
 m = deterministically_monotone()
 plot(m)
 ```
@@ -380,10 +382,9 @@ either $W_1$ or $W_2$ the game stops. We can assume that the
 chain remains in that state forever, i.e., the state is absorbing. 
 
 <center>
-```{r, echo=FALSE, fig.width = 18, fig.height= 11, fig.align = "center", dev.args = list(bg = 'transparent'), out.extra='style="margin-top:0%; margin-bottom: 0%"'}
-library(lanci)
+```{r, echo=FALSE, fig.width = 8, fig.height= 6, fig.align = "center", dev.args = list(bg = 'transparent'), out.extra='style="margin-top:0%; margin-bottom: 0%"'}
 m = tennis()
-plot(m, vertex.size = 40)
+plot(m)
 ```
 </center>
 

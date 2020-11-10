@@ -31,6 +31,7 @@
   
 <link rel="prev" href="markov-chains.html"/>
 <link rel="next" href="dist.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -56,18 +57,17 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {  background-color: #f8f8f8; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -135,9 +135,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">M362M Lecture notes</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="markov-chains.html"><a href="markov-chains.html"><i class="fa fa-check"></i><b>1</b> Markov Chains</a><ul>
+<li class="chapter" data-level="1" data-path="markov-chains.html"><a href="markov-chains.html"><i class="fa fa-check"></i><b>1</b> Markov Chains</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="markov-chains.html"><a href="markov-chains.html#the-markov-property"><i class="fa fa-check"></i><b>1.1</b> The Markov property</a></li>
-<li class="chapter" data-level="1.2" data-path="markov-chains.html"><a href="markov-chains.html#first-examples"><i class="fa fa-check"></i><b>1.2</b> First Examples</a><ul>
+<li class="chapter" data-level="1.2" data-path="markov-chains.html"><a href="markov-chains.html#first-examples"><i class="fa fa-check"></i><b>1.2</b> First Examples</a>
+<ul>
 <li class="chapter" data-level="1.2.1" data-path="markov-chains.html"><a href="markov-chains.html#random-walks"><i class="fa fa-check"></i><b>1.2.1</b> Random walks</a></li>
 <li class="chapter" data-level="1.2.2" data-path="markov-chains.html"><a href="markov-chains.html#gambler"><i class="fa fa-check"></i><b>1.2.2</b> Gambler’s ruin</a></li>
 <li class="chapter" data-level="1.2.3" data-path="markov-chains.html"><a href="markov-chains.html#regime-switching"><i class="fa fa-check"></i><b>1.2.3</b> Regime Switching</a></li>
@@ -151,18 +153,22 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4" data-path="markov-chains.html"><a href="markov-chains.html#mc-sim"><i class="fa fa-check"></i><b>1.4</b> How to simulate Markov chains</a></li>
 <li class="chapter" data-level="1.5" data-path="markov-chains.html"><a href="markov-chains.html#additional-problems-for-chapter-5"><i class="fa fa-check"></i><b>1.5</b> Additional problems for Chapter 5</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="classification-of-states.html"><a href="classification-of-states.html"><i class="fa fa-check"></i><b>2</b> Classification of States</a><ul>
+<li class="chapter" data-level="2" data-path="classification-of-states.html"><a href="classification-of-states.html"><i class="fa fa-check"></i><b>2</b> Classification of States</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="classification-of-states.html"><a href="classification-of-states.html#the-communication-relation"><i class="fa fa-check"></i><b>2.1</b> The Communication Relation</a></li>
 <li class="chapter" data-level="2.2" data-path="classification-of-states.html"><a href="classification-of-states.html#classes"><i class="fa fa-check"></i><b>2.2</b> Classes</a></li>
-<li class="chapter" data-level="2.3" data-path="classification-of-states.html"><a href="classification-of-states.html#transience-and-recurrence"><i class="fa fa-check"></i><b>2.3</b> Transience and recurrence</a><ul>
+<li class="chapter" data-level="2.3" data-path="classification-of-states.html"><a href="classification-of-states.html#transience-and-recurrence"><i class="fa fa-check"></i><b>2.3</b> Transience and recurrence</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="classification-of-states.html"><a href="classification-of-states.html#the-return-theorem"><i class="fa fa-check"></i><b>2.3.1</b> The Return Theorem</a></li>
 <li class="chapter" data-level="2.3.2" data-path="classification-of-states.html"><a href="classification-of-states.html#a-recurrence-criterion"><i class="fa fa-check"></i><b>2.3.2</b> A recurrence criterion</a></li>
 <li class="chapter" data-level="2.3.3" data-path="classification-of-states.html"><a href="classification-of-states.html#polyas-theorem"><i class="fa fa-check"></i><b>2.3.3</b> Polya’s theorem</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="classification-of-states.html"><a href="classification-of-states.html#class-properties"><i class="fa fa-check"></i><b>2.4</b> Class properties</a><ul>
+<li class="chapter" data-level="2.4" data-path="classification-of-states.html"><a href="classification-of-states.html#class-properties"><i class="fa fa-check"></i><b>2.4</b> Class properties</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="classification-of-states.html"><a href="classification-of-states.html#the-canonical-decomposition"><i class="fa fa-check"></i><b>2.4.1</b> The Canonical Decomposition</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="classification-of-states.html"><a href="classification-of-states.html#a-few-examples"><i class="fa fa-check"></i><b>2.5</b> A few examples</a><ul>
+<li class="chapter" data-level="2.5" data-path="classification-of-states.html"><a href="classification-of-states.html#a-few-examples"><i class="fa fa-check"></i><b>2.5</b> A few examples</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="markov-chains.html"><a href="markov-chains.html#random-walks"><i class="fa fa-check"></i><b>2.5.1</b> Random walks</a></li>
 <li class="chapter" data-level="2.5.2" data-path="classification-of-states.html"><a href="classification-of-states.html#gamblers-ruin"><i class="fa fa-check"></i><b>2.5.2</b> Gambler’s ruin</a></li>
 <li class="chapter" data-level="2.5.3" data-path="markov-chains.html"><a href="markov-chains.html#deterministically-monotone-markov-chain"><i class="fa fa-check"></i><b>2.5.3</b> Deterministically monotone Markov chain</a></li>
@@ -171,7 +177,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6" data-path="classification-of-states.html"><a href="classification-of-states.html#additional-problems-for-chapter-6"><i class="fa fa-check"></i><b>2.6</b> Additional problems for Chapter 6</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>A</b> Probability Distributions</a><ul>
+<li class="chapter" data-level="A" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>A</b> Probability Distributions</a>
+<ul>
 <li class="chapter" data-level="A.1" data-path="dist.html"><a href="dist.html#discrete-distributions"><i class="fa fa-check"></i><b>A.1</b> Discrete distributions:</a></li>
 <li class="chapter" data-level="A.2" data-path="dist.html"><a href="dist.html#continuous-distributions"><i class="fa fa-check"></i><b>A.2</b> Continuous distributions:</a></li>
 </ul></li>
@@ -192,7 +199,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="classification-of-states" class="section level1">
+<div id="classification-of-states" class="section level1" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Classification of States</h1>
 <div style="counter-reset: thechapter 6;">
 
@@ -200,7 +207,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>There will be a lot of definitions and some theory before we get to
 examples. You might want to peek ahead as notions are being introduced;
 it will help your understanding.</p>
-<div id="the-communication-relation" class="section level2">
+<div id="the-communication-relation" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> The Communication Relation</h2>
 <p>Let <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> be a Markov chain on the state space <span class="math inline">\(S\)</span>. For a given set
 <span class="math inline">\(B\)</span> of states, define the <strong>(first) hitting time <span class="math inline">\(\tau_B\)</span></strong> (or <span class="math inline">\(\tau(B)\)</span> if subscripts are
@@ -326,7 +333,7 @@ given by <span class="math inline">\(R(i)= \{3,6,9,12,\dots\}\)</span>, so <span
 so that <span class="math inline">\(d(i)=1\)</span> for <span class="math inline">\(i\in\{1,2,3\}\)</span>.</p>
 </div>
 </div>
-<div id="classes" class="section level2">
+<div id="classes" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Classes</h2>
 <p>We say that the states <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> in <span class="math inline">\(S\)</span> <strong>intercommunicate</strong>, denoted
 by <span class="math inline">\(i\leftrightarrow j\)</span> if <span class="math inline">\(i\to  j\)</span> <em>and</em> <span class="math inline">\(j\to i\)</span>. A set <span class="math inline">\(B\subseteq S\)</span> of states is called
@@ -414,7 +421,7 @@ have <span class="math inline">\(j\in B\)</span>. This is a contradiction with t
 classes, but it is not closed.</p>
 </div>
 </div>
-<div id="transience-and-recurrence" class="section level2">
+<div id="transience-and-recurrence" class="section level2" number="2.3">
 <h2><span class="header-section-number">2.3</span> Transience and recurrence</h2>
 <p>It is often important to know whether a Markov chain will ever return to
 its initial state, and if so, how often. The notions of transience and
@@ -451,7 +458,7 @@ the time between two consecutive visits has finite expectation. Null
 recurrence means the we will return, but the waiting time may be very
 long. A state is transient if there is a positive chance (however small)
 that the chain will never return to it.</p>
-<div id="the-return-theorem" class="section level3">
+<div id="the-return-theorem" class="section level3" number="2.3.1">
 <h3><span class="header-section-number">2.3.1</span> The Return Theorem</h3>
 <p>The definition of recurrence from above is conceptually simple, but it
 gives us no clue about how to actually go about deciding whether a
@@ -485,8 +492,6 @@ two statements hold with probability 1:</p>
 </ol>
 In the first case, <span class="math inline">\(i\)</span> is recurrent and, in the second, it is transient.
 </div>
-
-
 <p><strong>Proof.</strong>
 If <span class="math inline">\(f_i=1\)</span>, then <span class="math inline">\(X\)</span> is guaranteed to return to <span class="math inline">\(i\)</span> at least once. When
 that happens, however, the strong Markov property “deletes” the past,
@@ -495,7 +500,6 @@ situation where we are looking at a chain which starts at <span class="math inli
 guaranteed to return there at least once. Continuing like that, we get a
 whole infinite sequence of stopping times <span class="math display">\[T_i(1) &lt; T_i(2) &lt; \dots\]</span> at
 which <span class="math inline">\(X\)</span> finds itself at <span class="math inline">\(i\)</span>.</p>
-
 <p>If <span class="math inline">\(f_i&lt;1\)</span>, a similar story can be told, but with a significant
 difference. Every time <span class="math inline">\(X\)</span> returns to <span class="math inline">\(i\)</span>, there is a probability
 <span class="math inline">\(1-f_i\)</span> that it will never come back to <span class="math inline">\(i\)</span>, and, this is independent of
@@ -524,7 +528,7 @@ and the fact that the chain must be in some state in each one of them.</p>
 Just think of the Deterministically-Monotone Chain or
 the random walk with <span class="math inline">\(p\not=\tfrac{1}{2}\)</span>. All states are transitive there.</p>
 </div>
-<div id="a-recurrence-criterion" class="section level3">
+<div id="a-recurrence-criterion" class="section level3" number="2.3.2">
 <h3><span class="header-section-number">2.3.2</span> A recurrence criterion</h3>
 <p>Perhaps the most important consequence of the Return Theorem is the following
 criterion for recurrence of Markov chains on finite or countable state spaces:</p>
@@ -534,7 +538,6 @@ criterion for recurrence of Markov chains on finite or countable state spaces:</
 A state <span class="math inline">\(i\in S\)</span>
 is recurrent if and only if <span class="math display">\[\sum_{n\in{\mathbb{N}}} p^{(n)}_{ii}=\infty.\]</span>
 </div>
-
 <p><strong>Proof.</strong>
 Let <span class="math inline">\(N_i\)</span> denote the total number (finite or <span class="math inline">\(\infty\)</span>) of visits to the state <span class="math inline">\(i\)</span>, with the initial visit at time <span class="math inline">\(0\)</span> not counted.
 We can write <span class="math inline">\(N_i\)</span> as an infinite sum as follows
@@ -574,7 +577,7 @@ of the past. This gives us extra information about the random variable
 geometrically distributed) and allows us to test its finiteness by using
 the expected value only.</p>
 </div>
-<div id="polyas-theorem" class="section level3">
+<div id="polyas-theorem" class="section level3" number="2.3.3">
 <h3><span class="header-section-number">2.3.3</span> Polya’s theorem</h3>
 <p>Here is an application of our recurrence criterion - a beautiful and
 unexpected result of George Pólya from 1921.</p>
@@ -675,7 +678,6 @@ transient for all <span class="math inline">\(d\geq 3\)</span>, too (why?).</p><
 The simple symmetric random walk is recurrent for <span class="math inline">\(d=1,2\)</span>, but transient
 for <span class="math inline">\(d\geq 3\)</span>.
 </div>
-
 <p><br>
 In the words of Shizuo Kakutani</p>
 <blockquote>
@@ -684,7 +686,7 @@ forever.</em></p>
 </blockquote>
 </div>
 </div>
-<div id="class-properties" class="section level2">
+<div id="class-properties" class="section level2" number="2.4">
 <h2><span class="header-section-number">2.4</span> Class properties</h2>
 <p>Certain properties of states are shared between all elements in a class.
 Knowing which properties have this feature is useful for a simple reason
@@ -734,7 +736,7 @@ each <span class="math inline">\(n\in R(j)\)</span>, so <span class="math inline
 with roles of <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> switched shows that <span class="math inline">\(d(j)\leq d(i)\)</span>.
 Therefore, <span class="math inline">\(d(i)=d(j)\)</span>.</p>
 </div>
-<div id="the-canonical-decomposition" class="section level3">
+<div id="the-canonical-decomposition" class="section level3" number="2.4.1">
 <h3><span class="header-section-number">2.4.1</span> The Canonical Decomposition</h3>
 <p>Now that we know that transience and recurrence are class properties, we
 can introduce the notion of the of a Markov chain. Let <span class="math inline">\(S_1,S_2,\dots\)</span>
@@ -815,11 +817,11 @@ matrix, or, equivalently, that all the entries in the row of <span class="math i
 outside of <span class="math inline">\(P_k\)</span> are zeros.</p>
 </div>
 </div>
-<div id="a-few-examples" class="section level2">
+<div id="a-few-examples" class="section level2" number="2.5">
 <h2><span class="header-section-number">2.5</span> A few examples</h2>
 <p>To help you internalize the notions introduced in this chapter, we classify the states, identify closed sets and discuss periodicity, transience and recurrence in some of the standard examples.
 In all examples below we assume that <span class="math inline">\(0 &lt; p &lt; 1\)</span>.</p>
-<div id="random-walks" class="section level3">
+<div id="random-walks" class="section level3" number="2.5.1">
 <h3><span class="header-section-number">2.5.1</span> Random walks</h3>
 <ul>
 <li><p><strong>Communication and classes</strong>. Clearly, it is possible to go from
@@ -851,7 +853,7 @@ always given by <span class="math inline">\(R(i)=\{2,4,6,\dots\}\)</span> and so
 <span class="math inline">\(i\in S\)</span>.</p></li>
 </ul>
 </div>
-<div id="gamblers-ruin" class="section level3">
+<div id="gamblers-ruin" class="section level3" number="2.5.2">
 <h3><span class="header-section-number">2.5.2</span> Gambler’s ruin</h3>
 <ul>
 <li><p><strong>Communication and classes</strong>. The winning state <span class="math inline">\(a\)</span> and the losing
@@ -870,7 +872,7 @@ returning to <span class="math inline">\(i\)</span>.</p></li>
 case of a random walk).</p></li>
 </ul>
 </div>
-<div id="deterministically-monotone-markov-chain" class="section level3">
+<div id="deterministically-monotone-markov-chain" class="section level3" number="2.5.3">
 <h3><span class="header-section-number">2.5.3</span> Deterministically monotone Markov chain</h3>
 <ul>
 <li><p><strong>Communication and classes</strong>. A state <span class="math inline">\(i\)</span> communicates with the
@@ -883,7 +885,7 @@ only if <span class="math inline">\(i=j\)</span>, and so, each <span class="math
 so <span class="math inline">\(d(i)=1\)</span>, for all <span class="math inline">\(i\in S\)</span>.</p></li>
 </ul>
 </div>
-<div id="the-game-of-tennis" class="section level3">
+<div id="the-game-of-tennis" class="section level3" number="2.5.4">
 <h3><span class="header-section-number">2.5.4</span> The game of tennis</h3>
 <ul>
 <li><p><strong>Communication and classes</strong>. All the states except for those in
@@ -903,7 +905,7 @@ is <span class="math inline">\(\{2,4,6,\dots\}\)</span> so their period is <span
 </ul>
 </div>
 </div>
-<div id="additional-problems-for-chapter-6" class="section level2">
+<div id="additional-problems-for-chapter-6" class="section level2" number="2.6">
 <h2><span class="header-section-number">2.6</span> Additional problems for Chapter 6</h2>
 <!--
   cl-stat-09
@@ -1264,7 +1266,6 @@ and set <span class="math inline">\(i=j=1\)</span>, <span class="math inline">\(
 </ol>
 </div>
 <p>⬇︎ In case you were wondering, the text below belongs to footnotes from somewhere high above.⬇︎</p>
-
 
 </div>
 </div>
