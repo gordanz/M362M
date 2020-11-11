@@ -188,7 +188,38 @@ plotpng(m,"professor_chain.png")
 # plotpng(m, height = 800, "cl-stat-11_chain.png")
 # 
 #   
-
+#
 # Professor
-m = professor() %>% set_absorbing_state_color
-plotpng(m,"professor_chain.png", vertex.label.cex = 3)
+# m = professor() %>% set_absorbing_state_color
+# plotpng(m,"professor_chain.png", vertex.label.cex = 3)
+
+# Wonder Woman
+m = markov_chain(c("000","001","010","100","011", "101", "110", "111")) %>% 
+  add_edge("000","001", prob=1/3) %>% 
+  add_edge("000","010", prob=1/3) %>% 
+  add_edge("000","100", prob=1/3) %>% 
+  add_edge("001","000", prob=1/3) %>% 
+  add_edge("001","011", prob=1/3) %>% 
+  add_edge("001","101", prob=1/3) %>% 
+  add_edge("010","011", prob=1/3) %>% 
+  add_edge("010","000", prob=1/3) %>% 
+  add_edge("010","110", prob=1/3) %>% 
+  add_edge("100","101", prob=1/3) %>% 
+  add_edge("100","110", prob=1/3) %>% 
+  add_edge("100","000", prob=1/3) %>% 
+  add_edge("011","010", prob=1/3) %>% 
+  add_edge("011","001", prob=1/3) %>% 
+  add_edge("011","111", prob=1/3) %>% 
+  add_edge("101","100", prob=1/3) %>% 
+  add_edge("101","111", prob=1/3) %>% 
+  add_edge("101","001", prob=1/3) %>% 
+  add_edge("110","111", prob=1/3) %>% 
+  add_edge("110","100", prob=1/3) %>% 
+  add_edge("110","010", prob=1/3) %>% 
+  add_edge("111","111", prob=1) %>% 
+  set_auto_layout %>% 
+  set_auto_edge_colors %>% 
+  curve_overlapping_edges(0.3)
+s = P_dput(m)
+plotpng(m,"wonder_woman_chain.png")
+
