@@ -32,7 +32,6 @@
   
 <link rel="prev" href="simulation-of-random-variables-and-monte-carlo.html"/>
 <link rel="next" href="more-about-random-walks.html"/>
-<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +49,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
@@ -59,17 +59,18 @@
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -89,7 +90,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {  background-color: #f8f8f8; }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -138,16 +139,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> An intro to R and RStudio</a>
-<ul>
-<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#setting-up-an-r-environment-on-your-computer"><i class="fa fa-check"></i><b>1.1</b> Setting up an R environment on your computer</a>
-<ul>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> An intro to R and RStudio</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#setting-up-an-r-environment-on-your-computer"><i class="fa fa-check"></i><b>1.1</b> Setting up an R environment on your computer</a><ul>
 <li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#installing-r"><i class="fa fa-check"></i><b>1.1.1</b> Installing R</a></li>
 <li class="chapter" data-level="1.1.2" data-path="intro.html"><a href="intro.html#installing-rstudio"><i class="fa fa-check"></i><b>1.1.2</b> Installing RStudio</a></li>
 <li class="chapter" data-level="1.1.3" data-path="intro.html"><a href="intro.html#installing-basic-packages"><i class="fa fa-check"></i><b>1.1.3</b> Installing basic packages</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#learning-the-basics-of-r"><i class="fa fa-check"></i><b>1.2</b> Learning the basics of R</a>
-<ul>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#learning-the-basics-of-r"><i class="fa fa-check"></i><b>1.2</b> Learning the basics of R</a><ul>
 <li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#the-console-scripts-and-r-notebooks"><i class="fa fa-check"></i><b>1.2.1</b> The console, Scripts and R Notebooks</a></li>
 <li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#asking-for-help"><i class="fa fa-check"></i><b>1.2.2</b> Asking for help</a></li>
 <li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#vectors"><i class="fa fa-check"></i><b>1.2.3</b> Vectors</a></li>
@@ -157,21 +155,18 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#problems"><i class="fa fa-check"></i><b>1.3</b> Problems</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html"><i class="fa fa-check"></i><b>2</b> Simulation of Random Variables and Monte Carlo</a>
-<ul>
+<li class="chapter" data-level="2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html"><i class="fa fa-check"></i><b>2</b> Simulation of Random Variables and Monte Carlo</a><ul>
 <li class="chapter" data-level="2.1" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#simulation-of-some-common-probability-distributions"><i class="fa fa-check"></i><b>2.1</b> Simulation of some common probability distributions</a></li>
 <li class="chapter" data-level="2.2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#multivariate-distributions"><i class="fa fa-check"></i><b>2.2</b> Multivariate Distributions</a></li>
 <li class="chapter" data-level="2.3" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#monte-carlo"><i class="fa fa-check"></i><b>2.3</b> Monte Carlo</a></li>
 <li class="chapter" data-level="2.4" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#conditional-distributions"><i class="fa fa-check"></i><b>2.4</b> Conditional distributions</a></li>
 <li class="chapter" data-level="2.5" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#additional-problems-for-chapter-2"><i class="fa fa-check"></i><b>2.5</b> Additional Problems for Chapter 2</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="random-walks.html"><a href="random-walks.html"><i class="fa fa-check"></i><b>3</b> Random Walks</a>
-<ul>
+<li class="chapter" data-level="3" data-path="random-walks.html"><a href="random-walks.html"><i class="fa fa-check"></i><b>3</b> Random Walks</a><ul>
 <li class="chapter" data-level="3.1" data-path="random-walks.html"><a href="random-walks.html#what-are-stochastic-processes"><i class="fa fa-check"></i><b>3.1</b> What are stochastic processes?</a></li>
 <li class="chapter" data-level="3.2" data-path="random-walks.html"><a href="random-walks.html#the-simple-symmetric-random-walk"><i class="fa fa-check"></i><b>3.2</b> The Simple Symmetric Random Walk</a></li>
 <li class="chapter" data-level="3.3" data-path="random-walks.html"><a href="random-walks.html#how-to-simulate-random-walks"><i class="fa fa-check"></i><b>3.3</b> How to simulate random walks</a></li>
-<li class="chapter" data-level="3.4" data-path="random-walks.html"><a href="random-walks.html#two-ways-of-looking-at-a-stochastic-proceses"><i class="fa fa-check"></i><b>3.4</b> Two ways of looking at a stochastic proceses</a>
-<ul>
+<li class="chapter" data-level="3.4" data-path="random-walks.html"><a href="random-walks.html#two-ways-of-looking-at-a-stochastic-proceses"><i class="fa fa-check"></i><b>3.4</b> Two ways of looking at a stochastic proceses</a><ul>
 <li class="chapter" data-level="3.4.1" data-path="random-walks.html"><a href="random-walks.html#column-wise-distributionally"><i class="fa fa-check"></i><b>3.4.1</b> Column-wise (distributionally)</a></li>
 <li class="chapter" data-level="3.4.2" data-path="random-walks.html"><a href="random-walks.html#row-wise-trajectorially-or-path-wise"><i class="fa fa-check"></i><b>3.4.2</b> Row-wise (trajectorially or path-wise)</a></li>
 </ul></li>
@@ -180,18 +175,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.7" data-path="random-walks.html"><a href="random-walks.html#biased-random-walks"><i class="fa fa-check"></i><b>3.7</b> Biased random walks</a></li>
 <li class="chapter" data-level="3.8" data-path="random-walks.html"><a href="random-walks.html#additional-problems-for-chapter-3"><i class="fa fa-check"></i><b>3.8</b> Additional problems for Chapter 3</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html"><i class="fa fa-check"></i><b>4</b> More about Random Walks</a>
-<ul>
+<li class="chapter" data-level="4" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html"><i class="fa fa-check"></i><b>4</b> More about Random Walks</a><ul>
 <li class="chapter" data-level="4.1" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html#the-reflection-principle"><i class="fa fa-check"></i><b>4.1</b> The reflection principle</a></li>
 <li class="chapter" data-level="4.2" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html#stopping-times"><i class="fa fa-check"></i><b>4.2</b> Stopping times</a></li>
 <li class="chapter" data-level="4.3" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html#walds-identity-and-gamblers-ruin"><i class="fa fa-check"></i><b>4.3</b> Wald’s identity and Gambler’s ruin</a></li>
 <li class="chapter" data-level="4.4" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html#additional-problems-for-chapter-4"><i class="fa fa-check"></i><b>4.4</b> Additional problems for Chapter 4</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="markov-chains.html"><a href="markov-chains.html"><i class="fa fa-check"></i><b>5</b> Markov Chains</a>
-<ul>
+<li class="chapter" data-level="5" data-path="markov-chains.html"><a href="markov-chains.html"><i class="fa fa-check"></i><b>5</b> Markov Chains</a><ul>
 <li class="chapter" data-level="5.1" data-path="markov-chains.html"><a href="markov-chains.html#the-markov-property"><i class="fa fa-check"></i><b>5.1</b> The Markov property</a></li>
-<li class="chapter" data-level="5.2" data-path="markov-chains.html"><a href="markov-chains.html#first-examples"><i class="fa fa-check"></i><b>5.2</b> First Examples</a>
-<ul>
+<li class="chapter" data-level="5.2" data-path="markov-chains.html"><a href="markov-chains.html#first-examples"><i class="fa fa-check"></i><b>5.2</b> First Examples</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="random-walks.html"><a href="random-walks.html#random-walks"><i class="fa fa-check"></i><b>5.2.1</b> Random walks</a></li>
 <li class="chapter" data-level="5.2.2" data-path="markov-chains.html"><a href="markov-chains.html#gambler"><i class="fa fa-check"></i><b>5.2.2</b> Gambler’s ruin</a></li>
 <li class="chapter" data-level="5.2.3" data-path="markov-chains.html"><a href="markov-chains.html#regime-switching"><i class="fa fa-check"></i><b>5.2.3</b> Regime Switching</a></li>
@@ -205,23 +197,27 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4" data-path="markov-chains.html"><a href="markov-chains.html#mc-sim"><i class="fa fa-check"></i><b>5.4</b> How to simulate Markov chains</a></li>
 <li class="chapter" data-level="5.5" data-path="markov-chains.html"><a href="markov-chains.html#additional-problems-for-chapter-5"><i class="fa fa-check"></i><b>5.5</b> Additional problems for Chapter 5</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="classification-of-states.html"><a href="classification-of-states.html"><i class="fa fa-check"></i><b>6</b> Classification of States</a>
-<ul>
+<li class="chapter" data-level="6" data-path="classification-of-states.html"><a href="classification-of-states.html"><i class="fa fa-check"></i><b>6</b> Classification of States</a><ul>
 <li class="chapter" data-level="6.1" data-path="classification-of-states.html"><a href="classification-of-states.html#the-communication-relation"><i class="fa fa-check"></i><b>6.1</b> The Communication Relation</a></li>
 <li class="chapter" data-level="6.2" data-path="classification-of-states.html"><a href="classification-of-states.html#classes"><i class="fa fa-check"></i><b>6.2</b> Classes</a></li>
-<li class="chapter" data-level="6.3" data-path="classification-of-states.html"><a href="classification-of-states.html#transience-and-recurrence"><i class="fa fa-check"></i><b>6.3</b> Transience and recurrence</a>
-<ul>
+<li class="chapter" data-level="6.3" data-path="classification-of-states.html"><a href="classification-of-states.html#transience-and-recurrence"><i class="fa fa-check"></i><b>6.3</b> Transience and recurrence</a><ul>
 <li class="chapter" data-level="6.3.1" data-path="classification-of-states.html"><a href="classification-of-states.html#the-return-theorem"><i class="fa fa-check"></i><b>6.3.1</b> The Return Theorem</a></li>
 <li class="chapter" data-level="6.3.2" data-path="classification-of-states.html"><a href="classification-of-states.html#a-recurrence-criterion"><i class="fa fa-check"></i><b>6.3.2</b> A recurrence criterion</a></li>
 <li class="chapter" data-level="6.3.3" data-path="classification-of-states.html"><a href="classification-of-states.html#polyas-theorem"><i class="fa fa-check"></i><b>6.3.3</b> Polya’s theorem</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="classification-of-states.html"><a href="classification-of-states.html#class-properties"><i class="fa fa-check"></i><b>6.4</b> Class properties</a></li>
-<li class="chapter" data-level="6.5" data-path="classification-of-states.html"><a href="classification-of-states.html#a-few-examples"><i class="fa fa-check"></i><b>6.5</b> A few Examples</a></li>
+<li class="chapter" data-level="6.4" data-path="classification-of-states.html"><a href="classification-of-states.html#class-properties"><i class="fa fa-check"></i><b>6.4</b> Class properties</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="classification-of-states.html"><a href="classification-of-states.html#the-canonical-decomposition"><i class="fa fa-check"></i><b>6.4.1</b> The Canonical Decomposition</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="classification-of-states.html"><a href="classification-of-states.html#a-few-examples"><i class="fa fa-check"></i><b>6.5</b> A few examples</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="random-walks.html"><a href="random-walks.html#random-walks"><i class="fa fa-check"></i><b>6.5.1</b> Random walks</a></li>
+<li class="chapter" data-level="6.5.2" data-path="classification-of-states.html"><a href="classification-of-states.html#gamblers-ruin"><i class="fa fa-check"></i><b>6.5.2</b> Gambler’s ruin</a></li>
+<li class="chapter" data-level="6.5.3" data-path="markov-chains.html"><a href="markov-chains.html#deterministically-monotone-markov-chain"><i class="fa fa-check"></i><b>6.5.3</b> Deterministically monotone Markov chain</a></li>
+<li class="chapter" data-level="6.5.4" data-path="classification-of-states.html"><a href="classification-of-states.html#the-game-of-tennis"><i class="fa fa-check"></i><b>6.5.4</b> The game of tennis</a></li>
+</ul></li>
 <li class="chapter" data-level="6.6" data-path="classification-of-states.html"><a href="classification-of-states.html#additional-problems-for-chapter-6"><i class="fa fa-check"></i><b>6.6</b> Additional problems for Chapter 6</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>A</b> Probability Distributions</a>
-<ul>
+<li class="chapter" data-level="A" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>A</b> Probability Distributions</a><ul>
 <li class="chapter" data-level="A.1" data-path="dist.html"><a href="dist.html#discrete-distributions"><i class="fa fa-check"></i><b>A.1</b> Discrete distributions:</a></li>
 <li class="chapter" data-level="A.2" data-path="dist.html"><a href="dist.html#continuous-distributions"><i class="fa fa-check"></i><b>A.2</b> Continuous distributions:</a></li>
 </ul></li>
@@ -242,12 +238,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="random-walks" class="section level1" number="3">
+<div id="random-walks" class="section level1">
 <h1><span class="header-section-number">Chapter 3</span> Random Walks</h1>
 <div style="counter-reset: thechapter 3;">
 
 </div>
-<div id="what-are-stochastic-processes" class="section level2" number="3.1">
+<div id="what-are-stochastic-processes" class="section level2">
 <h2><span class="header-section-number">3.1</span> What are stochastic processes?</h2>
 <p>A <strong>stochastic process</strong> is a sequence - finite or infinite - of random
 variables. We usually write <span class="math inline">\(\{X_n\}_{n\in{\mathbb{N}}_0}\)</span> or <span class="math inline">\(\{X_n\}_{0\leq n \leq T}\)</span>,
@@ -265,7 +261,7 @@ sequence of numbers <span class="math display">\[X_0(\omega), X_1(\omega), \dots
 process as a random variable whose value is not a number, but sequence of
 numbers. This will become much clearer once we introduce enough examples.</p>
 </div>
-<div id="the-simple-symmetric-random-walk" class="section level2" number="3.2">
+<div id="the-simple-symmetric-random-walk" class="section level2">
 <h2><span class="header-section-number">3.2</span> The Simple Symmetric Random Walk</h2>
 <p>A stochastic process <span class="math inline">\(\{X\}_{n\in{\mathbb{N}}_0}\)</span> is said to be a
 <strong>simple symmetric random walk (SSRW)</strong> if</p>
@@ -315,7 +311,7 @@ of can be used as a step distribution of a random walk. Unfortunately, we will
 have very little to say about such, general, random walks in these notes.</p></li>
 </ul>
 </div>
-<div id="how-to-simulate-random-walks" class="section level2" number="3.3">
+<div id="how-to-simulate-random-walks" class="section level2">
 <h2><span class="header-section-number">3.3</span> How to simulate random walks</h2>
 <p>In addition to being quite simple conceptually, random walks are also easy
 to simulate. The fact that the steps <span class="math inline">\(\delta_n = X_n - X_{n-1}\)</span> are independent
@@ -346,30 +342,30 @@ and not row by row.</p></li>
 impossible to simulate a random walk on an infinite horizon (<span class="math inline">\(T=\infty\)</span>)
 so we must restrict to finite-horizon random walks<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>. The function <code>cumsum</code> which
 produces partial sums of its input comes in very handy.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="random-walks.html#cb125-1" aria-hidden="true"></a>single_trajectory =<span class="st"> </span><span class="cf">function</span>(T, <span class="dt">p =</span> <span class="fl">0.5</span>) {</span>
-<span id="cb125-2"><a href="random-walks.html#cb125-2" aria-hidden="true"></a>    delta =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">size =</span> T, <span class="dt">replace =</span> <span class="ot">TRUE</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>p, p))</span>
-<span id="cb125-3"><a href="random-walks.html#cb125-3" aria-hidden="true"></a>    x =<span class="st"> </span><span class="kw">cumsum</span>(delta)</span>
-<span id="cb125-4"><a href="random-walks.html#cb125-4" aria-hidden="true"></a>    <span class="kw">return</span>(x)</span>
-<span id="cb125-5"><a href="random-walks.html#cb125-5" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="random-walks.html#cb125-1"></a>single_trajectory =<span class="st"> </span><span class="cf">function</span>(T, <span class="dt">p =</span> <span class="fl">0.5</span>) {</span>
+<span id="cb125-2"><a href="random-walks.html#cb125-2"></a>    delta =<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">size =</span> T, <span class="dt">replace =</span> <span class="ot">TRUE</span>, <span class="dt">prob =</span> <span class="kw">c</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>p, p))</span>
+<span id="cb125-3"><a href="random-walks.html#cb125-3"></a>    x =<span class="st"> </span><span class="kw">cumsum</span>(delta)</span>
+<span id="cb125-4"><a href="random-walks.html#cb125-4"></a>    <span class="kw">return</span>(x)</span>
+<span id="cb125-5"><a href="random-walks.html#cb125-5"></a>}</span></code></pre></div>
 <p>Next, we run the same function <code>nsim</code> times and record the results. It is a
 lucky break that the default names given to columns are <code>X1</code>, <code>X2</code>, … so we
 don’t have to rename them. We do have to add the zero-th column <span class="math inline">\(X_0=0\)</span> because,
 formally speaking, the “random variable” <span class="math inline">\(X_0=0\)</span> is a part of the stochastic
 process. This needs to be done before other columns are added to maintain the
 proper order of columns, which is important when you want to plot trajectories.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="random-walks.html#cb126-1" aria-hidden="true"></a>simulate_walk =<span class="st"> </span><span class="cf">function</span>(nsim, T, <span class="dt">p =</span> <span class="fl">0.5</span>) {</span>
-<span id="cb126-2"><a href="random-walks.html#cb126-2" aria-hidden="true"></a>  <span class="kw">return</span>(</span>
-<span id="cb126-3"><a href="random-walks.html#cb126-3" aria-hidden="true"></a>    <span class="kw">data.frame</span>(</span>
-<span id="cb126-4"><a href="random-walks.html#cb126-4" aria-hidden="true"></a>      <span class="dt">X0 =</span> <span class="dv">0</span>,</span>
-<span id="cb126-5"><a href="random-walks.html#cb126-5" aria-hidden="true"></a>      <span class="kw">t</span>(<span class="kw">replicate</span>(nsim, <span class="kw">single_trajectory</span>(T, p)))</span>
-<span id="cb126-6"><a href="random-walks.html#cb126-6" aria-hidden="true"></a>    ))</span>
-<span id="cb126-7"><a href="random-walks.html#cb126-7" aria-hidden="true"></a>}</span>
-<span id="cb126-8"><a href="random-walks.html#cb126-8" aria-hidden="true"></a>walk =<span class="st"> </span><span class="kw">simulate_walk</span>(<span class="dt">nsim =</span> <span class="dv">10000</span>, <span class="dt">T =</span> <span class="dv">500</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="random-walks.html#cb126-1"></a>simulate_walk =<span class="st"> </span><span class="cf">function</span>(nsim, T, <span class="dt">p =</span> <span class="fl">0.5</span>) {</span>
+<span id="cb126-2"><a href="random-walks.html#cb126-2"></a>  <span class="kw">return</span>(</span>
+<span id="cb126-3"><a href="random-walks.html#cb126-3"></a>    <span class="kw">data.frame</span>(</span>
+<span id="cb126-4"><a href="random-walks.html#cb126-4"></a>      <span class="dt">X0 =</span> <span class="dv">0</span>,</span>
+<span id="cb126-5"><a href="random-walks.html#cb126-5"></a>      <span class="kw">t</span>(<span class="kw">replicate</span>(nsim, <span class="kw">single_trajectory</span>(T, p)))</span>
+<span id="cb126-6"><a href="random-walks.html#cb126-6"></a>    ))</span>
+<span id="cb126-7"><a href="random-walks.html#cb126-7"></a>}</span>
+<span id="cb126-8"><a href="random-walks.html#cb126-8"></a>walk =<span class="st"> </span><span class="kw">simulate_walk</span>(<span class="dt">nsim =</span> <span class="dv">10000</span>, <span class="dt">T =</span> <span class="dv">500</span>)</span></code></pre></div>
 </div>
-<div id="two-ways-of-looking-at-a-stochastic-proceses" class="section level2" number="3.4">
+<div id="two-ways-of-looking-at-a-stochastic-proceses" class="section level2">
 <h2><span class="header-section-number">3.4</span> Two ways of looking at a stochastic proceses</h2>
 <p>Now that we have the data frame <code>walk</code>, we can explore in at least two qualitatively different ways:</p>
-<div id="column-wise-distributionally" class="section level3" number="3.4.1">
+<div id="column-wise-distributionally" class="section level3">
 <h3><span class="header-section-number">3.4.1</span> Column-wise (distributionally)</h3>
 <p>Here we focus on individual random variables (column) or pairs, triplets, etc. of random variables and study their (joint) distributions. For example, we can plot histograms of the random variables <span class="math inline">\(X_5, X_8, X_{30}\)</span> or <span class="math inline">\(X_{500}\)</span>:</p>
 <center>
@@ -380,7 +376,7 @@ proper order of columns, which is important when you want to plot trajectories.<
 <img src="_main_files/figure-html/unnamed-chunk-145-1.png" width="672" style="display: block; margin: auto;" />
 </center>
 </div>
-<div id="row-wise-trajectorially-or-path-wise" class="section level3" number="3.4.2">
+<div id="row-wise-trajectorially-or-path-wise" class="section level3">
 <h3><span class="header-section-number">3.4.2</span> Row-wise (trajectorially or path-wise)</h3>
 <p>If we focus on what is going on in a given row of <code>walk</code>, we are going to see
 a different cross-section of our stochastic process. This way we are fixing the
@@ -397,7 +393,7 @@ sensory overload. Note that the trajectories below are jittered a bit. That mean
 </center>
 </div>
 </div>
-<div id="the-path-space" class="section level2" number="3.5">
+<div id="the-path-space" class="section level2">
 <h2><span class="header-section-number">3.5</span> The path space</h2>
 <p>The row-wise (or path-wise or trajectory-wise) view of the random walk described above illustrates a
 very important point: the random walk (and random processes in general) can be
@@ -430,20 +426,20 @@ implement our simulation procedure in R; let us write the function <code>single_
 approach and use it to simulate a few trajectories. We assume that a function <code>all_paths(T)</code> which returns
 a list of all possible paths with horizon <span class="math inline">\(T\)</span> has already been implemented (more info about a possible
 implementation in R is given in a problem below):</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="random-walks.html#cb127-1" aria-hidden="true"></a>T=<span class="dv">5</span></span>
-<span id="cb127-2"><a href="random-walks.html#cb127-2" aria-hidden="true"></a>Omega =<span class="st"> </span><span class="kw">all_paths</span>(T)</span>
-<span id="cb127-3"><a href="random-walks.html#cb127-3" aria-hidden="true"></a>single_trajectory =<span class="st"> </span><span class="cf">function</span>() {</span>
-<span id="cb127-4"><a href="random-walks.html#cb127-4" aria-hidden="true"></a>  <span class="kw">return</span>(<span class="kw">unlist</span>(<span class="kw">sample</span>(<span class="dt">size=</span><span class="dv">1</span>,Omega)))</span>
-<span id="cb127-5"><a href="random-walks.html#cb127-5" aria-hidden="true"></a>}</span>
-<span id="cb127-6"><a href="random-walks.html#cb127-6" aria-hidden="true"></a></span>
-<span id="cb127-7"><a href="random-walks.html#cb127-7" aria-hidden="true"></a>simulate_walk =<span class="st"> </span><span class="cf">function</span>(nsim, <span class="dt">p=</span><span class="fl">0.5</span>) {</span>
-<span id="cb127-8"><a href="random-walks.html#cb127-8" aria-hidden="true"></a>   <span class="kw">return</span>(<span class="kw">data.frame</span>(</span>
-<span id="cb127-9"><a href="random-walks.html#cb127-9" aria-hidden="true"></a>            <span class="dt">X0=</span><span class="dv">0</span>, </span>
-<span id="cb127-10"><a href="random-walks.html#cb127-10" aria-hidden="true"></a>            <span class="kw">t</span>(<span class="kw">replicate</span>(nsim, <span class="kw">single_trajectory</span>()))</span>
-<span id="cb127-11"><a href="random-walks.html#cb127-11" aria-hidden="true"></a>        ))</span>
-<span id="cb127-12"><a href="random-walks.html#cb127-12" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="random-walks.html#cb127-1"></a>T=<span class="dv">5</span></span>
+<span id="cb127-2"><a href="random-walks.html#cb127-2"></a>Omega =<span class="st"> </span><span class="kw">all_paths</span>(T)</span>
+<span id="cb127-3"><a href="random-walks.html#cb127-3"></a>single_trajectory =<span class="st"> </span><span class="cf">function</span>() {</span>
+<span id="cb127-4"><a href="random-walks.html#cb127-4"></a>  <span class="kw">return</span>(<span class="kw">unlist</span>(<span class="kw">sample</span>(<span class="dt">size=</span><span class="dv">1</span>,Omega)))</span>
+<span id="cb127-5"><a href="random-walks.html#cb127-5"></a>}</span>
+<span id="cb127-6"><a href="random-walks.html#cb127-6"></a></span>
+<span id="cb127-7"><a href="random-walks.html#cb127-7"></a>simulate_walk =<span class="st"> </span><span class="cf">function</span>(nsim, <span class="dt">p=</span><span class="fl">0.5</span>) {</span>
+<span id="cb127-8"><a href="random-walks.html#cb127-8"></a>   <span class="kw">return</span>(<span class="kw">data.frame</span>(</span>
+<span id="cb127-9"><a href="random-walks.html#cb127-9"></a>            <span class="dt">X0=</span><span class="dv">0</span>, </span>
+<span id="cb127-10"><a href="random-walks.html#cb127-10"></a>            <span class="kw">t</span>(<span class="kw">replicate</span>(nsim, <span class="kw">single_trajectory</span>()))</span>
+<span id="cb127-11"><a href="random-walks.html#cb127-11"></a>        ))</span>
+<span id="cb127-12"><a href="random-walks.html#cb127-12"></a>}</span></code></pre></div>
 </div>
-<div id="the-distribution-of-x_n" class="section level2" number="3.6">
+<div id="the-distribution-of-x_n" class="section level2">
 <h2><span class="header-section-number">3.6</span> The distribution of <span class="math inline">\(X_n\)</span></h2>
 <p>Building a path space is not simply an exercise in abstraction. Here is how we can use is to
 understand the distribution of the position of the random walk:</p>
@@ -531,7 +527,7 @@ the binomial distribution with parameters <span class="math inline">\(n\)</span>
 </blockquote>
 <p>Can you use that fact to rederive the distribution of <span class="math inline">\(X_n\)</span>?</p>
 </div>
-<div id="biased-random-walks" class="section level2" number="3.7">
+<div id="biased-random-walks" class="section level2">
 <h2><span class="header-section-number">3.7</span> Biased random walks</h2>
 <p>If the steps of the random walk preferred one direction to the other,
 the definition would need to be tweaked a little bit and the word “symmetric” in the name gets replaced by “biased” (or “asymmetric”):</p>
@@ -578,7 +574,7 @@ The lighter-colored paths are less likely to happen then the darker-colored path
 <p><img src="_main_files/figure-html/unnamed-chunk-150-1.png" width="672" style="display: block; margin: auto;" /></p>
 </center>
 </div>
-<div id="additional-problems-for-chapter-3" class="section level2" number="3.8">
+<div id="additional-problems-for-chapter-3" class="section level2">
 <h2><span class="header-section-number">3.8</span> Additional problems for Chapter 3</h2>
 <div class="problem">
 <p>Let <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> be a simple symmetric random walk. Which of the following
@@ -618,6 +614,7 @@ probability <span class="math inline">\(1-p\)</span> of an up-step, and not <spa
 </ol>
 </div>
 <div class="solution">
+
 <p><part> 1. </part></p>
 <p>The possible paths when the time horizon is
 <span class="math inline">\(T=2\)</span> are <span class="math display">\[(0,1,2), (0,1,0), (0,-1,-2) \text{ and } (0,-1,0)\]</span>
@@ -723,25 +720,25 @@ the positions of its up-steps, we need to loop through all numbers <span class="
 to <span class="math inline">\(T\)</span> and then list all subsets of the size <span class="math inline">\(i\)</span>. The next step is to turn a set
 of positions to a path of a random walk. This can be done in many ways; one is
 implemented implemented in <code>choice_to_path</code> using vector indexing.</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="random-walks.html#cb128-1" aria-hidden="true"></a>choice_to_path =<span class="st"> </span><span class="cf">function</span>(comb, T) {</span>
-<span id="cb128-2"><a href="random-walks.html#cb128-2" aria-hidden="true"></a>    increments =<span class="st"> </span><span class="kw">rep</span>(<span class="op">-</span><span class="dv">1</span>, T)</span>
-<span id="cb128-3"><a href="random-walks.html#cb128-3" aria-hidden="true"></a>    increments[comb] =<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb128-4"><a href="random-walks.html#cb128-4" aria-hidden="true"></a>    path =<span class="st"> </span><span class="kw">cumsum</span>(increments)</span>
-<span id="cb128-5"><a href="random-walks.html#cb128-5" aria-hidden="true"></a>    <span class="kw">return</span>(path)</span>
-<span id="cb128-6"><a href="random-walks.html#cb128-6" aria-hidden="true"></a>}</span>
-<span id="cb128-7"><a href="random-walks.html#cb128-7" aria-hidden="true"></a></span>
-<span id="cb128-8"><a href="random-walks.html#cb128-8" aria-hidden="true"></a>all_paths =<span class="st"> </span><span class="cf">function</span>(T) {</span>
-<span id="cb128-9"><a href="random-walks.html#cb128-9" aria-hidden="true"></a>    Omega =<span class="st"> </span><span class="kw">list</span>(<span class="dv">2</span><span class="op">^</span>T)</span>
-<span id="cb128-10"><a href="random-walks.html#cb128-10" aria-hidden="true"></a>    index =<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb128-11"><a href="random-walks.html#cb128-11" aria-hidden="true"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">0</span><span class="op">:</span>T) {</span>
-<span id="cb128-12"><a href="random-walks.html#cb128-12" aria-hidden="true"></a>        choices =<span class="st"> </span><span class="kw">combn</span>(T, i, <span class="dt">simplify =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb128-13"><a href="random-walks.html#cb128-13" aria-hidden="true"></a>        <span class="cf">for</span> (choice <span class="cf">in</span> choices) {</span>
-<span id="cb128-14"><a href="random-walks.html#cb128-14" aria-hidden="true"></a>            Omega[[index]] =<span class="st"> </span><span class="kw">choice_to_path</span>(choice, T)</span>
-<span id="cb128-15"><a href="random-walks.html#cb128-15" aria-hidden="true"></a>            index =<span class="st"> </span>index <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb128-16"><a href="random-walks.html#cb128-16" aria-hidden="true"></a>        }</span>
-<span id="cb128-17"><a href="random-walks.html#cb128-17" aria-hidden="true"></a>    }</span>
-<span id="cb128-18"><a href="random-walks.html#cb128-18" aria-hidden="true"></a>    <span class="kw">return</span>(Omega)</span>
-<span id="cb128-19"><a href="random-walks.html#cb128-19" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="random-walks.html#cb128-1"></a>choice_to_path =<span class="st"> </span><span class="cf">function</span>(comb, T) {</span>
+<span id="cb128-2"><a href="random-walks.html#cb128-2"></a>    increments =<span class="st"> </span><span class="kw">rep</span>(<span class="op">-</span><span class="dv">1</span>, T)</span>
+<span id="cb128-3"><a href="random-walks.html#cb128-3"></a>    increments[comb] =<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb128-4"><a href="random-walks.html#cb128-4"></a>    path =<span class="st"> </span><span class="kw">cumsum</span>(increments)</span>
+<span id="cb128-5"><a href="random-walks.html#cb128-5"></a>    <span class="kw">return</span>(path)</span>
+<span id="cb128-6"><a href="random-walks.html#cb128-6"></a>}</span>
+<span id="cb128-7"><a href="random-walks.html#cb128-7"></a></span>
+<span id="cb128-8"><a href="random-walks.html#cb128-8"></a>all_paths =<span class="st"> </span><span class="cf">function</span>(T) {</span>
+<span id="cb128-9"><a href="random-walks.html#cb128-9"></a>    Omega =<span class="st"> </span><span class="kw">list</span>(<span class="dv">2</span><span class="op">^</span>T)</span>
+<span id="cb128-10"><a href="random-walks.html#cb128-10"></a>    index =<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb128-11"><a href="random-walks.html#cb128-11"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">0</span><span class="op">:</span>T) {</span>
+<span id="cb128-12"><a href="random-walks.html#cb128-12"></a>        choices =<span class="st"> </span><span class="kw">combn</span>(T, i, <span class="dt">simplify =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb128-13"><a href="random-walks.html#cb128-13"></a>        <span class="cf">for</span> (choice <span class="cf">in</span> choices) {</span>
+<span id="cb128-14"><a href="random-walks.html#cb128-14"></a>            Omega[[index]] =<span class="st"> </span><span class="kw">choice_to_path</span>(choice, T)</span>
+<span id="cb128-15"><a href="random-walks.html#cb128-15"></a>            index =<span class="st"> </span>index <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb128-16"><a href="random-walks.html#cb128-16"></a>        }</span>
+<span id="cb128-17"><a href="random-walks.html#cb128-17"></a>    }</span>
+<span id="cb128-18"><a href="random-walks.html#cb128-18"></a>    <span class="kw">return</span>(Omega)</span>
+<span id="cb128-19"><a href="random-walks.html#cb128-19"></a>}</span></code></pre></div>
 </div>
 <!--
   var_cov_corr
@@ -774,7 +771,7 @@ When we let <span class="math inline">\(n\to\infty\)</span>, we get <span class=
 <p>Let <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> be a simple random walk with <span class="math inline">\({\mathbb{P}}[X_1=1]=p\in (0,1)\)</span>, and
 let <span class="math inline">\(A_n\)</span> be the (signed) area under its graph (in the picture below, <span class="math inline">\(A_n\)</span> is
 the area of the blue part minus the area of the orange part).</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-309-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-311-1.png" width="90%" style="display: block; margin: auto;" /></p>
 <ol style="list-style-type: decimal">
 <li><p>Find a formula for <span class="math inline">\(A_n\)</span> in terms of <span class="math inline">\(X_1,\dots, X_n\)</span>.</p></li>
 <li><p>Compute <span class="math inline">\({\mathbb{E}}[A_n]\)</span> and <span class="math inline">\(\operatorname{Var}[A_n]\)</span>, for <span class="math inline">\(n\in{\mathbb{N}}\)</span>. (You will find the following
@@ -809,6 +806,12 @@ A_n &amp;= (\delta_1) + (\delta_1+\delta_2) + \dots + (\delta_1+\dots + \delta_{
 \end{align}\]</span></p>
 </div>
 <p>⬇︎ In case you were wondering, the text below belongs to footnotes from somewhere high above.⬇︎</p>
+
+
+
+
+
+
 
 </div>
 </div>

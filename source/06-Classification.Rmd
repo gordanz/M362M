@@ -139,15 +139,8 @@ Find return sets and periods of each state $i$ of each chain.
 <div class="solution">
 For the first chain, with transition graph
 
-```{r echo=F, dev.args = list(bg = 'transparent'), out.extra='style="margin-top:-10%; margin-bottom: -10%"'}
-m = markov_chain(3) %>% 
-  add_edge(1,2) %>% 
-  add_edge(2,3) %>% 
-  add_edge(3,1) %>% 
-  set_auto_layout %>% 
-  stretch(0.8)
-plot(m)
-
+```{r echo=FALSE, fig.align="center"}
+knitr::include_graphics('pics/period-example-1_chain.png')
 ```
 
 the return set for each state $i\in\set{1,2,3}$ is
@@ -156,17 +149,8 @@ $i\in\set{1,2,3}$.
 
 Even though the transition graph of the second chain looks very similar to the first one
 
-```{r echo=F, dev.args = list(bg = 'transparent'), out.extra='style="margin-top:-10%; margin-bottom: -10%"'}
-m = markov_chain(3) %>% 
-  add_edge(1,2) %>% 
-  add_edge(2,3) %>% 
-  add_edge(3,1, prob=1/2) %>% 
-  add_edge(3,3, prob=1/2) %>% 
-  set_auto_layout %>% 
-  set_auto_edge_colors %>% 
-  stretch(0.8)
-plot(m)
-
+```{r echo=FALSE, fig.align="center"}
+knitr::include_graphics('pics/period-example-2_chain.png')
 ```
 
 
@@ -875,10 +859,10 @@ In all examples below we assume that $0 < p < 1$.
 ```{r child="problems/03_Classification_of_States/cl-stat-09_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/03_Classification_of_States/cl-stat-09_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/03_Classification_of_States/cl-stat-09_sol.Rmd"}
+```
+</div>
 
 
 
@@ -890,10 +874,10 @@ In all examples below we assume that $0 < p < 1$.
 ```{r child="problems/03_Classification_of_States/cl-stat-02_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/03_Classification_of_States/cl-stat-02_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/03_Classification_of_States/cl-stat-02_sol.Rmd"}
+```
+</div>
 
 
 <!--
@@ -975,10 +959,10 @@ In all examples below we assume that $0 < p < 1$.
 ```{r child="problems/03_Classification_of_States/cl-stat-11_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/03_Classification_of_States/cl-stat-11_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/03_Classification_of_States/cl-stat-11_sol.Rmd"}
+```
+</div>
 
 
 <!--

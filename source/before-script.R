@@ -3,7 +3,7 @@ rm(list = ls(all = TRUE))
 library(knitr)
 library(tidyverse)
 library(kableExtra)
-library(chapman)
+
 
 knitr::opts_chunk$set(
   collapse = TRUE,

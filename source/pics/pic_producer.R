@@ -6,7 +6,7 @@ plotpng <- function(x, filename, height=1600, ...) {
   output_dir = "~/.ms/pics/"
   x = x %>% 
     set_graphics_parameters(
-                            vertex.label.cex = 4,
+                            vertex.label.cex = 5,
                             edge.arrow.size = 2,
                             margin=c(0,0,0,0),
                             edge.width = 5)
@@ -23,23 +23,23 @@ plotpng <- function(x, filename, height=1600, ...) {
 # # Random Walk
 # m = random_walk(T=3,with_dots=TRUE, p=0.4)
 # plotpng(m,"random_walk_chain.png", height = 400, xlim = c(-2.3,2))
-
+# 
 # # Gambler's ruin
 # m = gamblers_ruin()
 # plotpng(m,"gamblers_ruin_chain.png", height = 400, xlim = c(-2,2))
-
-# Regime switching 
+# 
+# # Regime switching
 # m = regime_switching()
 # plotpng(m,"regime_switching_chain.png", height = 400, xlim = c(-2,2))
-
-# # Deterministically monotone 
+# 
+# # Deterministically monotone
 # m = deterministically_monotone()
 # plotpng(m,"deterministically_monotone_chain.png", height=400)
-
+# 
 # # Tennis
 # m = tennis()
-# plotpng(m, "tennis_chain.png", vertex.size = 40)
-
+# plotpng(m, "tennis_chain.png", vertex.size = 45, veretx.label.cex=3.5)
+# 
 # # Manual-multi-step
 # from = c(1,1,2,3,4,5)
 # to =   c(1,2,3,4,5,1)
@@ -52,7 +52,7 @@ plotpng <- function(x, filename, height=1600, ...) {
 # plotpng(m,"manual-multi-step_chain.png")
 # 
 # # Deck-2-2
-# m = deck22() 
+# m = deck22()
 # plotpng(m,"deck-2-2_chain.png")
 # 
 # 
@@ -61,11 +61,11 @@ plotpng <- function(x, filename, height=1600, ...) {
 #   ~from, ~to, ~prob,
 #   "1", "2", 1/2,
 #   "1", "3", 1/2,
-#   "2", "1", 1/3, 
-#   "2", "4", 1/3, 
+#   "2", "1", 1/3,
+#   "2", "4", 1/3,
 #   "2", "F", 1/3,
 #   "3", "1", 1/3,
-#   "3", "4", 1/3, 
+#   "3", "4", 1/3,
 #   "3", "S", 1/3,
 #   "4", "2", 1/3,
 #   "4", "3", 1/3,
@@ -74,26 +74,121 @@ plotpng <- function(x, filename, height=1600, ...) {
 #   "5", "F", 1/2,
 #   "F", "F", 1,
 #   "S", "S", 1
-# ) %>% 
-#   markov_chain %>% 
-#   # set_state("1", x=0, y=2) %>% 
-#   # set_state("2", x=1, y=2) %>% 
-#   # set_state("F", x=2, y=2) %>% 
-#   # set_state("3", x=0, y=1) %>% 
-#   # set_state("4", x=1, y=1) %>% 
-#   # set_state("5", x=2, y=1) %>% 
-#   # set_state("S", x=0, y=0) %>% 
-#   set_auto_layout %>% 
-#   set_auto_edge_colors %>% 
-#   curve_overlapping_edges(curve = 0.3) %>% 
-#   set_edge("S","S", loop_angle = -pi/2) %>% 
-#   stretch(2) %>% 
-#   rotate(pca = T) %>% 
+# ) %>%
+#   markov_chain %>%
+#   # set_state("1", x=0, y=2) %>%
+#   # set_state("2", x=1, y=2) %>%
+#   # set_state("F", x=2, y=2) %>%
+#   # set_state("3", x=0, y=1) %>%
+#   # set_state("4", x=1, y=1) %>%
+#   # set_state("5", x=2, y=1) %>%
+#   # set_state("S", x=0, y=0) %>%
+#   set_auto_layout %>%
+#   set_auto_edge_colors %>%
+#   curve_overlapping_edges(curve = 0.3) %>%
+#   set_edge("S","S", loop_angle = -pi/2) %>%
+#   stretch(2) %>%
+#   rotate(pca = T) %>%
 #   rotate( pi )
 # 
 # plotpng(m, "basil_chain.png")
 # 
+# 
+# 
+# Professor chain
+m = professor()
+plotpng(m,"professor_chain.png")
 
 
 
+# # Chap 6. Period example 1
+# m = markov_chain(3) %>%
+#   add_edge(1,2) %>%
+#   add_edge(2,3) %>%
+#   add_edge(3,1) %>%
+#   set_auto_layout %>%
+#   stretch(0.5)
+# plotpng(m,"period-example-1_chain.png", height = 1000)
+# 
+# # Chap 6. Period example 2
+# m = markov_chain(3) %>%
+#   add_edge(1,2) %>%
+#   add_edge(2,3) %>%
+#   add_edge(3,1, prob=1/2) %>%
+#   add_edge(3,3, prob=1/2) %>%
+#   set_auto_layout %>%
+#   set_auto_edge_colors %>%
+#   stretch(0.5)
+# plotpng(m, "period-example-2_chain.png", height=1000)
+# 
+# # cl-stat-02
+# m = tribble(
+#   ~from, ~to, ~prob,
+#   1, 1, 1/2,
+#   1, 2, 1/2,
+#   2, 3, 1/2,
+#   2, 7, 1/2,
+#   3, 4, 1,
+#   4, 3, 1/2,
+#   4, 5, 1/2,
+#   5, 6, 1,
+#   6, 6, 1/2,
+#   6, 3, 1/2,
+#   7, 8, 1,
+#   8, 7, 3/4,
+#   8, 8, 1/4
+# ) %>%
+#   markov_chain %>%
+#   set_auto_layout %>%
+#   set_auto_edge_colors %>%
+#   curve_overlapping_edges %>%
+#   rotate(pca=T) %>%
+#   stretch(1.6) %>%
+#   set_edge(8,8,loop_angle=pi/2)
+# m$layout[1,]=c(-0.5,0.5)
+# plotpng(m, "cl-stat-02_chain.png", height = 1000)
+# 
+# # cl-stat-10
+# m = tribble(
+#   ~from, ~to, ~prob,
+#   0, 1, 1/2,
+#   0, 6, 1/2,
+#   1, 2, 1,
+#   2, 3, 1,
+#   3, 4, 1,
+#   4, 5, 1,
+#   5, 1, 1,
+#   6, 6, 1
+# ) %>%
+#   markov_chain %>%
+#   set_auto_layout %>%
+#   set_auto_edge_colors %>%
+#   curve_overlapping_edges %>%
+#   set_edge("6","6",loop_angle=-pi/2) %>%
+#   stretch(ax = 2, ay =1) %>%
+#   stretch(0.5)
+# 
+# plotpng(m, "cl-stat-10_chain.png")
+# 
+# # cl-stat-11
+# m = markov_chain(3) %>% 
+#   add_edge(1,2) %>% 
+#   add_edge(2,1, prob = 1/4) %>% 
+#   add_edge(2,2, prob = 1/2) %>% 
+#   add_edge(2,3, prob = 1/4) %>% 
+#   add_edge(3,3) %>% 
+#   set_auto_layout %>% 
+#   set_auto_edge_colors %>% 
+#   set_edge(2,2, loop_angle = pi/2) %>% 
+#   set_edge(3,3, loop_angle = pi/2) %>% 
+#   curve_overlapping_edges %>% 
+#   rotate(pca=T) %>% 
+#   stretch(2)
+# 
+# plotpng(m, height = 800, "cl-stat-11_chain.png")
+# 
+#   
 
+# Professor
+m = professor() %>% set_absorbing_state_color
+plotpng(m,"professor_chain.png", vertex.label.cex = 3)
