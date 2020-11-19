@@ -1,6 +1,8 @@
 \usepackage{mydefs_long}
 \newcommand{\PP}{{\mathbb{P}}}
 \newcommand{\N}{{\mathbb{N}}}
+\newcommand{\Nz}{{\mathbb{N}_0}}
+
 \newcommand{\bZ}{{\mathbb{Z}}}
 \newcommand{\R}{{\mathbb{R}}}
 
@@ -51,4 +53,6 @@
 \newcommand{\Vn}{V^{(n)}}
 
 \newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\newcommand{\pmat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+
           

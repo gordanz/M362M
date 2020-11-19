@@ -810,10 +810,12 @@ Once the row corresponding to the state `s` is identified, we use its elements a
 ```
 </div>
 
+
 <!--
   basil
   ------------------------------------------------
 -->
+<div id="basil"> 
 <div class="problem">
 ```{r child="problems/02_Basic_Chains/basil_prb.Rmd"}
 ```
@@ -822,19 +824,22 @@ Once the row corresponding to the state `s` is identified, we use its elements a
 ```{r child="problems/02_Basic_Chains/basil_sol.Rmd"}
 ```
 </div>
+</div>
 
 
 <!--
   professor
   ------------------------------------------------
 -->
-<div class="problem">
+<div id="professor"> 
+   <div class="problem">
 ```{r child="problems/02_Basic_Chains/professor_prb.Rmd"}
 ```
 </div>
 <div class="solution">
 ```{r child="problems/02_Basic_Chains/professor_sol.Rmd"}
 ```
+</div>
 </div>
 
 

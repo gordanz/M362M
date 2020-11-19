@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Problems | 07-Absorption-and-Reward.split</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Problems | 07-Absorption-and-Reward.split" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Problems | 07-Absorption-and-Reward.split" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="absoprtion-and-reward.html"/>
+<link rel="next" href="dist.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">M362M Lecture notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="absoprtion-and-reward.html"><a href="absoprtion-and-reward.html"><i class="fa fa-check"></i><b>1</b> Absoprtion and Reward</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="absoprtion-and-reward.html"><a href="absoprtion-and-reward.html#absorption"><i class="fa fa-check"></i><b>1.1</b> Absorption</a></li>
+<li class="chapter" data-level="1.2" data-path="absoprtion-and-reward.html"><a href="absoprtion-and-reward.html#expected-reward"><i class="fa fa-check"></i><b>1.2</b> Expected reward</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="problems.html"><a href="problems.html"><i class="fa fa-check"></i><b>2</b> Problems</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>A</b> Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="dist.html"><a href="dist.html#discrete-distributions"><i class="fa fa-check"></i><b>A.1</b> Discrete distributions:</a></li>
+<li class="chapter" data-level="A.2" data-path="dist.html"><a href="dist.html#continuous-distributions"><i class="fa fa-check"></i><b>A.2</b> Continuous distributions:</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="problems" class="section level1" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Problems</h1>
+<p>In a Markov chain with a finite number of states, the fundamental matrix
+is given by <span class="math display">\[F=\begin{bmatrix} 3 &amp; 4 \\
+    \tfrac{3}{2} &amp; 4\end{bmatrix}.\]</span> The initial distribution of the
+chain is uniform on all transient states. Compute the expected value of
+<span class="math display">\[\tau_C=\min \{ n\in{\mathbb{N}}_0\, : \, X_n\in C\},\]</span> where <span class="math inline">\(C\)</span> denotes the set of
+all recurrent states.</p>
+<p>A basketball player is shooting a series of free throws. The probability
+of hitting any single one is <span class="math inline">\(1/2\)</span>, and the throws are independent of
+each other. What is the expected number of throws the player will
+attempt before hitting 3 free throws in a row (including those 3)?</p>
+<p>A fair 6-sided die is rolled repeatedly, and for <span class="math inline">\(n\in{\mathbb{N}}\)</span>, the outcome
+of the <span class="math inline">\(n\)</span>-th roll is denoted by <span class="math inline">\(Y_n\)</span> (it is assumed that <span class="math inline">\(\{Y_n\}_{n\in{\mathbb{N}}}\)</span> are
+independent of each other). For <span class="math inline">\(n\in{\mathbb{N}}_0\)</span>, let <span class="math inline">\(X_n\)</span> be the remainder
+(taken in the set <span class="math inline">\(\{0,1,2,3,4\}\)</span>) left after the sum
+<span class="math inline">\(\sum_{k=1}^n Y_k\)</span> is divided by <span class="math inline">\(5\)</span>, i.e. <span class="math inline">\(X_0=0\)</span>, and <span class="math display">\[%\label{}
+    \nonumber 
+    \begin{split}
+X_n= \sum_{k=1}^n Y_k \ (\,\mathrm{mod}\, 5\,),\text{ for } n\in{\mathbb{N}}, 
+    \end{split}\]</span> making <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> a Markov chain on the state space
+<span class="math inline">\(\{0,1,2,3,4\}\)</span> (no need to prove this fact).</p>
+<ol style="list-style-type: decimal">
+<li><p>Write down the transition matrix of the chain.</p></li>
+<li><p>Classify the states, separate recurrent from transient ones, and
+compute the period of each state.</p></li>
+<li><p>Compute the expected number of rolls before the first time
+<span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> visits the state <span class="math inline">\(2\)</span>, i.e., compute <span class="math inline">\({\mathbb{E}}[\tau_2]\)</span>, where
+<span class="math display">\[\tau_2=\min \{ n\in{\mathbb{N}}_0\, : \, X_n=2\}.\]</span></p></li>
+<li><p>Compute <span class="math inline">\({\mathbb{E}}[\sum_{k=0}^{\tau_2-1} X_k]\)</span>.</p></li>
+</ol>
+<p>(<em>Note:</em> For parts 3. and 4., you can phrase your answer as
+<span class="math inline">\((B^{-1} C)_{ij}\)</span>, where the matrices <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span>, as well as the row
+<span class="math inline">\(i\)</span> and the column <span class="math inline">\(j\)</span> have to be given explicitly. You don’t need to
+evaluate <span class="math inline">\(B^{-1}\)</span>. )</p>
+<p>Let <span class="math inline">\(S=\{0,1,2,\dots, a\}\)</span> be the state space of a <em>Gambler’s ruin</em>,
+where a gambler starts with the “wealth”
+<span class="math inline">\(\$x \in \{\$1,\$2,\dots, \$a-1\}\)</span> and tries to make <span class="math inline">\(\$a\)</span> before
+going bankrupt (hitting <span class="math inline">\(\$0\)</span>). Unlike in the classical Gambler’s ruin,
+the player does not bet <span class="math inline">\(\$1\)</span> each time. She plays boldly and bets the
+maximum possible amount that makes sense. More precisely, if her current
+wealth is <span class="math inline">\(x\)</span>, she bets either <span class="math inline">\(x\)</span> or <span class="math inline">\(a-x\)</span>, whatever is smaller. Assume
+that each game is a coin toss with probability <span class="math inline">\(p\in (0,1)\)</span> of getting
+<em>heads</em>. If that happens, the gambler’s wealth increases by the amount
+she bet. If the coin shows <em>tails</em> she loses the bet, and her wealth
+decreases by the same amount. As in the classical Gambler’s ruin, the
+gambler stops when either <span class="math inline">\(0\)</span> or <span class="math inline">\(a\)</span> is reached (and we assume that her
+wealth remains at that level forever).</p>
+<p>.</p>
+<ol style="list-style-type: decimal">
+<li><p>write down the transition matrix of this Markov Chain and sketch its
+transition graph. Identify transient and recurrent states, and find
+periods of all states.</p></li>
+<li><p>compute the probability of winning (hitting <span class="math inline">\(5\)</span> before hitting <span class="math inline">\(0\)</span>)
+for the gambler who starts with <span class="math inline">\(\$1\)</span>.</p></li>
+</ol>
+<p>The fundamental matrix associated to a finite Markov chain is
+<span class="math inline">\(F = \pmat{ 3 &amp; 3 \\ 3/2 &amp; 3}\)</span>, with the first row (and column)
+corresponding to the state <span class="math inline">\(A\)</span> and the second to <span class="math inline">\(B\)</span>. Some of the
+following statements are true and the others are false. Find which ones
+are true and which are false; give explanations for your choices.</p>
+<ol style="list-style-type: decimal">
+<li><p>The chain has <span class="math inline">\(2\)</span> recurrent states.</p></li>
+<li><p>If the chain starts in <span class="math inline">\(A\)</span>, the expected number of visits to <span class="math inline">\(B\)</span>
+before hitting the first recurrent state is <span class="math inline">\(3\)</span>.</p></li>
+<li><p>If the chain is equally likely to start from <span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span>, the
+expected number of steps it will take before it hits its first
+recurrent state is <span class="math inline">\(\frac{21}{4}\)</span>.</p></li>
+<li><p><span class="math inline">\({\mathbb{P}}_A[X_1=C] =0\)</span> for any recurrent state <span class="math inline">\(C\)</span>.</p></li>
+</ol>
+<p><span id="pro:MC15" label="pro:MC15"><span class="math display">\[pro:MC15\]</span></span> Let <span class="math inline">\(\{Y_n\}_{n\in {\mathbb{N}}_0}\)</span> be a sequence
+of die-rolls, i.e., a sequence of independent random variables with
+distribution <span class="math display">\[Y_n \sim \left( 
+\begin{array}{cccccc}
+ 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 \\
+1/6 &amp; 1/6 &amp; 1/6 &amp; 1/6 &amp; 1/6 &amp; 1/6 
+  \end{array}
+\right).\]</span> Let <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> be a stochastic process defined by
+<span class="math inline">\(X_n=\max (Y_0,Y_1, \dots, Y_n)\)</span>. In words, <span class="math inline">\(X_n\)</span> is the maximal value rolled so far.</p>
+<ol style="list-style-type: decimal">
+<li><p>Explain why <span class="math inline">\(X\)</span> is a Markov chain, and find its transition matrix
+and the initial distribution.</p></li>
+<li><p>Supposing that the first roll of the die was <span class="math inline">\(3\)</span>, i.e., <span class="math inline">\(X_0=3\)</span>,
+what is the expected time until a <span class="math inline">\(6\)</span> is reached?</p></li>
+<li><p>Under the same assumption as above (<span class="math inline">\(X_0=3\)</span>), what is the
+probability that a <span class="math inline">\(5\)</span> will not be rolled before a <span class="math inline">\(6\)</span> is rolled for
+the first time?</p></li>
+<li><p>Starting with the first value <span class="math inline">\(X_0=3\)</span>, each time a die is rolled,
+the current record (the value of <span class="math inline">\(X_n\)</span>) is written down. When a <span class="math inline">\(6\)</span>
+is rolled for the first time all the numbers are added up and the
+result is called <span class="math inline">\(S\)</span> (the final <span class="math inline">\(6\)</span> is not counted). What is the
+expected value of <span class="math inline">\(S\)</span>?</p></li>
+</ol>
+<p>Go back to Problem
+<a href="#prb:professor" reference-type="ref" reference="prb:professor"><span class="math display">\[prb:professor\]</span></a> (the one with the professor and umbrellas in
+the first lecture on Markov chains). One way to model it using a Markov
+Chain is like this:</p>
+<div class="figure">
+<embed src="professor.pdf" />
+<p class="caption">image</p>
+</div>
+<p>Consult the solution to Problem
+<a href="#prb:professor" reference-type="ref" reference="prb:professor"><span class="math display">\[prb:professor\]</span></a> for further explanation.</p>
+<p>Assuming that on day <span class="math inline">\(0\)</span>, before the professor leaves home in the
+morning, there are two umbrellas at home and two in the office.</p>
+<ol style="list-style-type: decimal">
+<li><p>What is the expected number of days before she gets wet?</p></li>
+<li><p>What is the probability that the first time the professor does get
+wet, it will be on her way home from the office?</p></li>
+</ol>
+
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="absoprtion-and-reward.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dist.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": false,
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+},
+"search": true,
+"toc_depth": null
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Absorption and Reward | Lecture notes for &quot;Introduction to Stochastic Processes&quot;</title>
+  <meta name="description" content="A set of lecture notes for M362M: Introduction to Stochastic Processes" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Absorption and Reward | Lecture notes for &quot;Introduction to Stochastic Processes&quot;" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A set of lecture notes for M362M: Introduction to Stochastic Processes" />
+  <meta name="github-repo" content="gordanz/M362M" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Absorption and Reward | Lecture notes for &quot;Introduction to Stochastic Processes&quot;" />
+  
+  <meta name="twitter:description" content="A set of lecture notes for M362M: Introduction to Stochastic Processes" />
+  
+
+<meta name="author" content="Gordan Zitkovic" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="classification-of-states.html"/>
+<link rel="next" href="dist.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">M362M Lecture notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> An intro to R and RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#setting-up-an-r-environment-on-your-computer"><i class="fa fa-check"></i><b>1.1</b> Setting up an R environment on your computer</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#installing-r"><i class="fa fa-check"></i><b>1.1.1</b> Installing R</a></li>
+<li class="chapter" data-level="1.1.2" data-path="intro.html"><a href="intro.html#installing-rstudio"><i class="fa fa-check"></i><b>1.1.2</b> Installing RStudio</a></li>
+<li class="chapter" data-level="1.1.3" data-path="intro.html"><a href="intro.html#installing-basic-packages"><i class="fa fa-check"></i><b>1.1.3</b> Installing basic packages</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#learning-the-basics-of-r"><i class="fa fa-check"></i><b>1.2</b> Learning the basics of R</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#the-console-scripts-and-r-notebooks"><i class="fa fa-check"></i><b>1.2.1</b> The console, Scripts and R Notebooks</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#asking-for-help"><i class="fa fa-check"></i><b>1.2.2</b> Asking for help</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#vectors"><i class="fa fa-check"></i><b>1.2.3</b> Vectors</a></li>
+<li class="chapter" data-level="1.2.4" data-path="intro.html"><a href="intro.html#matrices"><i class="fa fa-check"></i><b>1.2.4</b> Matrices</a></li>
+<li class="chapter" data-level="1.2.5" data-path="intro.html"><a href="intro.html#functions"><i class="fa fa-check"></i><b>1.2.5</b> Functions</a></li>
+<li class="chapter" data-level="1.2.6" data-path="intro.html"><a href="intro.html#if-else-statements"><i class="fa fa-check"></i><b>1.2.6</b> If-else statements</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#problems"><i class="fa fa-check"></i><b>1.3</b> Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html"><i class="fa fa-check"></i><b>2</b> Simulation of Random Variables and Monte Carlo</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#simulation-of-some-common-probability-distributions"><i class="fa fa-check"></i><b>2.1</b> Simulation of some common probability distributions</a></li>
+<li class="chapter" data-level="2.2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#multivariate-distributions"><i class="fa fa-check"></i><b>2.2</b> Multivariate Distributions</a></li>
+<li class="chapter" data-level="2.3" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#monte-carlo"><i class="fa fa-check"></i><b>2.3</b> Monte Carlo</a></li>
+<li class="chapter" data-level="2.4" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#conditional-distributions"><i class="fa fa-check"></i><b>2.4</b> Conditional distributions</a></li>
+<li class="chapter" data-level="2.5" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#additional-problems-for-chapter-2"><i class="fa fa-check"></i><b>2.5</b> Additional Problems for Chapter 2</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="random-walks.html"><a href="random-walks.html"><i class="fa fa-check"></i><b>3</b> Random Walks</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="random-walks.html"><a href="random-walks.html#what-are-stochastic-processes"><i class="fa fa-check"></i><b>3.1</b> What are stochastic processes?</a></li>
+<li class="chapter" data-level="3.2" data-path="random-walks.html"><a href="random-walks.html#the-simple-symmetric-random-walk"><i class="fa fa-check"></i><b>3.2</b> The Simple Symmetric Random Walk</a></li>
+<li class="chapter" data-level="3.3" data-path="random-walks.html"><a href="random-walks.html#how-to-simulate-random-walks"><i class="fa fa-check"></i><b>3.3</b> How to simulate random walks</a></li>
+<li class="chapter" data-level="3.4" data-path="random-walks.html"><a href="random-walks.html#two-ways-of-looking-at-a-stochastic-proceses"><i class="fa fa-check"></i><b>3.4</b> Two ways of looking at a stochastic proceses</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="random-walks.html"><a href="random-walks.html#column-wise-distributionally"><i class="fa fa-check"></i><b>3.4.1</b> Column-wise (distributionally)</a></li>
+<li class="chapter" data-level="3.4.2" data-path="random-walks.html"><a href="random-walks.html#row-wise-trajectorially-or-path-wise"><i class="fa fa-check"></i><b>3.4.2</b> Row-wise (trajectorially or path-wise)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="random-walks.html"><a href="random-walks.html#the-path-space"><i class="fa fa-check"></i><b>3.5</b> The path space</a></li>
+<li class="chapter" data-level="3.6" data-path="random-walks.html"><a href="random-walks.html#the-distribution-of-x_n"><i class="fa fa-check"></i><b>3.6</b> The distribution of <span class="math inline">\(X_n\)</span></a></li>
+<li class="chapter" data-level="3.7" data-path="random-walks.html"><a href="random-walks.html#biased-random-walks"><i class="fa fa-check"></i><b>3.7</b> Biased random walks</a></li>
+<li class="chapter" data-level="3.8" data-path="random-walks.html"><a href="random-walks.html#additional-problems-for-chapter-3"><i class="fa fa-check"></i><b>3.8</b> Additional problems for Chapter 3</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html"><i class="fa fa-check"></i><b>4</b> More about Random Walks</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html#the-reflection-principle"><i class="fa fa-check"></i><b>4.1</b> The reflection principle</a></li>
+<li class="chapter" data-level="4.2" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html#stopping-times"><i class="fa fa-check"></i><b>4.2</b> Stopping times</a></li>
+<li class="chapter" data-level="4.3" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html#walds-identity-and-gamblers-ruin"><i class="fa fa-check"></i><b>4.3</b> Wald’s identity and Gambler’s ruin</a></li>
+<li class="chapter" data-level="4.4" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html#additional-problems-for-chapter-4"><i class="fa fa-check"></i><b>4.4</b> Additional problems for Chapter 4</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="markov-chains.html"><a href="markov-chains.html"><i class="fa fa-check"></i><b>5</b> Markov Chains</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="markov-chains.html"><a href="markov-chains.html#the-markov-property"><i class="fa fa-check"></i><b>5.1</b> The Markov property</a></li>
+<li class="chapter" data-level="5.2" data-path="markov-chains.html"><a href="markov-chains.html#first-examples"><i class="fa fa-check"></i><b>5.2</b> First Examples</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="random-walks.html"><a href="random-walks.html#random-walks"><i class="fa fa-check"></i><b>5.2.1</b> Random walks</a></li>
+<li class="chapter" data-level="5.2.2" data-path="markov-chains.html"><a href="markov-chains.html#gambler"><i class="fa fa-check"></i><b>5.2.2</b> Gambler’s ruin</a></li>
+<li class="chapter" data-level="5.2.3" data-path="markov-chains.html"><a href="markov-chains.html#regime-switching"><i class="fa fa-check"></i><b>5.2.3</b> Regime Switching</a></li>
+<li class="chapter" data-level="5.2.4" data-path="markov-chains.html"><a href="markov-chains.html#deterministically-monotone-markov-chain"><i class="fa fa-check"></i><b>5.2.4</b> Deterministically monotone Markov chain</a></li>
+<li class="chapter" data-level="5.2.5" data-path="markov-chains.html"><a href="markov-chains.html#not-a-markov-chain"><i class="fa fa-check"></i><b>5.2.5</b> Not a Markov chain</a></li>
+<li class="chapter" data-level="5.2.6" data-path="markov-chains.html"><a href="markov-chains.html#turning-a-non-markov-chain-into-a-markov-chain"><i class="fa fa-check"></i><b>5.2.6</b> Turning a non-Markov chain into a Markov chain</a></li>
+<li class="chapter" data-level="5.2.7" data-path="markov-chains.html"><a href="markov-chains.html#deterministic-functions-of-markov-chains-do-not-need-to-be-markov-chains"><i class="fa fa-check"></i><b>5.2.7</b> Deterministic functions of Markov chains do not need to be Markov chains</a></li>
+<li class="chapter" data-level="5.2.8" data-path="markov-chains.html"><a href="markov-chains.html#a-game-of-tennis"><i class="fa fa-check"></i><b>5.2.8</b> A game of tennis</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="markov-chains.html"><a href="markov-chains.html#chapman-kolmogorov-equations"><i class="fa fa-check"></i><b>5.3</b> Chapman-Kolmogorov equations</a></li>
+<li class="chapter" data-level="5.4" data-path="markov-chains.html"><a href="markov-chains.html#mc-sim"><i class="fa fa-check"></i><b>5.4</b> How to simulate Markov chains</a></li>
+<li class="chapter" data-level="5.5" data-path="markov-chains.html"><a href="markov-chains.html#additional-problems-for-chapter-5"><i class="fa fa-check"></i><b>5.5</b> Additional problems for Chapter 5</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="classification-of-states.html"><a href="classification-of-states.html"><i class="fa fa-check"></i><b>6</b> Classification of States</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="classification-of-states.html"><a href="classification-of-states.html#the-communication-relation"><i class="fa fa-check"></i><b>6.1</b> The Communication Relation</a></li>
+<li class="chapter" data-level="6.2" data-path="classification-of-states.html"><a href="classification-of-states.html#classes"><i class="fa fa-check"></i><b>6.2</b> Classes</a></li>
+<li class="chapter" data-level="6.3" data-path="classification-of-states.html"><a href="classification-of-states.html#transience-and-recurrence"><i class="fa fa-check"></i><b>6.3</b> Transience and recurrence</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="classification-of-states.html"><a href="classification-of-states.html#the-return-theorem"><i class="fa fa-check"></i><b>6.3.1</b> The Return Theorem</a></li>
+<li class="chapter" data-level="6.3.2" data-path="classification-of-states.html"><a href="classification-of-states.html#a-recurrence-criterion"><i class="fa fa-check"></i><b>6.3.2</b> A recurrence criterion</a></li>
+<li class="chapter" data-level="6.3.3" data-path="classification-of-states.html"><a href="classification-of-states.html#polyas-theorem"><i class="fa fa-check"></i><b>6.3.3</b> Polya’s theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="classification-of-states.html"><a href="classification-of-states.html#class-properties"><i class="fa fa-check"></i><b>6.4</b> Class properties</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="classification-of-states.html"><a href="classification-of-states.html#the-canonical-decomposition"><i class="fa fa-check"></i><b>6.4.1</b> The Canonical Decomposition</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="classification-of-states.html"><a href="classification-of-states.html#a-few-examples"><i class="fa fa-check"></i><b>6.5</b> A few examples</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="random-walks.html"><a href="random-walks.html#random-walks"><i class="fa fa-check"></i><b>6.5.1</b> Random walks</a></li>
+<li class="chapter" data-level="6.5.2" data-path="classification-of-states.html"><a href="classification-of-states.html#gamblers-ruin"><i class="fa fa-check"></i><b>6.5.2</b> Gambler’s ruin</a></li>
+<li class="chapter" data-level="6.5.3" data-path="markov-chains.html"><a href="markov-chains.html#deterministically-monotone-markov-chain"><i class="fa fa-check"></i><b>6.5.3</b> Deterministically monotone Markov chain</a></li>
+<li class="chapter" data-level="6.5.4" data-path="classification-of-states.html"><a href="classification-of-states.html#the-game-of-tennis"><i class="fa fa-check"></i><b>6.5.4</b> The game of tennis</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="classification-of-states.html"><a href="classification-of-states.html#additional-problems-for-chapter-6"><i class="fa fa-check"></i><b>6.6</b> Additional problems for Chapter 6</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="absorption-and-reward.html"><a href="absorption-and-reward.html"><i class="fa fa-check"></i><b>7</b> Absorption and Reward</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="absorption-and-reward.html"><a href="absorption-and-reward.html#absorption"><i class="fa fa-check"></i><b>7.1</b> Absorption</a></li>
+<li class="chapter" data-level="7.2" data-path="absorption-and-reward.html"><a href="absorption-and-reward.html#expected-reward"><i class="fa fa-check"></i><b>7.2</b> Expected reward</a></li>
+<li class="chapter" data-level="7.3" data-path="absorption-and-reward.html"><a href="absorption-and-reward.html#additional-problems-for-chapter-7"><i class="fa fa-check"></i><b>7.3</b> Additional Problems for Chapter 7</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>A</b> Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="dist.html"><a href="dist.html#discrete-distributions"><i class="fa fa-check"></i><b>A.1</b> Discrete distributions:</a></li>
+<li class="chapter" data-level="A.2" data-path="dist.html"><a href="dist.html#continuous-distributions"><i class="fa fa-check"></i><b>A.2</b> Continuous distributions:</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lecture notes for "Introduction to Stochastic Processes"</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="absorption-and-reward" class="section level1" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Absorption and Reward</h1>
+<div style="counter-reset: thechapter 7;">
+
+</div>
+<p><strong>Caveat:</strong> From now on, all Markov chains will have <strong>finite</strong> state spaces.</p>
+<div id="absorption" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Absorption</h2>
+<p>Remember the “Tennis” example from a few lectures ago and the question
+we asked there, namely, how does the probability of winning a single
+point affect the probability of winning the overall game? An algorithm
+that will help you answer that question will be described in this
+lecture.</p>
+<p>The first step is to understand the structure of the question asked in
+the light of the canonical decomposition of the previous lecture. In the
+“Tennis” example, all the states except for the winning ones are
+transient, and there are two one-element recurrent classes {“Player 1 wins”}
+and {“Player 2 wins”} The chain starts from a transient
+state <span class="math inline">\((0,0)\)</span>, moves around a bit, and, eventually, gets absorbed in one
+of the two. The probability we are interested in is not the probability
+that the chain will eventually get absorbed. That probability is always
+<span class="math inline">\(1\)</span>. We are, instead, interested in the probability that the absorption
+will occur in a particular state - the state “Player 1 wins” (as
+opposed to “Player 2 wins”) in the “Tennis” example.</p>
+<p>A more general version of the problem above is the following: let
+<span class="math inline">\(i\in S\)</span> be any state, and let <span class="math inline">\(j\)</span> be a recurrent state. If the set of
+all recurrent states is denoted by <span class="math inline">\(C\)</span>, and if <span class="math inline">\(\tau_{C}\)</span> is the first
+hitting time of the set <span class="math inline">\(C\)</span>, then <span class="math inline">\(X_{\tau_{C}}\)</span> denotes the first
+recurrent state visited by the chain. Equivalently, <span class="math inline">\(X_{\tau_{C}}\)</span> is
+the value of <span class="math inline">\(X\)</span> at (random) time <span class="math inline">\(\tau_{C}\)</span>; its value is the name of
+the state in which it happens to find itself the first time it hits the
+set of all recurrent states. For any two states <span class="math inline">\(i,j\in S\)</span>, the <span class="math inline">\(u_{ij}\)</span>
+is defined as
+<span class="math display">\[u_{ij}={\mathbb{P}}_i[ X_{\tau_C}=j]={\mathbb{P}}_i[\text{ the first recurrent state visited by $X$ is $j$ }].\]</span> There are several boring situations to
+discard first:</p>
+<ol style="list-style-type: decimal">
+<li><p><em><span class="math inline">\(j\)</span> is transient:</em> in this case <span class="math inline">\(u_{ij}=0\)</span> for any <span class="math inline">\(i\)</span> because <span class="math inline">\(j\)</span>
+cannot possibly be the first recurrent state we hit - it is not even
+recurrent.</p></li>
+<li><p><em><span class="math inline">\(j\)</span> is recurrent, and so is <span class="math inline">\(i\)</span></em>. Since <span class="math inline">\(i\)</span> is recurrent, i.e.,
+<span class="math inline">\(i\in C\)</span>, we clearly have <span class="math inline">\(\tau_C=0\)</span>. Therefore <span class="math inline">\(u_{ij} = {\mathbb{P}}_i[  X_0= j]\)</span>, and this equals to either <span class="math inline">\(1\)</span> or <span class="math inline">\(0\)</span>, depending on
+whether <span class="math inline">\(i=j\)</span> or <span class="math inline">\(i\ne j\)</span>.</p></li>
+</ol>
+<p>That leaves us with the situation where <span class="math inline">\(i \in T\)</span> and <span class="math inline">\(j\in C\)</span> as the
+interesting one. In many calculations related to Markov chains, the
+method of <em>first-step decomposition</em> works miracles. Simply, we cut the
+probability space according to what happened in the first step and use
+the law of total probability (assuming <span class="math inline">\(i\in T\)</span>, <span class="math inline">\(j\in C\)</span>)
+<span class="math display">\[\label{equ:system-for-u}
+   \nonumber 
+   \begin{split}
+u_{ij} &amp; ={\mathbb{P}}_i[ X_{\tau_C}=j]=\sum_{k\in S} 
+{\mathbb{P}}[X_{\tau_C}=j|X_0=i, X_1=k] {\mathbb{P}}[ X_1=k|X_0=i]\\
+&amp;=
+\sum_{k\in S} 
+{\mathbb{P}}[X_{\tau_C}=j|X_1=k]p_{ik}
+   \end{split}\]</span> The conditional probability <span class="math inline">\({\mathbb{P}}[X_{\tau_C}=j|X_1=k]\)</span>
+is an absorption probability, too. If <span class="math inline">\(k=j\)</span>, then
+<span class="math inline">\({\mathbb{P}}[X_{\tau_C}=j|X_1=k]=1\)</span>. If <span class="math inline">\(k\in C\setminus\{j\}\)</span>, then we are
+already in C, but in a state different from <span class="math inline">\(j\)</span>, so <span class="math inline">\({\mathbb{P}}[ X_{\tau_C}=j|X_1=k]=0\)</span>. Therefore, the sum above can be written as
+<span class="math display">\[\label{equ:syst}
+ \begin{split}
+   u_{ij}= \sum_{k\in T} p_{ik} u_{kj} + p_{ij},
+ \end{split}\]</span> which is a system of linear equations for the family
+<span class="math inline">\(( u_{ij}, i\in T, j\in C)\)</span>. Linear systems are typically better understood when
+represented in the matrix form. Let <span class="math inline">\(U\)</span> be a <span class="math inline">\(T\times C\)</span>-matrix
+<span class="math inline">\(U=(u_{ij}, i\in T, j\in C)\)</span>, and let <span class="math inline">\(Q\)</span> be the portion of the
+transition matrix <span class="math inline">\(P\)</span> corresponding to the transitions from <span class="math inline">\(T\)</span> to <span class="math inline">\(T\)</span>,
+i.e. <span class="math inline">\(Q=(p_{ij},i\in T, j\in T)\)</span>, and let <span class="math inline">\(R\)</span> contain all transitions
+from <span class="math inline">\(T\)</span> to <span class="math inline">\(C\)</span>, i.e., <span class="math inline">\(R=(p_{ij})_{i\in T, j\in C}\)</span>. If <span class="math inline">\(P_C\)</span> denotes
+the matrix of all transitions from <span class="math inline">\(C\)</span> to <span class="math inline">\(C\)</span>, i.e.,
+<span class="math inline">\(P_C=(p_{ij}, i\in C, j\in C)\)</span>, then the canonical form of <span class="math inline">\(P\)</span> looks
+like this: <span class="math display">\[P=
+\begin{bmatrix}
+P_C &amp; 0 \\ R &amp; Q 
+\end{bmatrix}.\]</span> The system
+now becomes: <span class="math display">\[U= QU+R,\text{ i.e., } (I-Q) U = R.\]</span> If the matrix <span class="math inline">\(I-Q\)</span>
+happens to be invertible, we are in business, because we then have an
+explicit expression for <span class="math inline">\(U\)</span>: <span class="math display">\[U= (I-Q)^{-1} R.\]</span> So, is <span class="math inline">\(I-Q\)</span>
+invertible? It is when the state space <span class="math inline">\(S\)</span> is finite; here is the
+argument, in case you are interested:</p>
+<p><strong>Theorem.</strong> When the state space <span class="math inline">\(S\)</span> is finite, the
+matrix <span class="math inline">\(I-Q\)</span> is invertible and <span class="math display">\[
+ \begin{split}
+   (I-Q)^{-1} = \sum_{n=0}^{\infty} Q^n.
+ \end{split}\]</span> Moreover, the entry at the position <span class="math inline">\(i,j\)</span> in <span class="math inline">\((I-Q)^{-1}\)</span>
+is the expected total number of visits to the state <span class="math inline">\(j\)</span>, for a chain
+started at <span class="math inline">\(i\)</span>.</p>
+<p><strong>Proof.</strong> For <span class="math inline">\(k\in{\mathbb{N}}\)</span>, the matrix <span class="math inline">\(Q^k\)</span> is the same as the submatrix
+corresponding to the transient states of the full <span class="math inline">\(k\)</span>-step transition
+matrix <span class="math inline">\(P^k\)</span>. Indeed, going from a transient state to another transient
+state in <span class="math inline">\(k\)</span> steps can only happen via other transient states (once we
+hit a recurrent class, we are stuck there forever).</p>
+<p>Using the same idea as in the proof of our recurrence criterion in the previous chapter
+we can conclude that for any two transient states <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>,
+we have (remember <span class="math inline">\({\mathbb{E}}_i[  \mathbf{1}_{\{X_n = j\}}] = {\mathbb{P}}_i[X_n = j] = p_{ij}^{(n)}\)</span>)
+<span class="math display">\[{\mathbb{E}}_i[ \sum_{n=0}^{\infty} \mathbf{1}_{\{X_n = j\}}] = \sum_{n\in{\mathbb{N}_0}} p^{(n)}_{ij} =
+  \sum_{n\in{\mathbb{N}_0}} q^{(n)}_{ij} = (\sum_{n\in{\mathbb{N}}_0} Q^n)_{ij}.\]</span> On the
+other hand, the left hand side above is simply the expected number of
+visits to the state <span class="math inline">\(j\)</span>, if we start from <span class="math inline">\(i\)</span>. Since both <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>
+are transient, this number will either be <span class="math inline">\(0\)</span> (if the chain never even
+reaches <span class="math inline">\(j\)</span> from <span class="math inline">\(i\)</span>), or a geometric random variable (if it does). In
+either case, the expected value of this quantity is finite, and, so
+<span class="math display">\[\sum_{n\in{\mathbb{N}}_0} q^{(n)}_{ij}&lt;\infty.\]</span> Therefore, the matrix sum
+<span class="math inline">\(F = \sum_{n\in{\mathbb{N}}_0} Q^n\)</span> is well defined, and it remains to make sure
+that <span class="math inline">\(F = (I-Q)^{-1}\)</span>, which follows from the following simple
+computation:
+<span class="math display">\[QF = Q \sum_{n\in{\mathbb{N}}_0} Q^n = \sum_{n\in{\mathbb{N}}_0} Q^{n+1} = \sum_{n\in{\mathbb{N}}} Q^n = 
+  \sum_{n\in{\mathbb{N}}_0} Q^n - I = F - I. \text{ Q.E.D.}\]</span></p>
+<p>When the inverse <span class="math inline">\((I-Q)^{-1}\)</span> exists (like in the finite case), it is
+called the <strong>fundamental matrix</strong> of the Markov chain.</p>
+<p>Before we turn to the “Tennis” example, let us analyze a simpler case of
+Gambler’s ruin with <span class="math inline">\(a=3\)</span>.</p>
+<div class="problem">
+<p>What is the probability that a gambler coming in at <span class="math inline">\(x=\$1\)</span> in a Gambler’s ruin problem with <span class="math inline">\(a=3\)</span> succeeds in “getting rich”? We <em>do not</em> assume that <span class="math inline">\(p=\tfrac{1}{2}\)</span>.</p>
+</div>
+<div class="solution">
+<p>The states <span class="math inline">\(0\)</span> and <span class="math inline">\(3\)</span> are absorbing, and all
+the others are transient. Therefore <span class="math inline">\(C_1=\{0\}\)</span>, <span class="math inline">\(C_2=\{3\}\)</span> and
+<span class="math inline">\(T=T_1=\{1,2\}\)</span>. The transition matrix <span class="math inline">\(P\)</span> in the canonical form (the
+rows and columns represent the states in the order <span class="math inline">\(0,3,1,2\)</span>) <span class="math display">\[P=
+\begin{bmatrix}
+1 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0 &amp; 0\\
+1-p &amp; 0 &amp; 0 &amp; p\\
+0 &amp; p &amp; 1-p &amp; 0
+\end{bmatrix}\]</span> Therefore, <span class="math display">\[R=
+\begin{bmatrix}
+1-p &amp; 0 \\ 0 &amp; p
+\end{bmatrix}
+\text{ and }
+Q=
+\begin{bmatrix}
+0 &amp; p \\ 1-p &amp; 0
+\end{bmatrix}.\]</span> The matrix <span class="math inline">\(I-Q\)</span> is a <span class="math inline">\(2\times 2\)</span> matrix so it is easy
+to invert: <span class="math display">\[(I-Q)^{-1}= \frac{1}{1-p+p^2}\begin{bmatrix}
+1 &amp; p \\ 1-p &amp; 1
+\end{bmatrix}.\]</span> So <span class="math display">\[U= \frac{1}{1-p+p^2}\begin{bmatrix}
+1 &amp; p \\ 1-p &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+1-p &amp; 0 \\ 0 &amp; p
+\end{bmatrix}
+=
+\begin{bmatrix}
+\frac{1-p}{1-p+p^2} &amp; \frac{p^2}{1-p+p^2} \\
+\frac{(1-p)^2}{1-p+p^2} &amp; \frac{p}{1-p+p^2} \\
+\end{bmatrix}.\]</span> Therefore, for the initial “wealth” is 1,
+the probability of getting rich before bankruptcy is <span class="math inline">\(u_{13}=p^2/(1-p+p^2)\)</span> (the entry in the first row (<span class="math inline">\(x=1\)</span>) and the second column (<span class="math inline">\(a=3\)</span>) of <span class="math inline">\(U\)</span>.)</p>
+</div>
+<div class="problem">
+<p>Find the probability of winning a whole game of Tennis, for a player whose
+probability of winning a single rally is <span class="math inline">\(p=0.45\)</span>.</p>
+</div>
+<div class="solution">
+<p>In the “Tennis” example, the transition matrix is <span class="math inline">\(20\times 20\)</span>, with only 2
+recurrent states (each in its own class). In order to find the matrix <span class="math inline">\(U\)</span>, we (essentially) need to invert an <span class="math inline">\(18\times 18\)</span> matrix and that is a
+job for a computer. We start with an R function which produces the transition
+matrix <span class="math inline">\(P\)</span> as a function of the single-rally probability <span class="math inline">\(p\)</span>. Even though we only care about <span class="math inline">\(p=0.45\)</span> here, the extra flexibility will come in handy soon:</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="absorption-and-reward.html#cb147-1" aria-hidden="true"></a>S=<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;0-0&quot;</span>, <span class="st">&quot;0-15&quot;</span>, <span class="st">&quot;15-0&quot;</span>, <span class="st">&quot;0-30&quot;</span>, <span class="st">&quot;15-15&quot;</span>, <span class="st">&quot;30-0&quot;</span>, <span class="st">&quot;0-40&quot;</span>, <span class="st">&quot;15-30&quot;</span>, </span>
+<span id="cb147-2"><a href="absorption-and-reward.html#cb147-2" aria-hidden="true"></a>     <span class="st">&quot;30-15&quot;</span>, <span class="st">&quot;40-0&quot;</span>, <span class="st">&quot;15-40&quot;</span>, <span class="st">&quot;30-30&quot;</span>, <span class="st">&quot;40-15&quot;</span>, <span class="st">&quot;40-30&quot;</span>, <span class="st">&quot;30-40&quot;</span>, </span>
+<span id="cb147-3"><a href="absorption-and-reward.html#cb147-3" aria-hidden="true"></a>     <span class="st">&quot;40-40&quot;</span>, <span class="st">&quot;40-A&quot;</span>, <span class="st">&quot;A-40&quot;</span>, <span class="st">&quot;P1&quot;</span>, <span class="st">&quot;P2&quot;</span>)</span>
+<span id="cb147-4"><a href="absorption-and-reward.html#cb147-4" aria-hidden="true"></a></span>
+<span id="cb147-5"><a href="absorption-and-reward.html#cb147-5" aria-hidden="true"></a>tennis_P =<span class="st"> </span><span class="cf">function</span>(p) {</span>
+<span id="cb147-6"><a href="absorption-and-reward.html#cb147-6" aria-hidden="true"></a>  <span class="kw">matrix</span>(<span class="kw">c</span>( </span>
+<span id="cb147-7"><a href="absorption-and-reward.html#cb147-7" aria-hidden="true"></a>    <span class="dv">0</span>,<span class="dv">1</span><span class="op">-</span>p,p,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb147-8"><a href="absorption-and-reward.html#cb147-8" aria-hidden="true"></a>    <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span><span class="op">-</span>p,p,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb147-9"><a href="absorption-and-reward.html#cb147-9" aria-hidden="true"></a>    <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span><span class="op">-</span>p,p,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb147-10"><a href="absorption-and-reward.html#cb147-10" aria-hidden="true"></a>    <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span><span class="op">-</span>p,p,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb147-11"><a href="absorption-and-reward.html#cb147-11" aria-hidden="true"></a>    <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span><span class="op">-</span>p,p,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb147-12"><a href="absorption-and-reward.html#cb147-12" aria-hidden="true"></a>    <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span><span class="op">-</span>p,p,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb147-13"><a href="absorption-and-reward.html#cb147-13" aria-hidden="true"></a>    <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,p,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span><span class="op">-</span>p,</span>
+<span id="cb147-14"><a href="absorption-and-reward.html#cb147-14" aria-hidden="true"></a>    <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span><span class="op">-</span>p,p,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb147-15"><a href="absorption-and-reward.html#cb147-15" aria-hidden="true"></a>    <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span><span class="op">-</span>p,p,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb147-16"><a href="absorption-and-reward.html#cb147-16" aria-hidden="true"></a>    <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span><span class="op">-</span>p,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,p,<span class="dv">0</span>,</span>
+<span id="cb147-17"><a href="absorption-and-reward.html#cb147-17" aria-hidden="true"></a>    <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,p,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span><span class="op">-</span>p,</span>
+<span id="cb147-18"><a href="absorption-and-reward.html#cb147-18" aria-hidden="true"></a>    <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,p,<span class="dv">1</span><span class="op">-</span>p,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb147-19"><a href="absorption-and-reward.html#cb147-19" aria-hidden="true"></a>    <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span><span class="op">-</span>p,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,p,<span class="dv">0</span>,</span>
+<span id="cb147-20"><a href="absorption-and-reward.html#cb147-20" aria-hidden="true"></a>    <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span><span class="op">-</span>p,<span class="dv">0</span>,<span class="dv">0</span>,p,<span class="dv">0</span>,</span>
+<span id="cb147-21"><a href="absorption-and-reward.html#cb147-21" aria-hidden="true"></a>    <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,p,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span><span class="op">-</span>p,</span>
+<span id="cb147-22"><a href="absorption-and-reward.html#cb147-22" aria-hidden="true"></a>    <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span><span class="op">-</span>p,p,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb147-23"><a href="absorption-and-reward.html#cb147-23" aria-hidden="true"></a>    <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,p,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span><span class="op">-</span>p,</span>
+<span id="cb147-24"><a href="absorption-and-reward.html#cb147-24" aria-hidden="true"></a>    <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span><span class="op">-</span>p,<span class="dv">0</span>,<span class="dv">0</span>,p,<span class="dv">0</span>,</span>
+<span id="cb147-25"><a href="absorption-and-reward.html#cb147-25" aria-hidden="true"></a>    <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,</span>
+<span id="cb147-26"><a href="absorption-and-reward.html#cb147-26" aria-hidden="true"></a>    <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>),</span>
+<span id="cb147-27"><a href="absorption-and-reward.html#cb147-27" aria-hidden="true"></a> <span class="dt">byrow=</span>T, <span class="dt">ncol =</span> <span class="dv">20</span> )</span>
+<span id="cb147-28"><a href="absorption-and-reward.html#cb147-28" aria-hidden="true"></a>}</span></code></pre></div>
+<p>The positions of the initial state “0-0” in the state-space vector
+<code>S</code> is <span class="math inline">\(1\)</span>, and the
+positions of the two absorbing states “P1” and “P2” are <span class="math inline">\(19\)</span> and <span class="math inline">\(20\)</span>.
+Therefore the matrices <span class="math inline">\(Q\)</span> and <span class="math inline">\(R\)</span> are obtained by vector indexing as follows:</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="absorption-and-reward.html#cb148-1" aria-hidden="true"></a>P =<span class="st"> </span><span class="kw">tennis_P</span>(<span class="fl">0.45</span>)</span>
+<span id="cb148-2"><a href="absorption-and-reward.html#cb148-2" aria-hidden="true"></a>Q =<span class="st"> </span>P[<span class="dv">1</span><span class="op">:</span><span class="dv">18</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">18</span>]</span>
+<span id="cb148-3"><a href="absorption-and-reward.html#cb148-3" aria-hidden="true"></a>R =<span class="st"> </span>P[<span class="dv">1</span><span class="op">:</span><span class="dv">18</span>, <span class="dv">19</span><span class="op">:</span><span class="dv">20</span>]</span></code></pre></div>
+<p>Linear systems are solved by using the command <code>solve</code> in R:</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="absorption-and-reward.html#cb149-1" aria-hidden="true"></a>I =<span class="st"> </span><span class="kw">diag</span>(<span class="dv">18</span>)  <span class="co"># the identity matrix the same size as Q</span></span>
+<span id="cb149-2"><a href="absorption-and-reward.html#cb149-2" aria-hidden="true"></a>U =<span class="st"> </span><span class="kw">solve</span>(I <span class="op">-</span><span class="st"> </span>Q, R)</span>
+<span id="cb149-3"><a href="absorption-and-reward.html#cb149-3" aria-hidden="true"></a>U[<span class="dv">1</span>, ]</span>
+<span id="cb149-4"><a href="absorption-and-reward.html#cb149-4" aria-hidden="true"></a><span class="co">## [1] 0.3768515 0.6231485</span></span></code></pre></div>
+<p>Therefore, the probability that Player 1 wins the entire rally is about <span class="math inline">\(0.377\)</span>. Note
+that this number is smaller than <span class="math inline">\(0.45\)</span>, so it appears that the game is
+designed to make it easier for the better player to win. For more evidence,
+let’s draw the graph of this probability for several values of <span class="math inline">\(p\)</span>
+(<code>sapply</code> is the version of <code>apply</code> for vectors):</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="absorption-and-reward.html#cb150-1" aria-hidden="true"></a>prob_win =<span class="st"> </span><span class="cf">function</span>(p) {</span>
+<span id="cb150-2"><a href="absorption-and-reward.html#cb150-2" aria-hidden="true"></a>    <span class="cf">if</span> (p <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) </span>
+<span id="cb150-3"><a href="absorption-and-reward.html#cb150-3" aria-hidden="true"></a>        <span class="kw">return</span>(p)</span>
+<span id="cb150-4"><a href="absorption-and-reward.html#cb150-4" aria-hidden="true"></a>    P =<span class="st"> </span><span class="kw">tennis_P</span>(p)</span>
+<span id="cb150-5"><a href="absorption-and-reward.html#cb150-5" aria-hidden="true"></a>    Q =<span class="st"> </span>P[<span class="dv">1</span><span class="op">:</span><span class="dv">18</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">18</span>]</span>
+<span id="cb150-6"><a href="absorption-and-reward.html#cb150-6" aria-hidden="true"></a>    R =<span class="st"> </span>P[<span class="dv">1</span><span class="op">:</span><span class="dv">18</span>, <span class="dv">19</span><span class="op">:</span><span class="dv">20</span>]</span>
+<span id="cb150-7"><a href="absorption-and-reward.html#cb150-7" aria-hidden="true"></a>    U =<span class="st"> </span><span class="kw">solve</span>(<span class="kw">diag</span>(<span class="dv">18</span>) <span class="op">-</span><span class="st"> </span>Q, R)</span>
+<span id="cb150-8"><a href="absorption-and-reward.html#cb150-8" aria-hidden="true"></a>    U[<span class="dv">1</span>, <span class="dv">1</span>]</span>
+<span id="cb150-9"><a href="absorption-and-reward.html#cb150-9" aria-hidden="true"></a>}</span>
+<span id="cb150-10"><a href="absorption-and-reward.html#cb150-10" aria-hidden="true"></a>ps =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb150-11"><a href="absorption-and-reward.html#cb150-11" aria-hidden="true"></a>prob_game =<span class="st"> </span><span class="kw">sapply</span>(ps, prob_win)</span></code></pre></div>
+<p>A graph of <code>p</code> vs. <code>prob_game</code>, where the dashed line is the line <span class="math inline">\(y=x\)</span> looks like this:</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-263-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Using a symbolic
+software package (like <em>Mathematica</em>) we can even get an explicit
+expression for the win probability in this case:
+<span class="math display">\[\begin{align}
+u_{(0,0)\ \   &quot;P1\ wins&quot;} = p^4 + 4 p^4 q + 10 p^4 q^2 + \frac{20 p^5 q^3}{1-2pq}.
+\end{align}\]</span>
+Actually, you don’t really need computers to derive the
+expression above. Can you do it by finding all the ways in which the
+game can be won in <span class="math inline">\(n=4,5,6,8, 10, 12, \dots\)</span> rallies, computing their
+probabilities, and then adding them all up?</p>
+</div>
+</div>
+<div id="expected-reward" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Expected reward</h2>
+<p>Suppose that each time you visit a transient state <span class="math inline">\(j\in T\)</span> you receive
+a <em>reward</em> <span class="math inline">\(g(j)\in{\mathbb{R}}\)</span>. The name “reward” is a bit misleading since the
+negative <span class="math inline">\(g(j)\)</span> corresponds more to a fine than to a reward; it is just
+a name, anyway. Can we compute the expected total reward before
+absorption <span class="math display">\[v_i={\mathbb{E}}_i[ \sum_{n=0}^{\tau_{C}-1} g(X_n)] ?\]</span> And if we
+can, what is it good for? Many things, actually, as the following two
+special cases show:</p>
+<ol style="list-style-type: decimal">
+<li><p>If <span class="math inline">\(g(j)=1\)</span> for all <span class="math inline">\(j\in T\)</span>, then <span class="math inline">\(v_i\)</span> is the expected time until
+absorption. We will calculate <span class="math inline">\(v_{(0,0)}\)</span> for the “Tennis” example
+to compute the expected duration of a tennis game.</p></li>
+<li><p>If <span class="math inline">\(g(k)=1\)</span> and <span class="math inline">\(g(j)=0\)</span> for <span class="math inline">\(j\not =k\)</span>, then <span class="math inline">\(v_i\)</span> is the expected
+number of visits to the state <span class="math inline">\(k\)</span> before absorption. In the “Tennis”
+example, if <span class="math inline">\(k=(40,40)\)</span>, the value of <span class="math inline">\(v_{(0,0)}\)</span> is the expected
+number of times the score <span class="math inline">\((40,40)\)</span> is seen in a tennis game.</p></li>
+</ol>
+<p>We compute <span class="math inline">\(v_i\)</span> using the first-step decomposition: <span class="math display">\[\label{equ:}
+   % \nonumber 
+   \begin{split}
+ v_i &amp;={\mathbb{E}}_i[ \sum_{n=0}^{\tau_C - 1} g(X_n)]
+= g(i)+ {\mathbb{E}}_i[ \sum_{n=1}^{\tau_C - 1} g(X_n)]\\
+&amp;= g(i)+ \sum_{k\in S} {\mathbb{E}}_i[ \sum_{n=1}^{\tau_C - 1} g(X_n)|X_1=k]
+{\mathbb{P}}_i[X_1=k]\\
+&amp;
+= g(i)+ \sum_{k\in S} 
+p_{ik}{\mathbb{E}}_i[ \sum_{n=1}^{\tau_C - 1} g(X_n)|X_1=k]
+   \end{split}\]</span> If <span class="math inline">\(k\in T\)</span>, then the Markov property implies that
+<span class="math display">\[{\mathbb{E}}_i[ \sum_{n=1}^{\tau_C - 1} g(X_n)|X_1=k]={\mathbb{E}}_k[ \sum_{n=0}^{\tau_C - 1} g(X_n)]=v_k.\]</span>
+When <span class="math inline">\(k\not\in T\)</span>, then
+<span class="math display">\[{\mathbb{E}}_i[ \sum_{n=1}^{\tau_C - 1} g(X_n)|X_1=k]=0,\]</span> because we have
+“arrived” and no more rewards are going to be collected. Therefore, for
+<span class="math inline">\(i\in T\)</span> we have <span class="math display">\[v_i=g(i)+\sum_{k\in T} p_{ik} v_k.\]</span> If we organize
+all <span class="math inline">\(v_i\)</span> and all <span class="math inline">\(g(i)\)</span> into column vectors <span class="math inline">\(v=(v_i, i\in T)\)</span>,
+<span class="math inline">\(g=(g(i), i\in T)\)</span>, we get
+<span class="math display">\[v=Qv+g, \text{ i.e., } v=(I-Q)^{-1} g = Fg.\]</span></p>
+<p>Having derived the general formula for various rewards, we can provide
+another angle to the interpretation of the fundamental matrix <span class="math inline">\(F\)</span>.
+Let us pick a transient state <span class="math inline">\(j\)</span>
+and use the reward function <span class="math inline">\(g\)</span> given by <span class="math display">\[g(k)=\mathbf{1}_{\{k=j\}}=
+\begin{cases}
+  1, &amp; k=j \\ 0,&amp; k\not= j.
+\end{cases}\]</span> By the discussion above, the <span class="math inline">\(i^{th}\)</span> entry in
+<span class="math inline">\(v=(I-Q)^{-1} g\)</span> is the expected reward when we start from the state
+<span class="math inline">\(i\)</span>. Given the form of the reward function, <span class="math inline">\(v_i\)</span> is the expected number
+of visits to the state <span class="math inline">\(j\)</span> when we start from <span class="math inline">\(i\)</span>. On the other hand, as
+the product of the matrix <span class="math inline">\(F=(I-Q)^{-1}\)</span> and the vector
+<span class="math inline">\(g=(0,0,\dots, 1, \dots, 0)\)</span>, <span class="math inline">\(v_i\)</span> is nothing but the <span class="math inline">\((i,j)\)</span>-entry in <span class="math inline">\(F=(I-Q)^{-1}\)</span>.</p>
+Let’s illustrate these ideas on some of our example chains:
+<div class="problem">
+<p>What is the expected duration of a game of tennis? Compute it for
+several values of the parameter <span class="math inline">\(p\)</span>.</p>
+</div>
+<div class="solution">
+<p>The main idea is to perform a reward computation with <span class="math inline">\(g(i)=1\)</span> for all transient states <span class="math inline">\(i\)</span>. The R code is very similar to the one in the absorption example:</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="absorption-and-reward.html#cb151-1" aria-hidden="true"></a>expected_duration =<span class="st"> </span><span class="cf">function</span>(p) {</span>
+<span id="cb151-2"><a href="absorption-and-reward.html#cb151-2" aria-hidden="true"></a>    <span class="cf">if</span> (p <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) </span>
+<span id="cb151-3"><a href="absorption-and-reward.html#cb151-3" aria-hidden="true"></a>        <span class="kw">return</span>(<span class="dv">4</span>)</span>
+<span id="cb151-4"><a href="absorption-and-reward.html#cb151-4" aria-hidden="true"></a>    P =<span class="st"> </span><span class="kw">tennis_P</span>(p)</span>
+<span id="cb151-5"><a href="absorption-and-reward.html#cb151-5" aria-hidden="true"></a>    Q =<span class="st"> </span>P[<span class="dv">1</span><span class="op">:</span><span class="dv">18</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">18</span>]</span>
+<span id="cb151-6"><a href="absorption-and-reward.html#cb151-6" aria-hidden="true"></a>    g =<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span>, <span class="dt">nrow =</span> <span class="dv">18</span>, <span class="dt">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb151-7"><a href="absorption-and-reward.html#cb151-7" aria-hidden="true"></a>    v =<span class="st"> </span><span class="kw">solve</span>(<span class="kw">diag</span>(<span class="dv">18</span>) <span class="op">-</span><span class="st"> </span>Q, g)</span>
+<span id="cb151-8"><a href="absorption-and-reward.html#cb151-8" aria-hidden="true"></a>    v[<span class="dv">1</span>, ]</span>
+<span id="cb151-9"><a href="absorption-and-reward.html#cb151-9" aria-hidden="true"></a>}</span>
+<span id="cb151-10"><a href="absorption-and-reward.html#cb151-10" aria-hidden="true"></a>ps =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb151-11"><a href="absorption-and-reward.html#cb151-11" aria-hidden="true"></a>duration_game =<span class="st"> </span><span class="kw">sapply</span>(ps, expected_duration)</span></code></pre></div>
+<p>As above, here is the graph of <code>p</code> vs. <code>duration_game</code>:
+<img src="_main_files/figure-html/unnamed-chunk-265-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The maximum of the curve about equals to <span class="math inline">\(6.75\)</span>, and is achieved when the players are
+evenly matched (<span class="math inline">\(p=0.5\)</span>).
+Therefore, a game between fairly equally matched opponents lasts <span class="math inline">\(6.75\)</span>.
+The game cannot be shorter than <span class="math inline">\(4\)</span> rallies and that is exactly the expected
+duration when one player wins with certainty in each rally.</p>
+</div>
+<div class="problem">
+<p>What is the expected number of “deuces”, i.e., scores <span class="math inline">\((40,40)\)</span>? Compute it for
+several values of the parameter <span class="math inline">\(p\)</span>.</p>
+</div>
+<div class="solution">
+<p>This can be computed exactly as above, except that now the
+reward function is given by
+<span class="math display">\[\begin{align}
+  g(i) = \begin{cases} 
+  1, &amp; \text{ if } i = (40,40),\\
+  0, &amp; \text{ otherwise.}
+  \end{cases}
+\end{align}\]</span>
+Since the code is almost identical to the code from the last example, we skip it
+here and only draw the graph:
+<img src="_main_files/figure-html/unnamed-chunk-266-1.png" width="672" style="display: block; margin: auto;" />
+As expected, there are no dueces when <span class="math inline">\(p=0\)</span> or <span class="math inline">\(p=1\)</span>, and the
+maximal expected number of dueces - <span class="math inline">\(0.625\)</span> - occurs when <span class="math inline">\(p=1/2\)</span>.</p>
+<p>These numbers are a bit misleading, though, and, when asked,
+people would usually give a higher
+estimate for this expectation. The reason is that the expectation is a
+poor summary of for the full distribution of the number of deuces.
+The best way yo to get a feeling for the entire distribution is to
+run some simulations. Here is the histogram of <span class="math inline">\(10000\)</span> simulations of a
+game of tennis for the most interesting case <span class="math inline">\(p=0.5\)</span>:</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-267-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We see that most of the games have no deuces. However, in the
+cases where a deuce does happen, it is quite possible it will be repeated. A sizable number of draws yielded <span class="math inline">\(4\)</span> of more deuces.</p>
+</div>
+<p>We end with another example from a different area:</p>
+<div class="problem">
+<p>Alice plays the following game. She picks a pattern consisting of three
+letters from the set <span class="math inline">\(\{H,T\}\)</span>, and then tosses a fair coin until her
+pattern appears for the first time. If she has to pay <span class="math inline">\(\$1\)</span> for each
+coin toss, what is the expected cost she is going to incur? What pattern
+should she choose to minimize that cost?</p>
+</div>
+<div class="solution">
+<p>We start by choosing a pattern, say <span class="math inline">\(HTH\)</span>, and computing the number of
+coin tosses Alice expects to make before it appears. This is just the
+kind of computation that can be done using our absorption-and-reward
+techniques, if we can find a suitable Markov chain. It turns out that
+the following will do (green arrows stand for probability <span class="math inline">\(1/2\)</span>):</p>
+<p><img src="pics/pattern_HTH_chain.png" width="1200" style="display: block; margin: auto;" /></p>
+<p>As Alice tosses the
+coin, she keeps track of the largest initial portion of her pattern that
+appears at last several places of the sequence of past tosses. The state
+<span class="math inline">\(0\)</span> represents no such portion (as well as the intial state), while <span class="math inline">\(HT\)</span>
+means that the last two coin tosses were <span class="math inline">\(H\)</span> and <span class="math inline">\(T\)</span> (in that order) so
+that it is possible to end the game by tossing a <span class="math inline">\(H\)</span> next. On the other
+hand, if the last toss was a <span class="math inline">\(T\)</span>, there is no need to keep track of that
+- it is as good as <span class="math inline">\(0\)</span>.</p>
+<p>Once we have this chain, all we have to do is perform the absorption and
+reward computation with the reward function <span class="math inline">\(g\equiv 1\)</span>. The <span class="math inline">\(Q\)</span>-matrix
+of this chain (with the transient states ordered as <span class="math inline">\(0, H, HT\)</span>) is
+<span class="math display">\[Q = \begin{bmatrix}
+1/2 &amp; 1/2 &amp; 0 \\
+0 &amp; 1/2 &amp; 1/2 \\
+1/2 &amp; 0 &amp;  0\\
+\end{bmatrix}\]</span> and the fundamental matrix <span class="math inline">\(F\)</span> turns out to be <span class="math display">\[F =
+ \begin{bmatrix}
+4 &amp; 4 &amp; 2 \\
+2 &amp; 4 &amp; 2 \\
+2 &amp; 2 &amp; 2 \\
+\end{bmatrix} .\]</span> Therefore, the required expectation is the sum of all
+the elements on the first row, i.e., <span class="math inline">\(10\)</span>.</p>
+<p>Let us repeat the same for the pattern <span class="math inline">\(HHH\)</span>. We build a similar Markov
+chain:</p>
+<p><img src="pics/pattern_HHH_chain.png" width="1200" style="display: block; margin: auto;" /></p>
+<p>We see that
+there is a subtle difference. One transition from the state <span class="math inline">\(H\)</span>, instead
+of going back to itself, is directed towards <span class="math inline">\(0\)</span>. It is clear from here,
+that this can only increase Alice’s cost. Indeed, the fundamental matrix
+is now given by <span class="math display">\[F =
+ \begin{bmatrix}
+8 &amp; 4 &amp; 2 \\
+6 &amp; 4 &amp; 2 \\
+4 &amp; 2 &amp; 2 \\
+\end{bmatrix},\]</span> and the expected number of tosses before the first
+appearance of <span class="math inline">\(HHH\)</span> comes out as <span class="math inline">\(14\)</span>.</p>
+<p>Can you do this for other patterns? Which one should Alice choose to
+minimize her cost?</p>
+</div>
+<div id="additional-problems-for-chapter-7" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Additional Problems for Chapter 7</h2>
+<div style="border: 1px solid; padding: 5px;">
+<p><strong>Note:</strong> do not use simulations in any of the problems below. Using R (or other software) to manipulate matrices or perform other numerical computation is fine.</p>
+</div>
+<p><br></p>
+<!--
+  mc_prob1
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>The fundamental matrix associated to a finite Markov chain is
+<span class="math inline">\(F = \begin{bmatrix} 3 &amp; 3 \\ 3/2 &amp; 3\end{bmatrix}\)</span>, with the first row (and column)
+corresponding to the state <span class="math inline">\(A\)</span> and the second to <span class="math inline">\(B\)</span>. Some of the
+following statements are true and the others are false. Find which ones
+are true and which are false; give explanations for your choices.</p>
+<ol style="list-style-type: decimal">
+<li><p>The chain has <span class="math inline">\(2\)</span> recurrent states.</p></li>
+<li><p>If the chain starts in <span class="math inline">\(A\)</span>, the expected number of visits to <span class="math inline">\(B\)</span>
+before hitting the first recurrent state is <span class="math inline">\(3\)</span>.</p></li>
+<li><p>If the chain is equally likely to start from <span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span>, the
+expected number of steps it will take before it hits its first
+recurrent state is <span class="math inline">\(\frac{21}{4}\)</span>.</p></li>
+<li><p><span class="math inline">\({\mathbb{P}}_A[X_1=C] =0\)</span> for any recurrent state <span class="math inline">\(C\)</span>.</p></li>
+</ol>
+</div>
+<div class="solution">
+<p><part> 1. </part>
+<strong>False.</strong> <span class="math inline">\(F\)</span> is <span class="math inline">\(m\times m\)</span>, where <span class="math inline">\(m\)</span> is the number of
+<em>transient</em> states. The dimensions of <span class="math inline">\(F\)</span> say nothing about the
+number of recurrent states.</p>
+<p><part> 2. </part>
+<strong>True.</strong> This is a reward computation with <span class="math inline">\(g = \binom{0}{1}\)</span>, so
+that
+<span class="math display">\[v = Fg = \begin{bmatrix} 3 &amp; 3 \\ 3/2 &amp; 3 \end{bmatrix} \begin{bmatrix} 0 \\ 1 \end{bmatrix} = \begin{bmatrix} 3 \\ 3 \end{bmatrix}.\]</span>
+Therefore, the expected number of steps is <span class="math inline">\(3\)</span>, no matter where we
+start.</p>
+<p><part> 3. </part>
+<strong>True.</strong> Another reward computation, this time with
+<span class="math inline">\(g=\binom{1}{1}\)</span>: <span class="math display">\[v = F g = \begin{bmatrix} 6 \\ 9/2\end{bmatrix}.\]</span> Since the two
+initial states are equally likely, the answer is <span class="math inline">\(\tfrac{1}{2}6 +  \tfrac{1}{2}9/2 = \frac{21}{4}\)</span>.</p>
+<p><part> 4. </part>
+<strong>True.</strong> We know that <span class="math inline">\(F=(I-Q)^{-1}\)</span>. Therefore <span class="math inline">\(Q = I  -F^{-1}\)</span>. We can compute
+<span class="math display">\[F^{-1} = \begin{pmatrix}
+           2/3 &amp; -2/3 \\ -1/3 &amp; 2/3 
+       \end{pmatrix}.\]</span>
+This can be done using R or by hand using the formula
+<span class="math display">\[\begin{pmatrix}a &amp; b \\ c &amp; d\end{pmatrix}^{-1}=\frac{1}{ad-bc} 
+      \begin{pmatrix} d &amp; -b \\
+        -c &amp; a\end{pmatrix}.\]</span> Therefore, <span class="math display">\[Q = \begin{pmatrix}
+            1/3 &amp; 2/3 \\ 1/3 &amp; 1/3
+          \end{pmatrix}\]</span> The first row (transitions from <span class="math inline">\(A\)</span> to
+transient states) adds up to <span class="math inline">\(1\)</span>, so the probability of going from
+<span class="math inline">\(A\)</span> to any recurrent state in one step must be <span class="math inline">\(0\)</span>.</p>
+</div>
+<!--
+  ar-prob-01
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>In a Markov chain with a finite number of states, the fundamental matrix
+is given by <span class="math display">\[F=\begin{bmatrix} 3 &amp; 4 \\
+    \tfrac{3}{2} &amp; 4\end{bmatrix}.\]</span> The initial distribution of the
+chain is uniform on all transient states. Compute the expected value of
+<span class="math display">\[\tau_C=\min \{ n\in{\mathbb{N}}_0\, : \, X_n\in C\},\]</span> where <span class="math inline">\(C\)</span> denotes the set of
+all recurrent states.</p>
+</div>
+<div class="solution">
+<p>Using the reward <span class="math inline">\(g\equiv 1\)</span>, the vector <span class="math inline">\(v\)</span> of expected values of
+<span class="math inline">\(\tau_C\)</span>, where each entry corresponds to a different transient initial
+state is <span class="math display">\[v= F g= \begin{bmatrix} 3 &amp; 4 \\
+    \tfrac{3}{2} &amp; 4\end{bmatrix}
+  \begin{bmatrix}
+    1 \\ 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+  7 \\ \tfrac{11}{2}
+\end{bmatrix}\]</span> The initial distribution puts equal
+probabilities on the two transient states, so, by the law of total
+probability, <span class="math display">\[{\mathbb{E}}[\tau_C]= \tfrac{1}{2}\times 7 + \tfrac{1}{2}\times \tfrac{11}{2}=
+\tfrac{25}{4}.\]</span></p>
+</div>
+<!--
+  ar-prob-03
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>Consider the “Gambler’s ruin” model with parameter <span class="math inline">\(p\)</span>.
+Write an R function that computes the
+(vector of) probabilities that the gambler will go bankrupt before her wealth reaches
+<span class="math inline">\(\$1000\)</span> for each initial wealth <span class="math inline">\(x = 0,1,\dots, 1000\)</span>.
+Plot the graphs for <span class="math inline">\(p=0.4, p=0.49, p=0.499\)</span> and <span class="math inline">\(p=0.5\)</span> on top of each other. Did you expect them to look the way they do?</p>
+</div>
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/04_Absorption_and_Reward/ar-prob-03_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+<!--
+  mc_prob2
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>A basketball player is shooting a series of free throws. The probability
+of hitting any single one is <span class="math inline">\(1/2\)</span>, and the throws are independent of
+each other. What is the expected number of throws the player will
+attempt before hitting 3 free throws in a row (including those 3)?</p>
+</div>
+<div class="solution">
+<p>Let <span class="math inline">\(X_n\)</span> be the size of the longest winning streak so far. The value of
+<span class="math inline">\(X_{n+1}\)</span> then equals <span class="math inline">\(1+X_n\)</span> with probability <span class="math inline">\(1/2\)</span> and <span class="math inline">\(0\)</span> with
+probability <span class="math inline">\(1/2\)</span> so that the transition matrix of the Markov chain <span class="math inline">\(X\)</span>,
+on the state space <span class="math inline">\(S=\{0,1,2,3\}\)</span> is <span class="math display">\[P = \begin{bmatrix} 
+   1/2 &amp; 1/2 &amp; 0 &amp; 0 \\
+   1/2 &amp; 0 &amp; 1/2 &amp; 0 \\
+   1/2 &amp; 0 &amp; 0 &amp; 1/2 \\
+   0 &amp; 0 &amp; 0 &amp; 1\end{bmatrix}\]</span> where we made the state <span class="math inline">\(3\)</span> absorbing. The required
+expectation is <span class="math inline">\(v_0\)</span>, where <span class="math inline">\(v_i\)</span> is the expected number of steps until
+absorption starting from the state <span class="math inline">\(i\)</span>. The system of equations
+satisfied by <span class="math inline">\(v\)</span> is <span class="math display">\[\begin{aligned}
+    v_0 &amp;= 1+ 1/2 v_0 + 1/2 v_1 \\
+    v_1 &amp;= 1+ 1/2 v_0 + 1/2 v_2 \\
+    v_2 &amp;= 1+ 1/2 v_0
+   \end{aligned}\]</span> From here, we get
+<span class="math display">\[\begin{align}
+      v_0 &amp;= 1+ 1/2 v_0 + 1/2 v_1 = 1 + 1/2 v_0 + 1/2 (1+1/2 v_0 + 1/2 v_2)\\
+      &amp;= 1 + 1/2 v_0 + 1/2 ( 1 + 1/2 v_0 + 1/2(1+1/2 v_0)) \\ &amp;= (1+1/2+1/4) + v_0 (1/2+ 1/4+1/8) = \frac{7}{4} + \frac{7}{8} v_0
+\end{align}\]</span>
+so that <span class="math inline">\(v_0 = 14\)</span>.</p>
+</div>
+<!--
+  ar-prob-04
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>Let <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> be a Markov chain
+with the following transition matrix <span class="math display">\[P=
+\begin{bmatrix}
+  1/2 &amp; 1/2 &amp; 0 \\
+  1/3 &amp; 1/3 &amp; 1/3 \\
+  0  &amp;  0  &amp;  1\\
+\end{bmatrix}\]</span> Suppose that the chain starts from the state <span class="math inline">\(1\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p>What is expected time that will pass before the chain first hits
+<span class="math inline">\(3\)</span>?</p></li>
+<li><p>What is the expected number of visits to state <span class="math inline">\(2\)</span> before <span class="math inline">\(3\)</span> is
+hit?</p></li>
+<li><p>Would your answers to 1. and 2. change if we replaced values in the
+third row of <span class="math inline">\(P\)</span> by any other values (as long as <span class="math inline">\(P\)</span> remains a
+stochastic matrix)? Would <span class="math inline">\(1\)</span> and <span class="math inline">\(2\)</span> still be transient states?</p></li>
+<li><p>Use the idea of part 3. to answer the following question. What is
+the expected number of visits to the state <span class="math inline">\(2\)</span> before a Markov chain
+with transition matrix <span class="math display">\[P=
+\begin{bmatrix}
+17/20 &amp; 1/20 &amp; 1/10\\
+1/15 &amp; 13/15 &amp; 1/15\\
+2/5 &amp; 4/15 &amp; 1/3\\
+  \end{bmatrix}\]</span> hits the state <span class="math inline">\(3\)</span> for the first time (the initial
+state is still <span class="math inline">\(1\)</span>)? Remember this trick for your next exam.</p></li>
+</ol>
+</div>
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/04_Absorption_and_Reward/ar-prob-04_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+<!--
+  ar-prob-02
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>A fair 6-sided die is rolled repeatedly, and for <span class="math inline">\(n\in{\mathbb{N}}\)</span>, the outcome
+of the <span class="math inline">\(n\)</span>-th roll is denoted by <span class="math inline">\(Y_n\)</span> (it is assumed that <span class="math inline">\(\{Y_n\}_{n\in{\mathbb{N}}}\)</span> are
+independent of each other). For <span class="math inline">\(n\in{\mathbb{N}}_0\)</span>, let <span class="math inline">\(X_n\)</span> be the remainder
+(taken in the set <span class="math inline">\(\{0,1,2,3,4\}\)</span>) left after the sum
+<span class="math inline">\(\sum_{k=1}^n Y_k\)</span> is divided by <span class="math inline">\(5\)</span>, i.e. <span class="math inline">\(X_0=0\)</span>, and <span class="math display">\[%\label{}
+    \nonumber 
+    \begin{split}
+X_n= \sum_{k=1}^n Y_k \ (\,\mathrm{mod}\, 5\,),\text{ for } n\in{\mathbb{N}}, 
+    \end{split}\]</span> making <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> a Markov chain on the state space
+<span class="math inline">\(\{0,1,2,3,4\}\)</span> (no need to prove this fact).</p>
+<ol style="list-style-type: decimal">
+<li><p>Write down the transition matrix of the chain.</p></li>
+<li><p>Classify the states, separate recurrent from transient ones, and
+compute the period of each state.</p></li>
+<li><p>Compute the expected number of rolls before the first time
+<span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> visits the state <span class="math inline">\(2\)</span>, i.e., compute <span class="math inline">\({\mathbb{E}}[\tau_2]\)</span>, where
+<span class="math display">\[\tau_2=\min \{ n\in{\mathbb{N}}_0\, : \, X_n=2\}.\]</span></p></li>
+<li><p>Compute <span class="math inline">\({\mathbb{E}}[\sum_{k=0}^{\tau_2-1} X_k]\)</span>.</p></li>
+</ol>
+</div>
+<div class="solution">
+<p><part> 1. </part>
+The outcomes <span class="math inline">\(1,2,3,4,5,6\)</span> leave remainders <span class="math inline">\(1,2,3,4,0,1\)</span>, when
+divided by <span class="math inline">\(5\)</span>, so the transition matrix <span class="math inline">\(P\)</span> of the chain is given
+by <span class="math display">\[P=\begin{bmatrix}
+  \frac{1}{6} &amp;   \frac{1}{3} &amp;   \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{6} \\
+  \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{3} &amp;   \frac{1}{6} &amp;   \frac{1}{6} \\
+  \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{3} &amp;   \frac{1}{6} \\
+  \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{3} \\
+  \frac{1}{3} &amp;   \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{6} \\
+\end{bmatrix}\]</span></p>
+<p><part> 2. </part>
+Since <span class="math inline">\(p_{ij}&gt;0\)</span> for all <span class="math inline">\(i,j\in{\mathcal{S}}\)</span>, all the states belong to the
+same class, and, because there is at least one recurrent state in a
+finite-state-space Markov chain and because recurrence is a class
+property, all states are recurrent. Finally, <span class="math inline">\(1\)</span> is in the return
+set of every state, so the period of each state is <span class="math inline">\(1\)</span>.</p>
+<p><part> 3. </part>
+In order to be able to use “absorption-and-reward” computations, we
+turn the state <span class="math inline">\(2\)</span> into an absorbing state, i.e., modify the
+transition matrix as follows <span class="math display">\[P&#39;=\begin{bmatrix}
+  \frac{1}{6} &amp;   \frac{1}{3} &amp;   \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{6} \\
+  \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{3} &amp;   \frac{1}{6} &amp;   \frac{1}{6} \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+  \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{3} \\
+  \frac{1}{3} &amp;   \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{6} \\
+\end{bmatrix}\]</span> Now, the first hitting time of the state <span class="math inline">\(2\)</span>
+corresponds exactly to the absorption time, i.e., the time <span class="math inline">\(\tau_C\)</span>
+the chain hits its first recurrent state (note that for the new
+transition probabilities the state <span class="math inline">\(2\)</span> is recurrent and all the
+other states are transient). In the canonical form, the new
+transition matrix looks like <span class="math display">\[\begin{bmatrix}
+  1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+  \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{3} &amp;   \frac{1}{6} &amp;   \frac{1}{6} \\
+  \frac{1}{3} &amp;   \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{6} \\
+  \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{3} \\
+  \frac{1}{6} &amp;   \frac{1}{3} &amp;   \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{6} \\
+\end{bmatrix}\]</span> Therefore, <span class="math display">\[Q=
+\begin{bmatrix}
+   \frac{1}{6} &amp;   \frac{1}{3} &amp;   \frac{1}{6} &amp;   \frac{1}{6} \\
+   \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{6} \\
+   \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{3} \\
+   \frac{1}{3} &amp;   \frac{1}{6} &amp;   \frac{1}{6} &amp;   \frac{1}{6} \\
+\end{bmatrix}.\]</span>
+The expected time until absorption is given by
+an “absorption-and-reward” computation with the reward matrix <span class="math display">\[g_1=
+\begin{bmatrix}
+  1 \\ 1 \\ 1 \\ 1
+\end{bmatrix}:\]</span></p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="absorption-and-reward.html#cb152-1" aria-hidden="true"></a>Q =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">6</span><span class="op">*</span><span class="kw">matrix</span>(</span>
+<span id="cb152-2"><a href="absorption-and-reward.html#cb152-2" aria-hidden="true"></a>  <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,</span>
+<span id="cb152-3"><a href="absorption-and-reward.html#cb152-3" aria-hidden="true"></a>    <span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,</span>
+<span id="cb152-4"><a href="absorption-and-reward.html#cb152-4" aria-hidden="true"></a>    <span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,</span>
+<span id="cb152-5"><a href="absorption-and-reward.html#cb152-5" aria-hidden="true"></a>    <span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>), </span>
+<span id="cb152-6"><a href="absorption-and-reward.html#cb152-6" aria-hidden="true"></a>  <span class="dt">byrow=</span>T, <span class="dt">ncol=</span><span class="dv">4</span>)</span>
+<span id="cb152-7"><a href="absorption-and-reward.html#cb152-7" aria-hidden="true"></a>g1 =<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span>, <span class="dt">nrow=</span><span class="dv">4</span>, <span class="dt">ncol=</span><span class="dv">1</span>)</span>
+<span id="cb152-8"><a href="absorption-and-reward.html#cb152-8" aria-hidden="true"></a>(<span class="dt">v =</span> <span class="kw">solve</span>( <span class="kw">diag</span>(<span class="dv">4</span>) <span class="op">-</span><span class="st"> </span>Q, g1 ))</span>
+<span id="cb152-9"><a href="absorption-and-reward.html#cb152-9" aria-hidden="true"></a><span class="co">##          [,1]</span></span>
+<span id="cb152-10"><a href="absorption-and-reward.html#cb152-10" aria-hidden="true"></a><span class="co">## [1,] 4.861736</span></span>
+<span id="cb152-11"><a href="absorption-and-reward.html#cb152-11" aria-hidden="true"></a><span class="co">## [2,] 4.167203</span></span>
+<span id="cb152-12"><a href="absorption-and-reward.html#cb152-12" aria-hidden="true"></a><span class="co">## [3,] 4.996785</span></span>
+<span id="cb152-13"><a href="absorption-and-reward.html#cb152-13" aria-hidden="true"></a><span class="co">## [4,] 4.977492</span></span></code></pre></div>
+<p>Since we are starting from state <span class="math inline">\(1\)</span>, the answer is 4.8617363.</p>
+<p><part> 4. </part>
+This is an “absorption-and-reward” computation with reward <span class="math inline">\(g_2\)</span>
+given by <span class="math display">\[g_2=
+\begin{bmatrix}
+  0 \\ 1 \\ 3 \\ 4
+\end{bmatrix}:\]</span></p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="absorption-and-reward.html#cb153-1" aria-hidden="true"></a>g2 =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>), <span class="dt">nrow =</span> <span class="dv">4</span>, <span class="dt">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb153-2"><a href="absorption-and-reward.html#cb153-2" aria-hidden="true"></a>(<span class="dt">v =</span> <span class="kw">solve</span>(<span class="kw">diag</span>(<span class="dv">4</span>) <span class="op">-</span><span class="st"> </span>Q, g2))</span>
+<span id="cb153-3"><a href="absorption-and-reward.html#cb153-3" aria-hidden="true"></a><span class="co">##           [,1]</span></span>
+<span id="cb153-4"><a href="absorption-and-reward.html#cb153-4" aria-hidden="true"></a><span class="co">## [1,]  7.350482</span></span>
+<span id="cb153-5"><a href="absorption-and-reward.html#cb153-5" aria-hidden="true"></a><span class="co">## [2,]  7.157556</span></span>
+<span id="cb153-6"><a href="absorption-and-reward.html#cb153-6" aria-hidden="true"></a><span class="co">## [3,] 11.054662</span></span>
+<span id="cb153-7"><a href="absorption-and-reward.html#cb153-7" aria-hidden="true"></a><span class="co">## [4,] 11.382637</span></span></code></pre></div>
+<p>so that <span class="math inline">\({\mathbb{E}}[\sum_{k=0}^{\tau_2-1} X_k]=\)</span> 7.3504823.</p>
+</div>
+<!--
+  ar-prob-15
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>Let <span class="math inline">\(\{Y_n\}_{n\in {\mathbb{N}}_0}\)</span> be a sequence
+of die-rolls, i.e., a sequence of independent random variables with
+distribution <span class="math display">\[Y_n \sim \left( 
+\begin{array}{cccccc}
+ 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 \\
+1/6 &amp; 1/6 &amp; 1/6 &amp; 1/6 &amp; 1/6 &amp; 1/6 
+  \end{array}
+\right).\]</span> Let <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> be a stochastic process defined by
+<span class="math inline">\(X_n=\max (Y_0,Y_1, \dots, Y_n)\)</span>. In words, <span class="math inline">\(X_n\)</span> is the maximal value rolled so far.</p>
+<ol style="list-style-type: decimal">
+<li><p>Explain why <span class="math inline">\(X\)</span> is a Markov chain, and find its transition matrix
+and the initial distribution.</p></li>
+<li><p>Supposing that the first roll of the die was <span class="math inline">\(3\)</span>, i.e., <span class="math inline">\(X_0=3\)</span>,
+what is the expected time until a <span class="math inline">\(6\)</span> is reached?</p></li>
+<li><p>Under the same assumption as above (<span class="math inline">\(X_0=3\)</span>), what is the
+probability that a <span class="math inline">\(5\)</span> will not be rolled before a <span class="math inline">\(6\)</span> is rolled for
+the first time?</p></li>
+<li><p>Starting with the first value <span class="math inline">\(X_0=3\)</span>, each time a die is rolled,
+the current record (the value of <span class="math inline">\(X_n\)</span>) is written down. When a <span class="math inline">\(6\)</span>
+is rolled for the first time all the numbers are added up and the
+result is called <span class="math inline">\(S\)</span> (the final <span class="math inline">\(6\)</span> is not counted). What is the
+expected value of <span class="math inline">\(S\)</span>?</p></li>
+</ol>
+</div>
+<div class="solution">
+<p><part> 1. </part>
+The value of <span class="math inline">\(X_{n+1}\)</span> is either going to be equal to <span class="math inline">\(X_n\)</span> if
+<span class="math inline">\(Y_{n+1}\)</span> happens to be less than or equal to it, or it moves up to
+<span class="math inline">\(Y_{n+1}\)</span>, otherwise, i.e., <span class="math inline">\(X_{n+1}=\max(X_n,Y_{n+1})\)</span>. Therefore,
+the distribution of <span class="math inline">\(X_{n+1}\)</span> depends on the previous values
+<span class="math inline">\(X_0,X_1,\dots, X_n\)</span> only through <span class="math inline">\(X_n\)</span>, and, so, <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> is a
+Markov chain on the state space <span class="math inline">\(S=\{1,2,3,4,5,6\}\)</span>. The
+transition Matrix is given by <span class="math display">\[P=\begin{bmatrix} 
+    1/6 &amp; 1/6 &amp; 1/6 &amp; 1/6 &amp; 1/6 &amp; 1/6 \\
+    0   &amp; 1/3 &amp; 1/6 &amp; 1/6 &amp; 1/6 &amp; 1/6 \\
+    0   &amp; 0   &amp; 1/2 &amp; 1/6 &amp; 1/6 &amp; 1/6 \\
+    0   &amp; 0   &amp; 0   &amp; 2/3 &amp; 1/6 &amp; 1/6 \\
+    0   &amp; 0   &amp; 0   &amp; 0   &amp; 5/6 &amp; 1/6 \\
+    0   &amp; 0   &amp; 0   &amp; 0   &amp; 0   &amp; 1/6 \\
+    \end{bmatrix}\]</span></p>
+<p><part> 2. </part>
+We can restrict our attention to the Markov
+chain on the state space <span class="math inline">\(S=\{3,4,5,6\}\)</span> with the transition
+matrix <span class="math display">\[P=\begin{bmatrix}
+        1/2 &amp; 1/6 &amp; 1/6 &amp; 1/6 \\
+        0   &amp; 2/3 &amp; 1/6 &amp; 1/6 \\
+        0   &amp; 0   &amp; 5/6 &amp; 1/6 \\
+        0   &amp; 0   &amp; 0   &amp; 1/6 \\
+      \end{bmatrix}\]</span> The state <span class="math inline">\(6\)</span> is absorbing (and therefore recurrent), while
+all the others are transient, so the canonical form of the matrix
+(with the canonical decomposition <span class="math inline">\(C=\{6\}\)</span>, <span class="math inline">\(T=\{3,4,5\}\)</span> is
+given by <span class="math display">\[\begin{bmatrix}
+        1 &amp; 0   &amp; 0   &amp; 0    \\
+        1/6 &amp; 1/2 &amp; 1/6 &amp; 1/6  \\
+        1/6 &amp; 0   &amp; 2/3 &amp; 1/6  \\
+        1/6 &amp; 0   &amp; 0   &amp; 5/6  \\
+      \end{bmatrix}\]</span> The fundamental matrix <span class="math inline">\(F=(I-Q)^{-1}\)</span> is now given by
+<span class="math display">\[F= \begin{bmatrix}
+       1/2 &amp; - 1/6 &amp; - 1/6  \\
+        0   &amp; 1/3 &amp; - 1/6  \\
+        0   &amp; 0   &amp; 1/6\end{bmatrix}^{-1}=
+    \begin{bmatrix}
+    2 &amp; 1 &amp; 3 \\ 0 &amp; 3 &amp; 3 \\ 0 &amp; 0 &amp; 6
+    \end{bmatrix}\]</span> The expected time to absorption can be computed by using the
+reward <span class="math inline">\(1\)</span> for each state: <span class="math display">\[F \begin{bmatrix}1 \\ 1 \\ 1\end{bmatrix}= \begin{bmatrix}6\\ 6\\ 6\end{bmatrix}\]</span>
+Therefore it will take on average 6 rolls until the first <span class="math inline">\(6\)</span>.</p>
+<p><em>Note:</em> You don’t need Markov chains to solve this part; the
+expected time to absorption is nothing but the waiting time until
+the first <span class="math inline">\(6\)</span> is rolled - a shifted geometrically distributed random
+variable with parameter <span class="math inline">\(1/6\)</span>. Therefore, its expectation is
+<span class="math inline">\(1+ \frac{5/6}{1/6}=6\)</span>.</p>
+<p><part> 3. </part>
+We make the state <span class="math inline">\(5\)</span> absorbing and the canonical decomposition
+changes to <span class="math inline">\(C=\{5\}\)</span>, <span class="math inline">\(T=\{3,4,6\}\)</span>. The canonical form
+of the transition matrix is <span class="math display">\[\begin{bmatrix}
+        1  &amp; 0   &amp; 0   &amp; 0    \\
+        0  &amp; 1   &amp; 0 &amp; 0  \\
+        1/6   &amp; 1/6   &amp;  1/2  &amp; 1/6    \\
+        1/6  &amp; 1/6  &amp; 0   &amp; 2/3    \\
+      \end{bmatrix}\]</span> and so
+<span class="math display">\[Q=\begin{bmatrix} 1/2 &amp; 1/6 \\ 0 &amp; 2/3 \end{bmatrix}\text{ and } R=\begin{bmatrix}1/6 &amp; 1/6 \\ 1/6
+      &amp; 1/6\end{bmatrix}.\]</span> Therefore, the absorption probabilities are the entries
+of the matrix <span class="math display">\[(I-Q)^{-1} R = \begin{bmatrix} 1/2 &amp; 1/2 \\ 1/2 &amp; 1/2\end{bmatrix},\]</span> and
+the answer is <span class="math inline">\(1/2\)</span>.</p>
+<p><em>Note:</em> You don’t need Markov chains to solve this part either; the
+probability that <span class="math inline">\(6\)</span> will be seen before <span class="math inline">\(5\)</span> is the same as the
+probability that <span class="math inline">\(5\)</span> will appear before <span class="math inline">\(6\)</span>. The situation is
+entirely symmetric. Therefore, the answer must be <span class="math inline">\(1/2\)</span>.</p>
+<p><part> 4. </part>
+This problem is about expected reward, where the reward <span class="math inline">\(g(i)\)</span> of
+the state <span class="math inline">\(i\in\{3,4,5\}\)</span> is <span class="math inline">\(g(i)=i\)</span>. The answer is <span class="math inline">\(v_3\)</span>, where
+<span class="math display">\[v= F \begin{bmatrix}3 \\ 4 \\ 5\end{bmatrix}= \begin{bmatrix}25 \\ 27 \\30\end{bmatrix},\]</span> i.e., the expected
+value of the sum is <span class="math inline">\(25\)</span>.</p>
+<p><em>Note:</em> Can you do this without the use of the Markov-chain theory?</p>
+</div>
+<!--
+  basil-comp
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>Go back to the problem with
+<a href="Markov-chains.html#basil">Basil the rat</a> in the he first lecture on Markov chains and answer the question 2., but this time using an absorption/reward computation.</p>
+</div>
+<div class="solution">
+<p>We reuse the Markov chain constructed in the original problem:</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="absorption-and-reward.html#cb154-1" aria-hidden="true"></a>P =<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">0</span>,<span class="dt">nrow =</span><span class="dv">7</span>, <span class="dt">ncol=</span><span class="dv">7</span> )</span>
+<span id="cb154-2"><a href="absorption-and-reward.html#cb154-2" aria-hidden="true"></a>P[<span class="dv">1</span>,<span class="dv">2</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span>; P[<span class="dv">1</span>,<span class="dv">3</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span>;</span>
+<span id="cb154-3"><a href="absorption-and-reward.html#cb154-3" aria-hidden="true"></a>P[<span class="dv">2</span>,<span class="dv">1</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">3</span>; P[<span class="dv">2</span>,<span class="dv">4</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">3</span>; P[<span class="dv">2</span>,<span class="dv">6</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">3</span>;</span>
+<span id="cb154-4"><a href="absorption-and-reward.html#cb154-4" aria-hidden="true"></a>P[<span class="dv">3</span>,<span class="dv">1</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">3</span>; P[<span class="dv">3</span>,<span class="dv">4</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">3</span>; P[<span class="dv">3</span>,<span class="dv">7</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">3</span>;</span>
+<span id="cb154-5"><a href="absorption-and-reward.html#cb154-5" aria-hidden="true"></a>P[<span class="dv">4</span>,<span class="dv">2</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">3</span>; P[<span class="dv">4</span>,<span class="dv">3</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">3</span>; P[<span class="dv">4</span>,<span class="dv">5</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">3</span>;</span>
+<span id="cb154-6"><a href="absorption-and-reward.html#cb154-6" aria-hidden="true"></a>P[<span class="dv">5</span>,<span class="dv">4</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span>; P[<span class="dv">5</span>,<span class="dv">6</span>] =<span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span>;</span>
+<span id="cb154-7"><a href="absorption-and-reward.html#cb154-7" aria-hidden="true"></a>P[<span class="dv">6</span>,<span class="dv">6</span>] =<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb154-8"><a href="absorption-and-reward.html#cb154-8" aria-hidden="true"></a>P[<span class="dv">7</span>,<span class="dv">7</span>] =<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
+<p>The states <span class="math inline">\(6\)</span> and <span class="math inline">\(7\)</span> are absorbing, and we can rephrase our problem as
+follows: what is the probability that the first recurrent state the chain visits is “6”. To answer it, we perform an absorption computation (<span class="math inline">\(3\)</span> and <span class="math inline">\(2\)</span> are the positions of the initial state state “Shock” among transient and recurrent states, respectively)</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="absorption-and-reward.html#cb155-1" aria-hidden="true"></a>Q =<span class="st"> </span>P[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</span>
+<span id="cb155-2"><a href="absorption-and-reward.html#cb155-2" aria-hidden="true"></a>R =<span class="st"> </span>P[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">6</span><span class="op">:</span><span class="dv">7</span>]</span>
+<span id="cb155-3"><a href="absorption-and-reward.html#cb155-3" aria-hidden="true"></a>U =<span class="st"> </span><span class="kw">solve</span>(<span class="kw">diag</span>(<span class="dv">5</span>) <span class="op">-</span><span class="st"> </span>Q, R)</span>
+<span id="cb155-4"><a href="absorption-and-reward.html#cb155-4" aria-hidden="true"></a>(U[<span class="dv">3</span>, <span class="dv">2</span>])</span>
+<span id="cb155-5"><a href="absorption-and-reward.html#cb155-5" aria-hidden="true"></a><span class="co">## [1] 0.5833333</span></span></code></pre></div>
+</div>
+<!--
+  prof-comp
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>Go back to the problem with the
+<a href="Markov-chains.html#professor">professor and his umbrellas</a> in the first lecture on Markov chains and answer the questions in part 2., but this time using an absorption/reward computation.</p>
+</div>
+<div class="solution">
+<p>We reuse the Markov chain constructed in the original problem:</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="absorption-and-reward.html#cb156-1" aria-hidden="true"></a>S=<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;h0-4&quot;</span>, <span class="st">&quot;h1-3&quot;</span>, <span class="st">&quot;h2-2&quot;</span>, <span class="st">&quot;h3-1&quot;</span>, <span class="st">&quot;h4-0&quot;</span>, </span>
+<span id="cb156-2"><a href="absorption-and-reward.html#cb156-2" aria-hidden="true"></a>     <span class="st">&quot;0-4o&quot;</span>, <span class="st">&quot;1-3o&quot;</span>, <span class="st">&quot;2-2o&quot;</span>, <span class="st">&quot;3-1o&quot;</span>, <span class="st">&quot;4-0o&quot;</span>, <span class="st">&quot;Wet&quot;</span>)</span>
+<span id="cb156-3"><a href="absorption-and-reward.html#cb156-3" aria-hidden="true"></a></span>
+<span id="cb156-4"><a href="absorption-and-reward.html#cb156-4" aria-hidden="true"></a>P =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>( </span>
+<span id="cb156-5"><a href="absorption-and-reward.html#cb156-5" aria-hidden="true"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.95</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.05</span>,  </span>
+<span id="cb156-6"><a href="absorption-and-reward.html#cb156-6" aria-hidden="true"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>,  </span>
+<span id="cb156-7"><a href="absorption-and-reward.html#cb156-7" aria-hidden="true"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>,  </span>
+<span id="cb156-8"><a href="absorption-and-reward.html#cb156-8" aria-hidden="true"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="dv">0</span>, <span class="dv">0</span>,  </span>
+<span id="cb156-9"><a href="absorption-and-reward.html#cb156-9" aria-hidden="true"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="dv">0</span>,  </span>
+<span id="cb156-10"><a href="absorption-and-reward.html#cb156-10" aria-hidden="true"></a>  <span class="fl">0.8</span>, <span class="fl">0.2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>,  </span>
+<span id="cb156-11"><a href="absorption-and-reward.html#cb156-11" aria-hidden="true"></a>  <span class="dv">0</span>, <span class="fl">0.8</span>, <span class="fl">0.2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>,  </span>
+<span id="cb156-12"><a href="absorption-and-reward.html#cb156-12" aria-hidden="true"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.8</span>, <span class="fl">0.2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>,  </span>
+<span id="cb156-13"><a href="absorption-and-reward.html#cb156-13" aria-hidden="true"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.8</span>, <span class="fl">0.2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>,  </span>
+<span id="cb156-14"><a href="absorption-and-reward.html#cb156-14" aria-hidden="true"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.8</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.2</span>,  </span>
+<span id="cb156-15"><a href="absorption-and-reward.html#cb156-15" aria-hidden="true"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span> ),</span>
+<span id="cb156-16"><a href="absorption-and-reward.html#cb156-16" aria-hidden="true"></a> <span class="dt">byrow=</span>T, <span class="dt">ncol =</span> <span class="dv">11</span> )</span></code></pre></div>
+<p>The only absorbing state is “Wet”, so the matrices <span class="math inline">\(Q\)</span> and <span class="math inline">\(R\)</span> are easy to define as sub-matrices of <span class="math inline">\(P\)</span>:</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="absorption-and-reward.html#cb157-1" aria-hidden="true"></a>Q =<span class="st"> </span>P[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</span>
+<span id="cb157-2"><a href="absorption-and-reward.html#cb157-2" aria-hidden="true"></a>R =<span class="st"> </span>P[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">11</span>]</span></code></pre></div>
+<p>The expected number of trips can be obtained using a reward computation with <span class="math inline">\(g=1\)</span>:</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="absorption-and-reward.html#cb158-1" aria-hidden="true"></a>g =<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span>, <span class="dt">nrow =</span> <span class="dv">10</span>, <span class="dt">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb158-2"><a href="absorption-and-reward.html#cb158-2" aria-hidden="true"></a>v =<span class="st"> </span><span class="kw">solve</span>(<span class="kw">diag</span>(<span class="dv">10</span>) <span class="op">-</span><span class="st"> </span>Q, g)</span>
+<span id="cb158-3"><a href="absorption-and-reward.html#cb158-3" aria-hidden="true"></a>(v[<span class="dv">3</span>, ])  <span class="co"># 3 is the number of the initial state &#39;h2-2&#39;</span></span>
+<span id="cb158-4"><a href="absorption-and-reward.html#cb158-4" aria-hidden="true"></a><span class="co">## [1] 39.14005</span></span></code></pre></div>
+<p>The expected number of days before the professor gets wet is half of that, i.e. 19.5700252.</p>
+<p>For the second question, we need to add another state to the chain, i.e. split the state “Wet”
+into two states “Wet-h” and “Wet-o” in order to keep track of the last location professor left
+before he got wet.</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="absorption-and-reward.html#cb159-1" aria-hidden="true"></a>S=<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;h0-4&quot;</span>, <span class="st">&quot;h1-3&quot;</span>, <span class="st">&quot;h2-2&quot;</span>, <span class="st">&quot;h3-1&quot;</span>, <span class="st">&quot;h4-0&quot;</span>, <span class="st">&quot;0-4o&quot;</span>, </span>
+<span id="cb159-2"><a href="absorption-and-reward.html#cb159-2" aria-hidden="true"></a>     <span class="st">&quot;1-3o&quot;</span>, <span class="st">&quot;2-2o&quot;</span>, <span class="st">&quot;3-1o&quot;</span>, <span class="st">&quot;4-0o&quot;</span>, <span class="st">&quot;Wet-o&quot;</span>, <span class="st">&quot;Wet-h&quot;</span>)</span>
+<span id="cb159-3"><a href="absorption-and-reward.html#cb159-3" aria-hidden="true"></a> </span>
+<span id="cb159-4"><a href="absorption-and-reward.html#cb159-4" aria-hidden="true"></a>P =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>( </span>
+<span id="cb159-5"><a href="absorption-and-reward.html#cb159-5" aria-hidden="true"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.95</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.05</span>,  </span>
+<span id="cb159-6"><a href="absorption-and-reward.html#cb159-6" aria-hidden="true"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>,  </span>
+<span id="cb159-7"><a href="absorption-and-reward.html#cb159-7" aria-hidden="true"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>,  </span>
+<span id="cb159-8"><a href="absorption-and-reward.html#cb159-8" aria-hidden="true"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>,  </span>
+<span id="cb159-9"><a href="absorption-and-reward.html#cb159-9" aria-hidden="true"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="dv">0</span>, <span class="dv">0</span>,  </span>
+<span id="cb159-10"><a href="absorption-and-reward.html#cb159-10" aria-hidden="true"></a>  <span class="fl">0.8</span>, <span class="fl">0.2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>,  </span>
+<span id="cb159-11"><a href="absorption-and-reward.html#cb159-11" aria-hidden="true"></a>  <span class="dv">0</span>, <span class="fl">0.8</span>, <span class="fl">0.2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>,  </span>
+<span id="cb159-12"><a href="absorption-and-reward.html#cb159-12" aria-hidden="true"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.8</span>, <span class="fl">0.2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>,  </span>
+<span id="cb159-13"><a href="absorption-and-reward.html#cb159-13" aria-hidden="true"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.8</span>, <span class="fl">0.2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>,  </span>
+<span id="cb159-14"><a href="absorption-and-reward.html#cb159-14" aria-hidden="true"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.8</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.2</span>, <span class="dv">0</span>,  </span>
+<span id="cb159-15"><a href="absorption-and-reward.html#cb159-15" aria-hidden="true"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>,  </span>
+<span id="cb159-16"><a href="absorption-and-reward.html#cb159-16" aria-hidden="true"></a>  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span> ),</span>
+<span id="cb159-17"><a href="absorption-and-reward.html#cb159-17" aria-hidden="true"></a> <span class="dt">byrow=</span>T, <span class="dt">ncol =</span> <span class="dv">12</span> )</span></code></pre></div>
+<p>The question can now be rephrased as follows: what is the probability that the first recurrent state the chain visits is “Wet-o”. To answer it, we perform an absorption computation (<span class="math inline">\(3\)</span> and <span class="math inline">\(1\)</span> are the positions of the initial state “h2-2” and the state “Wet-o” among transient and recurrent states, respectively)</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="absorption-and-reward.html#cb160-1" aria-hidden="true"></a>Q =<span class="st"> </span>P[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</span>
+<span id="cb160-2"><a href="absorption-and-reward.html#cb160-2" aria-hidden="true"></a>R =<span class="st"> </span>P[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">11</span><span class="op">:</span><span class="dv">12</span>]</span>
+<span id="cb160-3"><a href="absorption-and-reward.html#cb160-3" aria-hidden="true"></a>U =<span class="st"> </span><span class="kw">solve</span>(<span class="kw">diag</span>(<span class="dv">10</span>) <span class="op">-</span><span class="st"> </span>Q, R)</span>
+<span id="cb160-4"><a href="absorption-and-reward.html#cb160-4" aria-hidden="true"></a>(U[<span class="dv">3</span>, <span class="dv">1</span>])</span>
+<span id="cb160-5"><a href="absorption-and-reward.html#cb160-5" aria-hidden="true"></a><span class="co">## [1] 0.9890219</span></span></code></pre></div>
+</div>
+<!--
+  facility
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>An airline reservation system has two computers. Any computer in operation may break down on any given day with probability <span class="math inline">\(p=0.3\)</span>, independently of the other computer.
+There is a single repair facility which takes two days to restore a
+computer to normal. It can work on only one computer at a time, and if two computers need work at the same time, one of them has to wait and enters the facility as soon as it is free again.</p>
+<p>The system starts with one operational computer; the other one broke last night and just entered the repair facility this morning.</p>
+<ol style="list-style-type: decimal">
+<li><p>Compute the probability that at no time will both computers be down simultaneously between now and the first time both computers are operational.</p></li>
+<li><p>Assuming that each day with only one working computer costs the company <span class="math inline">\(\$10,000\)</span> and each day with both computers down <span class="math inline">\(\$30,000\)</span>, what is the total cost the company is expected to incur between now and the first time both computers are operational again.</p></li>
+</ol>
+</div>
+<!-- <div class="solution"> -->
+<!-- ```{r child="problems/04_Absorption_and_Reward/facility_sol.Rmd"} -->
+<!-- ``` -->
+<!-- </div> -->
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="classification-of-states.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dist.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": false,
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+},
+"search": true,
+"toc_depth": null
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
