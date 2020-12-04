@@ -565,10 +565,10 @@ minimize her cost?
 ```{r child="problems/04_Absorption_and_Reward/ar-prob-03_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/04_Absorption_and_Reward/ar-prob-03_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/04_Absorption_and_Reward/ar-prob-03_sol.Rmd"}
+```
+</div>
 
 <!--
   mc_prob2
@@ -591,10 +591,10 @@ minimize her cost?
 ```{r child="problems/04_Absorption_and_Reward/ar-prob-04_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/04_Absorption_and_Reward/ar-prob-04_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/04_Absorption_and_Reward/ar-prob-04_sol.Rmd"}
+```
+</div>
 
 <!--
   ar-prob-02
@@ -658,10 +658,10 @@ minimize her cost?
 ```{r child="problems/04_Absorption_and_Reward/facility_prb.Rmd"}
 ```
 </div>
-<!-- <div class="solution"> -->
-<!-- ```{r child="problems/04_Absorption_and_Reward/facility_sol.Rmd"} -->
-<!-- ``` -->
-<!-- </div> -->
+<div class="solution">
+```{r child="problems/04_Absorption_and_Reward/facility_sol.Rmd"}
+```
+</div>
 
 
 

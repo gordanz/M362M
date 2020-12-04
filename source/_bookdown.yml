@@ -9,6 +9,7 @@ output_dir: "../docs/"
 self_contained: FALSE
 repo: https://github.com/gordanz/M362M
 rmd_files: [
+<<<<<<< HEAD
    # "index.Rmd",
    # "01-R.Rmd",
    # "02-simulation.Rmd",
@@ -18,6 +19,16 @@ rmd_files: [
    # "06-Classification.Rmd",
    # # # "pipeline.Rmd",
    # "07-Absorption-and-Reward.Rmd",
+=======
+   "index.Rmd",
+   "01-R.Rmd",
+   "02-simulation.Rmd",
+   "03-random-walks.Rmd",
+   "04-more-random-walks.Rmd",
+   "05-Markov-chains.Rmd",
+   "06-Classification.Rmd",
+   "07-Absorption-and-Reward.Rmd",
+>>>>>>> 357e6988e73fe273260c9eae3d5de0de94d0a72b
    "08-Stationary-Distributions.Rmd",
    "distributions.Rmd"
     ]

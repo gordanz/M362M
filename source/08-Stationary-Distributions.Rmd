@@ -846,9 +846,20 @@ Google uses a much more complex algorithm these days, but the PageRank
 remains one of the most important (and most lucrative) applications of
 the Markov Chain theory in history.
 
+<<<<<<< HEAD
 ## Additional Problems for Chapter 7
 
 Dumbledore: sl-prob-01
+=======
+## Additional Problems for Chapter 8
+
+<div style="border: 1px solid; padding: 5px;">
+**Note:** do not use simulations in any of the problems below. Using R (or other software) to manipulate matrices or perform other numerical computation is fine.  
+</div>
+
+<br>
+
+>>>>>>> 357e6988e73fe273260c9eae3d5de0de94d0a72b
 <!--
   sl-prob-01
   ------------------------------------------------
@@ -864,7 +875,10 @@ Dumbledore: sl-prob-01
 
 
 
+<<<<<<< HEAD
 Dumbledore: sl-mc-exam-07
+=======
+>>>>>>> 357e6988e73fe273260c9eae3d5de0de94d0a72b
 <!--
   sl-mc-exam-07
   ------------------------------------------------
@@ -878,7 +892,11 @@ Dumbledore: sl-mc-exam-07
 ```
 </div>
 
+<<<<<<< HEAD
 Dumbledore: mc_prob3
+=======
+
+>>>>>>> 357e6988e73fe273260c9eae3d5de0de94d0a72b
 <!--
   mc_prob3
   ------------------------------------------------
@@ -894,7 +912,10 @@ Dumbledore: mc_prob3
 
 
 
+<<<<<<< HEAD
 Dumbledore: sl-prob-02
+=======
+>>>>>>> 357e6988e73fe273260c9eae3d5de0de94d0a72b
 <!--
   sl-prob-02
   ------------------------------------------------
@@ -911,7 +932,10 @@ Dumbledore: sl-prob-02
 
 
 
+<<<<<<< HEAD
 Dumbledore: mc_prob1
+=======
+>>>>>>> 357e6988e73fe273260c9eae3d5de0de94d0a72b
 <!--
   mc_prob1
   ------------------------------------------------
@@ -927,7 +951,10 @@ Dumbledore: mc_prob1
 
 
 
+<<<<<<< HEAD
 Dumbledore: friends
+=======
+>>>>>>> 357e6988e73fe273260c9eae3d5de0de94d0a72b
 <!--
   friends
   ------------------------------------------------
