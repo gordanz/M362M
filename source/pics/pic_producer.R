@@ -232,28 +232,7 @@ plotpng(m,"professor_chain.png")
 # plotpng(m,"pattern_HHH_chain.png", height = 1000)
 
 # mc_prob1_prb
-<<<<<<< HEAD
-m = markov_chain(7) %>% 
-  add_edge(1, 1, prob = 1/2, loop_angle = -pi) %>% 
-  add_edge(1, 3, prob = 1/2) %>% 
-  add_edge(2, 1, prob = 1/4) %>% 
-  add_edge(2, 2, prob = 1/2) %>% 
-  add_edge(2, 3, prob = 1/4) %>% 
-  add_edge(3, 2, prob = 1/2 ) %>% 
-  add_edge(3, 3, prob = 1/2, loop_angle = -pi/2) %>% 
-  add_edge(4, 3, prob = 1) %>% 
-  add_edge(5, 4, prob = 1/2) %>% 
-  add_edge(5, 6, prob = 1/2) %>% 
-  add_edge(6, 7, prob = 1) %>% 
-  add_edge(7, 6, prob = 1/2) %>% 
-  add_edge(7, 7, prob = 1/2, loop_angle = pi/2) %>% 
-  set_auto_layout() %>% 
-  set_auto_edge_colors() %>% 
-  stretch(2) %>% 
-  rotate(pca=T) %>% 
-  curve_overlapping_edges()
-plotpng(m,"mc_prob1_chain.png", height=1000)
-=======
+
 # m = markov_chain(7) %>% 
 #   add_edge(1, 1, prob = 1/2, loop_angle = -pi) %>% 
 #   add_edge(1, 3, prob = 1/2) %>% 
@@ -348,4 +327,3 @@ m = tribble(
 #                           edge.color="grey50")
 # plotpng(m,"facility_simplest_chain.png", height=700)
 #     
->>>>>>> 357e6988e73fe273260c9eae3d5de0de94d0a72b

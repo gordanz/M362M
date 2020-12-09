@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 Dumbledore: sl-prob-01 | Lecture notes for &quot;Introduction to Stochastic Processes&quot;</title>
+  <meta name="description" content="A set of lecture notes for M362M: Introduction to Stochastic Processes" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 Dumbledore: sl-prob-01 | Lecture notes for &quot;Introduction to Stochastic Processes&quot;" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="A set of lecture notes for M362M: Introduction to Stochastic Processes" />
+  <meta name="github-repo" content="gordanz/M362M" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 Dumbledore: sl-prob-01 | Lecture notes for &quot;Introduction to Stochastic Processes&quot;" />
+  
+  <meta name="twitter:description" content="A set of lecture notes for M362M: Introduction to Stochastic Processes" />
+  
+
+<meta name="author" content="Gordan Zitkovic" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="stationary-distributions.html"/>
+<link rel="next" href="dist.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">M362M Lecture notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> An intro to R and RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#setting-up-an-r-environment-on-your-computer"><i class="fa fa-check"></i><b>1.1</b> Setting up an R environment on your computer</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#installing-r"><i class="fa fa-check"></i><b>1.1.1</b> Installing R</a></li>
+<li class="chapter" data-level="1.1.2" data-path="intro.html"><a href="intro.html#installing-rstudio"><i class="fa fa-check"></i><b>1.1.2</b> Installing RStudio</a></li>
+<li class="chapter" data-level="1.1.3" data-path="intro.html"><a href="intro.html#installing-basic-packages"><i class="fa fa-check"></i><b>1.1.3</b> Installing basic packages</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#learning-the-basics-of-r"><i class="fa fa-check"></i><b>1.2</b> Learning the basics of R</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#the-console-scripts-and-r-notebooks"><i class="fa fa-check"></i><b>1.2.1</b> The console, Scripts and R Notebooks</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#asking-for-help"><i class="fa fa-check"></i><b>1.2.2</b> Asking for help</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#vectors"><i class="fa fa-check"></i><b>1.2.3</b> Vectors</a></li>
+<li class="chapter" data-level="1.2.4" data-path="intro.html"><a href="intro.html#matrices"><i class="fa fa-check"></i><b>1.2.4</b> Matrices</a></li>
+<li class="chapter" data-level="1.2.5" data-path="intro.html"><a href="intro.html#functions"><i class="fa fa-check"></i><b>1.2.5</b> Functions</a></li>
+<li class="chapter" data-level="1.2.6" data-path="intro.html"><a href="intro.html#if-else-statements"><i class="fa fa-check"></i><b>1.2.6</b> If-else statements</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#problems"><i class="fa fa-check"></i><b>1.3</b> Problems</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html"><i class="fa fa-check"></i><b>2</b> Simulation of Random Variables and Monte Carlo</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#simulation-of-some-common-probability-distributions"><i class="fa fa-check"></i><b>2.1</b> Simulation of some common probability distributions</a></li>
+<li class="chapter" data-level="2.2" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#multivariate-distributions"><i class="fa fa-check"></i><b>2.2</b> Multivariate Distributions</a></li>
+<li class="chapter" data-level="2.3" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#monte-carlo"><i class="fa fa-check"></i><b>2.3</b> Monte Carlo</a></li>
+<li class="chapter" data-level="2.4" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#conditional-distributions"><i class="fa fa-check"></i><b>2.4</b> Conditional distributions</a></li>
+<li class="chapter" data-level="2.5" data-path="simulation-of-random-variables-and-monte-carlo.html"><a href="simulation-of-random-variables-and-monte-carlo.html#additional-problems-for-chapter-2"><i class="fa fa-check"></i><b>2.5</b> Additional Problems for Chapter 2</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="random-walks.html"><a href="random-walks.html"><i class="fa fa-check"></i><b>3</b> Random Walks</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="random-walks.html"><a href="random-walks.html#what-are-stochastic-processes"><i class="fa fa-check"></i><b>3.1</b> What are stochastic processes?</a></li>
+<li class="chapter" data-level="3.2" data-path="random-walks.html"><a href="random-walks.html#the-simple-symmetric-random-walk"><i class="fa fa-check"></i><b>3.2</b> The Simple Symmetric Random Walk</a></li>
+<li class="chapter" data-level="3.3" data-path="random-walks.html"><a href="random-walks.html#how-to-simulate-random-walks"><i class="fa fa-check"></i><b>3.3</b> How to simulate random walks</a></li>
+<li class="chapter" data-level="3.4" data-path="random-walks.html"><a href="random-walks.html#two-ways-of-looking-at-a-stochastic-proceses"><i class="fa fa-check"></i><b>3.4</b> Two ways of looking at a stochastic proceses</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="random-walks.html"><a href="random-walks.html#column-wise-distributionally"><i class="fa fa-check"></i><b>3.4.1</b> Column-wise (distributionally)</a></li>
+<li class="chapter" data-level="3.4.2" data-path="random-walks.html"><a href="random-walks.html#row-wise-trajectorially-or-path-wise"><i class="fa fa-check"></i><b>3.4.2</b> Row-wise (trajectorially or path-wise)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="random-walks.html"><a href="random-walks.html#the-path-space"><i class="fa fa-check"></i><b>3.5</b> The path space</a></li>
+<li class="chapter" data-level="3.6" data-path="random-walks.html"><a href="random-walks.html#the-distribution-of-x_n"><i class="fa fa-check"></i><b>3.6</b> The distribution of <span class="math inline">\(X_n\)</span></a></li>
+<li class="chapter" data-level="3.7" data-path="random-walks.html"><a href="random-walks.html#biased-random-walks"><i class="fa fa-check"></i><b>3.7</b> Biased random walks</a></li>
+<li class="chapter" data-level="3.8" data-path="random-walks.html"><a href="random-walks.html#additional-problems-for-chapter-3"><i class="fa fa-check"></i><b>3.8</b> Additional problems for Chapter 3</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html"><i class="fa fa-check"></i><b>4</b> More about Random Walks</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html#the-reflection-principle"><i class="fa fa-check"></i><b>4.1</b> The reflection principle</a></li>
+<li class="chapter" data-level="4.2" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html#stopping-times"><i class="fa fa-check"></i><b>4.2</b> Stopping times</a></li>
+<li class="chapter" data-level="4.3" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html#walds-identity-and-gamblers-ruin"><i class="fa fa-check"></i><b>4.3</b> Wald’s identity and Gambler’s ruin</a></li>
+<li class="chapter" data-level="4.4" data-path="more-about-random-walks.html"><a href="more-about-random-walks.html#additional-problems-for-chapter-4"><i class="fa fa-check"></i><b>4.4</b> Additional problems for Chapter 4</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="markov-chains.html"><a href="markov-chains.html"><i class="fa fa-check"></i><b>5</b> Markov Chains</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="markov-chains.html"><a href="markov-chains.html#the-markov-property"><i class="fa fa-check"></i><b>5.1</b> The Markov property</a></li>
+<li class="chapter" data-level="5.2" data-path="markov-chains.html"><a href="markov-chains.html#first-examples"><i class="fa fa-check"></i><b>5.2</b> First Examples</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="random-walks.html"><a href="random-walks.html#random-walks"><i class="fa fa-check"></i><b>5.2.1</b> Random walks</a></li>
+<li class="chapter" data-level="5.2.2" data-path="markov-chains.html"><a href="markov-chains.html#gambler"><i class="fa fa-check"></i><b>5.2.2</b> Gambler’s ruin</a></li>
+<li class="chapter" data-level="5.2.3" data-path="markov-chains.html"><a href="markov-chains.html#regime-switching"><i class="fa fa-check"></i><b>5.2.3</b> Regime Switching</a></li>
+<li class="chapter" data-level="5.2.4" data-path="markov-chains.html"><a href="markov-chains.html#deterministically-monotone-markov-chain"><i class="fa fa-check"></i><b>5.2.4</b> Deterministically monotone Markov chain</a></li>
+<li class="chapter" data-level="5.2.5" data-path="markov-chains.html"><a href="markov-chains.html#not-a-markov-chain"><i class="fa fa-check"></i><b>5.2.5</b> Not a Markov chain</a></li>
+<li class="chapter" data-level="5.2.6" data-path="markov-chains.html"><a href="markov-chains.html#turning-a-non-markov-chain-into-a-markov-chain"><i class="fa fa-check"></i><b>5.2.6</b> Turning a non-Markov chain into a Markov chain</a></li>
+<li class="chapter" data-level="5.2.7" data-path="markov-chains.html"><a href="markov-chains.html#deterministic-functions-of-markov-chains-do-not-need-to-be-markov-chains"><i class="fa fa-check"></i><b>5.2.7</b> Deterministic functions of Markov chains do not need to be Markov chains</a></li>
+<li class="chapter" data-level="5.2.8" data-path="markov-chains.html"><a href="markov-chains.html#a-game-of-tennis"><i class="fa fa-check"></i><b>5.2.8</b> A game of tennis</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="markov-chains.html"><a href="markov-chains.html#chapman-kolmogorov-equations"><i class="fa fa-check"></i><b>5.3</b> Chapman-Kolmogorov equations</a></li>
+<li class="chapter" data-level="5.4" data-path="markov-chains.html"><a href="markov-chains.html#mc-sim"><i class="fa fa-check"></i><b>5.4</b> How to simulate Markov chains</a></li>
+<li class="chapter" data-level="5.5" data-path="markov-chains.html"><a href="markov-chains.html#additional-problems-for-chapter-5"><i class="fa fa-check"></i><b>5.5</b> Additional problems for Chapter 5</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="classification-of-states.html"><a href="classification-of-states.html"><i class="fa fa-check"></i><b>6</b> Classification of States</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="classification-of-states.html"><a href="classification-of-states.html#the-communication-relation"><i class="fa fa-check"></i><b>6.1</b> The Communication Relation</a></li>
+<li class="chapter" data-level="6.2" data-path="classification-of-states.html"><a href="classification-of-states.html#classes"><i class="fa fa-check"></i><b>6.2</b> Classes</a></li>
+<li class="chapter" data-level="6.3" data-path="classification-of-states.html"><a href="classification-of-states.html#transience-and-recurrence"><i class="fa fa-check"></i><b>6.3</b> Transience and recurrence</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="classification-of-states.html"><a href="classification-of-states.html#the-return-theorem"><i class="fa fa-check"></i><b>6.3.1</b> The Return Theorem</a></li>
+<li class="chapter" data-level="6.3.2" data-path="classification-of-states.html"><a href="classification-of-states.html#a-recurrence-criterion"><i class="fa fa-check"></i><b>6.3.2</b> A recurrence criterion</a></li>
+<li class="chapter" data-level="6.3.3" data-path="classification-of-states.html"><a href="classification-of-states.html#polyas-theorem"><i class="fa fa-check"></i><b>6.3.3</b> Polya’s theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="classification-of-states.html"><a href="classification-of-states.html#class-properties"><i class="fa fa-check"></i><b>6.4</b> Class properties</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="classification-of-states.html"><a href="classification-of-states.html#the-canonical-decomposition"><i class="fa fa-check"></i><b>6.4.1</b> The Canonical Decomposition</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="classification-of-states.html"><a href="classification-of-states.html#a-few-examples"><i class="fa fa-check"></i><b>6.5</b> A few examples</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="random-walks.html"><a href="random-walks.html#random-walks"><i class="fa fa-check"></i><b>6.5.1</b> Random walks</a></li>
+<li class="chapter" data-level="6.5.2" data-path="classification-of-states.html"><a href="classification-of-states.html#gamblers-ruin"><i class="fa fa-check"></i><b>6.5.2</b> Gambler’s ruin</a></li>
+<li class="chapter" data-level="6.5.3" data-path="markov-chains.html"><a href="markov-chains.html#deterministically-monotone-markov-chain"><i class="fa fa-check"></i><b>6.5.3</b> Deterministically monotone Markov chain</a></li>
+<li class="chapter" data-level="6.5.4" data-path="classification-of-states.html"><a href="classification-of-states.html#the-game-of-tennis"><i class="fa fa-check"></i><b>6.5.4</b> The game of tennis</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="classification-of-states.html"><a href="classification-of-states.html#additional-problems-for-chapter-6"><i class="fa fa-check"></i><b>6.6</b> Additional problems for Chapter 6</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="absorption-and-reward.html"><a href="absorption-and-reward.html"><i class="fa fa-check"></i><b>7</b> Absorption and Reward</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="absorption-and-reward.html"><a href="absorption-and-reward.html#absorption"><i class="fa fa-check"></i><b>7.1</b> Absorption</a></li>
+<li class="chapter" data-level="7.2" data-path="absorption-and-reward.html"><a href="absorption-and-reward.html#expected-reward"><i class="fa fa-check"></i><b>7.2</b> Expected reward</a></li>
+<li class="chapter" data-level="7.3" data-path="absorption-and-reward.html"><a href="absorption-and-reward.html#additional-problems-for-chapter-7"><i class="fa fa-check"></i><b>7.3</b> Additional Problems for Chapter 7</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="stationary-distributions.html"><a href="stationary-distributions.html"><i class="fa fa-check"></i><b>8</b> Stationary Distributions</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="stationary-distributions.html"><a href="stationary-distributions.html#stationarity-and-stationary-distributions"><i class="fa fa-check"></i><b>8.1</b> Stationarity and stationary distributions</a></li>
+<li class="chapter" data-level="8.2" data-path="stationary-distributions.html"><a href="stationary-distributions.html#stationary-distributions-for-finite-irreducible-chains-and-kacs-lemma"><i class="fa fa-check"></i><b>8.2</b> Stationary distributions for finite irreducible chains and Kac’s lemma</a></li>
+<li class="chapter" data-level="8.3" data-path="stationary-distributions.html"><a href="stationary-distributions.html#long-run-averages"><i class="fa fa-check"></i><b>8.3</b> Long-run averages</a></li>
+<li class="chapter" data-level="8.4" data-path="stationary-distributions.html"><a href="stationary-distributions.html#limiting-distributions"><i class="fa fa-check"></i><b>8.4</b> Limiting distributions</a></li>
+<li class="chapter" data-level="8.5" data-path="stationary-distributions.html"><a href="stationary-distributions.html#the-pagerank-algorithm"><i class="fa fa-check"></i><b>8.5</b> The PageRank algorithm</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="dumbledore-sl-prob-01.html"><a href="dumbledore-sl-prob-01.html"><i class="fa fa-check"></i><b>9</b> Dumbledore: sl-prob-01</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="dumbledore-sl-prob-01.html"><a href="dumbledore-sl-prob-01.html#additional-problems-for-chapter-8"><i class="fa fa-check"></i><b>9.1</b> Additional Problems for Chapter 8</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="dist.html"><a href="dist.html"><i class="fa fa-check"></i><b>A</b> Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="dist.html"><a href="dist.html#discrete-distributions"><i class="fa fa-check"></i><b>A.1</b> Discrete distributions:</a></li>
+<li class="chapter" data-level="A.2" data-path="dist.html"><a href="dist.html#continuous-distributions"><i class="fa fa-check"></i><b>A.2</b> Continuous distributions:</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lecture notes for "Introduction to Stochastic Processes"</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="dumbledore-sl-prob-01" class="section level1" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Dumbledore: sl-prob-01</h1>
+<div id="additional-problems-for-chapter-8" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> Additional Problems for Chapter 8</h2>
+<div style="border: 1px solid; padding: 5px;">
+<p><strong>Note:</strong> do not use simulations in any of the problems below. Using R (or other software) to manipulate matrices or perform other numerical computation is fine.</p>
+</div>
+<p><br></p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+357e6988e73fe273260c9eae3d5de0de94d0a72b
+<!--
+sl-prob-01
+------------------------------------------------
+-->
+<div class="problem">
+
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>Let <span class="math inline">\(\{X_n\}_{n\in {\mathbb{N}}_0}\)</span> be a Markov
+chain with the transition matrix <span class="math display">\[P=\begin{bmatrix} 
+    \frac{1}{4} &amp; \frac{1}{4} &amp; \frac{1}{2} \\
+     0 &amp; \frac{1}{3} &amp; \frac{2}{3} \\
+ \frac{1}{3} &amp; \frac{1}{3} &amp; \frac{1}{3} \\
+ \end{bmatrix}\]</span></p>
+<ol style="list-style-type: decimal">
+<li><p>Find all stationary distributions.</p></li>
+<li><p>The chain starts from the state <span class="math inline">\(i=1\)</span>. What is the expected number
+of steps before it returns to <span class="math inline">\(1\)</span>?</p></li>
+<li><p>How many times, on average, does the chain visit state <span class="math inline">\(2\)</span> between two
+consecutive visits to state <span class="math inline">\(1\)</span>?</p></li>
+<li><p>Each time the chain visits the state <span class="math inline">\(1\)</span>, <span class="math inline">\(\$1\)</span> is added to an
+account, <span class="math inline">\(\$2\)</span> for the state <span class="math inline">\(2\)</span>, and nothing in the state <span class="math inline">\(3\)</span>.
+Estimate the amount of money on the account after 10000 transitions?
+You may assume that the Ergodic theorem provides an adequate approximation.</p></li>
+</ol>
+</div>
+<div class="solution">
+<ol style="list-style-type: decimal">
+<li><p>Stationary distributions <span class="math inline">\(\pi=(\pi_1,\pi_2,\pi_3)\)</span> satisfy <span class="math inline">\(\pi  P=\pi\)</span>, i.e., <span class="math display">\[%   \label{equ:}
+  \nonumber 
+   \begin{split}
+ \tfrac{1}{4} \pi_1 \hspace{6.7ex} + \tfrac{1}{3} \pi_3 &amp; = \pi_1 \\
+ \tfrac{1}{4} \pi_1 + \tfrac{1}{3} \pi_2 + \tfrac{1}{3} \pi_3 &amp; = \pi_2 \\
+ \tfrac{1}{2} \pi_1 + \tfrac{2}{3} \pi_2 + \tfrac{1}{3} \pi_3 &amp; = \pi_3. 
+   \end{split}\]</span> We also know that <span class="math inline">\(\pi_1+\pi_2+\pi_3=1\)</span>, and that
+the matrix <span class="math inline">\(P\)</span> is stochastic. Therefore, the third equation below is
+a linear combination of the first two, and can be exculded from
+consideration (this is always the case in problems with stationary
+distributions).</p>
+<p>The first equation yields that <span class="math inline">\(\pi_3=\frac{9}{4} \pi_1\)</span>, and the
+second one that
+<span class="math inline">\(\pi_2 = \tfrac{3}{2} ( \tfrac{1}{4}\pi_1+\tfrac{1}{3} \pi_3)= \tfrac{3}{2} \pi_1\)</span>. It remains to find <span class="math inline">\(\pi_1\)</span> such that
+<span class="math inline">\(\pi_1+\pi_2+\pi_3=1\)</span>, i.e, <span class="math inline">\(\pi_1+ \tfrac{3}{2} \pi_1+ \frac{9}{4} \pi_1=1\)</span>, i.e., <span class="math inline">\(\pi_1=(1+\tfrac{3}{2}+\frac{9}{4})^{-1}= \tfrac{4}{19}\)</span>. Therefore, <span class="math display">\[\pi=
+(\tfrac{4}{19},\tfrac{6}{19},\tfrac{9}{19})\]</span> is the only stationary
+distribution.</p></li>
+<li><p>By Kac’s theorem, the number of steps between two returns to a state <span class="math inline">\(i\)</span> (in an
+irreducible finite chain) is given by
+<span class="math display">\[{\mathbb{E}}_i[\tau_i(1)]=\frac{1}{\pi_i}.\]</span> Therefore,
+<span class="math inline">\({\mathbb{E}}_1[\tau_1(1)]= \tfrac{19}{4}\)</span>.</p></li>
+<li><p>Also by Kac’s theorem, the number of visits to the state <span class="math inline">\(j\)</span> between two consecutive visits
+to the state <span class="math inline">\(i\)</span> (in an irreducible finite chain) is given by
+<span class="math display">\[{\mathbb{E}}_i[ \sum_{n=0}^{\tau_1(1)} \mathbf{1}_{\{ X_n=j\}}]=
+\tfrac{\pi_j}{\pi_i}.\]</span> Therefore, our chain will visit the state
+<span class="math inline">\(2\)</span> on average <span class="math inline">\(1.5\)</span> times between every two visits to the state
+<span class="math inline">\(1\)</span>.</p></li>
+<li><p>The chain in question is irreducible and finite, so the law of large
+numbers applies:
+<span class="math display">\[\lim_{N\to\infty} \frac{1}{N} \sum_{n=0}^{N-1} f(X_n)=
+\sum_{i\in\S} f(i) \pi_i.\]</span> In our case <span class="math inline">\(f(1)=1\)</span>, <span class="math inline">\(f(2)=2\)</span> and
+<span class="math inline">\(f(3)=0\)</span>, so the amount of money <span class="math inline">\(M=\sum_{n=0}^{10000} f(X_n)\)</span> can
+be approximated as <span class="math display">\[\label{equ:2919}
+ \begin{split}
+    M&amp;= 10001 \times \tfrac{1}{10001} \sum_{n=0}^{10000} f(X_n)\approx
+   10001 \times (\ 1 \tfrac{4}{19}+ \ 2 \tfrac{6}{19})\\ &amp;= 10001 \times
+   \ \tfrac{16}{19}\approx \ 8422.%
+ \end{split}\]</span></p></li>
+</ol>
+</div>
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+Dumbledore: sl-mc-exam-07
+=======
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 357e6988e73fe273260c9eae3d5de0de94d0a72b
+<!--
+  sl-mc-exam-07
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>A county has 2 large cities and <span class="math inline">\(8\)</span> small ones. Any two cities have a direct
+flight between them, except for the two large ones (since they don’t like each
+other very much). A traveler starts in a large city and moves around randomly by
+picking one of the available direct flights from their current city at random and taking
+it. What is the expected number of flights he or she will take before returning
+to the initial city for the first time?</p>
+</div>
+<div class="solution">
+<p>This can be modeled as a random walk on a graph with <span class="math inline">\(10\)</span> vertices <span class="math inline">\(S=\{1,2,\dots, 10\}\)</span> where any two vertices are connected by an edge except for <span class="math inline">\(1\)</span> and <span class="math inline">\(2\)</span>. We need to compute <span class="math inline">\(m_1 = {\mathbb{E}}_1[T_1(1)]\)</span> which is, by Kac’s theorem, given by <span class="math inline">\(1/\pi_1\)</span>, where <span class="math inline">\(\pi\)</span> is the (unique) stationary distribution. The degrees of vertices <span class="math inline">\(3,4,\dots, 10\)</span> are <span class="math inline">\(9\)</span> and the degrees of <span class="math inline">\(1\)</span> and <span class="math inline">\(2\)</span> are <span class="math inline">\(8\)</span>. Therefore, <span class="math inline">\(\sum_{i\in S} d(i) = 90\)</span> and, so,
+<span class="math display">\[ m_1 = \frac{1}{\pi_1} = \frac{\sum_{i\in S} d(i)}{ d(1)}= \frac{90}{8} = 11.25.\]</span></p>
+</div>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+Dumbledore: mc_prob3
+=======</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+357e6988e73fe273260c9eae3d5de0de94d0a72b
+<!--
+mc_prob3
+------------------------------------------------
+-->
+<div class="problem">
+
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>Wonder Woman is moving from a vertex to a vertex of a cube, along its
+edges. Each time she reaches a vertex, she chooses one of the three edges
+that meet there with probability <span class="math inline">\(1/3\)</span>, independently of her previous
+choices. Assuming that it takes 1 min for Wonder Woman to cross an edge,
+what is the expected amount of time it will take her to return to the initial vertex?
+How about if the cube is replaced by a tetrahedron?</p>
+</div>
+<div class="solution">
+<p>The situation can be modeled by a random walk on a graph whose vertices
+are the <span class="math inline">\(8\)</span> vertices of a cube, with two vertices connected by an edge
+if and only if they share an edge of the cube. We know that random walks
+on graphs admit stationary distributions proportional to the degrees of
+the graph’s vertices. In our case each vertex has degree <span class="math inline">\(3\)</span>, so the
+(unique) stationary distribution is uniform <span class="math inline">\((1/8, \dots ,1/8)\)</span>. The
+expected return times are reciprocals of the probabilities in the
+stationary distributions, so the answer is <span class="math inline">\(8\)</span>.</p>
+<p>In the case of a tetrahedron, the stationary distribution is
+<span class="math inline">\((1/4,\dots,1/4)\)</span> and the answer is <span class="math inline">\(4\)</span>. In fact, the answer is equal to
+the number of vertices for any regular polyhedron.</p>
+</div>
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+Dumbledore: sl-prob-02
+=======
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 357e6988e73fe273260c9eae3d5de0de94d0a72b
+<!--
+  sl-prob-02
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>Just like we did for the knight in an example above, compute the mean return time to the
+lower left corner for other chess pieces.</p>
+</div>
+<div class="solution">
+<p>Assuming that they all start from the lower left corner, the mean return
+times are given by in the following table:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><strong>chess piece</strong></th>
+<th align="right"><strong>mean return time</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">bishop</td>
+<td align="right"><span class="math inline">\(\tfrac{280}{7} = 50\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">rook</td>
+<td align="right"><span class="math inline">\(\tfrac{896}{14} = 64\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">queen</td>
+<td align="right"><span class="math inline">\(\tfrac{1456}{21} \approx 69.3\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">knight</td>
+<td align="right"><span class="math inline">\(\tfrac{336}{2} = 118\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">king</td>
+<td align="right"><span class="math inline">\(\tfrac{420}{3} = 140\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">pawn</td>
+<td align="right"><span class="math inline">\(+\infty\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>We assume that pawns don’t get promoted once they reach the last row; they just stay there.</p>
+</div>
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+Dumbledore: mc_prob1
+=======
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 357e6988e73fe273260c9eae3d5de0de94d0a72b
+<!--
+  mc_prob1
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>Consider the Markov chain below
+<img src="pics/mc_prob1_chain.png" width="1200" style="display: block; margin: auto;" />
+where equally colored edges represent equal probabilities.
+Find all stationary
+distributions. For each <span class="math inline">\(i\in \{1,2,\dots, 7\}\)</span>, compute the long-run
+proportion of time this chain will spend in the state <span class="math inline">\(1\)</span>.</p>
+</div>
+<div class="solution">
+<p>This chain has two recurrent classes <span class="math inline">\(C_1=\{1,2,3\}\)</span> and <span class="math inline">\(C_2 =  \{6,7\}\)</span>. Their transition matrices <span class="math inline">\(C_1\)</span> are given by
+<span class="math display">\[P_{C_1}=\begin{bmatrix}1/2 &amp; 0 &amp; 1/2 \\ 1/4 &amp; 1/2 &amp; 1/4 \\ 0 &amp; 1/2 &amp;
+  1/2\end{bmatrix} \text{ and }P_{C_2} = \begin{bmatrix} 0 &amp; 1 \\ 1/2 &amp; 1/2\end{bmatrix}.\]</span> The unique
+stationary distribution <span class="math inline">\(((\pi_{C_1})_1,(\pi_{C_1})_2,(\pi_{C_1})_3)\)</span>
+for <span class="math inline">\(P_{C_1}\)</span> satisfies the following system of equations
+<span class="math display">\[\begin{aligned}
+  (\pi_{C_1})_1 &amp; = 1/2 (\pi_{C_1})_1 + 1/4 (\pi_{C_1})_2 \\
+  (\pi_{C_1})_2 &amp; = 1/2 (\pi_{C_1})_2 + 1/2 (\pi_{C_1})_3 \\
+  (\pi_{C_1})_3 &amp; = 1/2 (\pi_{C_1})_1 + 1/4 (\pi_{C_1})_2 + 1/2 (\pi_{C_1})_3,\end{aligned}\]</span>
+and it follows that <span class="math inline">\((\pi_{C_1})_2 = 2 (\pi_{C_1})_1\)</span> and
+<span class="math inline">\((\pi_{C_1})_3 = (\pi_{C_1})_2\)</span>. Since
+<span class="math inline">\((\pi_{C_1})_1+(\pi_{C_1})_2+(\pi_{C_1})_3=1\)</span>, we get
+<span class="math inline">\((\pi_{C_1}) = (1/5, 2/5, 2/5)\)</span>. Similarly, the system equations for
+<span class="math inline">\(\pi_{C_2}\)</span> is given by <span class="math display">\[\begin{aligned}
+  (\pi_{C_2})_1 &amp;= 1/2 (\pi_{C_2})_2 \\
+  (\pi_{C_2})_2 &amp;= (\pi_{C_2})_1 + 1/2 (\pi_{C_2})_2.\end{aligned}\]</span>
+Together with <span class="math inline">\((\pi_{C_2})_1 + (\pi_{C_2})_2 = 1\)</span>, we get <span class="math inline">\(\pi_{C_2} = (1/3, 2/3)\)</span>.</p>
+<p>The states <span class="math inline">\(4\)</span> and <span class="math inline">\(5\)</span> are transient, so any stationary distribution
+must be of the form
+<span class="math display">\[\pi = ( \alpha \frac{1}{5}, \alpha \frac{2}{5}, \alpha \frac{2}{5}, 0, 0,
+(1-\alpha) \frac{1}{3}, (1-\alpha) \frac{2}{3}),\]</span> for some <span class="math inline">\(\alpha \in [0,1]\)</span>.</p>
+<p>If the initial state <span class="math inline">\(i\)</span> is <span class="math inline">\(6\)</span> or <span class="math inline">\(7\)</span>, the chain will never visit <span class="math inline">\(1\)</span>,
+so the long run proportion is <span class="math inline">\(0\)</span>. If we start from <span class="math inline">\(1,2,3\)</span> or <span class="math inline">\(4\)</span>, the
+chain will get absorbed in the class <span class="math inline">\(C_1\)</span> and the long-run proportion
+of time spent at <span class="math inline">\(1\)</span> is given by <span class="math inline">\((\pi_{C_1})_1 = 1/5\)</span>.</p>
+<p>What happens when we start from <span class="math inline">\(5\)</span> is a little bit more subtle. If the
+first step taken is towards <span class="math inline">\(6\)</span>, the answer is <span class="math inline">\(0\)</span>, and if the first
+step is towards <span class="math inline">\(4\)</span>, the answer is <span class="math inline">\(1/5\)</span>. Therefore, this long run
+proportion is not a constant. It is a random variable whose value is
+<span class="math inline">\(\frac{1}{5} \mathbf{1}_{\{X_1 = 4\}}\)</span>.</p>
+</div>
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+Dumbledore: friends
+=======
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 357e6988e73fe273260c9eae3d5de0de94d0a72b
+<!--
+  friends
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>An Instagram influencer and die-hard foodie Ravi travels for work
+between Austin and Los Angeles. After he spends a week in Austin, he
+spends another week there with probability <span class="math inline">\(1/3\)</span> or goes to Los Angeles
+with probability <span class="math inline">\(2/3\)</span>. After a week in Los Angeles, he always spends
+the next week in Austin.</p>
+<p>His friend, Delphine, a tech enterpreneur and a passionate
+restaurant-goer herself, keeps a similar schedule. She also moves
+between Austin and Los Angeles, but, being a free spirit (and also a bit
+detached from reality), she makes her decisions by tossing a coin. No
+matter where she is, Austin or Los Angeles, she stays there with
+probability <span class="math inline">\(1/2\)</span> for another week, or switches cities with probability
+<span class="math inline">\(1/2\)</span>, as well. Moreover, the coin she uses is just a coin - it is not
+magically influenced by Ravi’s current position in any way. Similarly,
+Ravi’s decision whether to stay or not has nothing to do with Delphine’s
+coin, or the city she is in.</p>
+<p>Each time Ravi and Delphine find themselves in the same city, they go
+out on Friday night to try a new restaurant. If they happen to be in
+Austin, they pay <span class="math inline">\(\$100\)</span> for the experience. Los Angeles is more
+expensive, and the typical dinner costs <span class="math inline">\(\$200\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Ravi and Delphine are in Los Angeles this week. How many weeks will
+pass (on average) before they are both in Los Angeles again?</p></li>
+<li><p>How many Austin dinners do they have, on average, between two Los
+Angeles dinners?</p></li>
+<li><p>What is the long-run average amount of money they spend on
+restaurants each week?</p></li>
+</ol>
+</div>
+<div class="solution">
+<p>We model the positions of Ravi and Delphine by a Markov chain with <span class="math inline">\(4\)</span>
+states AA, AL, LA and LL (with the two letters denoting the cities they
+happen do find themselves in a given week). Ravi’s and Delphine’s
+positions, considered separately, are also Markov Chains, with the state
+space <span class="math inline">\(\{A,L\}\)</span> and the transition matrices
+<span class="math display">\[P^{R} = \begin{bmatrix} 1/3 &amp; 2/3 \\ 1 &amp; 0\end{bmatrix} \text{ and }P^{D} = \begin{bmatrix} 1/2 &amp; 1/2 \\ 1/2 &amp;
+  1/2\end{bmatrix}.\]</span> Since Ravi’s and Delphine’s transitions are independent, the
+transition probabilities of the “joint” chain on
+<span class="math inline">\(S = \{\text{AA, AL, LA, LL}\}\)</span> are simply products of the transition
+probability of the two individual chains. For example
+<span class="math inline">\(P_{AA, AL} = P^{\text{Ravi}}_{A, A}\times P^{\text{Delphine}}_{A,L} = 1/3 \times 1/2 = 1/6\)</span>.
+Therefore, the full transition matrix for the “joint” chain is given by
+<span class="math display">\[P = \begin{bmatrix} 
+    1/6 &amp; 1/6 &amp; 1/3 &amp; 1/3 \\
+    1/6 &amp; 1/6 &amp; 1/3 &amp; 1/3 \\
+    1/2 &amp;  1/2 &amp; 0 &amp; 0 \\
+    1/2 &amp;  1/2 &amp; 0 &amp; 0
+\end{bmatrix}\]</span> with the states in the following order AA, AL, LA and LL. All the
+questions above use the stationary probability of this chain, so we
+compute it first. The system of equations for
+<span class="math inline">\(\pi = (\pi_{AA}, \pi_{AL}, \pi_{LA}, \pi_{LL})\)</span> is <span class="math display">\[\begin{aligned}
+  \pi_{AA} &amp;= 1/6 \pi_{AA} + 1/6 \pi_{AL} + 1/2 \pi_{LA} + 1/2 \pi_{LL} \\ 
+  \pi_{AL} &amp;= 1/6 \pi_{AA} + 1/6 \pi_{AL} + 1/2 \pi_{LA} + 1/2 \pi_{LL} \\ 
+  \pi_{LA} &amp;= 1/3 \pi_{AA} + 1/3 \pi_{AL}\\
+  \pi_{LL} &amp;= 1/3 \pi_{AA} + 1/3 \pi_{AL}\\
+\text{ as well as} \\
+  1 = &amp; \pi_{AA}+\pi_{AL} + \pi_{LA} + \pi_{LL}.\end{aligned}\]</span> The
+first two equations immediately imply that <span class="math inline">\(\pi_{AA} = \pi_{AL}\)</span>, and
+the second two that <span class="math inline">\(\pi_{LA} = \pi_{LL}\)</span>. Moreover, by the third
+equation, we have <span class="math inline">\(\pi_{LA} = 2/3 \pi_{AA}\)</span>; similarly,
+<span class="math inline">\(\pi_{LL} = 2/3 \pi_{AL} = 2/3 \pi_{AA}\)</span>. We plug all of that into the last equation to get
+<span class="math display">\[1 =  \pi_{AA}  + \pi_{AA} + 2/3 \pi_{AA} + 2/3 \pi_{AA},\]</span> which gives
+<span class="math inline">\(\pi_{AA} = 3/10\)</span>, and, then, <span class="math inline">\(\pi_{AL} = 3/10\)</span>, <span class="math inline">\(\pi_{LA} = 1/5\)</span> and <span class="math inline">\(\pi_{LL} = 1/5\)</span>.</p>
+<ol style="list-style-type: decimal">
+<li><p>By Kac’s theorem, the mean return time to LL is <span class="math inline">\(1/\pi_{LL} = 5\)</span>
+weeks.</p></li>
+<li><p>Also by Kac’s theorem, the average number of visits to AA between
+two visits to LL is <span class="math inline">\(\pi_{AA}/\pi_{LL} = 1.5\)</span></p></li>
+<li><p>By the ergodic theorem, the long-run amount of money spent each week
+is <span class="math inline">\(\pi_{AA} \times \$100 + \pi_{LL}\times \$200 = \$ 70\)</span>.</p></li>
+</ol>
+</div>
+Dumbledore: sl-prob-04
+<!--
+  sl-prob-04
+  ------------------------------------------------
+-->
+<div class="problem">
+<p>Go back to the Problem with airline reservation system and the computer-repair
+facility in the last chapter. If the system starts with both
+computers operational, answer the following questions:</p>
+<ol style="list-style-type: decimal">
+<li><p>What percentage of time (on average) are both machines operable?</p></li>
+<li><p>What is the long-run per-day cost associated with inoperable computers?</p></li>
+</ol>
+</div>
+<div class="solution">
+<p>Most of the work has been done in the solution to the original problem in the previous chapter; please read it if
+you don’t remember what the names of the states mean. The Markov chain that
+we constructed there has the following graph
+<img src="pics/facility_chain.png" width="1200" style="display: block; margin: auto;" /></p>
+<p>Since both questions asked need the stationary distribution, let us compute it first. There are two difficulties. The first one is that the equation <span class="math inline">\(\pi = \pi P\)</span> is not in the format R’s <code>solve</code> command likes. That is easily fixed by transposing everything, i.e., by solving the equation <span class="math inline">\((I - P^T) \pi^T = 0\)</span>. The second problem is that the system of equations <span class="math inline">\(\pi = \pi P\)</span> is underdetermined (if you sum all the equations you will get <span class="math inline">\(1=1\)</span>) so that the additional requirement <span class="math inline">\(\pi_1+\dots+\pi_5=1\)</span> must be added.
+We take care of both of these things by first forming the matrix <span class="math inline">\(M = I - P^T\)</span> and then replacing its last row by a row of 1s. We also need to replace the <span class="math inline">\(0\)</span> vector on the right hand side by the vector <span class="math inline">\((0,0,0,0,1)\)</span>. This way, the last equation becomes exactly <span class="math inline">\(\pi_1+\dots+\pi_5 = 1\)</span>. Here is how all of this is done in R:</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="dumbledore-sl-prob-01.html#cb163-1" aria-hidden="true"></a>p =<span class="st"> </span><span class="fl">0.3</span></span>
+<span id="cb163-2"><a href="dumbledore-sl-prob-01.html#cb163-2" aria-hidden="true"></a>S =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;0-0-1-1&quot;</span>, <span class="st">&quot;0-1-0-1&quot;</span>, <span class="st">&quot;1-0-1-0&quot;</span>, <span class="st">&quot;1-1-0-0&quot;</span>, <span class="st">&quot;2-0-0-0&quot;</span>)</span>
+<span id="cb163-3"><a href="dumbledore-sl-prob-01.html#cb163-3" aria-hidden="true"></a>P =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, p, <span class="dv">0</span>, <span class="dv">1</span> <span class="op">-</span><span class="st"> </span>p, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, p, <span class="dv">0</span>, <span class="dv">1</span> <span class="op">-</span><span class="st"> </span>p, </span>
+<span id="cb163-4"><a href="dumbledore-sl-prob-01.html#cb163-4" aria-hidden="true"></a>    p<span class="op">^</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span> <span class="op">*</span><span class="st"> </span>p <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>p), <span class="dv">0</span>, (<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>p)<span class="op">^</span><span class="dv">2</span>), <span class="dt">byrow =</span> <span class="ot">TRUE</span>, <span class="dt">ncol =</span> <span class="dv">5</span>)</span>
+<span id="cb163-5"><a href="dumbledore-sl-prob-01.html#cb163-5" aria-hidden="true"></a></span>
+<span id="cb163-6"><a href="dumbledore-sl-prob-01.html#cb163-6" aria-hidden="true"></a>M =<span class="st"> </span><span class="kw">diag</span>(<span class="dv">5</span>) <span class="op">-</span><span class="st"> </span><span class="kw">t</span>(P)</span>
+<span id="cb163-7"><a href="dumbledore-sl-prob-01.html#cb163-7" aria-hidden="true"></a>M[<span class="dv">5</span>, ] =<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb163-8"><a href="dumbledore-sl-prob-01.html#cb163-8" aria-hidden="true"></a></span>
+<span id="cb163-9"><a href="dumbledore-sl-prob-01.html#cb163-9" aria-hidden="true"></a>v =<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dt">nrow =</span> <span class="dv">5</span>, <span class="dt">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb163-10"><a href="dumbledore-sl-prob-01.html#cb163-10" aria-hidden="true"></a>v[<span class="dv">5</span>, <span class="dv">1</span>] =<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb163-11"><a href="dumbledore-sl-prob-01.html#cb163-11" aria-hidden="true"></a></span>
+<span id="cb163-12"><a href="dumbledore-sl-prob-01.html#cb163-12" aria-hidden="true"></a>(<span class="dt">p_stat =</span> <span class="kw">t</span>(<span class="kw">solve</span>(M, v)))</span>
+<span id="cb163-13"><a href="dumbledore-sl-prob-01.html#cb163-13" aria-hidden="true"></a><span class="co">##            [,1]      [,2]     [,3]      [,4]      [,5]</span></span>
+<span id="cb163-14"><a href="dumbledore-sl-prob-01.html#cb163-14" aria-hidden="true"></a><span class="co">## [1,] 0.02759354 0.1233262 0.319109 0.2233763 0.3065949</span></span></code></pre></div>
+<p>The vector <code>p_stat</code> contains the (unique) stationary distribution, so we can start by answering the two questions posed in the problem.</p>
+<ol style="list-style-type: decimal">
+<li><p>The percentage of time both machines are operable is <span class="math inline">\(\pi_{2-0-0-0}\)</span>. The order of 2-0-0-0 is <span class="math inline">\(5\)</span>, so the answer is approximately <span class="math inline">\(0.3066\)</span>.</p></li>
+<li><p>This is the job for the Ergodic theorem. The reward (cost) function associated with the
+<span class="math inline">\(5\)</span> states is
+<span class="math display">\[\begin{align}
+  f(\text{0-0-1-1}) &amp;= 30,000 \\
+  f(\text{0-1-0-1}) &amp;= 30,000 \\
+  f(\text{1-0-1-0}) &amp;= 10,000 \\
+  f(\text{1-1-0-0}) &amp;= 10,000 \\
+  f(\text{2-0-0-0}) &amp;= 0
+\end{align}\]</span></p></li>
+</ol>
+<p>To get the expected long-term reward-per-day, we need to compute the product of <span class="math inline">\(\pi\)</span> and <span class="math inline">\(f\)</span> (understood as a column vector):</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="dumbledore-sl-prob-01.html#cb164-1" aria-hidden="true"></a>f =<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">30000</span>, <span class="dv">30000</span>, <span class="dv">10000</span>, <span class="dv">10000</span>, <span class="dv">0</span>), <span class="dt">nrow =</span> <span class="dv">5</span>, <span class="dt">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb164-2"><a href="dumbledore-sl-prob-01.html#cb164-2" aria-hidden="true"></a>p_stat <span class="op">%*%</span><span class="st"> </span>f</span>
+<span id="cb164-3"><a href="dumbledore-sl-prob-01.html#cb164-3" aria-hidden="true"></a><span class="co">##          [,1]</span></span>
+<span id="cb164-4"><a href="dumbledore-sl-prob-01.html#cb164-4" aria-hidden="true"></a><span class="co">## [1,] 9952.447</span></span></code></pre></div>
+</div>
+<p>⬇︎ In case you were wondering, the text below belongs to footnotes from somewhere high above.⬇︎</p>
+
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="stationary-distributions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dist.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": false,
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+},
+"search": true,
+"toc_depth": null
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
