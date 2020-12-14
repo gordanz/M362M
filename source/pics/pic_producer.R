@@ -255,29 +255,29 @@ plotpng(m,"professor_chain.png")
 # plotpng(m,"mc_prob1_chain.png", height=1000)
 
 # # facility_prb (airline computers breaking down)
-p=0.3
-m = tribble(
-    ~from, ~to, ~label, ~prob,
-    "1-1-0-0", "1-0-1-0", "p", p,
-    "1-1-0-0", "2-0-0-0", "1-p", 1-p,
-    "1-0-1-0", "1-1-0-0", "1-p", 1-p,
-    "1-0-1-0", "0-1-0-1", "p", p,
-    "0-1-0-1", "1-0-1-0", "1", 1,
-    "0-0-1-1", "0-1-0-1", "1", 1,
-    "2-0-0-0", "0-0-1-1", "p^2", p^2,
-    "2-0-0-0", "1-0-1-0", "2 p (1-p)", 2* p * (1-p),
-    "2-0-0-0", "2-0-0-0", "(1-p)^2", (1-p)^2
-    ) %>%
-    markov_chain %>%
-    set_edge("2-0-0-0","2-0-0-0",loop_angle = -pi/5) %>%
-    set_auto_layout %>%
-    rotate(pca=T) %>%
-    stretch(2) %>%
-    curve_overlapping_edges %>%
-    set_graphics_parameters(vertex.size = 35,
-                            vertex.label.cex = 3,
-                            edge.label.cex=5,
-                            edge.color="grey50")
+# p=0.3
+# m = tribble(
+#     ~from, ~to, ~label, ~prob,
+#     "1-1-0-0", "1-0-1-0", "p", p,
+#     "1-1-0-0", "2-0-0-0", "1-p", 1-p,
+#     "1-0-1-0", "1-1-0-0", "1-p", 1-p,
+#     "1-0-1-0", "0-1-0-1", "p", p,
+#     "0-1-0-1", "1-0-1-0", "1", 1,
+#     "0-0-1-1", "0-1-0-1", "1", 1,
+#     "2-0-0-0", "0-0-1-1", "p^2", p^2,
+#     "2-0-0-0", "1-0-1-0", "2 p (1-p)", 2* p * (1-p),
+#     "2-0-0-0", "2-0-0-0", "(1-p)^2", (1-p)^2
+#     ) %>%
+#     markov_chain %>%
+#     set_edge("2-0-0-0","2-0-0-0",loop_angle = -pi/5) %>%
+#     set_auto_layout %>%
+#     rotate(pca=T) %>%
+#     stretch(2) %>%
+#     curve_overlapping_edges %>%
+#     set_graphics_parameters(vertex.size = 35,
+#                             vertex.label.cex = 3,
+#                             edge.label.cex=5,
+#                             edge.color="grey50")
 # plotpng(m,"facility_chain.png")
 
 # # facility_prb simplified (airline computers breaking down)
@@ -327,3 +327,26 @@ m = tribble(
 #                           edge.color="grey50")
 # plotpng(m,"facility_simplest_chain.png", height=700)
 #     
+
+# mc_prob18 (the bold play)
+p=0.3; q=1-p
+m = markov_chain() %>% 
+  add_state("0", x=-2, y=0) %>% 
+  add_state("1", x=-1, y=-1) %>% 
+  add_state("2", x=-1, y=1) %>% 
+  add_state("3", x=1, y=-1) %>% 
+  add_state("4", x=1, y=1) %>% 
+  add_state("5", x=2, y=0) %>% 
+  add_edge("0","0", prob=1, loop_angle = pi) %>% 
+  add_edge("1","0", prob=q) %>% 
+  add_edge("1","2", prob=p) %>% 
+  add_edge("2","0", prob=q) %>% 
+  add_edge("2","4", prob=p) %>% 
+  add_edge("3","1", prob=q) %>% 
+  add_edge("3","5", prob=p) %>% 
+  add_edge("4","3", prob=q) %>% 
+  add_edge("4","5", prob=p) %>% 
+  add_edge("5","5", prob=1) %>% 
+  set_auto_edge_colors() %>% 
+  set_absorbing_state_color()
+plotpng(m,"bold_play_chain.png")
